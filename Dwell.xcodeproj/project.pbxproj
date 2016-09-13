@@ -1,0 +1,503 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B75B2C761D88033A007EEE42 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C751D88033A007EEE42 /* main.m */; };
+		B75B2C791D88033A007EEE42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C781D88033A007EEE42 /* AppDelegate.m */; };
+		B75B2C7C1D88033A007EEE42 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C7B1D88033A007EEE42 /* ViewController.m */; };
+		B75B2C7F1D88033A007EEE42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75B2C7D1D88033A007EEE42 /* Main.storyboard */; };
+		B75B2C811D88033A007EEE42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75B2C801D88033A007EEE42 /* Assets.xcassets */; };
+		B75B2C991D88060B007EEE42 /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C981D88060B007EEE42 /* BSKeyboardControls.m */; };
+		B75B2CA81D880663007EEE42 /* UserDefaultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2CA71D880663007EEE42 /* UserDefaultManager.m */; };
+		B75B2CAC1D8806AD007EEE42 /* UITextField+Validations.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2CAB1D8806AD007EEE42 /* UITextField+Validations.m */; };
+		B75B2CB01D8806C1007EEE42 /* UITextField+Padding.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2CAF1D8806C1007EEE42 /* UITextField+Padding.m */; };
+		B75B2CB41D8806D2007EEE42 /* UIView+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2CB31D8806D2007EEE42 /* UIView+RoundedCorner.m */; };
+		B75B2CB81D8806E4007EEE42 /* UIImage+deviceSpecificMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2CB71D8806E4007EEE42 /* UIImage+deviceSpecificMedia.m */; };
+		B75B2CBC1D880958007EEE42 /* MMMaterialDesignSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2CBB1D880958007EEE42 /* MMMaterialDesignSpinner.m */; };
+		B75B2CC51D880CFD007EEE42 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2CC41D880CFD007EEE42 /* Constants.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B75B2C711D88033A007EEE42 /* Dwell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dwell.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B75B2C751D88033A007EEE42 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B75B2C771D88033A007EEE42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B75B2C781D88033A007EEE42 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B75B2C7A1D88033A007EEE42 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B75B2C7B1D88033A007EEE42 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B75B2C7E1D88033A007EEE42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B75B2C801D88033A007EEE42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B75B2C851D88033A007EEE42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B75B2C951D8804F6007EEE42 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		B75B2C971D88060B007EEE42 /* BSKeyboardControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
+		B75B2C981D88060B007EEE42 /* BSKeyboardControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
+		B75B2CA61D880663007EEE42 /* UserDefaultManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultManager.h; sourceTree = "<group>"; };
+		B75B2CA71D880663007EEE42 /* UserDefaultManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultManager.m; sourceTree = "<group>"; };
+		B75B2CAA1D8806AD007EEE42 /* UITextField+Validations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Validations.h"; sourceTree = "<group>"; };
+		B75B2CAB1D8806AD007EEE42 /* UITextField+Validations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Validations.m"; sourceTree = "<group>"; };
+		B75B2CAE1D8806C1007EEE42 /* UITextField+Padding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Padding.h"; sourceTree = "<group>"; };
+		B75B2CAF1D8806C1007EEE42 /* UITextField+Padding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Padding.m"; sourceTree = "<group>"; };
+		B75B2CB21D8806D2007EEE42 /* UIView+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RoundedCorner.h"; sourceTree = "<group>"; };
+		B75B2CB31D8806D2007EEE42 /* UIView+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RoundedCorner.m"; sourceTree = "<group>"; };
+		B75B2CB61D8806E4007EEE42 /* UIImage+deviceSpecificMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+deviceSpecificMedia.h"; sourceTree = "<group>"; };
+		B75B2CB71D8806E4007EEE42 /* UIImage+deviceSpecificMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+deviceSpecificMedia.m"; sourceTree = "<group>"; };
+		B75B2CBA1D880958007EEE42 /* MMMaterialDesignSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMaterialDesignSpinner.h; sourceTree = "<group>"; };
+		B75B2CBB1D880958007EEE42 /* MMMaterialDesignSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMaterialDesignSpinner.m; sourceTree = "<group>"; };
+		B75B2CC31D880CFD007EEE42 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		B75B2CC41D880CFD007EEE42 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B75B2C6E1D88033A007EEE42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B75B2C681D88033A007EEE42 = {
+			isa = PBXGroup;
+			children = (
+				B75B2C731D88033A007EEE42 /* Dwell */,
+				B75B2C721D88033A007EEE42 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B75B2C721D88033A007EEE42 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2C711D88033A007EEE42 /* Dwell.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B75B2C731D88033A007EEE42 /* Dwell */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2C8B1D8803B8007EEE42 /* AppDelegate */,
+				B75B2C8C1D8803C6007EEE42 /* ViewControllers */,
+				B75B2C8E1D8803F6007EEE42 /* Models */,
+				B75B2C911D880452007EEE42 /* CategoryClasses */,
+				B75B2C901D880448007EEE42 /* HelperClasses */,
+				B75B2C7D1D88033A007EEE42 /* Main.storyboard */,
+				B75B2C801D88033A007EEE42 /* Assets.xcassets */,
+				B75B2C851D88033A007EEE42 /* Info.plist */,
+				B75B2C741D88033A007EEE42 /* Supporting Files */,
+			);
+			path = Dwell;
+			sourceTree = "<group>";
+		};
+		B75B2C741D88033A007EEE42 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2C941D8804E3007EEE42 /* PrifixFile */,
+				B75B2C931D88047D007EEE42 /* Images */,
+				B75B2C921D880473007EEE42 /* Fonts */,
+				B75B2C751D88033A007EEE42 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B75B2C8B1D8803B8007EEE42 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2C771D88033A007EEE42 /* AppDelegate.h */,
+				B75B2C781D88033A007EEE42 /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		B75B2C8C1D8803C6007EEE42 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2C8D1D8803D2007EEE42 /* LoginView */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B75B2C8D1D8803D2007EEE42 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2C7A1D88033A007EEE42 /* ViewController.h */,
+				B75B2C7B1D88033A007EEE42 /* ViewController.m */,
+			);
+			name = LoginView;
+			sourceTree = "<group>";
+		};
+		B75B2C8E1D8803F6007EEE42 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2C8F1D880412007EEE42 /* LoginModel */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		B75B2C8F1D880412007EEE42 /* LoginModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = LoginModel;
+			sourceTree = "<group>";
+		};
+		B75B2C901D880448007EEE42 /* HelperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2CBD1D880B70007EEE42 /* ConstantFile */,
+				B75B2CB91D880951007EEE42 /* MMMaterialDesignSpinner */,
+				B75B2CA51D880650007EEE42 /* DefaultManager */,
+				B75B2C961D880601007EEE42 /* BSKeyboardControls */,
+			);
+			name = HelperClasses;
+			sourceTree = "<group>";
+		};
+		B75B2C911D880452007EEE42 /* CategoryClasses */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2CB51D8806DD007EEE42 /* UIImageCategory */,
+				B75B2CB11D8806CB007EEE42 /* CornderRadius */,
+				B75B2CAD1D8806BA007EEE42 /* PaddingCategory */,
+				B75B2CA91D8806A5007EEE42 /* ValidationCategory */,
+			);
+			name = CategoryClasses;
+			sourceTree = "<group>";
+		};
+		B75B2C921D880473007EEE42 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		B75B2C931D88047D007EEE42 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		B75B2C941D8804E3007EEE42 /* PrifixFile */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2C951D8804F6007EEE42 /* PrefixHeader.pch */,
+			);
+			name = PrifixFile;
+			sourceTree = "<group>";
+		};
+		B75B2C961D880601007EEE42 /* BSKeyboardControls */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2C971D88060B007EEE42 /* BSKeyboardControls.h */,
+				B75B2C981D88060B007EEE42 /* BSKeyboardControls.m */,
+			);
+			name = BSKeyboardControls;
+			sourceTree = "<group>";
+		};
+		B75B2CA51D880650007EEE42 /* DefaultManager */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2CA61D880663007EEE42 /* UserDefaultManager.h */,
+				B75B2CA71D880663007EEE42 /* UserDefaultManager.m */,
+			);
+			name = DefaultManager;
+			sourceTree = "<group>";
+		};
+		B75B2CA91D8806A5007EEE42 /* ValidationCategory */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2CAA1D8806AD007EEE42 /* UITextField+Validations.h */,
+				B75B2CAB1D8806AD007EEE42 /* UITextField+Validations.m */,
+			);
+			name = ValidationCategory;
+			sourceTree = "<group>";
+		};
+		B75B2CAD1D8806BA007EEE42 /* PaddingCategory */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2CAE1D8806C1007EEE42 /* UITextField+Padding.h */,
+				B75B2CAF1D8806C1007EEE42 /* UITextField+Padding.m */,
+			);
+			name = PaddingCategory;
+			sourceTree = "<group>";
+		};
+		B75B2CB11D8806CB007EEE42 /* CornderRadius */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2CB21D8806D2007EEE42 /* UIView+RoundedCorner.h */,
+				B75B2CB31D8806D2007EEE42 /* UIView+RoundedCorner.m */,
+			);
+			name = CornderRadius;
+			sourceTree = "<group>";
+		};
+		B75B2CB51D8806DD007EEE42 /* UIImageCategory */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2CB61D8806E4007EEE42 /* UIImage+deviceSpecificMedia.h */,
+				B75B2CB71D8806E4007EEE42 /* UIImage+deviceSpecificMedia.m */,
+			);
+			name = UIImageCategory;
+			sourceTree = "<group>";
+		};
+		B75B2CB91D880951007EEE42 /* MMMaterialDesignSpinner */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2CBA1D880958007EEE42 /* MMMaterialDesignSpinner.h */,
+				B75B2CBB1D880958007EEE42 /* MMMaterialDesignSpinner.m */,
+			);
+			name = MMMaterialDesignSpinner;
+			sourceTree = "<group>";
+		};
+		B75B2CBD1D880B70007EEE42 /* ConstantFile */ = {
+			isa = PBXGroup;
+			children = (
+				B75B2CC31D880CFD007EEE42 /* Constants.h */,
+				B75B2CC41D880CFD007EEE42 /* Constants.m */,
+			);
+			name = ConstantFile;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B75B2C701D88033A007EEE42 /* Dwell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B75B2C881D88033A007EEE42 /* Build configuration list for PBXNativeTarget "Dwell" */;
+			buildPhases = (
+				B75B2C6D1D88033A007EEE42 /* Sources */,
+				B75B2C6E1D88033A007EEE42 /* Frameworks */,
+				B75B2C6F1D88033A007EEE42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Dwell;
+			productName = Dwell;
+			productReference = B75B2C711D88033A007EEE42 /* Dwell.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B75B2C691D88033A007EEE42 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Ranosys;
+				TargetAttributes = {
+					B75B2C701D88033A007EEE42 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = B75B2C6C1D88033A007EEE42 /* Build configuration list for PBXProject "Dwell" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B75B2C681D88033A007EEE42;
+			productRefGroup = B75B2C721D88033A007EEE42 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B75B2C701D88033A007EEE42 /* Dwell */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B75B2C6F1D88033A007EEE42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B75B2C811D88033A007EEE42 /* Assets.xcassets in Resources */,
+				B75B2C7F1D88033A007EEE42 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B75B2C6D1D88033A007EEE42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B75B2CC51D880CFD007EEE42 /* Constants.m in Sources */,
+				B75B2CBC1D880958007EEE42 /* MMMaterialDesignSpinner.m in Sources */,
+				B75B2C7C1D88033A007EEE42 /* ViewController.m in Sources */,
+				B75B2C991D88060B007EEE42 /* BSKeyboardControls.m in Sources */,
+				B75B2C791D88033A007EEE42 /* AppDelegate.m in Sources */,
+				B75B2C761D88033A007EEE42 /* main.m in Sources */,
+				B75B2CB01D8806C1007EEE42 /* UITextField+Padding.m in Sources */,
+				B75B2CB81D8806E4007EEE42 /* UIImage+deviceSpecificMedia.m in Sources */,
+				B75B2CAC1D8806AD007EEE42 /* UITextField+Validations.m in Sources */,
+				B75B2CA81D880663007EEE42 /* UserDefaultManager.m in Sources */,
+				B75B2CB41D8806D2007EEE42 /* UIView+RoundedCorner.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B75B2C7D1D88033A007EEE42 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B75B2C7E1D88033A007EEE42 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B75B2C861D88033A007EEE42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = Dwell/PrefixHeader.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B75B2C871D88033A007EEE42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = Dwell/PrefixHeader.pch;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B75B2C891D88033A007EEE42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				ENABLE_BITCODE = NO;
+				GCC_PREFIX_HEADER = Dwell/PrefixHeader.pch;
+				INFOPLIST_FILE = Dwell/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.westlite.dwell;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B75B2C8A1D88033A007EEE42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				ENABLE_BITCODE = NO;
+				GCC_PREFIX_HEADER = Dwell/PrefixHeader.pch;
+				INFOPLIST_FILE = Dwell/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.westlite.dwell;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B75B2C6C1D88033A007EEE42 /* Build configuration list for PBXProject "Dwell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B75B2C861D88033A007EEE42 /* Debug */,
+				B75B2C871D88033A007EEE42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B75B2C881D88033A007EEE42 /* Build configuration list for PBXNativeTarget "Dwell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B75B2C891D88033A007EEE42 /* Debug */,
+				B75B2C8A1D88033A007EEE42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B75B2C691D88033A007EEE42 /* Project object */;
+}

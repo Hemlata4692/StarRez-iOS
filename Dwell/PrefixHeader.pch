@@ -22,6 +22,7 @@
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "UserDefaultManager.h"
-
+#import "UIFont+CustomFont.h"
+#import "CustomAlert.h"
 #define myDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 #endif /* PrefixHeader_pch */

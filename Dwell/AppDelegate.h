@@ -14,7 +14,7 @@
 @property (retain, nonatomic) UINavigationController *navigationController;
 
 //Method declaration
-- (void)showIndicator;
+- (void)showIndicator:(UIColor*)spinnerColor;
 - (void)stopIndicator;
 @end
 

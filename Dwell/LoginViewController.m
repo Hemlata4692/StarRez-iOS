@@ -145,6 +145,10 @@
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Invalid email address." doneButtonText:@"OK" cancelButtonText:@""];
         return NO;
     }
+    else if (self.passwordTextfield.text.length!=6) {
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Password length must be 6 digit." doneButtonText:@"OK" cancelButtonText:@""];
+        return NO;
+    }
     else {
         return YES;
     }

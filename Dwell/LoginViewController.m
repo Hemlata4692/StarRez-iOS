@@ -11,6 +11,7 @@
 #import "UIImage+deviceSpecificMedia.h"
 #import "UITextField+Validations.h"
 #import "UIView+RoundedCorner.h"
+#import "LoginModel.h"
 
 @interface LoginViewController ()<BSKeyboardControlsDelegate,CustomAlertDelegate> {
 
@@ -162,10 +163,58 @@
     [self.loginScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     //perform login validations
     if([self performValidationsForLogin]) {
-//        [myDelegate showIndicator];
-//        [self performSelector:@selector(getCommunitycode) withObject:nil afterDelay:.1];
+        [myDelegate showIndicator:[UIColor redColor]];
+        [self performSelector:@selector(userLogin) withObject:nil afterDelay:.1];
     }
 }
+#pragma mark - end
+
+#pragma mark - Webservice
+//user login webservice called
+- (void)userLogin {
+    LoginModel *userLogin = [LoginModel sharedUser];
+    userLogin.userEmailId = self.emailIdTextfield.text;
+    userLogin.password = self.passwordTextfield.text;
+    [userLogin loginUserOnSuccess:^(LoginModel *userData) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [myDelegate stopIndicator];
+        });
+
+//        if (nil==[UserDefaultManager getValue:@"deviceToken"]||NULL==[UserDefaultManager getValue:@"deviceToken"]) {
+//            [myDelegate stopIndicator];
+//        }
+//        else{
+////            [self saveDeviceToken];
+//        }
+        //land user to dashboard
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        MainSideBarViewController * homeView = [storyboard instantiateViewControllerWithIdentifier:@"MainSideBarViewController"];
+//        [myDelegate.window setRootViewController:homeView];
+//        [myDelegate.window makeKeyAndVisible];
+    } onfailure:^(id error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [myDelegate stopIndicator];
+            if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
+                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Invalid user." doneButtonText:@"OK" cancelButtonText:@""];
+            }
+            else {
+                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+            }
+        });
+        
+    }];
+}
+
+//save device token for push notifications
+//- (void)saveDeviceToken {
+//    LoginModel *saveDeviceToken = [LoginModel sharedUser];
+//    [saveDeviceToken saveDeviceToken:^(LoginModel *deviceToken) {
+//        NSLog(@"login view controller userLogin %@",deviceToken);
+//        [myDelegate stopIndicator];
+//    } onfailure:^(NSError *error) {
+//        
+//    }];
+//}
 #pragma mark - end
 
 #pragma mark - MyAlert delegates

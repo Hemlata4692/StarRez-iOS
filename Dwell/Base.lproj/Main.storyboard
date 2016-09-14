@@ -80,13 +80,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dashboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ug9-EW-nQ5">
-                                            <rect key="frame" x="67" y="12" width="237" height="20"/>
+                                            <rect key="frame" x="74" y="12" width="237" height="20"/>
                                             <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                             <color key="textColor" red="0.90196078431372551" green="0.26666666666666666" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashboard" translatesAutoresizingMaskIntoConstraints="NO" id="J2l-dG-Yky">
-                                            <rect key="frame" x="9" y="9" width="27" height="27"/>
+                                            <rect key="frame" x="16" y="9" width="27" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="27" id="jGI-eM-hWk"/>
                                             </constraints>
@@ -97,8 +97,8 @@
                                         <constraint firstItem="J2l-dG-Yky" firstAttribute="centerY" secondItem="Ug9-EW-nQ5" secondAttribute="centerY" id="HWi-yV-eF2"/>
                                         <constraint firstItem="Ug9-EW-nQ5" firstAttribute="centerY" secondItem="SkR-xq-SmI" secondAttribute="centerY" id="MCR-dU-uI4"/>
                                         <constraint firstItem="Ug9-EW-nQ5" firstAttribute="leading" secondItem="J2l-dG-Yky" secondAttribute="trailing" constant="31" id="Mes-1d-MLM"/>
-                                        <constraint firstItem="J2l-dG-Yky" firstAttribute="leading" secondItem="SkR-xq-SmI" secondAttribute="leadingMargin" constant="1" id="hgK-PL-Ub5"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Ug9-EW-nQ5" secondAttribute="trailing" constant="8" id="jeZ-yZ-S5Q"/>
+                                        <constraint firstItem="J2l-dG-Yky" firstAttribute="leading" secondItem="SkR-xq-SmI" secondAttribute="leadingMargin" constant="8" id="hgK-PL-Ub5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ug9-EW-nQ5" secondAttribute="trailing" constant="1" id="jeZ-yZ-S5Q"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -115,25 +115,25 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maintenance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BT0-4Z-cdc">
-                                            <rect key="frame" x="67" y="12" width="237" height="20"/>
+                                            <rect key="frame" x="74" y="12" width="237" height="20"/>
                                             <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                             <color key="textColor" red="0.88627450980392153" green="0.44705882352941173" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maintenance" translatesAutoresizingMaskIntoConstraints="NO" id="rjX-Eo-kC2">
-                                            <rect key="frame" x="8" y="9" width="27" height="27"/>
+                                            <rect key="frame" x="15" y="9" width="27" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="27" id="1Bk-5F-VLw"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="rjX-Eo-kC2" firstAttribute="leading" secondItem="CjR-o3-XY6" secondAttribute="leadingMargin" id="4BN-KQ-mCW"/>
+                                        <constraint firstItem="rjX-Eo-kC2" firstAttribute="leading" secondItem="CjR-o3-XY6" secondAttribute="leadingMargin" constant="7" id="4BN-KQ-mCW"/>
                                         <constraint firstItem="rjX-Eo-kC2" firstAttribute="centerY" secondItem="CjR-o3-XY6" secondAttribute="centerY" constant="1.5" id="4I5-TO-NHQ"/>
                                         <constraint firstItem="rjX-Eo-kC2" firstAttribute="top" secondItem="CjR-o3-XY6" secondAttribute="topMargin" constant="1" id="7qF-Yy-XXM"/>
                                         <constraint firstItem="BT0-4Z-cdc" firstAttribute="leading" secondItem="rjX-Eo-kC2" secondAttribute="trailing" constant="32" id="Fxm-16-MKB"/>
                                         <constraint firstItem="rjX-Eo-kC2" firstAttribute="centerY" secondItem="BT0-4Z-cdc" secondAttribute="centerY" constant="1" id="U0J-rf-O56"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="BT0-4Z-cdc" secondAttribute="trailing" constant="8" id="vQf-f5-TFe"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="BT0-4Z-cdc" secondAttribute="trailing" constant="1" id="vQf-f5-TFe"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -147,23 +147,23 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parcel" translatesAutoresizingMaskIntoConstraints="NO" id="Gdt-Cs-lhM">
-                                            <rect key="frame" x="9" y="9" width="27" height="27"/>
+                                            <rect key="frame" x="16" y="9" width="27" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="27" id="7yX-d4-Qq3"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parcel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDl-OJ-ZBw">
-                                            <rect key="frame" x="68" y="12" width="236" height="20"/>
+                                            <rect key="frame" x="75" y="12" width="236" height="20"/>
                                             <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                             <color key="textColor" red="0.19215686274509802" green="0.40784313725490196" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Gdt-Cs-lhM" firstAttribute="leading" secondItem="jBE-GP-dVZ" secondAttribute="leadingMargin" constant="1" id="32b-Yu-bCV"/>
+                                        <constraint firstItem="Gdt-Cs-lhM" firstAttribute="leading" secondItem="jBE-GP-dVZ" secondAttribute="leadingMargin" constant="8" id="32b-Yu-bCV"/>
                                         <constraint firstItem="Gdt-Cs-lhM" firstAttribute="bottom" secondItem="jBE-GP-dVZ" secondAttribute="bottomMargin" constant="1" id="Vsg-SA-mqk"/>
                                         <constraint firstItem="MDl-OJ-ZBw" firstAttribute="leading" secondItem="Gdt-Cs-lhM" secondAttribute="trailing" constant="32" id="cfR-Rg-La2"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="MDl-OJ-ZBw" secondAttribute="trailing" constant="8" id="kQO-Hc-uAg"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="MDl-OJ-ZBw" secondAttribute="trailing" constant="1" id="kQO-Hc-uAg"/>
                                         <constraint firstItem="Gdt-Cs-lhM" firstAttribute="top" secondItem="jBE-GP-dVZ" secondAttribute="topMargin" constant="1" id="rdj-m4-SzU"/>
                                         <constraint firstItem="MDl-OJ-ZBw" firstAttribute="centerY" secondItem="jBE-GP-dVZ" secondAttribute="centerY" id="uRk-mu-wdv"/>
                                     </constraints>
@@ -179,13 +179,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="resources" translatesAutoresizingMaskIntoConstraints="NO" id="97r-h2-RVf">
-                                            <rect key="frame" x="9" y="9" width="27" height="27"/>
+                                            <rect key="frame" x="16" y="9" width="27" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="27" id="4UR-Fd-9id"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resources" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zd6-TQ-aGo">
-                                            <rect key="frame" x="68" y="12" width="236" height="20"/>
+                                            <rect key="frame" x="75" y="12" width="236" height="20"/>
                                             <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                             <color key="textColor" red="0.36078431372549019" green="0.69803921568627447" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -196,8 +196,8 @@
                                         <constraint firstItem="97r-h2-RVf" firstAttribute="centerY" secondItem="Wy3-C4-RqK" secondAttribute="centerY" constant="1.5" id="FBC-hV-vq1"/>
                                         <constraint firstItem="Zd6-TQ-aGo" firstAttribute="leading" secondItem="97r-h2-RVf" secondAttribute="trailing" constant="32" id="NrR-q0-HzM"/>
                                         <constraint firstItem="97r-h2-RVf" firstAttribute="centerY" secondItem="Zd6-TQ-aGo" secondAttribute="centerY" constant="1" id="bGi-uT-FSX"/>
-                                        <constraint firstItem="97r-h2-RVf" firstAttribute="leading" secondItem="Wy3-C4-RqK" secondAttribute="leadingMargin" constant="1" id="nP9-5X-6vr"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Zd6-TQ-aGo" secondAttribute="trailing" constant="8" id="yHG-vU-s6j"/>
+                                        <constraint firstItem="97r-h2-RVf" firstAttribute="leading" secondItem="Wy3-C4-RqK" secondAttribute="leadingMargin" constant="8" id="nP9-5X-6vr"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Zd6-TQ-aGo" secondAttribute="trailing" constant="1" id="yHG-vU-s6j"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -211,13 +211,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="events" translatesAutoresizingMaskIntoConstraints="NO" id="RUJ-7m-VSm">
-                                            <rect key="frame" x="9" y="9" width="27" height="27"/>
+                                            <rect key="frame" x="16" y="9" width="27" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="27" id="V1J-t4-6SN"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJk-nX-7QD">
-                                            <rect key="frame" x="69" y="12" width="235" height="20"/>
+                                            <rect key="frame" x="76" y="12" width="235" height="20"/>
                                             <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                             <color key="textColor" red="0.80784313725490198" green="0.63921568627450975" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -226,10 +226,10 @@
                                     <constraints>
                                         <constraint firstItem="RUJ-7m-VSm" firstAttribute="centerY" secondItem="gNn-e5-EcF" secondAttribute="centerY" constant="1.5" id="1Hh-H9-1IJ"/>
                                         <constraint firstItem="pJk-nX-7QD" firstAttribute="leading" secondItem="RUJ-7m-VSm" secondAttribute="trailing" constant="33" id="4Yu-jZ-x6d"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="pJk-nX-7QD" secondAttribute="trailing" constant="8" id="64C-gz-fWP"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="pJk-nX-7QD" secondAttribute="trailing" constant="1" id="64C-gz-fWP"/>
                                         <constraint firstItem="RUJ-7m-VSm" firstAttribute="centerY" secondItem="pJk-nX-7QD" secondAttribute="centerY" constant="1" id="7k7-0s-tD3"/>
                                         <constraint firstItem="RUJ-7m-VSm" firstAttribute="top" secondItem="gNn-e5-EcF" secondAttribute="topMargin" constant="1" id="bPb-0b-LaN"/>
-                                        <constraint firstItem="RUJ-7m-VSm" firstAttribute="leading" secondItem="gNn-e5-EcF" secondAttribute="leadingMargin" constant="1" id="z7f-oe-ntt"/>
+                                        <constraint firstItem="RUJ-7m-VSm" firstAttribute="leading" secondItem="gNn-e5-EcF" secondAttribute="leadingMargin" constant="8" id="z7f-oe-ntt"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -243,13 +243,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="information" translatesAutoresizingMaskIntoConstraints="NO" id="535-H2-soR">
-                                            <rect key="frame" x="9" y="9" width="27" height="27"/>
+                                            <rect key="frame" x="16" y="9" width="27" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="27" id="yt5-P0-AqL"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zb7-kc-fHs">
-                                            <rect key="frame" x="69" y="12" width="235" height="20"/>
+                                            <rect key="frame" x="76" y="12" width="235" height="20"/>
                                             <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                             <color key="textColor" red="0.53333333333333333" green="0.61568627450980395" blue="0.36078431372549019" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -257,8 +257,8 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="535-H2-soR" firstAttribute="top" secondItem="HGS-uH-K0t" secondAttribute="topMargin" constant="1" id="17S-e2-BkF"/>
-                                        <constraint firstItem="535-H2-soR" firstAttribute="leading" secondItem="HGS-uH-K0t" secondAttribute="leadingMargin" constant="1" id="ULK-WJ-A53"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="zb7-kc-fHs" secondAttribute="trailing" constant="8" id="daP-3V-8aq"/>
+                                        <constraint firstItem="535-H2-soR" firstAttribute="leading" secondItem="HGS-uH-K0t" secondAttribute="leadingMargin" constant="8" id="ULK-WJ-A53"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="zb7-kc-fHs" secondAttribute="trailing" constant="1" id="daP-3V-8aq"/>
                                         <constraint firstItem="zb7-kc-fHs" firstAttribute="leading" secondItem="535-H2-soR" secondAttribute="trailing" constant="33" id="qyE-Eh-BAp"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="535-H2-soR" secondAttribute="bottom" constant="-1" id="tn3-Za-jtk"/>
                                         <constraint firstItem="zb7-kc-fHs" firstAttribute="centerY" secondItem="HGS-uH-K0t" secondAttribute="centerY" id="txO-Uw-8sF"/>
@@ -275,13 +275,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help" translatesAutoresizingMaskIntoConstraints="NO" id="AXJ-oK-jeG">
-                                            <rect key="frame" x="9" y="9" width="27" height="27"/>
+                                            <rect key="frame" x="16" y="9" width="27" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="27" id="KJa-Eb-cLo"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5h-Bi-LQk">
-                                            <rect key="frame" x="69" y="12" width="235" height="20"/>
+                                            <rect key="frame" x="76" y="12" width="235" height="20"/>
                                             <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                             <color key="textColor" red="0.41960784313725491" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -290,8 +290,8 @@
                                     <constraints>
                                         <constraint firstItem="H5h-Bi-LQk" firstAttribute="leading" secondItem="AXJ-oK-jeG" secondAttribute="trailing" constant="33" id="0RQ-eK-o0m"/>
                                         <constraint firstItem="AXJ-oK-jeG" firstAttribute="centerY" secondItem="H5h-Bi-LQk" secondAttribute="centerY" constant="1" id="IXv-Wh-w55"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="H5h-Bi-LQk" secondAttribute="trailing" constant="8" id="rsG-yE-IFN"/>
-                                        <constraint firstItem="AXJ-oK-jeG" firstAttribute="leading" secondItem="wuA-LB-Seq" secondAttribute="leadingMargin" constant="1" id="soa-dQ-IQQ"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="H5h-Bi-LQk" secondAttribute="trailing" constant="1" id="rsG-yE-IFN"/>
+                                        <constraint firstItem="AXJ-oK-jeG" firstAttribute="leading" secondItem="wuA-LB-Seq" secondAttribute="leadingMargin" constant="8" id="soa-dQ-IQQ"/>
                                         <constraint firstItem="AXJ-oK-jeG" firstAttribute="centerY" secondItem="wuA-LB-Seq" secondAttribute="centerY" constant="1.5" id="vRP-Rt-yQn"/>
                                         <constraint firstItem="AXJ-oK-jeG" firstAttribute="top" secondItem="wuA-LB-Seq" secondAttribute="topMargin" constant="1" id="wEB-Oa-2al"/>
                                     </constraints>
@@ -307,13 +307,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logout" translatesAutoresizingMaskIntoConstraints="NO" id="CzX-cf-ht8">
-                                            <rect key="frame" x="9" y="9" width="27" height="27"/>
+                                            <rect key="frame" x="16" y="9" width="27" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="27" id="9NV-qz-rr3"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zP1-Ia-FzH">
-                                            <rect key="frame" x="68" y="12" width="236" height="20"/>
+                                            <rect key="frame" x="75" y="12" width="236" height="20"/>
                                             <fontDescription key="fontDescription" name="Raleway" family="Raleway" pointSize="17"/>
                                             <color key="textColor" red="0.88235294117647056" green="0.39215686274509803" blue="0.36078431372549019" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -323,8 +323,8 @@
                                         <constraint firstItem="zP1-Ia-FzH" firstAttribute="leading" secondItem="CzX-cf-ht8" secondAttribute="trailing" constant="32" id="6oL-Rg-vrb"/>
                                         <constraint firstItem="CzX-cf-ht8" firstAttribute="top" secondItem="rnJ-UZ-WK1" secondAttribute="topMargin" constant="1" id="BGW-uK-01F"/>
                                         <constraint firstItem="CzX-cf-ht8" firstAttribute="centerY" secondItem="rnJ-UZ-WK1" secondAttribute="centerY" constant="1.5" id="H3K-e1-3qw"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="zP1-Ia-FzH" secondAttribute="trailing" constant="8" id="KEd-Pc-hjK"/>
-                                        <constraint firstItem="CzX-cf-ht8" firstAttribute="leading" secondItem="rnJ-UZ-WK1" secondAttribute="leadingMargin" constant="1" id="Yta-un-xL1"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="zP1-Ia-FzH" secondAttribute="trailing" constant="1" id="KEd-Pc-hjK"/>
+                                        <constraint firstItem="CzX-cf-ht8" firstAttribute="leading" secondItem="rnJ-UZ-WK1" secondAttribute="leadingMargin" constant="8" id="Yta-un-xL1"/>
                                         <constraint firstItem="CzX-cf-ht8" firstAttribute="centerY" secondItem="zP1-Ia-FzH" secondAttribute="centerY" constant="1" id="adN-TA-cso"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -354,6 +354,14 @@
                     <view key="view" contentMode="scaleToFill" id="eSd-S8-lKg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Under development" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rr5-B2-sc6">
+                                <rect key="frame" x="0.0" y="274" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="dL8-G0-2PO"/>
@@ -394,6 +402,6 @@
         <image name="resources" width="27" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4dx-R4-04P"/>
+        <segue reference="tTu-GG-MB4"/>
     </inferredMetricsTieBreakers>
 </document>

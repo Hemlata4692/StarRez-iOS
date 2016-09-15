@@ -38,14 +38,9 @@
                 __block ParcelModel *tempModel=[ParcelModel new];
                 tempModel.parcelTitle=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
                 tempModel.parcelType=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.parcel_type_val"];
-//                NSString*A=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ReceiptDate"];
-                
-                DLog(@"%@",[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ReceiptDate"]);
                 NSDate *reciptDate = [dateFormatter dateFromString:[[[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ReceiptDate"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
                  NSDate *issuedDate = [dateFormatter dateFromString:[[[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.IssueDate"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
                 [dateFormatter setDateFormat:@"dd MMM, yy"];
-                DLog(@"%@",reciptDate);
-                DLog(@"%@",issuedDate);
                 tempModel.parcelReceiptDate=[dateFormatter stringFromDate:reciptDate];
                 tempModel.parcelShippingType=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.shipping_type_val"];
                 tempModel.parcelIssueDate=[dateFormatter stringFromDate:issuedDate];

@@ -8,9 +8,13 @@
 
 #import "ParcelListViewController.h"
 #import "ParcelCell.h"
+#import "ParcelDetailViewController.h"
 #import "ParcelModel.h"
 
-@interface ParcelListViewController ()
+@interface ParcelListViewController () {
+
+    NSMutableArray *parcelDataArray;
+}
 @property (weak, nonatomic) IBOutlet UITableView *parcelListTableview;
 
 @end
@@ -25,6 +29,7 @@
     self.title = @"Parcel";
     //Add background image
     [super addBackgroungImage:@"Parcel"];
+    parcelDataArray=[NSMutableArray new];
     [myDelegate showIndicator:[Constants parcelColor]];
     [self performSelector:@selector(getParcelListService) withObject:nil afterDelay:.1];
     // Do any additional setup after loading the view.
@@ -43,7 +48,9 @@
     ParcelModel *parcelData = [ParcelModel sharedUser];
     [parcelData getParcelListOnSuccess:^(id userData) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [myDelegate stopIndicator];
+             [myDelegate stopIndicator];
+            parcelDataArray=[userData mutableCopy];
+            [parcelListTableview reloadData];
         });
     } onfailure:^(id error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -60,32 +67,29 @@
 #pragma mark - end
 
 #pragma mark - Tableview methods
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 3;
+    return parcelDataArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    ParcelCell *cell ;
+    ParcelCell *cell;
     NSString *simpleTableIdentifier = @"ParcelCell";
     cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    if (cell == nil)
-    {
+    if (cell == nil) {
         cell = [[ParcelCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-    [cell displayData:nil frame:self.view.bounds];
+    [cell displayData:[parcelDataArray objectAtIndex:indexPath.row] frame:self.view.bounds];
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    ParcelDetailViewController *obiParcelDetail = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ParcelDetailViewController"];
-    [self.navigationController pushViewController:obiParcelDetail animated:YES];
+    ParcelDetailViewController *objParcelDetail = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ParcelDetailViewController"];
+    objParcelDetail.parcelDetailData=[parcelDataArray objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:objParcelDetail animated:YES];
 }
 #pragma mark - end
 /*

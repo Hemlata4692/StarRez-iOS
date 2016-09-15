@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ParcelModel.h"
 
 @interface ParcelCell : UITableViewCell
 
@@ -24,5 +25,5 @@
 @property (weak, nonatomic) IBOutlet UIView *parcelStatusBackGroundView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelStatus;
 
-- (void)displayData : (NSDictionary *)dataDict frame :(CGRect)frame;
+- (void)displayData:(ParcelModel *)modelData frame:(CGRect)frame;
 @end

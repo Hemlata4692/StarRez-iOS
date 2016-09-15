@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fwd-xZ-4IH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fwd-xZ-4IH">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -17,10 +17,40 @@
             <string>Raleway</string>
             <string>Raleway</string>
         </mutableArray>
+        <mutableArray key="calibri_Bold.ttf">
+            <string>Calibri-Bold</string>
+            <string>Calibri-Bold</string>
+        </mutableArray>
         <mutableArray key="calibri_Normal.ttf">
             <string>Calibri</string>
             <string>Calibri</string>
             <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+        </mutableArray>
+        <mutableArray key="handsean.ttf">
+            <string>HandOfSean</string>
+            <string>HandOfSean</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -563,8 +593,8 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="37" id="hUR-uT-DmR"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" name="HandOfSean" family="Hand Of Sean" pointSize="17"/>
+                                                            <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8GP-iP-Pcx">
@@ -576,28 +606,28 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="080-8m-4SZ"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="13"/>
                                                             <color key="textColor" red="0.46666666670000001" green="0.47843137250000001" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECIPT DATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfs-4j-96g">
                                                             <rect key="frame" x="187" y="52" width="85" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="13"/>
                                                             <color key="textColor" red="0.46666666670000001" green="0.47843137250000001" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Large parcel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wem-eU-4QX">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wem-eU-4QX">
                                                             <rect key="frame" x="8" y="81" width="115" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="U6U-yV-7S2"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="16"/>
                                                             <color key="textColor" red="0.2666666667" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 Sep, 16" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6U7-BT-kXL">
-                                                            <rect key="frame" x="193" y="84" width="88" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6U7-BT-kXL">
+                                                            <rect key="frame" x="193" y="81" width="88" height="21"/>
+                                                            <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="16"/>
                                                             <color key="textColor" red="0.2666666667" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -606,7 +636,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="OOd-29-xPK"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="13"/>
                                                             <color key="textColor" red="0.46666666670000001" green="0.47843137250000001" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -615,41 +645,42 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="79" id="vd4-Hp-hMa"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="13"/>
                                                             <color key="textColor" red="0.46666666670000001" green="0.47843137250000001" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amazon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00m-9m-cmz">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00m-9m-cmz">
                                                             <rect key="frame" x="8" y="150" width="79" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="79" id="4Xm-xQ-Ys5"/>
                                                                 <constraint firstAttribute="height" constant="21" id="Oyn-UJ-XUo"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="16"/>
                                                             <color key="textColor" red="0.2666666667" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 SEP,16" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cg-Zw-smQ">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cg-Zw-smQ">
                                                             <rect key="frame" x="193" y="150" width="88" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="16"/>
                                                             <color key="textColor" red="0.2666666667" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CjD-aK-Iic">
                                                             <rect key="frame" x="0.0" y="186" width="289" height="40"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parcel for Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3DC-Ur-qXz">
-                                                                    <rect key="frame" x="8" y="11" width="248" height="21"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3DC-Ur-qXz">
+                                                                    <rect key="frame" x="8" y="8" width="248" height="24"/>
+                                                                    <fontDescription key="fontDescription" name="Calibri-Bold" family="Calibri" pointSize="17"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                             <color key="backgroundColor" red="0.2901960784" green="0.6705882353" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="3DC-Ur-qXz" secondAttribute="trailing" constant="33" id="Knb-f2-apl"/>
-                                                                <constraint firstItem="3DC-Ur-qXz" firstAttribute="leading" secondItem="CjD-aK-Iic" secondAttribute="leadingMargin" id="PBP-qL-fFy"/>
-                                                                <constraint firstItem="3DC-Ur-qXz" firstAttribute="bottom" secondItem="CjD-aK-Iic" secondAttribute="bottomMargin" id="Sii-vA-tTy"/>
+                                                                <constraint firstItem="3DC-Ur-qXz" firstAttribute="leading" secondItem="CjD-aK-Iic" secondAttribute="leading" constant="8" id="Yij-iK-FR4"/>
+                                                                <constraint firstAttribute="bottom" secondItem="3DC-Ur-qXz" secondAttribute="bottom" constant="8" id="a9H-pj-hYZ"/>
+                                                                <constraint firstItem="3DC-Ur-qXz" firstAttribute="top" secondItem="CjD-aK-Iic" secondAttribute="top" constant="8" id="lba-tn-9ev"/>
+                                                                <constraint firstAttribute="trailing" secondItem="3DC-Ur-qXz" secondAttribute="trailing" constant="33" id="xE9-3j-idP"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -666,13 +697,13 @@
                                                         <constraint firstItem="CjD-aK-Iic" firstAttribute="top" secondItem="00m-9m-cmz" secondAttribute="bottom" constant="15" id="MRd-VW-uFy"/>
                                                         <constraint firstItem="PrJ-PQ-at4" firstAttribute="top" secondItem="PGg-mM-6yf" secondAttribute="top" constant="1" id="NZE-N4-ILH"/>
                                                         <constraint firstItem="PrJ-PQ-at4" firstAttribute="trailing" secondItem="6U7-BT-kXL" secondAttribute="trailing" id="OZv-Q5-1bC"/>
-                                                        <constraint firstItem="W8r-nL-vk6" firstAttribute="top" secondItem="6U7-BT-kXL" secondAttribute="bottom" constant="19" id="PMY-Rt-aKB"/>
+                                                        <constraint firstItem="W8r-nL-vk6" firstAttribute="top" secondItem="6U7-BT-kXL" secondAttribute="bottom" constant="22" id="PMY-Rt-aKB"/>
                                                         <constraint firstAttribute="trailing" secondItem="Kfs-4j-96g" secondAttribute="trailing" constant="17" id="PeT-1T-Yi2"/>
                                                         <constraint firstItem="r62-eP-Dx9" firstAttribute="leading" secondItem="Wem-eU-4QX" secondAttribute="leading" id="PiF-nF-3nn"/>
                                                         <constraint firstItem="r62-eP-Dx9" firstAttribute="trailing" secondItem="cTE-5u-7s6" secondAttribute="trailing" id="RXt-Cc-gug"/>
                                                         <constraint firstItem="r62-eP-Dx9" firstAttribute="top" secondItem="8GP-iP-Pcx" secondAttribute="bottom" constant="14" id="YyO-31-K4v"/>
                                                         <constraint firstItem="Kfs-4j-96g" firstAttribute="trailing" secondItem="W8r-nL-vk6" secondAttribute="trailing" id="aqm-Cv-dF5"/>
-                                                        <constraint firstItem="6U7-BT-kXL" firstAttribute="top" secondItem="Kfs-4j-96g" secondAttribute="bottom" constant="11" id="bwo-fI-Bie"/>
+                                                        <constraint firstItem="6U7-BT-kXL" firstAttribute="top" secondItem="Kfs-4j-96g" secondAttribute="bottom" constant="8" id="bwo-fI-Bie"/>
                                                         <constraint firstItem="00m-9m-cmz" firstAttribute="baseline" secondItem="4cg-Zw-smQ" secondAttribute="baseline" id="dFG-JR-iM6"/>
                                                         <constraint firstItem="W8r-nL-vk6" firstAttribute="leading" secondItem="4cg-Zw-smQ" secondAttribute="leading" id="eOv-db-KAi"/>
                                                         <constraint firstItem="Wem-eU-4QX" firstAttribute="leading" secondItem="cTE-5u-7s6" secondAttribute="leading" id="eef-sc-2Mu"/>
@@ -765,8 +796,8 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="37" id="qrg-mu-lGD"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HandOfSean" family="Hand Of Sean" pointSize="17"/>
+                                        <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9xO-UT-qw6">
@@ -779,7 +810,7 @@
                                             <constraint firstAttribute="height" constant="21" id="6Jy-lJ-Qxl"/>
                                             <constraint firstAttribute="width" constant="110" id="MUU-3F-S0R"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="13"/>
                                         <color key="textColor" red="0.46666666670000001" green="0.47843137250000001" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -789,27 +820,27 @@
                                             <constraint firstAttribute="width" constant="85" id="7yE-AH-p19"/>
                                             <constraint firstAttribute="height" constant="21" id="zTQ-uQ-a16"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="13"/>
                                         <color key="textColor" red="0.46666666670000001" green="0.47843137250000001" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Large parcel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyY-Mp-B1p">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyY-Mp-B1p">
                                         <rect key="frame" x="8" y="81" width="115" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="115" id="COb-TS-QJn"/>
                                             <constraint firstAttribute="height" constant="21" id="XKd-lX-9EG"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="16"/>
                                         <color key="textColor" red="0.2666666667" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 Sep, 16" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQo-KG-tax">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQo-KG-tax">
                                         <rect key="frame" x="193" y="84" width="88" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="WDo-OL-G1t"/>
                                             <constraint firstAttribute="width" constant="88" id="evt-BN-20X"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="16"/>
                                         <color key="textColor" red="0.2666666667" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -819,7 +850,7 @@
                                             <constraint firstAttribute="width" constant="110" id="6eI-Vg-MTY"/>
                                             <constraint firstAttribute="height" constant="21" id="dtO-p2-djj"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="13"/>
                                         <color key="textColor" red="0.46666666670000001" green="0.47843137250000001" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -829,39 +860,39 @@
                                             <constraint firstAttribute="width" constant="79" id="m0g-mn-aku"/>
                                             <constraint firstAttribute="height" constant="21" id="pH0-EC-DtQ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="13"/>
                                         <color key="textColor" red="0.46666666670000001" green="0.47843137250000001" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amazon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRN-eW-cLv">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRN-eW-cLv">
                                         <rect key="frame" x="8" y="150" width="79" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="RgK-J1-zLe"/>
                                             <constraint firstAttribute="width" constant="79" id="q7h-tq-inu"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="16"/>
                                         <color key="textColor" red="0.2666666667" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 SEP,16" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHe-dB-uOj">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHe-dB-uOj">
                                         <rect key="frame" x="193" y="150" width="88" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="88" id="Au9-pf-mxI"/>
                                             <constraint firstAttribute="height" constant="21" id="qQh-eD-UCC"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="16"/>
                                         <color key="textColor" red="0.2666666667" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPU-x9-Idt">
                                         <rect key="frame" x="0.0" y="350" width="305" height="40"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parcel for Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bA4-VD-Fxy">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bA4-VD-Fxy">
                                                 <rect key="frame" x="8" y="11" width="248" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="rMc-Mf-mfe"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Calibri-Bold" family="Calibri" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -880,17 +911,17 @@
                                             <constraint firstAttribute="width" constant="155" id="943-Zn-200"/>
                                             <constraint firstAttribute="height" constant="21" id="WuS-Wb-H3a"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="13"/>
                                         <color key="textColor" red="0.46666666670000001" green="0.47843137250000001" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guarantor" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqo-yC-Fkd">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqo-yC-Fkd">
                                         <rect key="frame" x="3" y="216" width="147" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="rq0-xh-3B2"/>
                                             <constraint firstAttribute="width" constant="147" id="tOa-GS-Wix"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="16"/>
                                         <color key="textColor" red="0.2666666667" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -900,17 +931,17 @@
                                             <constraint firstAttribute="height" constant="21" id="CZv-Ph-J1J"/>
                                             <constraint firstAttribute="width" constant="117" id="xdp-E5-pCg"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="13"/>
                                         <color key="textColor" red="0.46666666670000001" green="0.47843137250000001" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amazon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezo-L1-7h8">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezo-L1-7h8">
                                         <rect key="frame" x="187" y="216" width="79" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="AIR-d5-Azs"/>
                                             <constraint firstAttribute="width" constant="79" id="vbx-fI-Vlp"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="16"/>
                                         <color key="textColor" red="0.2666666667" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -920,9 +951,8 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="58" id="DYS-Pz-rPe"/>
                                         </constraints>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" red="0.2666666667" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMMENTS FROM ADMIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsM-w2-10X">
@@ -930,7 +960,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="2cO-yB-3BK"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="13"/>
                                         <color key="textColor" red="0.46666666670000001" green="0.47843137250000001" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>

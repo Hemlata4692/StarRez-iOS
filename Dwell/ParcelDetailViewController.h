@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ParcelModel.h"
 
 @interface ParcelDetailViewController : GlobalBackViewController
-
+@property(nonatomic,strong)ParcelModel *parcelDetailData;
 @end

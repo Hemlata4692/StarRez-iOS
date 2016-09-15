@@ -31,13 +31,16 @@
 @end
 
 @implementation ParcelDetailViewController
+@synthesize parcelDetailData;
 
 #pragma mark - View life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"Parcel Detail";
     [super addBackgroungImage:@"Parcel"];
     [self layoutViewObjects];
+    [self showParcelDetailData];
     // Do any additional setup after loading the view.
 }
 
@@ -46,6 +49,35 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - end
+
+- (void)showParcelDetailData {
+    
+    self.parcelTitle.text=parcelDetailData.parcelTitle;
+    self.parcelType.text=parcelDetailData.parcelType;
+    self.receiptDate.text=parcelDetailData.parcelReceiptDate;
+    self.shippingType.text=parcelDetailData.parcelShippingType;
+    self.issueDate.text=parcelDetailData.parcelIssueDate;
+    self.parcelStatus.text=parcelDetailData.parcelStatus;
+    self.forwardAddress.text=parcelDetailData.parcelForwardingAddress;
+    self.trackingNo.text=parcelDetailData.parcelTrackingNo;
+    self.adminComments.text=parcelDetailData.parcelComment;
+    if ([parcelDetailData.parcelStatus isEqualToString:@"Received"]) {
+        self.parcelStatus.text=@"Collected";
+        self.parcelStatusBackGroundView.backgroundColor=[Constants resourceColor];
+    }
+    else if ([parcelDetailData.parcelStatus isEqualToString:@"Issued"]) {
+        self.parcelStatus.text=@"Parcel for Collection";
+        self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor];
+    }
+    else if ([parcelDetailData.parcelStatus isEqualToString:@"Returned"]) {
+        self.parcelStatus.text=parcelDetailData.parcelStatus;
+        self.parcelStatusBackGroundView.backgroundColor=[Constants resourceColor];
+    }
+    else {
+        self.parcelStatus.text=parcelDetailData.parcelStatus;
+        self.parcelStatusBackGroundView.backgroundColor=[Constants resourceColor];
+    }
+}
 
 #pragma mark -Custom accessors
 - (void)layoutViewObjects{

@@ -14,4 +14,6 @@ static const float cornerRadius=10.0;
 
 + (UIColor*)dashboardColor;
 + (UIColor*)parcelColor;
++ (UIColor*)eventColor;
++ (UIColor*)resourceColor;
 @end

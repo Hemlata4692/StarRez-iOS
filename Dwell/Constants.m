@@ -16,4 +16,12 @@
 + (UIColor*)parcelColor {
     return [UIColor colorWithRed:49.0/255 green:104.0/255.0 blue:178.0/255.0 alpha:1.0];
 }
+
++ (UIColor*)eventColor {
+    return [UIColor colorWithRed:255.0/255 green:196.0/255.0 blue:12.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)resourceColor {
+    return [UIColor colorWithRed:45.0/255 green:179.0/255.0 blue:74.0/255.0 alpha:1.0];
+}
 @end

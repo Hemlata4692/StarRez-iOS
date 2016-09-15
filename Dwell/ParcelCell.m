@@ -37,8 +37,6 @@
 - (void)layoutCellObject :(CGRect)frame{
     
     mainBackgroundView.layer.cornerRadius = cornerRadius;
-    
-    
     parcelStatusBackGroundView.translatesAutoresizingMaskIntoConstraints = YES;
     parcelStatusBackGroundView.frame = CGRectMake(parcelStatusBackGroundView.frame.origin.x, parcelStatusBackGroundView.frame.origin.y, frame.size.width-32, parcelStatusBackGroundView.frame.size.height);
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:parcelStatusBackGroundView.bounds byRoundingCorners:( UIRectCornerBottomLeft | UIRectCornerBottomRight) cornerRadii:CGSizeMake(3.0, 3.0)];
@@ -47,9 +45,6 @@
     maskLayer.frame = frame;
     maskLayer.path  = maskPath.CGPath;
     parcelStatusBackGroundView.layer.mask = maskLayer;
-    
-    
-    
     CAShapeLayer *shapelayer = [CAShapeLayer layer];
     UIBezierPath *path = [UIBezierPath bezierPath];
     //draw a line
@@ -64,12 +59,31 @@
     //shapelayer.lineDashPhase = 3.0f;
     shapelayer.path = path.CGPath;
     [parcelTitle.layer addSublayer:shapelayer];
-    
 }
 
-- (void)displayData : (NSDictionary *)dataDict frame :(CGRect)frame{
+- (void)displayData:(ParcelModel *)modelData frame:(CGRect)frame{
     
     [self layoutCellObject:frame];
-    
+    parcelTitle.text=modelData.parcelTitle;
+    parcelType.text=modelData.parcelType;
+    receiptDate.text=modelData.parcelReceiptDate;
+    shippingType.text=modelData.parcelShippingType;
+    issueDate.text=modelData.parcelIssueDate;
+    if ([modelData.parcelStatus isEqualToString:@"Received"]) {
+       parcelStatus.text=@"Collected";
+        parcelStatusBackGroundView.backgroundColor=[Constants resourceColor];
+    }
+    else if ([modelData.parcelStatus isEqualToString:@"Issued"]) {
+        parcelStatus.text=@"Parcel for Collection";
+        parcelStatusBackGroundView.backgroundColor=[Constants eventColor];
+    }
+    else if ([modelData.parcelStatus isEqualToString:@"Returned"]) {
+        parcelStatus.text=modelData.parcelStatus;
+         parcelStatusBackGroundView.backgroundColor=[Constants resourceColor];
+    }
+    else {
+        parcelStatus.text=modelData.parcelStatus;
+         parcelStatusBackGroundView.backgroundColor=[Constants resourceColor];
+    }
 }
 @end

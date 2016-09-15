@@ -16,5 +16,6 @@
 //Method declaration
 - (void)showIndicator:(UIColor*)spinnerColor;
 - (void)stopIndicator;
+- (void)unrigisterForNotification;
 @end
 

@@ -10,6 +10,6 @@
 
 @interface BaseService : NSObject
 
-- (void)post:(NSString *)path parameters:(NSString *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
-- (void)jsonPost:(NSString *)path parameters:(NSDictionary *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
+- (void)post:(NSString *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
+- (void)jsonPost:(NSDictionary *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end

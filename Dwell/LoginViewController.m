@@ -145,11 +145,11 @@
         return NO;
     }
     else if (![self.emailIdTextfield isValidEmail]) {
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Invalid email address." doneButtonText:@"OK" cancelButtonText:@""];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please enter a valid email address." doneButtonText:@"OK" cancelButtonText:@""];
         return NO;
     }
     else if (self.passwordTextfield.text.length!=6) {
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Password length must be 6 digit." doneButtonText:@"OK" cancelButtonText:@""];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Incorrect password. Password must be of 6 digits. Ex: 123456" doneButtonText:@"OK" cancelButtonText:@""];
         return NO;
     }
     else {
@@ -194,7 +194,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [myDelegate stopIndicator];
             if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
-                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Invalid user." doneButtonText:@"OK" cancelButtonText:@""];
+                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"User does not exist in the system." doneButtonText:@"OK" cancelButtonText:@""];
             }
             else {
                 alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];

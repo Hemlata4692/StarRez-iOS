@@ -26,7 +26,7 @@
         NSLog(@"exception is %@",exception);
     }
     DLog(@"request dict device token code %@",parameters);
-    [super jsonPost:@"http://ranosys.info/StarrezNotification/api/SaveUser" parameters:parameters onSuccess:success onFailure:failure];
+    [super jsonPost:parameters onSuccess:success onFailure:failure];
 }
 #pragma mark - end
 
@@ -35,7 +35,7 @@
     
     NSString *parameters = [NSString stringWithFormat:@"SELECT en.[entryid], en.[PinNumber], ed.[Email], en.[NameLast], en.[NameFirst], en.[NameTitle] FROM [Entry] AS en LEFT JOIN [EntryAddress] AS ed ON ed.[entryid] = en.[entryid] WHERE ed.[Email] = '%@' AND en.[PinNumber] = '%@'",userLogin.userEmailId,userLogin.password];
     DLog(@"request dict %@",parameters);
-    [super post:@"https://starrez.centurionstudents.co.uk/StarRezREST/services/query" parameters:parameters onSuccess:success onFailure:failure];
+    [super post:parameters onSuccess:success onFailure:failure];
 }
 #pragma mark - end
 

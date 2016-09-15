@@ -41,6 +41,18 @@
         [self.navigationController setViewControllers: [NSArray arrayWithObject: objReveal]
                                              animated: YES];
     }
+    
+    //accept push notification when app is not open
+    application.applicationIconBadgeNumber = 0;
+    NSDictionary *remoteNotifiInfo = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    if (remoteNotifiInfo)
+    {
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        [self application:application didReceiveRemoteNotification:remoteNotifiInfo];
+    }
+    //register iphone device for push notifications
+    [self registerDeviceForNotification];
     return YES;
 }
 
@@ -98,4 +110,39 @@
 {
     InstallUncaughtExceptionHandler();
 }
+
+#pragma mark - Push notification methods
+//Get permission for iphone and ipad devices to receive push notifications
+- (void)registerDeviceForNotification {
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+}
+
+//Get device token to register device for push notifications
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken1{
+    NSString *token = [[deviceToken1 description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    DLog(@"content---.......................%@", token);
+    [UserDefaultManager setValue:token key:@"deviceToken"];
+}
+//end
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+    
+    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+    NSLog(@"did failtoRegister and testing : %@",str);
+}
+
+//Unregister push notification
+- (void)unrigisterForNotification {
+    
+    [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+}
+#pragma mark - end
 @end

@@ -17,7 +17,7 @@
     NSDictionary *parameters;
     @try {
         parameters = @{@"EnteryId" : userData.entryId,
-                       @"DeviceTokan" : [UserDefaultManager getValue:@"deviceToken"],
+                       @"DeviceToken" : [UserDefaultManager getValue:@"deviceToken"],
                        @"DeviceType" : @"IOS",
                        @"AppVersion" : [NSString stringWithFormat:@"%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] ]};
         

@@ -87,7 +87,7 @@
                                               NSMutableDictionary* responseData=[NSMutableDictionary new];
                                               if ([responseString isEqualToString:@""]) {
                                                   [responseData setObject:@"2" forKey:@"success"];
-                                                  failure(responseData);
+                                                  success(responseData);
                                               }
                                               else if ((NULL!=responseString)&&(nil!=responseString)) {
                                                   
@@ -98,7 +98,7 @@
                                                   }
                                                   else {
                                                       [responseData setObject:@"0" forKey:@"success"];
-                                                      failure(responseData);
+                                                      success(responseData);
                                                   }
                                               }
                                           }];

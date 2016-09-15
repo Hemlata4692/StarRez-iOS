@@ -8,6 +8,8 @@
 
 #import "ParcelListViewController.h"
 #import "ParcelCell.h"
+#import "ParcelModel.h"
+
 @interface ParcelListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *parcelListTableview;
 
@@ -23,6 +25,8 @@
     self.title = @"Parcel";
     //Add background image
     [super addBackgroungImage:@"Parcel"];
+    [myDelegate showIndicator:[Constants parcelColor]];
+    [self performSelector:@selector(getParcelListService) withObject:nil afterDelay:.1];
     // Do any additional setup after loading the view.
 }
 
@@ -32,7 +36,29 @@
 }
 #pragma mak - end
 
-#pragma mark - Tableview methods
+#pragma mark - Webservice
+//User login webservice called
+- (void)getParcelListService {
+    
+    ParcelModel *parcelData = [ParcelModel sharedUser];
+    [parcelData getParcelListOnSuccess:^(id userData) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [myDelegate stopIndicator];
+        });
+    } onfailure:^(id error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [myDelegate stopIndicator];
+            if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
+//                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"User does not exist in the system." doneButtonText:@"OK" cancelButtonText:@""];
+            }
+            else {
+//                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+            }
+        });
+    }];
+}
+#pragma mark - end
+
 #pragma mark - Tableview methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

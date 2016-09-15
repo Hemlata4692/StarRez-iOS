@@ -41,6 +41,8 @@
 		B7C7A38E1D8A651900D7DF06 /* Dashboard-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A38B1D8A651900D7DF06 /* Dashboard-667h@2x.png */; };
 		B7C7A38F1D8A651900D7DF06 /* Dashboard-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A38C1D8A651900D7DF06 /* Dashboard-736h@3x.png */; };
 		B7C7A3941D8A75B600D7DF06 /* ParcelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C7A3931D8A75B600D7DF06 /* ParcelCell.m */; };
+		B7CA3C801D8AC357006CD1FD /* ParcelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CA3C7F1D8AC357006CD1FD /* ParcelModel.m */; };
+		B7CA3C841D8AC64B006CD1FD /* ParcelService.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CA3C831D8AC64B006CD1FD /* ParcelService.m */; };
 		B7D06C541D895CA300A5FA94 /* CustomAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7D06C531D895CA300A5FA94 /* CustomAlert.xib */; };
 		B7D06C571D8974EC00A5FA94 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D06C561D8974EC00A5FA94 /* LoginModel.m */; };
 		B7D06C601D897BD800A5FA94 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D06C5F1D897BD800A5FA94 /* ConnectionManager.m */; };
@@ -110,6 +112,10 @@
 		B7C7A38C1D8A651900D7DF06 /* Dashboard-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard-736h@3x.png"; sourceTree = "<group>"; };
 		B7C7A3921D8A75B600D7DF06 /* ParcelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParcelCell.h; sourceTree = "<group>"; };
 		B7C7A3931D8A75B600D7DF06 /* ParcelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParcelCell.m; sourceTree = "<group>"; };
+		B7CA3C7E1D8AC357006CD1FD /* ParcelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParcelModel.h; sourceTree = "<group>"; };
+		B7CA3C7F1D8AC357006CD1FD /* ParcelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParcelModel.m; sourceTree = "<group>"; };
+		B7CA3C821D8AC64B006CD1FD /* ParcelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParcelService.h; sourceTree = "<group>"; };
+		B7CA3C831D8AC64B006CD1FD /* ParcelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParcelService.m; sourceTree = "<group>"; };
 		B7D06C531D895CA300A5FA94 /* CustomAlert.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomAlert.xib; sourceTree = "<group>"; };
 		B7D06C551D8974EC00A5FA94 /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
 		B7D06C561D8974EC00A5FA94 /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
@@ -147,6 +153,8 @@
 		4A412A431D8ABF7300E70791 /* ParcelModel */ = {
 			isa = PBXGroup;
 			children = (
+				B7CA3C7E1D8AC357006CD1FD /* ParcelModel.h */,
+				B7CA3C7F1D8AC357006CD1FD /* ParcelModel.m */,
 			);
 			name = ParcelModel;
 			sourceTree = "<group>";
@@ -476,9 +484,19 @@
 			name = ParcelListCell;
 			sourceTree = "<group>";
 		};
+		B7CA3C811D8AC61B006CD1FD /* ParcelService */ = {
+			isa = PBXGroup;
+			children = (
+				B7CA3C821D8AC64B006CD1FD /* ParcelService.h */,
+				B7CA3C831D8AC64B006CD1FD /* ParcelService.m */,
+			);
+			name = ParcelService;
+			sourceTree = "<group>";
+		};
 		B7D06C5B1D897BAD00A5FA94 /* ServerCommunication */ = {
 			isa = PBXGroup;
 			children = (
+				B7CA3C811D8AC61B006CD1FD /* ParcelService */,
 				B7D06C621D897C5300A5FA94 /* LoginService */,
 				B7D06C611D897C3C00A5FA94 /* GlobalWebservice */,
 			);
@@ -656,6 +674,7 @@
 				B75B2C991D88060B007EEE42 /* BSKeyboardControls.m in Sources */,
 				B7D06C6C1D897D7900A5FA94 /* XMLDictionary.m in Sources */,
 				B75B2C791D88033A007EEE42 /* AppDelegate.m in Sources */,
+				B7CA3C801D8AC357006CD1FD /* ParcelModel.m in Sources */,
 				B7C7A3751D8A63B400D7DF06 /* SideMenuViewController.m in Sources */,
 				B75B2C761D88033A007EEE42 /* main.m in Sources */,
 				B75B2CB01D8806C1007EEE42 /* UITextField+Padding.m in Sources */,
@@ -665,6 +684,7 @@
 				B7D06C601D897BD800A5FA94 /* ConnectionManager.m in Sources */,
 				B75B2CAC1D8806AD007EEE42 /* UITextField+Validations.m in Sources */,
 				B7F7161F1D8A9C57006C8178 /* Internet.m in Sources */,
+				B7CA3C841D8AC64B006CD1FD /* ParcelService.m in Sources */,
 				B75B2CA81D880663007EEE42 /* UserDefaultManager.m in Sources */,
 				B7ACD2761D89124B005CD42D /* UIFont+CustomFont.m in Sources */,
 				B7C7A3711D8A63A600D7DF06 /* DashboardViewController.m in Sources */,

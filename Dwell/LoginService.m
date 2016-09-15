@@ -19,7 +19,7 @@
         parameters = @{@"EnteryId" : userData.entryId,
                        @"DeviceTokan" : [UserDefaultManager getValue:@"deviceToken"],
                        @"DeviceType" : @"IOS",
-                       @"DeviceVersion" : [NSString stringWithFormat:@"%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] ]};
+                       @"AppVersion" : [NSString stringWithFormat:@"%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] ]};
         
             } @catch (NSException *exception) {
         

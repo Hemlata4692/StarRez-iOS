@@ -15,7 +15,8 @@
 @implementation ConnectionManager
 
 #pragma mark - Shared instance
-+ (instancetype)sharedManager{
++ (instancetype)sharedManager {
+    
     static ConnectionManager *connectionManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -27,6 +28,7 @@
 
 #pragma mark - Login user
 - (void)loginUser:(LoginModel *)userData onSuccess:(void (^)(LoginModel *userData))success onFailure:(void (^)(id))failure {
+    
     LoginService *loginService = [[LoginService alloc] init];
     [loginService loginUser:userData onSuccess:^(id response) {
         //Parse data from server response and store in datamodel
@@ -47,7 +49,8 @@
 #pragma mark - end
 
 #pragma mark - Send device token
-- (void)sendDevcieToken:(LoginModel *)userData onSuccess:(void (^)(LoginModel *userData))success onFailure:(void (^)(id))failure{
+- (void)sendDevcieToken:(LoginModel *)userData onSuccess:(void (^)(LoginModel *userData))success onFailure:(void (^)(id))failure {
+    
     LoginService *deviceToken = [[LoginService alloc] init];
     [deviceToken saveDeviceToken:userData onSuccess:^(id response) {
         //Send device token to server for push notification

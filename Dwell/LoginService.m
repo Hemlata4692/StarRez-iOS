@@ -13,9 +13,9 @@
 
 #pragma mark - Save device token
 - (void)saveDeviceToken:(LoginModel *)userData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
     NSDictionary *parameters;
     @try {
-        
         parameters = @{@"EnteryId" : userData.entryId,
                        @"DeviceTokan" : [UserDefaultManager getValue:@"deviceToken"],
                        @"DeviceType" : @"IOS",
@@ -23,7 +23,7 @@
         
             } @catch (NSException *exception) {
         
-        NSLog(@"exception is %@",exception);
+        DLog(@"exception is %@",exception);
     }
     DLog(@"request dict device token code %@",parameters);
     [super jsonPost:parameters onSuccess:success onFailure:failure];

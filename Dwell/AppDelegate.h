@@ -16,6 +16,7 @@
 //Method declaration
 - (void)showIndicator:(UIColor*)spinnerColor;
 - (void)stopIndicator;
+- (void)registerDeviceForNotification;
 - (void)unrigisterForNotification;
 @end
 

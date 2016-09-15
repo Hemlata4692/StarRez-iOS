@@ -9,6 +9,7 @@
 #import "SideMenuViewController.h"
 #import "SWRevealViewController.h"
 #import "UIImage+deviceSpecificMedia.h"
+#import "Internet.h"
 
 @interface SideMenuViewController () {
     UIBarButtonItem *barButton;
@@ -81,6 +82,17 @@
     backgroundImage.contentMode = UIViewContentModeScaleAspectFit;
     backgroundImage.frame = self.view.frame;
     [self.view insertSubview:backgroundImage atIndex:0];
+}
+
+- (bool)checkInternetConnection {
+    
+    Internet *internet=[[Internet alloc] init];
+    if (![internet start]) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 /*
 #pragma mark - Navigation

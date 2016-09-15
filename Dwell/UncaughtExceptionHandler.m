@@ -180,10 +180,9 @@ const NSInteger UncaughtExceptionHandlerReportAddressCount = 5;
     [postDataTask resume];
 }
 
-- (void)handleException:(NSException *)exception
-{
-	[self validateAndSaveCriticalApplicationData];
+- (void)handleException:(NSException *)exception {
     
+	[self validateAndSaveCriticalApplicationData];
     DLog(@"Debug details follow:\nname--:%@\n%@fghfghf\n%@\n%@",[exception name],[exception reason],[[exception userInfo] objectForKey:UncaughtExceptionHandlerAddressesKey],[exception userInfo]);
     
     exceptionText=[NSString stringWithFormat:@"%@\n%@\n%@",[exception name],[exception reason],[exception userInfo]];

@@ -12,7 +12,8 @@
 @implementation LoginModel
 
 #pragma mark - Shared instance
-+ (instancetype)sharedUser{
++ (instancetype)sharedUser {
+    
     static LoginModel *loginUser = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -24,7 +25,8 @@
 #pragma mark - end
 
 #pragma mark - Login user
-- (void)loginUserOnSuccess:(void (^)(LoginModel *))success onfailure:(void (^)(id))failure{
+- (void)loginUserOnSuccess:(void (^)(LoginModel *))success onfailure:(void (^)(id))failure {
+    
     [[ConnectionManager sharedManager] loginUser:self onSuccess:^(LoginModel *userData) {
         if (success) {
             DLog(@"check");
@@ -51,9 +53,9 @@
 #pragma mark - end
 
 #pragma mark - save device token
-- (void)saveDeviceToken:(void (^)(LoginModel *))success onfailure:(void (^)(id))failure{
+- (void)saveDeviceToken:(void (^)(LoginModel *))success onfailure:(void (^)(id))failure {
+    
     [[ConnectionManager sharedManager] sendDevcieToken:self onSuccess:^(LoginModel *userData) {
-        
         if (success) {
             success (userData);
         }

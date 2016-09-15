@@ -12,6 +12,7 @@
 #import "UITextField+Validations.h"
 #import "UIView+RoundedCorner.h"
 #import "LoginModel.h"
+#import "Internet.h"
 
 @interface LoginViewController ()<BSKeyboardControlsDelegate,CustomAlertDelegate> {
 
@@ -36,6 +37,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    //register iPhone device for push notifications
+    [myDelegate registerDeviceForNotification];
     //Hide navigation bar and status bar
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 //     [[UIApplication sharedApplication] setStatusBarHidden:YES];
@@ -163,10 +166,13 @@
     
     [self.keyboardControls.activeField resignFirstResponder];
     [self.loginScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    Internet *internet=[[Internet alloc] init];
     //perform login validations
     if([self performValidationsForLogin]) {
-        [myDelegate showIndicator:[Constants dashboardColor]];
-        [self performSelector:@selector(userLogin) withObject:nil afterDelay:.1];
+        if (![internet start]) {
+            [myDelegate showIndicator:[Constants dashboardColor]];
+            [self performSelector:@selector(userLogin) withObject:nil afterDelay:.1];
+        }
     }
 }
 #pragma mark - end

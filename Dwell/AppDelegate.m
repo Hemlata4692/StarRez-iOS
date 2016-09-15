@@ -34,7 +34,7 @@
     self.navigationController = (UINavigationController *)[self.window rootViewController];
     [self.navigationController setNavigationBarHidden:YES];
     //If user already exist then user navigate ot dashboard screen
-    if (nil!=[UserDefaultManager getValue:@"userEmailId"]){
+    if (nil!=[UserDefaultManager getValue:@"userEmailId"]) {
         [UserDefaultManager setValue:[NSNumber numberWithInteger:0] key:@"indexpath"];
         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
@@ -46,8 +46,7 @@
     application.applicationIconBadgeNumber = 0;
     NSDictionary *remoteNotifiInfo = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-    if (remoteNotifiInfo)
-    {
+    if (remoteNotifiInfo) {
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         [self application:application didReceiveRemoteNotification:remoteNotifiInfo];
     }
@@ -81,6 +80,7 @@
 #pragma mark - Global indicator view
 //Show indicator
 - (void)showIndicator:(UIColor*)spinnerColor {
+    
     spinnerBackground=[[UIImageView alloc]initWithFrame:CGRectMake(3, 3, 50, 50)];
     spinnerBackground.backgroundColor=[UIColor whiteColor];
     spinnerBackground.layer.cornerRadius=25.0f;
@@ -126,17 +126,22 @@
 
 //Get device token to register device for push notifications
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken1{
+   
     NSString *token = [[deviceToken1 description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     DLog(@"content---.......................%@", token);
     [UserDefaultManager setValue:token key:@"deviceToken"];
 }
-//end
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+   
+    DLog(@"push notification response.............%@",userInfo);
+}
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     
     NSString *str = [NSString stringWithFormat: @"Error: %@", err];
-    NSLog(@"did failtoRegister and testing : %@",str);
+    DLog(@"did failtoRegister and testing : %@",str);
 }
 
 //Unregister push notification

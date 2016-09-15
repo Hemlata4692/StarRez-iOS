@@ -7,13 +7,16 @@
 //
 
 #import "ParcelListViewController.h"
-
+#import "ParcelCell.h"
 @interface ParcelListViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *parcelListTableview;
 
 @end
 
 @implementation ParcelListViewController
+@synthesize parcelListTableview;
 
+#pragma mark - View life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -27,7 +30,32 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mak - end
 
+#pragma mark - Tableview methods
+#pragma mark - Tableview methods
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+    ParcelCell *cell ;
+    NSString *simpleTableIdentifier = @"ParcelCell";
+    cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    if (cell == nil)
+    {
+        cell = [[ParcelCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
+    [cell displayData:nil];
+    
+    return cell;
+}
+#pragma mark - end
 /*
 #pragma mark - Navigation
 

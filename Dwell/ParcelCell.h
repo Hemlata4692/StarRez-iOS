@@ -10,6 +10,7 @@
 
 @interface ParcelCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIView *mainBackgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelTitle;
 @property (weak, nonatomic) IBOutlet UIView *separatorView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelTypeTitle;
@@ -22,4 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *issueDate;
 @property (weak, nonatomic) IBOutlet UIView *parcelStatusBackGroundView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelStatus;
+
+- (void)displayData : (NSDictionary *)dataDict;
 @end

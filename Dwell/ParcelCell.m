@@ -21,6 +21,7 @@
 @synthesize issueDate;
 @synthesize parcelStatusBackGroundView;
 @synthesize parcelStatus;
+@synthesize mainBackgroundView;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -33,4 +34,14 @@
     // Configure the view for the selected state
 }
 
+- (void)layoutCellObject{
+    
+    mainBackgroundView.layer.cornerRadius = 5.0;
+}
+
+- (void)displayData : (NSDictionary *)dataDict{
+    
+    [self layoutCellObject];
+    
+}
 @end

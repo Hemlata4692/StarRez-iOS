@@ -136,7 +136,7 @@
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     
     NSString *str = [NSString stringWithFormat: @"Error: %@", err];
-    NSLog(@"did failtoRegister and testing : %@",str);
+    DLog(@"did failtoRegister and testing : %@",str);
 }
 
 //Unregister push notification

@@ -12,6 +12,7 @@
 #import "UITextField+Validations.h"
 #import "UIView+RoundedCorner.h"
 #import "LoginModel.h"
+#import "Internet.h"
 
 @interface LoginViewController ()<BSKeyboardControlsDelegate,CustomAlertDelegate> {
 
@@ -164,9 +165,13 @@
     [self.keyboardControls.activeField resignFirstResponder];
     [self.loginScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     //perform login validations
+    Internet *internet=[[Internet alloc] init];
+    
     if([self performValidationsForLogin]) {
-        [myDelegate showIndicator:[Constants dashboardColor]];
-        [self performSelector:@selector(userLogin) withObject:nil afterDelay:.1];
+        if (![internet start]) {
+            [myDelegate showIndicator:[Constants dashboardColor]];
+            [self performSelector:@selector(userLogin) withObject:nil afterDelay:.1];
+        }
     }
 }
 #pragma mark - end

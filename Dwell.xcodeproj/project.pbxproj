@@ -585,6 +585,7 @@
 				TargetAttributes = {
 					B75B2C701D88033A007EEE42 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = M8A7BYS443;
 					};
 				};
 			};
@@ -701,7 +702,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ranosys Technologies Pte Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ranosys Technologies Pte Ltd";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -726,6 +728,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -748,7 +751,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ranosys Technologies Pte Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ranosys Technologies Pte Ltd";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -766,6 +770,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -776,13 +781,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ranosys Technologies Pte Ltd";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = Dwell/PrefixHeader.pch;
 				INFOPLIST_FILE = Dwell/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.westlite.dwell;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.dwell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
 			};
 			name = Debug;
 		};
@@ -791,13 +798,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ranosys Technologies Pte Ltd";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = Dwell/PrefixHeader.pch;
 				INFOPLIST_FILE = Dwell/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.westlite.dwell;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.dwell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
 			};
 			name = Release;
 		};

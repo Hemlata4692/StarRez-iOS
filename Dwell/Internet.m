@@ -8,26 +8,32 @@
 
 #import "Reachability.h"
 #import "Internet.h"
+#import "CustomAlert.h"
 
-@implementation Internet
-{
+@implementation Internet {
+    
     Reachability *reachability;
+    CustomAlert *alertView;
 }
 
--(BOOL) start 
-{
+- (BOOL)start {
+    
     reachability = [Reachability reachabilityForInternetConnection];
     [reachability startNotifier];
      NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];
-     if(remoteHostStatus == NotReachable) 
-    {
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Connection Error" message:@"Please check your internet connection." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
+     if(remoteHostStatus == NotReachable) {
+        alertView = [[CustomAlert alloc] initWithTitle:@"Connection Error" tagValue:2 delegate:self message:@"Please check your internet connection." doneButtonText:@"OK" cancelButtonText:@""];
         return YES;
     }
-    else
-    {
+    else {
         return NO;
     }
 }
+
+#pragma mark - MyAlert delegates
+- (void)customAlertDelegateAction:(CustomAlert *)myAlert option:(int)option {
+    
+    [alertView dismissAlertView];
+}
+#pragma mark - end
 @end

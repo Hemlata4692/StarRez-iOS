@@ -9,6 +9,7 @@
 #import "SideMenuViewController.h"
 #import "SWRevealViewController.h"
 #import "UIImage+deviceSpecificMedia.h"
+#import "Internet.h"
 
 @interface SideMenuViewController () {
     UIBarButtonItem *barButton;
@@ -62,8 +63,7 @@
     barButton =[[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.leftBarButtonItem = barButton;
     SWRevealViewController *revealViewController = self.revealViewController;
-    if (revealViewController)
-    {
+    if (revealViewController) {
         [button addTarget:self.revealViewController action:@selector(revealToggle:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
@@ -81,6 +81,17 @@
     backgroundImage.contentMode = UIViewContentModeScaleAspectFit;
     backgroundImage.frame = self.view.frame;
     [self.view insertSubview:backgroundImage atIndex:0];
+}
+
+- (bool)checkInternetConnection {
+    
+    Internet *internet=[[Internet alloc] init];
+    if (![internet start]) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 /*
 #pragma mark - Navigation

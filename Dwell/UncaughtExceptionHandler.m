@@ -173,8 +173,8 @@ const NSInteger UncaughtExceptionHandlerReportAddressCount = 5;
     [request setHTTPBody:postData];
     
     NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                              NSString *responseString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-                                              NSLog(@"data is %@",responseString);
+//                                              NSString *responseString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+//                                              NSLog(@"data is %@",responseString);
                                               dismissed = YES;
                                           }];
     [postDataTask resume];

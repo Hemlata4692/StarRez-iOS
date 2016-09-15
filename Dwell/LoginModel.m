@@ -28,24 +28,21 @@
     [[ConnectionManager sharedManager] loginUser:self onSuccess:^(LoginModel *userData) {
         if (success) {
             DLog(@"check");
-            //call saved device token
-//            if (nil==[UserDefaultManager getValue:@"deviceToken"]||NULL==[UserDefaultManager getValue:@"deviceToken"]) {
-//                //set user data in defaults
-//                [UserDefaultManager setValue:userData.userEmailId key:@"userName"];
-//                [UserDefaultManager setValue:userData.password key:@"password"];
-//                [UserDefaultManager setValue:userData.entryId key:@"accessCode"];
-//                success (userData);
-//            }
-//            else{
-//                [self saveDeviceToken:^(LoginModel *userData) {
-//                    [UserDefaultManager setValue:userData.userEmailId key:@"userName"];
-//                    [UserDefaultManager setValue:userData.password key:@"password"];
-//                    [UserDefaultManager setValue:userData.entryId key:@"accessCode"];
-//                    success (userData);
-//                } onfailure:^(id error) {   
-//                    failure(error);
-//                }];
-//            }
+            //Call save device token
+            if (nil==[UserDefaultManager getValue:@"deviceToken"]||NULL==[UserDefaultManager getValue:@"deviceToken"]) {
+                [UserDefaultManager setValue:userData.userEmailId key:@"userEmailId"];
+                [UserDefaultManager setValue:userData.entryId key:@"entryId"];
+                success (userData);
+            }
+            else{
+                [self saveDeviceToken:^(LoginModel *userData) {
+                    [UserDefaultManager setValue:userData.userEmailId key:@"userEmailId"];
+                    [UserDefaultManager setValue:userData.entryId key:@"entryId"];
+                    success (userData);
+                } onfailure:^(id error) {   
+                    failure(error);
+                }];
+            }
         }
     } onFailure:^(id error) {
         failure(error);
@@ -61,7 +58,7 @@
             success (userData);
         }
     } onFailure:^(id error) {
-        
+        failure(error);
     }] ;
 }
 #pragma mark - end

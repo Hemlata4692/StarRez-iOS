@@ -29,8 +29,7 @@
 - (void)loginUser:(LoginModel *)userData onSuccess:(void (^)(LoginModel *userData))success onFailure:(void (^)(id))failure {
     LoginService *loginService = [[LoginService alloc] init];
     [loginService loginUser:userData onSuccess:^(id response) {
-        //parse data from server response and store in datamodel
-        
+        //Parse data from server response and store in datamodel
         DLog(@"%@",[response valueForKeyPath:@"entry.content.Record.EntryID"]);
         if (NULL!=[response valueForKeyPath:@"entry.content.Record.EntryID"]) {
             userData.entryId=[response valueForKeyPath:@"entry.content.Record.EntryID"];
@@ -41,7 +40,6 @@
             [responseDict setObject:@"0" forKey:@"success"];
             failure(responseDict);
         }
-        success(userData);
     } onFailure:^(id error) {
         failure(error);
     }] ;
@@ -52,8 +50,8 @@
 - (void)sendDevcieToken:(LoginModel *)userData onSuccess:(void (^)(LoginModel *userData))success onFailure:(void (^)(id))failure{
     LoginService *deviceToken = [[LoginService alloc] init];
     [deviceToken saveDeviceToken:userData onSuccess:^(id response) {
-        //send device token to server for push notification
-        NSLog(@"device token  response %@",response);
+        //Send device token to server for push notification
+        DLog(@"device token  response %@",response);
         success(userData);
     } onFailure:^(id error) {
         failure(error);

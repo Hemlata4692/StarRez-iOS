@@ -38,6 +38,7 @@
    
     //Hide navigation bar and status bar
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
+//     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     //Adding textfield to keyboard controls array
@@ -46,8 +47,8 @@
     [self.keyboardControls setDelegate:self];
     
     //Set background image according to device
-    UIImage * tempImg =[UIImage imageNamed:@"loginBackground"];
-    self.loginBackgroundImage.image=[UIImage imageNamed:[tempImg imageForDeviceWithName:@"loginBackground"]];
+    UIImage * tempImg =[UIImage imageNamed:@"login"];
+    self.loginBackgroundImage.image=[UIImage imageNamed:[tempImg imageForDeviceWithName:@"login"]];
     
     //add corner radius
     [self addBorderCornerRadius];
@@ -65,6 +66,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
@@ -158,39 +160,38 @@
 
 #pragma mark - IBActions
 - (IBAction)login:(UIButton *)sender {
-    
+//    NSMutableDictionary*a=[NSMutableDictionary new];
+//    NSMutableArray*b;
+//    [a setObject:b forKey:@"a"];
     [self.keyboardControls.activeField resignFirstResponder];
     [self.loginScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     //perform login validations
     if([self performValidationsForLogin]) {
-        [myDelegate showIndicator:[UIColor redColor]];
+        [myDelegate showIndicator:[Constants dashboardColor]];
         [self performSelector:@selector(userLogin) withObject:nil afterDelay:.1];
     }
 }
 #pragma mark - end
 
 #pragma mark - Webservice
-//user login webservice called
+//User login webservice called
 - (void)userLogin {
+    
     LoginModel *userLogin = [LoginModel sharedUser];
     userLogin.userEmailId = self.emailIdTextfield.text;
     userLogin.password = self.passwordTextfield.text;
     [userLogin loginUserOnSuccess:^(LoginModel *userData) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [myDelegate stopIndicator];
+            [[UIApplication sharedApplication] setStatusBarHidden:NO];
+            [UserDefaultManager setValue:[NSNumber numberWithInteger:0] key:@"indexpath"];
+            UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
+            myDelegate.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+            [myDelegate.window setRootViewController:objReveal];
+            [myDelegate.window setBackgroundColor:[UIColor whiteColor]];
+            [myDelegate.window makeKeyAndVisible];
         });
-
-//        if (nil==[UserDefaultManager getValue:@"deviceToken"]||NULL==[UserDefaultManager getValue:@"deviceToken"]) {
-//            [myDelegate stopIndicator];
-//        }
-//        else{
-////            [self saveDeviceToken];
-//        }
-        //land user to dashboard
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        MainSideBarViewController * homeView = [storyboard instantiateViewControllerWithIdentifier:@"MainSideBarViewController"];
-//        [myDelegate.window setRootViewController:homeView];
-//        [myDelegate.window makeKeyAndVisible];
     } onfailure:^(id error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [myDelegate stopIndicator];
@@ -201,20 +202,8 @@
                 alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
             }
         });
-        
     }];
 }
-
-//save device token for push notifications
-//- (void)saveDeviceToken {
-//    LoginModel *saveDeviceToken = [LoginModel sharedUser];
-//    [saveDeviceToken saveDeviceToken:^(LoginModel *deviceToken) {
-//        NSLog(@"login view controller userLogin %@",deviceToken);
-//        [myDelegate stopIndicator];
-//    } onfailure:^(NSError *error) {
-//        
-//    }];
-//}
 #pragma mark - end
 
 #pragma mark - MyAlert delegates

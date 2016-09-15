@@ -24,10 +24,23 @@
 		B7ACD26E1D890FE7005CD42D /* calibri_Normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7ACD26B1D890FE7005CD42D /* calibri_Normal.ttf */; };
 		B7ACD26F1D890FE7005CD42D /* handsean.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7ACD26C1D890FE7005CD42D /* handsean.ttf */; };
 		B7ACD2761D89124B005CD42D /* UIFont+CustomFont.m in Sources */ = {isa = PBXBuildFile; fileRef = B7ACD2751D89124B005CD42D /* UIFont+CustomFont.m */; };
-		B7ACD2801D891ADB005CD42D /* loginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ACD27C1D891ADB005CD42D /* loginBackground.png */; };
-		B7ACD2811D891ADB005CD42D /* loginBackground-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ACD27D1D891ADB005CD42D /* loginBackground-568h@2x.png */; };
-		B7ACD2821D891ADB005CD42D /* loginBackground-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ACD27E1D891ADB005CD42D /* loginBackground-667h@2x.png */; };
-		B7ACD2831D891ADB005CD42D /* loginBackground-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7ACD27F1D891ADB005CD42D /* loginBackground-736h@3x.png */; };
+		B7C7A3661D8A506A00D7DF06 /* UncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C7A3651D8A506A00D7DF06 /* UncaughtExceptionHandler.m */; };
+		B7C7A36C1D8A639800D7DF06 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C7A3691D8A639800D7DF06 /* SidebarViewController.m */; };
+		B7C7A36D1D8A639800D7DF06 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C7A36B1D8A639800D7DF06 /* SWRevealViewController.m */; };
+		B7C7A3711D8A63A600D7DF06 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C7A3701D8A63A600D7DF06 /* DashboardViewController.m */; };
+		B7C7A3751D8A63B400D7DF06 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C7A3741D8A63B400D7DF06 /* SideMenuViewController.m */; };
+		B7C7A3791D8A63C000D7DF06 /* ParcelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C7A3781D8A63C000D7DF06 /* ParcelListViewController.m */; };
+		B7C7A37E1D8A64C900D7DF06 /* login-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A37A1D8A64C900D7DF06 /* login-568h@2x.png */; };
+		B7C7A37F1D8A64C900D7DF06 /* login-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A37B1D8A64C900D7DF06 /* login-667h@2x.png */; };
+		B7C7A3801D8A64C900D7DF06 /* login-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A37C1D8A64C900D7DF06 /* login-736h@3x.png */; };
+		B7C7A3811D8A64C900D7DF06 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A37D1D8A64C900D7DF06 /* login.png */; };
+		B7C7A3871D8A651100D7DF06 /* Parcel-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A3841D8A651100D7DF06 /* Parcel-568h@2x.png */; };
+		B7C7A3881D8A651100D7DF06 /* Parcel-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A3851D8A651100D7DF06 /* Parcel-667h@2x.png */; };
+		B7C7A3891D8A651100D7DF06 /* Parcel-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A3861D8A651100D7DF06 /* Parcel-736h@3x.png */; };
+		B7C7A38D1D8A651900D7DF06 /* Dashboard-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A38A1D8A651900D7DF06 /* Dashboard-568h@2x.png */; };
+		B7C7A38E1D8A651900D7DF06 /* Dashboard-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A38B1D8A651900D7DF06 /* Dashboard-667h@2x.png */; };
+		B7C7A38F1D8A651900D7DF06 /* Dashboard-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A38C1D8A651900D7DF06 /* Dashboard-736h@3x.png */; };
+		B7C7A3941D8A75B600D7DF06 /* ParcelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C7A3931D8A75B600D7DF06 /* ParcelCell.m */; };
 		B7D06C541D895CA300A5FA94 /* CustomAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7D06C531D895CA300A5FA94 /* CustomAlert.xib */; };
 		B7D06C571D8974EC00A5FA94 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D06C561D8974EC00A5FA94 /* LoginModel.m */; };
 		B7D06C601D897BD800A5FA94 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D06C5F1D897BD800A5FA94 /* ConnectionManager.m */; };
@@ -71,10 +84,30 @@
 		B7ACD26C1D890FE7005CD42D /* handsean.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = handsean.ttf; sourceTree = "<group>"; };
 		B7ACD2741D89124B005CD42D /* UIFont+CustomFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+CustomFont.h"; sourceTree = "<group>"; };
 		B7ACD2751D89124B005CD42D /* UIFont+CustomFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+CustomFont.m"; sourceTree = "<group>"; };
-		B7ACD27C1D891ADB005CD42D /* loginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBackground.png; sourceTree = "<group>"; };
-		B7ACD27D1D891ADB005CD42D /* loginBackground-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginBackground-568h@2x.png"; sourceTree = "<group>"; };
-		B7ACD27E1D891ADB005CD42D /* loginBackground-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginBackground-667h@2x.png"; sourceTree = "<group>"; };
-		B7ACD27F1D891ADB005CD42D /* loginBackground-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginBackground-736h@3x.png"; sourceTree = "<group>"; };
+		B7C7A3641D8A506A00D7DF06 /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
+		B7C7A3651D8A506A00D7DF06 /* UncaughtExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UncaughtExceptionHandler.m; sourceTree = "<group>"; };
+		B7C7A3681D8A639800D7DF06 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
+		B7C7A3691D8A639800D7DF06 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
+		B7C7A36A1D8A639800D7DF06 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		B7C7A36B1D8A639800D7DF06 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		B7C7A36F1D8A63A600D7DF06 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
+		B7C7A3701D8A63A600D7DF06 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
+		B7C7A3731D8A63B400D7DF06 /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuViewController.h; sourceTree = "<group>"; };
+		B7C7A3741D8A63B400D7DF06 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
+		B7C7A3771D8A63C000D7DF06 /* ParcelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParcelListViewController.h; sourceTree = "<group>"; };
+		B7C7A3781D8A63C000D7DF06 /* ParcelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParcelListViewController.m; sourceTree = "<group>"; };
+		B7C7A37A1D8A64C900D7DF06 /* login-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-568h@2x.png"; sourceTree = "<group>"; };
+		B7C7A37B1D8A64C900D7DF06 /* login-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-667h@2x.png"; sourceTree = "<group>"; };
+		B7C7A37C1D8A64C900D7DF06 /* login-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-736h@3x.png"; sourceTree = "<group>"; };
+		B7C7A37D1D8A64C900D7DF06 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
+		B7C7A3841D8A651100D7DF06 /* Parcel-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Parcel-568h@2x.png"; sourceTree = "<group>"; };
+		B7C7A3851D8A651100D7DF06 /* Parcel-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Parcel-667h@2x.png"; sourceTree = "<group>"; };
+		B7C7A3861D8A651100D7DF06 /* Parcel-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Parcel-736h@3x.png"; sourceTree = "<group>"; };
+		B7C7A38A1D8A651900D7DF06 /* Dashboard-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard-568h@2x.png"; sourceTree = "<group>"; };
+		B7C7A38B1D8A651900D7DF06 /* Dashboard-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard-667h@2x.png"; sourceTree = "<group>"; };
+		B7C7A38C1D8A651900D7DF06 /* Dashboard-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard-736h@3x.png"; sourceTree = "<group>"; };
+		B7C7A3921D8A75B600D7DF06 /* ParcelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParcelCell.h; sourceTree = "<group>"; };
+		B7C7A3931D8A75B600D7DF06 /* ParcelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParcelCell.m; sourceTree = "<group>"; };
 		B7D06C531D895CA300A5FA94 /* CustomAlert.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomAlert.xib; sourceTree = "<group>"; };
 		B7D06C551D8974EC00A5FA94 /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
 		B7D06C561D8974EC00A5FA94 /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
@@ -124,8 +157,8 @@
 		B75B2C731D88033A007EEE42 /* Dwell */ = {
 			isa = PBXGroup;
 			children = (
-				B7D06C5B1D897BAD00A5FA94 /* ServerCommunication */,
 				B75B2C8B1D8803B8007EEE42 /* AppDelegate */,
+				B7D06C5B1D897BAD00A5FA94 /* ServerCommunication */,
 				B75B2C8C1D8803C6007EEE42 /* ViewControllers */,
 				B75B2C8E1D8803F6007EEE42 /* Models */,
 				B75B2C911D880452007EEE42 /* CategoryClasses */,
@@ -142,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				B75B2C941D8804E3007EEE42 /* PrifixFile */,
-				B75B2C931D88047D007EEE42 /* Images */,
+				B75B2C931D88047D007EEE42 /* BackgroundImages */,
 				B75B2C921D880473007EEE42 /* Fonts */,
 				B75B2C751D88033A007EEE42 /* main.m */,
 			);
@@ -161,6 +194,10 @@
 		B75B2C8C1D8803C6007EEE42 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B7C7A3761D8A63BA00D7DF06 /* ParcelModule */,
+				B7C7A3721D8A63AD00D7DF06 /* MenuButtonSuperView */,
+				B7C7A36E1D8A63A000D7DF06 /* Dashboard */,
+				B7C7A3671D8A638F00D7DF06 /* SidebarView */,
 				B75B2C8D1D8803D2007EEE42 /* LoginView */,
 			);
 			name = ViewControllers;
@@ -195,6 +232,7 @@
 		B75B2C901D880448007EEE42 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				B7C7A3631D8A505B00D7DF06 /* Crashlytics */,
 				B7D06C6D1D8984B600A5FA94 /* NullHandler */,
 				B7D06C691D897D6E00A5FA94 /* XMLParsing */,
 				B7D0B7FA1D892FD2008BC202 /* CustomAlert */,
@@ -228,12 +266,14 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
-		B75B2C931D88047D007EEE42 /* Images */ = {
+		B75B2C931D88047D007EEE42 /* BackgroundImages */ = {
 			isa = PBXGroup;
 			children = (
-				B7ACD27B1D8919AB005CD42D /* LoginBackground */,
+				B7ACD27B1D8919AB005CD42D /* Login */,
+				B7C7A3821D8A64E800D7DF06 /* Parcel */,
+				B7C7A3831D8A64FC00D7DF06 /* Dashboard */,
 			);
-			name = Images;
+			name = BackgroundImages;
 			sourceTree = "<group>";
 		};
 		B75B2C941D8804E3007EEE42 /* PrifixFile */ = {
@@ -325,15 +365,100 @@
 			name = CustomFont;
 			sourceTree = "<group>";
 		};
-		B7ACD27B1D8919AB005CD42D /* LoginBackground */ = {
+		B7ACD27B1D8919AB005CD42D /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				B7ACD27C1D891ADB005CD42D /* loginBackground.png */,
-				B7ACD27D1D891ADB005CD42D /* loginBackground-568h@2x.png */,
-				B7ACD27E1D891ADB005CD42D /* loginBackground-667h@2x.png */,
-				B7ACD27F1D891ADB005CD42D /* loginBackground-736h@3x.png */,
+				B7C7A37A1D8A64C900D7DF06 /* login-568h@2x.png */,
+				B7C7A37B1D8A64C900D7DF06 /* login-667h@2x.png */,
+				B7C7A37C1D8A64C900D7DF06 /* login-736h@3x.png */,
+				B7C7A37D1D8A64C900D7DF06 /* login.png */,
 			);
-			name = LoginBackground;
+			name = Login;
+			sourceTree = "<group>";
+		};
+		B7C7A3631D8A505B00D7DF06 /* Crashlytics */ = {
+			isa = PBXGroup;
+			children = (
+				B7C7A3641D8A506A00D7DF06 /* UncaughtExceptionHandler.h */,
+				B7C7A3651D8A506A00D7DF06 /* UncaughtExceptionHandler.m */,
+			);
+			name = Crashlytics;
+			sourceTree = "<group>";
+		};
+		B7C7A3671D8A638F00D7DF06 /* SidebarView */ = {
+			isa = PBXGroup;
+			children = (
+				B7C7A3681D8A639800D7DF06 /* SidebarViewController.h */,
+				B7C7A3691D8A639800D7DF06 /* SidebarViewController.m */,
+				B7C7A36A1D8A639800D7DF06 /* SWRevealViewController.h */,
+				B7C7A36B1D8A639800D7DF06 /* SWRevealViewController.m */,
+			);
+			name = SidebarView;
+			sourceTree = "<group>";
+		};
+		B7C7A36E1D8A63A000D7DF06 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				B7C7A36F1D8A63A600D7DF06 /* DashboardViewController.h */,
+				B7C7A3701D8A63A600D7DF06 /* DashboardViewController.m */,
+			);
+			name = Dashboard;
+			sourceTree = "<group>";
+		};
+		B7C7A3721D8A63AD00D7DF06 /* MenuButtonSuperView */ = {
+			isa = PBXGroup;
+			children = (
+				B7C7A3731D8A63B400D7DF06 /* SideMenuViewController.h */,
+				B7C7A3741D8A63B400D7DF06 /* SideMenuViewController.m */,
+			);
+			name = MenuButtonSuperView;
+			sourceTree = "<group>";
+		};
+		B7C7A3761D8A63BA00D7DF06 /* ParcelModule */ = {
+			isa = PBXGroup;
+			children = (
+				B7C7A3901D8A759B00D7DF06 /* ParcelListView */,
+				B7C7A3911D8A75A400D7DF06 /* ParcelListCell */,
+			);
+			name = ParcelModule;
+			sourceTree = "<group>";
+		};
+		B7C7A3821D8A64E800D7DF06 /* Parcel */ = {
+			isa = PBXGroup;
+			children = (
+				B7C7A3841D8A651100D7DF06 /* Parcel-568h@2x.png */,
+				B7C7A3851D8A651100D7DF06 /* Parcel-667h@2x.png */,
+				B7C7A3861D8A651100D7DF06 /* Parcel-736h@3x.png */,
+			);
+			name = Parcel;
+			sourceTree = "<group>";
+		};
+		B7C7A3831D8A64FC00D7DF06 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				B7C7A38A1D8A651900D7DF06 /* Dashboard-568h@2x.png */,
+				B7C7A38B1D8A651900D7DF06 /* Dashboard-667h@2x.png */,
+				B7C7A38C1D8A651900D7DF06 /* Dashboard-736h@3x.png */,
+			);
+			name = Dashboard;
+			sourceTree = "<group>";
+		};
+		B7C7A3901D8A759B00D7DF06 /* ParcelListView */ = {
+			isa = PBXGroup;
+			children = (
+				B7C7A3771D8A63C000D7DF06 /* ParcelListViewController.h */,
+				B7C7A3781D8A63C000D7DF06 /* ParcelListViewController.m */,
+			);
+			name = ParcelListView;
+			sourceTree = "<group>";
+		};
+		B7C7A3911D8A75A400D7DF06 /* ParcelListCell */ = {
+			isa = PBXGroup;
+			children = (
+				B7C7A3921D8A75B600D7DF06 /* ParcelCell.h */,
+				B7C7A3931D8A75B600D7DF06 /* ParcelCell.m */,
+			);
+			name = ParcelListCell;
 			sourceTree = "<group>";
 		};
 		B7D06C5B1D897BAD00A5FA94 /* ServerCommunication */ = {
@@ -468,16 +593,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7C7A38F1D8A651900D7DF06 /* Dashboard-736h@3x.png in Resources */,
 				B7ACD26E1D890FE7005CD42D /* calibri_Normal.ttf in Resources */,
-				B7ACD2831D891ADB005CD42D /* loginBackground-736h@3x.png in Resources */,
+				B7C7A3811D8A64C900D7DF06 /* login.png in Resources */,
+				B7C7A3891D8A651100D7DF06 /* Parcel-736h@3x.png in Resources */,
 				B75B2C811D88033A007EEE42 /* Assets.xcassets in Resources */,
 				B7D06C541D895CA300A5FA94 /* CustomAlert.xib in Resources */,
-				B7ACD2801D891ADB005CD42D /* loginBackground.png in Resources */,
+				B7C7A3801D8A64C900D7DF06 /* login-736h@3x.png in Resources */,
+				B7C7A38D1D8A651900D7DF06 /* Dashboard-568h@2x.png in Resources */,
+				B7C7A3871D8A651100D7DF06 /* Parcel-568h@2x.png in Resources */,
+				B7C7A38E1D8A651900D7DF06 /* Dashboard-667h@2x.png in Resources */,
 				B75B2C7F1D88033A007EEE42 /* Main.storyboard in Resources */,
+				B7C7A37E1D8A64C900D7DF06 /* login-568h@2x.png in Resources */,
 				B7ACD26D1D890FE7005CD42D /* calibri_Bold.ttf in Resources */,
-				B7ACD2811D891ADB005CD42D /* loginBackground-568h@2x.png in Resources */,
-				B7ACD2821D891ADB005CD42D /* loginBackground-667h@2x.png in Resources */,
 				B7ACD26F1D890FE7005CD42D /* handsean.ttf in Resources */,
+				B7C7A3881D8A651100D7DF06 /* Parcel-667h@2x.png in Resources */,
+				B7C7A37F1D8A64C900D7DF06 /* login-667h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,11 +622,14 @@
 				B75B2CC51D880CFD007EEE42 /* Constants.m in Sources */,
 				B75B2CBC1D880958007EEE42 /* MMMaterialDesignSpinner.m in Sources */,
 				B7D06C701D8984BD00A5FA94 /* NullValueChecker.m in Sources */,
+				B7C7A36D1D8A639800D7DF06 /* SWRevealViewController.m in Sources */,
 				B7D06C681D897C7600A5FA94 /* BaseService.m in Sources */,
 				B75B2C7C1D88033A007EEE42 /* LoginViewController.m in Sources */,
+				B7C7A3661D8A506A00D7DF06 /* UncaughtExceptionHandler.m in Sources */,
 				B75B2C991D88060B007EEE42 /* BSKeyboardControls.m in Sources */,
 				B7D06C6C1D897D7900A5FA94 /* XMLDictionary.m in Sources */,
 				B75B2C791D88033A007EEE42 /* AppDelegate.m in Sources */,
+				B7C7A3751D8A63B400D7DF06 /* SideMenuViewController.m in Sources */,
 				B75B2C761D88033A007EEE42 /* main.m in Sources */,
 				B75B2CB01D8806C1007EEE42 /* UITextField+Padding.m in Sources */,
 				B7D06C651D897C5F00A5FA94 /* LoginService.m in Sources */,
@@ -505,9 +639,13 @@
 				B75B2CAC1D8806AD007EEE42 /* UITextField+Validations.m in Sources */,
 				B75B2CA81D880663007EEE42 /* UserDefaultManager.m in Sources */,
 				B7ACD2761D89124B005CD42D /* UIFont+CustomFont.m in Sources */,
+				B7C7A3711D8A63A600D7DF06 /* DashboardViewController.m in Sources */,
+				B7C7A3941D8A75B600D7DF06 /* ParcelCell.m in Sources */,
 				B7D0B8031D893087008BC202 /* CustomAlertView.m in Sources */,
 				B75B2CB41D8806D2007EEE42 /* UIView+RoundedCorner.m in Sources */,
 				B7D06C571D8974EC00A5FA94 /* LoginModel.m in Sources */,
+				B7C7A36C1D8A639800D7DF06 /* SidebarViewController.m in Sources */,
+				B7C7A3791D8A63C000D7DF06 /* ParcelListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

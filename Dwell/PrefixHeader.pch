@@ -24,5 +24,6 @@
 #import "UserDefaultManager.h"
 #import "UIFont+CustomFont.h"
 #import "CustomAlert.h"
+#import "SideMenuViewController.h"
 #define myDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 #endif /* PrefixHeader_pch */

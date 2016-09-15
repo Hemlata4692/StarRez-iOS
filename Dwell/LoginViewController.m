@@ -161,9 +161,6 @@
 #pragma mark - IBActions
 - (IBAction)login:(UIButton *)sender {
     
-    NSMutableDictionary*a=[NSMutableDictionary new];
-    NSMutableArray*b;
-    [a setObject:b forKey:@"a"];
     [self.keyboardControls.activeField resignFirstResponder];
     [self.loginScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     //perform login validations

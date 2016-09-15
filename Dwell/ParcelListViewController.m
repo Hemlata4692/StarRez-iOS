@@ -8,6 +8,7 @@
 
 #import "ParcelListViewController.h"
 #import "ParcelCell.h"
+#import "ParcelDetailViewController.h"
 @interface ParcelListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *parcelListTableview;
 
@@ -54,6 +55,12 @@
     [cell displayData:nil frame:self.view.bounds];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    ParcelDetailViewController *obiParcelDetail = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ParcelDetailViewController"];
+    [self.navigationController pushViewController:obiParcelDetail animated:YES];
 }
 #pragma mark - end
 /*

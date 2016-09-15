@@ -51,7 +51,7 @@
     {
         cell = [[ParcelCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-    [cell displayData:nil];
+    [cell displayData:nil frame:self.view.bounds];
     
     return cell;
 }

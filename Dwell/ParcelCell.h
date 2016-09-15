@@ -24,5 +24,5 @@
 @property (weak, nonatomic) IBOutlet UIView *parcelStatusBackGroundView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelStatus;
 
-- (void)displayData : (NSDictionary *)dataDict;
+- (void)displayData : (NSDictionary *)dataDict frame :(CGRect)frame;
 @end

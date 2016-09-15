@@ -36,7 +36,7 @@
 
 - (void)layoutCellObject :(CGRect)frame{
     
-    mainBackgroundView.layer.cornerRadius = 5.0;
+    mainBackgroundView.layer.cornerRadius = cornerRadius;
     
     
     parcelStatusBackGroundView.translatesAutoresizingMaskIntoConstraints = YES;

@@ -144,6 +144,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A412A431D8ABF7300E70791 /* ParcelModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ParcelModel;
+			sourceTree = "<group>";
+		};
 		B75B2C681D88033A007EEE42 = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +228,7 @@
 		B75B2C8E1D8803F6007EEE42 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4A412A431D8ABF7300E70791 /* ParcelModel */,
 				B75B2C8F1D880412007EEE42 /* LoginModel */,
 			);
 			name = Models;

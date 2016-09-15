@@ -50,6 +50,8 @@
 		B7D06C701D8984BD00A5FA94 /* NullValueChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D06C6F1D8984BD00A5FA94 /* NullValueChecker.m */; };
 		B7D0B7FD1D893052008BC202 /* CustomAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D0B7FC1D893052008BC202 /* CustomAlert.m */; };
 		B7D0B8031D893087008BC202 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D0B8021D893087008BC202 /* CustomAlertView.m */; };
+		B7F7161F1D8A9C57006C8178 /* Internet.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F7161C1D8A9C57006C8178 /* Internet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B7F716201D8A9C57006C8178 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F7161E1D8A9C57006C8178 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +127,10 @@
 		B7D0B7FC1D893052008BC202 /* CustomAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlert.m; sourceTree = "<group>"; };
 		B7D0B8011D893087008BC202 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
 		B7D0B8021D893087008BC202 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
+		B7F7161B1D8A9C57006C8178 /* Internet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Internet.h; sourceTree = "<group>"; };
+		B7F7161C1D8A9C57006C8178 /* Internet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Internet.m; sourceTree = "<group>"; };
+		B7F7161D1D8A9C57006C8178 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		B7F7161E1D8A9C57006C8178 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +238,7 @@
 		B75B2C901D880448007EEE42 /* HelperClasses */ = {
 			isa = PBXGroup;
 			children = (
+				B7F7161A1D8A9C50006C8178 /* InternetFiles */,
 				B7C7A3631D8A505B00D7DF06 /* Crashlytics */,
 				B7D06C6D1D8984B600A5FA94 /* NullHandler */,
 				B7D06C691D897D6E00A5FA94 /* XMLParsing */,
@@ -536,6 +543,17 @@
 			name = CustomAlert;
 			sourceTree = "<group>";
 		};
+		B7F7161A1D8A9C50006C8178 /* InternetFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B7F7161B1D8A9C57006C8178 /* Internet.h */,
+				B7F7161C1D8A9C57006C8178 /* Internet.m */,
+				B7F7161D1D8A9C57006C8178 /* Reachability.h */,
+				B7F7161E1D8A9C57006C8178 /* Reachability.m */,
+			);
+			name = InternetFiles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -637,11 +655,13 @@
 				B75B2CB81D8806E4007EEE42 /* UIImage+deviceSpecificMedia.m in Sources */,
 				B7D06C601D897BD800A5FA94 /* ConnectionManager.m in Sources */,
 				B75B2CAC1D8806AD007EEE42 /* UITextField+Validations.m in Sources */,
+				B7F7161F1D8A9C57006C8178 /* Internet.m in Sources */,
 				B75B2CA81D880663007EEE42 /* UserDefaultManager.m in Sources */,
 				B7ACD2761D89124B005CD42D /* UIFont+CustomFont.m in Sources */,
 				B7C7A3711D8A63A600D7DF06 /* DashboardViewController.m in Sources */,
 				B7C7A3941D8A75B600D7DF06 /* ParcelCell.m in Sources */,
 				B7D0B8031D893087008BC202 /* CustomAlertView.m in Sources */,
+				B7F716201D8A9C57006C8178 /* Reachability.m in Sources */,
 				B75B2CB41D8806D2007EEE42 /* UIView+RoundedCorner.m in Sources */,
 				B7D06C571D8974EC00A5FA94 /* LoginModel.m in Sources */,
 				B7C7A36C1D8A639800D7DF06 /* SidebarViewController.m in Sources */,

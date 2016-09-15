@@ -70,7 +70,6 @@
     return headerView;   // return headerLabel;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSString *CellIdentifier=[menuItems objectAtIndex:indexPath.row];
@@ -126,7 +125,7 @@
         [UserDefaultManager setValue:nil key:@"indexpath"];
         [UserDefaultManager setValue:nil key:@"userEmailId"];
         [UserDefaultManager setValue:nil key:@"entryId"];
-//        [myDelegate unrigisterForNotification];
+        [myDelegate unrigisterForNotification];
         
         UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
         myDelegate.window.rootViewController = myDelegate.navigationController;

@@ -23,11 +23,11 @@
 #pragma mark - end
 
 //Post method for other services
-- (void)post:(NSString *)path parameters:(NSString *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+- (void)post:(NSString *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    NSURL *url=[NSURL URLWithString:path];
+    NSURL *url=[NSURL URLWithString:@"https://starrez.centurionstudents.co.uk/StarRezREST/services/query"];
     NSData *postData = [parameters dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     
@@ -65,12 +65,12 @@
     [postDataTask resume];
 }
 
-- (void)jsonPost:(NSString *)path parameters:(NSDictionary *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+- (void)jsonPost:(NSDictionary *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     NSError *error;
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    NSURL *url=[NSURL URLWithString:path];
+    NSURL *url=[NSURL URLWithString:@"http://ranosys.info/StarrezNotification/api/SaveUser"];
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];;
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     

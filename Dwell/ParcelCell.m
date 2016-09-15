@@ -54,7 +54,7 @@
     UIBezierPath *path = [UIBezierPath bezierPath];
     //draw a line
     [path moveToPoint:CGPointMake(0.0, parcelTitle.frame.size.height)]; //add yourStartPoint here
-    [path addLineToPoint:CGPointMake(parcelTitle.frame.size.width, parcelTitle.frame.size.height)];// add yourEndPoint here
+    [path addLineToPoint:CGPointMake(frame.size.width-40, parcelTitle.frame.size.height)];// add yourEndPoint here
     UIColor *fill = [UIColor colorWithRed:72.0/255.0 green:73.0/255.0 blue:73.0/255.0 alpha:1.0];
     shapelayer.strokeStart = 0.0;
     shapelayer.strokeColor = fill.CGColor;
@@ -63,7 +63,6 @@
     shapelayer.lineDashPattern = [NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
     //shapelayer.lineDashPhase = 3.0f;
     shapelayer.path = path.CGPath;
-    
     [parcelTitle.layer addSublayer:shapelayer];
     
 }

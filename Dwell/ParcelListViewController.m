@@ -81,6 +81,12 @@
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    ParcelDetailViewController *obiParcelDetail = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ParcelDetailViewController"];
+    [self.navigationController pushViewController:obiParcelDetail animated:YES];
+}
 #pragma mark - end
 /*
 #pragma mark - Navigation

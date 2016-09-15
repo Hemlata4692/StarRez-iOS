@@ -8,4 +8,12 @@
 
 #import "Constants.h"
 
-#define eventColor = [UIColor colorWithRed:(255.0/255.0) green:(206.0/255.0) blue:(52.0/255.0) alpha:1.0f];
+@implementation Constants
++ (UIColor*)dashboardColor {
+    return [UIColor colorWithRed:230.0/255 green:68.0/255.0 blue:62.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)parcelColor {
+    return [UIColor colorWithRed:49.0/255 green:104.0/255.0 blue:178.0/255.0 alpha:1.0];
+}
+@end

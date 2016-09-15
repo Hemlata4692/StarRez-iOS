@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MMMaterialDesignSpinner.h"
+#import "UncaughtExceptionHandler.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate () {
     
@@ -21,11 +23,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-   
+   //Call crashlytics method
+    [self performSelector:@selector(installUncaughtExceptionHandler) withObject:nil afterDelay:0];
+    
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.0/255.0 green:58.0/255.0 blue:78.0/255.0 alpha:1.0]];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont calibriBoldWithSize:19], NSFontAttributeName, nil]];
     application.statusBarHidden = NO;
+    
+    self.navigationController = (UINavigationController *)[self.window rootViewController];
+    [self.navigationController setNavigationBarHidden:YES];
+    //If user already exist then user navigate ot dashboard screen
+    if (nil!=[UserDefaultManager getValue:@"userEmailId"]){
+        [UserDefaultManager setValue:[NSNumber numberWithInteger:0] key:@"indexpath"];
+        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
+        [self.navigationController setViewControllers: [NSArray arrayWithObject: objReveal]
+                                             animated: YES];
+    }
     return YES;
 }
 
@@ -78,4 +93,9 @@
     [self.spinnerView stopAnimating];
 }
 #pragma mark - end
+
+- (void)installUncaughtExceptionHandler
+{
+    InstallUncaughtExceptionHandler();
+}
 @end

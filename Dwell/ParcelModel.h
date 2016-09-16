@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSString *parcelReceiptDate;
 @property (strong, nonatomic) NSString *parcelShippingType;
 @property (strong, nonatomic) NSString *parcelIssueDate;
+@property (strong, nonatomic) NSString *parcelStatusId;
 @property (strong, nonatomic) NSString *parcelStatus;
 @property (strong, nonatomic) NSString *parcelForwardingAddress;
 @property (strong, nonatomic) NSString *parcelTrackingNo;

@@ -10,9 +10,12 @@
 
 @interface SideMenuViewController : UIViewController
 
-//add menu icon in all screens of side bar
+//Add menu icon in all screens of side bar
 - (void)addLeftBarButtonWithImage:(UIImage *)buttonImage;
 
 //Add different backgroung image
 - (void)addBackgroungImage : (NSString *)imageName;
+
+//Check internet connectivity
+- (bool)checkInternetConnection;
 @end

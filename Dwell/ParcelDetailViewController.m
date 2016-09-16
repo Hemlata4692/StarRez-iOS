@@ -93,21 +93,21 @@
     self.forwardAddress.text=parcelDetailData.parcelForwardingAddress;
     self.trackingNo.text=parcelDetailData.parcelTrackingNo;
     self.adminComments.text=parcelDetailData.parcelComment;
-    if ([parcelDetailData.parcelStatus isEqualToString:@"0"]) {
+    if ([parcelDetailData.parcelStatusId isEqualToString:@"0"]) {
         self.parcelStatus.text=@"Collected";
-        self.parcelStatusBackGroundView.backgroundColor=[Constants resourceColor:0.7];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants resourceColor:1.0];
     }
-    else if ([parcelDetailData.parcelStatus isEqualToString:@"1"]) {
+    else if ([parcelDetailData.parcelStatusId isEqualToString:@"1"]) {
         self.parcelStatus.text=@"Parcel for Collection";
-        self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor:0.7];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor:1.0];
     }
-    else if ([parcelDetailData.parcelStatus isEqualToString:@"3"]) {
+    else if ([parcelDetailData.parcelStatusId isEqualToString:@"3"]) {
         self.parcelStatus.text=parcelDetailData.parcelStatus;
-        self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor:0.7];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants returnedColor:1.0];
     }
     else {
         self.parcelStatus.text=parcelDetailData.parcelStatus;
-        self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor:0.7];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor:1.0];
     }
 }
 #pragma mark - end

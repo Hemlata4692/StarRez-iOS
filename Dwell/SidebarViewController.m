@@ -86,7 +86,7 @@
         CGRect frameL;
         frameL.origin.x = 0;
         frameL.origin.y = 0;
-        frameL.size.height = 45;
+        frameL.size.height = 61;
         frameL.size.width = 5;
         UIButton *AlertNameLHS = [[UIButton alloc] initWithFrame:frameL];
         AlertNameLHS.backgroundColor=[labelColor objectAtIndex:indexPath.row];
@@ -127,11 +127,10 @@
         [UserDefaultManager setValue:nil key:@"entryId"];
         [myDelegate unrigisterForNotification];
         
-        UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        myDelegate.window.rootViewController = myDelegate.navigationController;
-        UIViewController *firstVC=[sb instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        [myDelegate.navigationController setViewControllers: [NSArray arrayWithObject: firstVC]
-                                                   animated: YES];
+        UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        
+        UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
+        myDelegate.window.rootViewController = navigation;
     }
 }
 

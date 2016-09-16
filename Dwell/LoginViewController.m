@@ -36,12 +36,11 @@
 #pragma mark - Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    
     //register iPhone device for push notifications
     [myDelegate registerDeviceForNotification];
     //Hide navigation bar and status bar
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
-//     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     //Adding textfield to keyboard controls array
@@ -64,12 +63,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
@@ -138,6 +142,13 @@
         self.loginScrollView.contentSize = CGSizeMake(0,[UIScreen mainScreen].bounds.size.height+([aValue CGRectValue].size.height-([UIScreen mainScreen].bounds.size.height-(self.passwordTextfield.frame.origin.y+self.passwordTextfield.frame.size.height))) + 60);
     }
 }
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    
+    self.loginScrollView.contentSize = CGSizeMake(0,self.loginContainerView.frame.size.height);
+    [self.loginScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
+
 #pragma mark - end
 
 #pragma mark - Login validation
@@ -189,12 +200,9 @@
             [myDelegate stopIndicator];
             [[UIApplication sharedApplication] setStatusBarHidden:NO];
             [UserDefaultManager setValue:[NSNumber numberWithInteger:0] key:@"indexpath"];
-            UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
-            myDelegate.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-            [myDelegate.window setRootViewController:objReveal];
-            [myDelegate.window setBackgroundColor:[UIColor whiteColor]];
-            [myDelegate.window makeKeyAndVisible];
+            [self.navigationController pushViewController:objReveal animated:YES];
         });
     } onfailure:^(id error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -210,8 +218,8 @@
 }
 #pragma mark - end
 
-#pragma mark - MyAlert delegates
-- (void)customAlertDelegateAction:(CustomAlert *)myAlert option:(int)option{
+#pragma mark - Custom alert delegates
+- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
     
     [alertView dismissAlertView];
 }

@@ -31,15 +31,22 @@
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont calibriBoldWithSize:19], NSFontAttributeName, nil]];
     application.statusBarHidden = NO;
     
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.navigationController = (UINavigationController *)[self.window rootViewController];
     [self.navigationController setNavigationBarHidden:YES];
     //If user already exist then user navigate ot dashboard screen
     if (nil!=[UserDefaultManager getValue:@"userEmailId"]) {
         [UserDefaultManager setValue:[NSNumber numberWithInteger:0] key:@"indexpath"];
-        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
+//        [self.navigationController setViewControllers: [NSArray arrayWithObject: objReveal]
+//                                             animated: YES];
+        
         UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
-        [self.navigationController setViewControllers: [NSArray arrayWithObject: objReveal]
-                                             animated: YES];
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        [self.window setRootViewController:objReveal];
+        [self.window setBackgroundColor:[UIColor whiteColor]];
+        [self.window makeKeyAndVisible];
     }
     
     //accept push notification when app is not open

@@ -30,20 +30,20 @@
     [[ConnectionManager sharedManager] loginUser:self onSuccess:^(LoginModel *userData) {
         if (success) {
             DLog(@"check");
+            [UserDefaultManager setValue:userData.userEmailId key:@"userEmailId"];
+            [UserDefaultManager setValue:userData.entryId key:@"entryId"];
             //Call save device token
-            if (nil==[UserDefaultManager getValue:@"deviceToken"]||NULL==[UserDefaultManager getValue:@"deviceToken"]) {
-                [UserDefaultManager setValue:userData.userEmailId key:@"userEmailId"];
-                [UserDefaultManager setValue:userData.entryId key:@"entryId"];
-                success (userData);
-            }
-            else{
+            if ((nil!=[UserDefaultManager getValue:@"deviceToken"])&&(NULL!=[UserDefaultManager getValue:@"deviceToken"])) {
                 [self saveDeviceToken:^(LoginModel *userData) {
                     [UserDefaultManager setValue:userData.userEmailId key:@"userEmailId"];
                     [UserDefaultManager setValue:userData.entryId key:@"entryId"];
                     success (userData);
-                } onfailure:^(id error) {   
-                    failure(error);
+                } onfailure:^(id error) {
+                    success(error);
                 }];
+            }
+            else {
+                success (userData);
             }
         }
     } onFailure:^(id error) {

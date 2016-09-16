@@ -29,8 +29,8 @@
     }
 }
 
-#pragma mark - MyAlert delegates
-- (void)customAlertDelegateAction:(CustomAlert *)myAlert option:(int)option {
+#pragma mark - Custom alert delegates
+- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option {
     
     [alertView dismissAlertView];
 }

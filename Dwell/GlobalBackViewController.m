@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self addLeftBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
     // Do any additional setup after loading the view.
 }
@@ -30,8 +31,8 @@
 
 
 #pragma mark - Add back button
-- (void)addLeftBarButtonWithImage:(UIImage *)buttonImage
-{
+- (void)addLeftBarButtonWithImage:(UIImage *)buttonImage {
+    
     //Navigation bar button for adding global back button for all the sub screens.
     CGRect framing1 = CGRectMake(0, 0, 25, 25);
     UIButton *button = [[UIButton alloc] initWithFrame:framing1];
@@ -42,9 +43,9 @@
     self.navigationItem.leftBarButtonItems=[NSArray arrayWithObjects:barButton, nil];
 }
 
-//back button action
-- (void)backButtonAction :(id)sender
-{
+//Back button action
+- (void)backButtonAction :(id)sender {
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - end

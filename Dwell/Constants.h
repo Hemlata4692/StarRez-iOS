@@ -16,4 +16,5 @@ static const float cornerRadius=10.0;
 + (UIColor*)parcelColor;
 + (UIColor*)eventColor:(float)alpha;
 + (UIColor*)resourceColor:(float)alpha;
++ (UIColor*)returnedColor:(float)alpha;
 @end

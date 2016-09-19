@@ -60,7 +60,6 @@
     //Set corner radius to main background view
     self.mainBackgroundView.layer.cornerRadius=cornerRadius;
     self.mainBackgroundView.layer.masksToBounds=YES;
-    self.parcelStatusBackGroundView.alpha = 0.5;
     //Make dots below title label
     CAShapeLayer *shapelayer=[CAShapeLayer layer];
     UIBezierPath *path=[UIBezierPath bezierPath];
@@ -134,16 +133,16 @@
     self.adminComment.text=parcelDetailData.parcelComment;
     self.parcelStatus.text=parcelDetailData.parcelStatus;
     if ([parcelDetailData.parcelStatusId isEqualToString:@"0"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants resourceColor:1.0];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants resourceColor:0.6];
     }
     else if ([parcelDetailData.parcelStatusId isEqualToString:@"1"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor:1.0];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor:0.6];
     }
     else if ([parcelDetailData.parcelStatusId isEqualToString:@"3"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants returnedColor:1.0];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants returnedColor:0.6];
     }
     else {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor:1.0];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor:0.6];
     }
 }
 #pragma mark - end

@@ -50,7 +50,6 @@
     CAShapeLayer *maskLayer=[[CAShapeLayer alloc] init];
     maskLayer.frame=frame;
     maskLayer.path=maskPath.CGPath;
-    parcelStatusBackGroundView.alpha =.6;
     parcelStatusBackGroundView.layer.mask = maskLayer;
     CAShapeLayer *shapelayer=[CAShapeLayer layer];
     UIBezierPath *path=[UIBezierPath bezierPath];
@@ -65,8 +64,6 @@
     shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
     shapelayer.path=path.CGPath;
     [parcelTitle.layer addSublayer:shapelayer];
-    
-//    parcelStatus.alpha = 0.5;
 }
 
 - (void)displayData:(ParcelModel *)modelData frame:(CGRect)frame{
@@ -79,16 +76,16 @@
     issueDate.text=modelData.parcelIssueDate;
     parcelStatus.text=modelData.parcelStatus;
     if ([modelData.parcelStatusId isEqualToString:@"0"]) {
-        parcelStatusBackGroundView.backgroundColor=[Constants resourceColor:1.0];
+        parcelStatusBackGroundView.backgroundColor=[Constants resourceColor:0.6];
     }
     else if ([modelData.parcelStatusId isEqualToString:@"1"]) {
-        parcelStatusBackGroundView.backgroundColor=[Constants eventColor:1.0];
+        parcelStatusBackGroundView.backgroundColor=[Constants eventColor:0.6];
     }
     else if ([modelData.parcelStatusId isEqualToString:@"3"]) {
-        parcelStatusBackGroundView.backgroundColor=[Constants returnedColor:1.0];
+        parcelStatusBackGroundView.backgroundColor=[Constants returnedColor:0.6];
     }
     else {
-         parcelStatusBackGroundView.backgroundColor=[Constants eventColor:1.0];
+         parcelStatusBackGroundView.backgroundColor=[Constants eventColor:0.6];
     }
 }
 @end

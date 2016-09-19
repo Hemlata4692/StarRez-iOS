@@ -61,7 +61,7 @@
     UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
     headerView.backgroundColor=[UIColor whiteColor];
     // i.e. array element
-    UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(15, -19, 100, 100)] ;
+    UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(15, -20, 100, 100)] ;
     imgView.contentMode=UIViewContentModeScaleAspectFill;
     imgView.clipsToBounds=YES;
     imgView.image=[UIImage imageNamed:@"sidebarlogo"];

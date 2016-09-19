@@ -9,13 +9,12 @@
 #import "DashboardViewController.h"
 
 @interface DashboardViewController ()
-
 @end
 
 @implementation DashboardViewController
 
+#pragma mark - View life cycle
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
     self.title = @"Dashboard";
@@ -28,7 +27,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark - end
 /*
 #pragma mark - Navigation
 

@@ -533,7 +533,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2016-09-19.png" translatesAutoresizingMaskIntoConstraints="NO" id="oza-v6-1Rd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="underDevelopement.png" translatesAutoresizingMaskIntoConstraints="NO" id="oza-v6-1Rd">
                                 <rect key="frame" x="85" y="210" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="oza-v6-1Rd" secondAttribute="height" multiplier="1:1" id="6Ud-yd-sGV"/>
@@ -1222,7 +1222,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="2016-09-19.png" width="800" height="800"/>
         <image name="collected" width="17" height="17"/>
         <image name="dashboard" width="27" height="27"/>
         <image name="events" width="27" height="27"/>
@@ -1234,6 +1233,7 @@
         <image name="maintenance" width="27" height="27"/>
         <image name="parcel" width="27" height="27"/>
         <image name="resources" width="27" height="27"/>
+        <image name="underDevelopement.png" width="800" height="800"/>
         <image name="upArrow" width="20" height="10"/>
     </resources>
     <inferredMetricsTieBreakers>

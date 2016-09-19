@@ -20,7 +20,6 @@
     UIBarButtonItem *filterBarButton;
     NSMutableDictionary *parcelStatusDict;
     BOOL isSearch;
-    
 }
 @property (weak, nonatomic) IBOutlet UITableView *parcelListTableview;
 @property (strong, nonatomic) IBOutlet UILabel *noRecordLabel;
@@ -33,15 +32,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Parcel List";
     self.noRecordLabel.hidden=YES;
     isSearch=false;
-    self.title = @"Parcel List";
     //Add background image
     [super addBackgroungImage:@"Parcel"];
     parcelDataArray=[NSMutableArray new];
     parcelSearchDataArray=[NSMutableArray new];
     parcelStatusDict=[NSMutableDictionary new];
-    [myDelegate showIndicator:[Constants parcelColor]];
+    [myDelegate showIndicator:[Constants blueBackgroundColor]];
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
     [self performSelector:@selector(getParcelListService) withObject:nil afterDelay:.1];
     // Do any additional setup after loading the view.

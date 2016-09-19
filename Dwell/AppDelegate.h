@@ -12,8 +12,11 @@
 @property (retain, nonatomic) UINavigationController *navigationController;
 
 //Method declaration
+//Global loader
 - (void)showIndicator:(UIColor*)spinnerColor;
 - (void)stopIndicator;
+
+//Push notification method
 - (void)registerDeviceForNotification;
 - (void)unrigisterForNotification;
 @end

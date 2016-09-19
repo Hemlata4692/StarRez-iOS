@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4A412A471D8AC64E00E70791 /* ParcelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A412A461D8AC64E00E70791 /* ParcelDetailViewController.m */; };
 		4A412A4B1D8AC6A800E70791 /* GlobalBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A412A4A1D8AC6A800E70791 /* GlobalBackViewController.m */; };
-		4A92B91F1D8FF4DF008D4462 /* 2016-09-19.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A92B91E1D8FF4DF008D4462 /* 2016-09-19.png */; };
+		4A92B91F1D8FF4DF008D4462 /* underDevelopement.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A92B91E1D8FF4DF008D4462 /* underDevelopement.png */; };
 		B75B2C761D88033A007EEE42 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C751D88033A007EEE42 /* main.m */; };
 		B75B2C791D88033A007EEE42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C781D88033A007EEE42 /* AppDelegate.m */; };
 		B75B2C7C1D88033A007EEE42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C7B1D88033A007EEE42 /* LoginViewController.m */; };
@@ -65,7 +65,7 @@
 		4A412A461D8AC64E00E70791 /* ParcelDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParcelDetailViewController.m; sourceTree = "<group>"; };
 		4A412A491D8AC6A800E70791 /* GlobalBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalBackViewController.h; sourceTree = "<group>"; };
 		4A412A4A1D8AC6A800E70791 /* GlobalBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalBackViewController.m; sourceTree = "<group>"; };
-		4A92B91E1D8FF4DF008D4462 /* 2016-09-19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2016-09-19.png"; sourceTree = "<group>"; };
+		4A92B91E1D8FF4DF008D4462 /* underDevelopement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = underDevelopement.png; sourceTree = "<group>"; };
 		B75B2C711D88033A007EEE42 /* Dwell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dwell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75B2C751D88033A007EEE42 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B75B2C771D88033A007EEE42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -207,7 +207,6 @@
 		B75B2C731D88033A007EEE42 /* Dwell */ = {
 			isa = PBXGroup;
 			children = (
-				4A92B91E1D8FF4DF008D4462 /* 2016-09-19.png */,
 				B75B2C8B1D8803B8007EEE42 /* AppDelegate */,
 				B7D06C5B1D897BAD00A5FA94 /* ServerCommunication */,
 				B75B2C8C1D8803C6007EEE42 /* ViewControllers */,
@@ -225,6 +224,7 @@
 		B75B2C741D88033A007EEE42 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B75E3C7C1D9014A700A037B8 /* OtherImages */,
 				B75B2C941D8804E3007EEE42 /* PrifixFile */,
 				B75B2C931D88047D007EEE42 /* BackgroundImages */,
 				B75B2C921D880473007EEE42 /* Fonts */,
@@ -409,6 +409,14 @@
 				B75B2CC41D880CFD007EEE42 /* Constants.m */,
 			);
 			name = ConstantFile;
+			sourceTree = "<group>";
+		};
+		B75E3C7C1D9014A700A037B8 /* OtherImages */ = {
+			isa = PBXGroup;
+			children = (
+				4A92B91E1D8FF4DF008D4462 /* underDevelopement.png */,
+			);
+			name = OtherImages;
 			sourceTree = "<group>";
 		};
 		B79CC6551D8BD3B400FBD7C3 /* CustomFilter */ = {
@@ -695,7 +703,7 @@
 				B7ACD26D1D890FE7005CD42D /* calibri_Bold.ttf in Resources */,
 				B7ACD26F1D890FE7005CD42D /* handsean.ttf in Resources */,
 				B7C7A3881D8A651100D7DF06 /* Parcel-667h@2x.png in Resources */,
-				4A92B91F1D8FF4DF008D4462 /* 2016-09-19.png in Resources */,
+				4A92B91F1D8FF4DF008D4462 /* underDevelopement.png in Resources */,
 				B7C7A37F1D8A64C900D7DF06 /* login-667h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

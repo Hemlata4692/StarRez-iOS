@@ -9,6 +9,7 @@
 #import "ParcelDetailViewController.h"
 
 @interface ParcelDetailViewController ()
+//Get view outlets
 @property (strong, nonatomic) IBOutlet UIView *parcelDetailView;
 @property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
 @property (weak, nonatomic) IBOutlet UIView *mainBackgroundView;
@@ -80,8 +81,8 @@
  
     self.parcelDetailView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     float backgroundViewHeight=0.0;//Initialize back view size
-    float forwardAddressHeight=[self getDynamicLabelHeight:parcelDetailData.parcelForwardingAddress font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-130];
-    float commentHeight=[self getDynamicLabelHeight:parcelDetailData.parcelComment font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-16];
+    float forwardAddressHeight=[UserDefaultManager getDynamicLabelHeight:parcelDetailData.parcelForwardingAddress font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-130];
+    float commentHeight=[UserDefaultManager getDynamicLabelHeight:parcelDetailData.parcelComment font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-16];
     self.forwardAddress.numberOfLines=0;
     self.adminComment.numberOfLines=0;
     if (forwardAddressHeight<21) {
@@ -107,6 +108,7 @@
 }
 
 - (void)removeAutolayout {
+    
     self.parcelDetailView.translatesAutoresizingMaskIntoConstraints=YES;
     self.forwardAddress.translatesAutoresizingMaskIntoConstraints=YES;
     self.mainBackgroundView.translatesAutoresizingMaskIntoConstraints=YES;
@@ -140,32 +142,20 @@
     self.adminComment.text=parcelDetailData.parcelComment;
     self.parcelStatus.text=parcelDetailData.parcelStatus;
     if ([parcelDetailData.parcelStatusId isEqualToString:@"0"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants resourceColor:0.6];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor:0.6];
     }
     else if ([parcelDetailData.parcelStatusId isEqualToString:@"1"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor:0.6];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
     }
     else if ([parcelDetailData.parcelStatusId isEqualToString:@"3"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants returnedColor:0.6];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants redBackgroundColor:0.6];
     }
     else {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor:0.6];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
     }
 }
 #pragma mark - end
 
-#pragma mark - Get dynamic height according to string
-- (float)getDynamicLabelHeight:(NSString *)text font:(UIFont *)font widthValue:(float)widthValue{
-    
-    CGSize size = CGSizeMake(widthValue,1000);
-    CGRect textRect=[text
-                     boundingRectWithSize:size
-                     options:NSStringDrawingUsesLineFragmentOrigin
-                     attributes:@{NSFontAttributeName:font}
-                     context:nil];
-    return textRect.size.height;
-}
-#pragma mark - end
 /*
 #pragma mark - Navigation
 

@@ -76,16 +76,16 @@
     issueDate.text=modelData.parcelIssueDate;
     parcelStatus.text=modelData.parcelStatus;
     if ([modelData.parcelStatusId isEqualToString:@"0"]) {
-        parcelStatusBackGroundView.backgroundColor=[Constants resourceColor:0.6];
+        parcelStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor:0.6];
     }
     else if ([modelData.parcelStatusId isEqualToString:@"1"]) {
-        parcelStatusBackGroundView.backgroundColor=[Constants eventColor:0.6];
+        parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
     }
     else if ([modelData.parcelStatusId isEqualToString:@"3"]) {
-        parcelStatusBackGroundView.backgroundColor=[Constants returnedColor:0.6];
+        parcelStatusBackGroundView.backgroundColor=[Constants redBackgroundColor:0.6];
     }
     else {
-         parcelStatusBackGroundView.backgroundColor=[Constants eventColor:0.6];
+         parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
     }
 }
 @end

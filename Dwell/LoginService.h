@@ -10,8 +10,10 @@
 @class LoginModel;
 
 @interface LoginService : BaseService
-//login user
+
+//Login user
 - (void)loginUser:(LoginModel *)userLogin onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
-//save device token
+
+//Save device token
 - (void)saveDeviceToken:(LoginModel *)userData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end

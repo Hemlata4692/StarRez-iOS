@@ -42,8 +42,7 @@ NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
     
-    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-                                          {
+    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                               NSString *responseString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
                                                NSMutableDictionary* responseData=[NSMutableDictionary new];
                                               if ([responseString isEqualToString:@""]) {
@@ -51,7 +50,6 @@ NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/
                                                   failure(responseData);
                                               }
                                               else if ((NULL!=responseString)&&(nil!=responseString)) {
-                                                  
                                                    responseData=(NSMutableDictionary *)[NullValueChecker checkArrayForNullValue:[[[XMLDictionaryParser sharedInstance] dictionaryWithString:responseString] mutableCopy]];
                                                   if (responseData.count!=0) {
                                                       [responseData setObject:@"1" forKey:@"success"];
@@ -63,10 +61,10 @@ NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/
                                                   }
                                               }
                                           }];
-    
     [postDataTask resume];
 }
 
+//Post method for save device token services
 - (void)jsonPost:(NSDictionary *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     NSError *error;
@@ -92,7 +90,6 @@ NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/
                                                   success(responseData);
                                               }
                                               else if ((NULL!=responseString)&&(nil!=responseString)) {
-                                                  
                                                   responseData=(NSMutableDictionary *)[NullValueChecker checkArrayForNullValue:[[[XMLDictionaryParser sharedInstance] dictionaryWithString:responseString] mutableCopy]];
                                                   if (responseData.count!=0) {
                                                       [responseData setObject:@"1" forKey:@"success"];
@@ -104,7 +101,6 @@ NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/
                                                   }
                                               }
                                           }];
-    
     [postDataTask resume];
 }
 #pragma mark - end

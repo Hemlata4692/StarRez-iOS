@@ -10,5 +10,6 @@
 
 @interface ParcelDetailViewController : GlobalBackViewController
 
+//Get parcel data model from parcel listing
 @property(nonatomic,strong)ParcelModel *parcelDetailData;
 @end

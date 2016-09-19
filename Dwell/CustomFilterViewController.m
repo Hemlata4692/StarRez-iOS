@@ -30,7 +30,7 @@ static int heightValue=200;
     [super viewDidLoad];
     
     filterArray=[[filterDict allKeys] mutableCopy];
-    [filterArray insertObject:@"All" atIndex:0];
+    [filterArray insertObject:@"All" atIndex:0];//Insert first element bydefult "All"
     heightValue=(60*(int)filterArray.count)+15;
     [self removeAutolayout];
     [self layoutViewObjects];
@@ -55,7 +55,6 @@ static int heightValue=200;
     return filterArray.count;
 }
 
-//[NSString stringWithFormat:@"%@,%@",[[parcelDataArray objectAtIndex:i] parcelStatus],[[parcelDataArray objectAtIndex:i] parcelStatusId]]
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell;

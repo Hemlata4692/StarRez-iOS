@@ -86,7 +86,7 @@
 #pragma mark - end
 
 #pragma mark - Custom accessors
-//add corner radius to objects
+//Add corner radius to objects
 - (void)addBorderCornerRadius {
     
     [self.emailIdTextfield setCornerRadius:cornerRadius];
@@ -147,15 +147,13 @@
     //Set field position after show keyboard
     NSDictionary* info = [notification userInfo];
     NSValue *aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
-    
     //Set condition according to check if current selected textfield is behind keyboard
     if (currentSelectedTextField.frame.origin.y+currentSelectedTextField.frame.size.height<([UIScreen mainScreen].bounds.size.height)-[aValue CGRectValue].size.height) {
         [self.loginScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     }
     else {
         [self.loginScrollView setContentOffset:CGPointMake(0, ((currentSelectedTextField.frame.origin.y+currentSelectedTextField.frame.size.height)- ([UIScreen mainScreen].bounds.size.height-[aValue CGRectValue].size.height))+5) animated:NO];
-    }
-    
+    }    
     //Change content size of scroll view if current selected textfield is behind keyboard
     if ([aValue CGRectValue].size.height-([UIScreen mainScreen].bounds.size.height-(self.passwordTextfield.frame.origin.y+self.passwordTextfield.frame.size.height))>0) {
         self.loginScrollView.contentSize = CGSizeMake(0,[UIScreen mainScreen].bounds.size.height+([aValue CGRectValue].size.height-([UIScreen mainScreen].bounds.size.height-(self.passwordTextfield.frame.origin.y+self.passwordTextfield.frame.size.height))) + 60);

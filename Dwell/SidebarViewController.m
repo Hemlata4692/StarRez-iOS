@@ -10,25 +10,24 @@
 #import "SWRevealViewController.h"
 #import "UIImage+deviceSpecificMedia.h"
 
-
 @interface SidebarViewController (){
     NSArray *menuItems;
     NSArray *labelColor;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *sideBarTable;
-
 @end
 
 @implementation SidebarViewController
 
+#pragma mark - View life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     menuItems = [[NSArray alloc]init];
     labelColor= [[NSArray alloc]init];
     menuItems = @[@"Dashboard", @"Parcel",@"Logout"];
-    labelColor= @[[Constants dashboardColor],[Constants parcelColor]];
+    labelColor= @[[Constants dashboardColor],[Constants blueBackgroundColor]];
     // menuItems = @[@"Dashboard", @"Maintenance", @"Parcel", @"Resources", @"Events",@"Information", @"Help",@"Logout"];
     [self.tableView setSeparatorColor:[UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1.0]];
 }
@@ -50,8 +49,11 @@
     
     [self.revealViewController.frontViewController.view setUserInteractionEnabled:YES];
 }
+#pragma mark - end
+
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     // Return the number of rows in the section.
     return menuItems.count;
 }
@@ -139,7 +141,6 @@
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
         [cell setSeparatorInset:UIEdgeInsetsZero];
     }
-    
     // Prevent the cell from inheriting the Table View's margin settings
     if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
         [cell setPreservesSuperviewLayoutMargins:NO];
@@ -152,20 +153,9 @@
     if ([[UserDefaultManager getValue:@"indexpath"]integerValue]==indexPath.row) {
         [cell setSelected:YES animated:NO];
     }
-    
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    
-    //    if (![[UserDefaultManager getValue:@"isDriverProfileCompleted"] isEqualToString:@"True"])
-    //    {
-    //        return NO;
-    //    }
-    //    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    //    if (indexPath.row == 11||indexPath.row == 10||indexPath.row == 9||indexPath.row == 6||indexPath.row == 4|| indexPath.row == 8||indexPath.row == 3|| indexPath.row == 7| indexPath.row == 5||indexPath.row == 12)
-    //    {
-    //        return NO;
-    //    }
     
     return YES;
 }
@@ -175,7 +165,6 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    //    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     // Set the title of navigation bar by using the menu items
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;

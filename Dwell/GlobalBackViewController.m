@@ -8,8 +8,8 @@
 
 #import "GlobalBackViewController.h"
 #import "UIImage+deviceSpecificMedia.h"
-@interface GlobalBackViewController ()
-{
+@interface GlobalBackViewController () {
+    
  UIBarButtonItem *barButton,*barButton1;
 }
 
@@ -28,7 +28,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark - Add back button
 - (void)addLeftBarButtonWithImage:(UIImage *)buttonImage {

@@ -10,6 +10,9 @@
 
 @interface BaseService : NSObject
 
+//Post method for other services
 - (void)post:(NSString *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
+
+//Post method for save device token services
 - (void)jsonPost:(NSDictionary *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end

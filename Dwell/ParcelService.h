@@ -11,6 +11,7 @@
 @class ParcelModel;
 
 @interface ParcelService : BaseService
+
 //Get parcel list with data
 - (void)getParcelList:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end

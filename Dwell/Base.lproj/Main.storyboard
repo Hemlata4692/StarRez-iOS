@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -53,6 +54,7 @@
         <mutableArray key="handsean.ttf">
             <string>HandOfSean</string>
             <string>HandOfSean</string>
+            <string>HandOfSean</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -86,7 +88,7 @@
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email ID" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bBK-ZF-Wid">
-                                                <rect key="frame" x="48" y="345" width="224" height="40"/>
+                                                <rect key="frame" x="53" y="345" width="213" height="40"/>
                                                 <color key="backgroundColor" red="0.98431372549019602" green="0.9137254901960784" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="NaS-HC-JQU"/>
@@ -99,7 +101,7 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s2j-18-pkJ">
-                                                <rect key="frame" x="48" y="400" width="224" height="40"/>
+                                                <rect key="frame" x="53" y="400" width="213" height="40"/>
                                                 <color key="backgroundColor" red="0.98431372549019602" green="0.9137254901960784" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="LAo-LE-j8k"/>
@@ -112,7 +114,7 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2yo-SI-qMJ">
-                                                <rect key="frame" x="48" y="455" width="224" height="40"/>
+                                                <rect key="frame" x="53" y="455" width="213" height="40"/>
                                                 <color key="backgroundColor" red="1" green="0.80784313725490198" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Ni8-t4-wuP"/>
@@ -128,16 +130,16 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="2yo-SI-qMJ" firstAttribute="leading" secondItem="itn-Ug-RXD" secondAttribute="leading" constant="48" id="2CC-lB-oFA"/>
+                                            <constraint firstItem="2yo-SI-qMJ" firstAttribute="leading" secondItem="itn-Ug-RXD" secondAttribute="leading" constant="53" id="2CC-lB-oFA"/>
                                             <constraint firstItem="s2j-18-pkJ" firstAttribute="top" secondItem="bBK-ZF-Wid" secondAttribute="bottom" constant="15" id="4ML-4j-Jy4"/>
-                                            <constraint firstAttribute="trailing" secondItem="2yo-SI-qMJ" secondAttribute="trailing" constant="48" id="76D-vI-zVV"/>
+                                            <constraint firstAttribute="trailing" secondItem="2yo-SI-qMJ" secondAttribute="trailing" constant="54" id="76D-vI-zVV"/>
                                             <constraint firstItem="2yo-SI-qMJ" firstAttribute="top" secondItem="s2j-18-pkJ" secondAttribute="bottom" constant="15" id="CQ6-71-0jY"/>
-                                            <constraint firstItem="bBK-ZF-Wid" firstAttribute="leading" secondItem="itn-Ug-RXD" secondAttribute="leading" constant="48" id="ENG-m3-nGk"/>
-                                            <constraint firstAttribute="trailing" secondItem="s2j-18-pkJ" secondAttribute="trailing" constant="48" id="OWB-hY-gb7"/>
+                                            <constraint firstItem="bBK-ZF-Wid" firstAttribute="leading" secondItem="itn-Ug-RXD" secondAttribute="leading" constant="53" id="ENG-m3-nGk"/>
+                                            <constraint firstAttribute="trailing" secondItem="s2j-18-pkJ" secondAttribute="trailing" constant="54" id="OWB-hY-gb7"/>
                                             <constraint firstItem="fHs-h2-8j9" firstAttribute="centerX" secondItem="itn-Ug-RXD" secondAttribute="centerX" id="R2i-hK-CTk"/>
                                             <constraint firstItem="bBK-ZF-Wid" firstAttribute="top" secondItem="fHs-h2-8j9" secondAttribute="bottom" constant="64" id="ZWa-Pr-IeG"/>
-                                            <constraint firstItem="s2j-18-pkJ" firstAttribute="leading" secondItem="itn-Ug-RXD" secondAttribute="leading" constant="48" id="afQ-sp-ERe"/>
-                                            <constraint firstAttribute="trailing" secondItem="bBK-ZF-Wid" secondAttribute="trailing" constant="48" id="ejl-Ve-7by"/>
+                                            <constraint firstItem="s2j-18-pkJ" firstAttribute="leading" secondItem="itn-Ug-RXD" secondAttribute="leading" constant="53" id="afQ-sp-ERe"/>
+                                            <constraint firstAttribute="trailing" secondItem="bBK-ZF-Wid" secondAttribute="trailing" constant="54" id="ejl-Ve-7by"/>
                                             <constraint firstItem="fHs-h2-8j9" firstAttribute="top" secondItem="itn-Ug-RXD" secondAttribute="top" constant="109" id="tzt-0a-BEK"/>
                                         </constraints>
                                     </view>
@@ -525,21 +527,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Under development" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wg4-OB-ULQ">
-                                <rect key="frame" x="0.0" y="274" width="320" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="B25-Ke-JxE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Under Development" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wg4-OB-ULQ">
+                                <rect key="frame" x="0.0" y="368" width="320" height="21"/>
+                                <fontDescription key="fontDescription" name="HandOfSean" family="Hand Of Sean" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2016-09-19.png" translatesAutoresizingMaskIntoConstraints="NO" id="oza-v6-1Rd">
+                                <rect key="frame" x="85" y="210" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="oza-v6-1Rd" secondAttribute="height" multiplier="1:1" id="6Ud-yd-sGV"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="wg4-OB-ULQ" secondAttribute="trailing" id="NLY-zT-8bO"/>
-                            <constraint firstItem="wg4-OB-ULQ" firstAttribute="leading" secondItem="BhK-K7-iEh" secondAttribute="leading" id="QFt-IN-eLR"/>
-                            <constraint firstItem="wg4-OB-ULQ" firstAttribute="top" secondItem="w1Z-xc-k15" secondAttribute="bottom" constant="210" id="p0s-jl-rVB"/>
+                            <constraint firstAttribute="trailing" secondItem="wg4-OB-ULQ" secondAttribute="trailing" id="cAl-Y6-DR6"/>
+                            <constraint firstItem="wg4-OB-ULQ" firstAttribute="centerX" secondItem="oza-v6-1Rd" secondAttribute="centerX" id="cwp-Qn-Pxt"/>
+                            <constraint firstItem="wg4-OB-ULQ" firstAttribute="leading" secondItem="BhK-K7-iEh" secondAttribute="leading" id="dTC-M7-fhw"/>
+                            <constraint firstItem="oza-v6-1Rd" firstAttribute="top" secondItem="w1Z-xc-k15" secondAttribute="bottom" constant="146" id="es3-ng-tW8"/>
+                            <constraint firstItem="wg4-OB-ULQ" firstAttribute="top" secondItem="oza-v6-1Rd" secondAttribute="bottom" constant="8" symbolic="YES" id="gUa-M2-FSK"/>
+                            <constraint firstItem="oza-v6-1Rd" firstAttribute="leading" secondItem="BhK-K7-iEh" secondAttribute="leadingMargin" constant="69" id="lWu-0l-SaF"/>
+                            <constraint firstItem="a69-Wm-AGX" firstAttribute="top" secondItem="wg4-OB-ULQ" secondAttribute="bottom" constant="179" id="lvF-Rj-rgR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BSU-we-G57"/>
@@ -1199,6 +1208,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="2016-09-19.png" width="800" height="800"/>
         <image name="collected" width="17" height="17"/>
         <image name="dashboard" width="27" height="27"/>
         <image name="events" width="27" height="27"/>

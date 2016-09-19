@@ -19,14 +19,14 @@
 }
 
 + (UIColor*)eventColor:(float)alpha {
-    return [UIColor colorWithRed:210.0/255 green:177.0/255.0 blue:71.0/255.0 alpha:alpha];
+    return [UIColor colorWithRed:255.0/255 green:196.0/255.0 blue:12.0/255.0 alpha:alpha];
 }
 
 + (UIColor*)resourceColor:(float)alpha {
-    return [UIColor colorWithRed:0.0/255 green:166.0/255.0 blue:103.0/255.0 alpha:alpha];
+    return [UIColor colorWithRed:45.0/255 green:179.0/255.0 blue:74.0/255.0 alpha:alpha];
 }
 
 + (UIColor*)returnedColor:(float)alpha {
-    return [UIColor colorWithRed:229.0/255 green:40.0/255.0 blue:35.0/255.0 alpha:alpha];
+    return [UIColor colorWithRed:229.0/255 green:41.0/255.0 blue:35.0/255.0 alpha:alpha];
 }
 @end

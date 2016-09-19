@@ -19,6 +19,7 @@
 #define NSLog(...)
 #endif
 
+#import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "UserDefaultManager.h"

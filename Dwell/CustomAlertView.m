@@ -68,6 +68,7 @@
         }
         
         if ([cancelButtonText isEqualToString:@""]) {
+            [doneButton setTitleColor:[UIColor colorWithRed:245.0/255 green:90.0/255.0 blue:90.0/255.0 alpha:1.0] forState:UIControlStateNormal];
             [doneButton setTitle:doneButtonText forState:UIControlStateNormal];
         }
         else{

@@ -74,20 +74,17 @@
     receiptDate.text=modelData.parcelReceiptDate;
     shippingType.text=modelData.parcelShippingType;
     issueDate.text=modelData.parcelIssueDate;
+    parcelStatus.text=modelData.parcelStatus;
     if ([modelData.parcelStatusId isEqualToString:@"0"]) {
-       parcelStatus.text=@"Collected";
         parcelStatusBackGroundView.backgroundColor=[Constants resourceColor:1.0];
     }
     else if ([modelData.parcelStatusId isEqualToString:@"1"]) {
-        parcelStatus.text=@"Parcel for Collection";
         parcelStatusBackGroundView.backgroundColor=[Constants eventColor:1.0];
     }
     else if ([modelData.parcelStatusId isEqualToString:@"3"]) {
-        parcelStatus.text=modelData.parcelStatus;
-         parcelStatusBackGroundView.backgroundColor=[Constants returnedColor:1.0];
+        parcelStatusBackGroundView.backgroundColor=[Constants returnedColor:1.0];
     }
     else {
-        parcelStatus.text=modelData.parcelStatus;
          parcelStatusBackGroundView.backgroundColor=[Constants eventColor:1.0];
     }
 }

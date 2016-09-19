@@ -22,12 +22,14 @@ static int heightValue=200;
 @implementation CustomFilterViewController
 @synthesize filterContainverView;
 @synthesize filterDict;
+@synthesize isAllSelected;
 
 #pragma mark - View life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     filterArray=[[filterDict allKeys] mutableCopy];
+    [filterArray insertObject:@"All" atIndex:0];
     heightValue=(60*(int)filterArray.count)+15;
     [self removeAutolayout];
     [self layoutViewObjects];
@@ -65,37 +67,45 @@ static int heightValue=200;
     UILabel *statusLabel=(UILabel *)[cell viewWithTag:2];
     UIImageView *checkedImage=(UIImageView *)[cell viewWithTag:1];
     
-    if ([[[[filterArray objectAtIndex:indexPath.row] componentsSeparatedByString:@","] objectAtIndex:1] isEqualToString:@"0"]) {
-        statusLabel.text=@"Collected";
-    }
-    else if ([[[[filterArray objectAtIndex:indexPath.row] componentsSeparatedByString:@","] objectAtIndex:1] isEqualToString:@"1"]) {
-        statusLabel.text=@"Parcel for Collection";
-    }
-    else if ([[[[filterArray objectAtIndex:indexPath.row] componentsSeparatedByString:@","] objectAtIndex:1] isEqualToString:@"3"]) {
-        statusLabel.text=[[[filterArray objectAtIndex:indexPath.row] componentsSeparatedByString:@","] objectAtIndex:0];
-    }
-    else {
-        statusLabel.text=[[[filterArray objectAtIndex:indexPath.row] componentsSeparatedByString:@","] objectAtIndex:0];
-    }
-    
-    if ([[filterDict objectForKey:[filterArray objectAtIndex:indexPath.row]] isEqualToString:@"Yes"]) {
-        statusLabel.textColor=[UIColor colorWithRed:0.0/255 green:116.0/255.0 blue:190.0/255.0 alpha:1.0];
-        checkedImage.image=[UIImage imageNamed:@"collected"];
+    if (indexPath.row==0) {
+        statusLabel.text=[filterArray objectAtIndex:indexPath.row];
+        if (isAllSelected) {
+            statusLabel.textColor=[UIColor colorWithRed:0.0/255 green:116.0/255.0 blue:190.0/255.0 alpha:1.0];
+            checkedImage.image=[UIImage imageNamed:@"collected"];
+        }
+        else {
+            statusLabel.textColor=[UIColor colorWithRed:98.0/255 green:98.0/255.0 blue:98.0/255.0 alpha:1.0];
+            checkedImage.image=[UIImage imageNamed:@"collection"];
+        }
     }
     else {
-        statusLabel.textColor=[UIColor colorWithRed:98.0/255 green:98.0/255.0 blue:98.0/255.0 alpha:1.0];
-        checkedImage.image=[UIImage imageNamed:@"collection"];
+        statusLabel.text=[[[filterArray objectAtIndex:indexPath.row] componentsSeparatedByString:@","] objectAtIndex:0];
+       
+        if ([[filterDict objectForKey:[filterArray objectAtIndex:indexPath.row]] isEqualToString:@"Yes"]) {
+            statusLabel.textColor=[UIColor colorWithRed:0.0/255 green:116.0/255.0 blue:190.0/255.0 alpha:1.0];
+            checkedImage.image=[UIImage imageNamed:@"collected"];
+        }
+        else {
+            statusLabel.textColor=[UIColor colorWithRed:98.0/255 green:98.0/255.0 blue:98.0/255.0 alpha:1.0];
+            checkedImage.image=[UIImage imageNamed:@"collection"];
+        }
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    for (int i=0; i<filterArray.count; i++) {
+    for (int i=1; i<filterArray.count; i++) {
         [filterDict setObject:@"NO" forKey:[filterArray objectAtIndex:i]];
     }
-    [filterDict setObject:@"Yes" forKey:[filterArray objectAtIndex:indexPath.row]];
-    [_delegate customFilterDelegateAction:filterDict filterString:[[[filterArray objectAtIndex:indexPath.row] componentsSeparatedByString:@","] objectAtIndex:0]];
+    
+    if (indexPath.row==0) {
+        [_delegate customFilterDelegateAction:filterDict filterString:@"All"];
+    }
+    else {
+        [filterDict setObject:@"Yes" forKey:[filterArray objectAtIndex:indexPath.row]];
+        [_delegate customFilterDelegateAction:filterDict filterString:[[[filterArray objectAtIndex:indexPath.row] componentsSeparatedByString:@","] objectAtIndex:0]];
+    }
     [self hideViewAnimation];
 }
 #pragma mark - end

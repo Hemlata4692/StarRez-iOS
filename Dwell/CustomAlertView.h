@@ -6,8 +6,6 @@
 //  Copyright © 2016 Ranosys. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface CustomAlertView : UIView
 
 @property (strong, nonatomic) IBOutlet UIView *mainView;

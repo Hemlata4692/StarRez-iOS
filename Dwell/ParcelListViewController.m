@@ -67,10 +67,15 @@
 //Filter button action
 - (void)filterButtonAction:(id)sender {
     
-    isSearch=false;
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CustomFilterViewController *filterViewObj =[storyboard instantiateViewControllerWithIdentifier:@"CustomFilterViewController"];
     filterViewObj.delegate=self;
+    if (isSearch) {
+        filterViewObj.isAllSelected=false;
+    }
+    else {
+        filterViewObj.isAllSelected=true;
+    }
     filterViewObj.filterDict=[parcelStatusDict mutableCopy];
     [filterViewObj setModalPresentationStyle:UIModalPresentationOverCurrentContext];
     [self presentViewController:filterViewObj animated:NO completion:nil];
@@ -107,7 +112,6 @@
                 if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
                     DLog(@"No record found.");
                     self.noRecordLabel.hidden=NO;
-                    //                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"User does not exist in the system." doneButtonText:@"OK" cancelButtonText:@""];
                 }
                 else {
                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
@@ -143,8 +147,6 @@
     else {
         [cell displayData:[parcelDataArray objectAtIndex:indexPath.row] frame:self.view.bounds];
     }
-    
-    
     return cell;
 }
 
@@ -164,19 +166,19 @@
 #pragma mark - Custom filter delegate
 - (void)customFilterDelegateAction:(NSMutableDictionary*)filteredData filterString:(NSString *)filterString{
 
-    isSearch=true;
-    parcelStatusDict=[filteredData mutableCopy];
-    NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"parcelStatus contains[cd] %@",filterString];
-    
-    NSArray *subPredicates = [NSArray arrayWithObjects:pred1, nil];
-    
-    NSPredicate *orPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:subPredicates];
-    
-    parcelSearchDataArray =[[parcelDataArray filteredArrayUsingPredicate:orPredicate] mutableCopy];
+    if ([filterString isEqualToString:@"All"]) {
+        isSearch=false;
+        parcelStatusDict=[filteredData mutableCopy];
+    }
+    else {
+        isSearch=true;
+        parcelStatusDict=[filteredData mutableCopy];
+        NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"parcelStatus contains[cd] %@",filterString];
+        NSArray *subPredicates = [NSArray arrayWithObjects:pred1, nil];
+        NSPredicate *orPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:subPredicates];
+        parcelSearchDataArray =[[parcelDataArray filteredArrayUsingPredicate:orPredicate] mutableCopy];
+    }
     [self.parcelListTableview reloadData];
-//    NSLog(@"arrFilterSearch count is %lu",(unsigned long)searchArray.count);
-    
-    DLog(@"------------------------------------------------%@",filterString);
 }
 #pragma mark - end
 /*

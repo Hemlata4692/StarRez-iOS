@@ -9,6 +9,7 @@
 #import "ParcelDetailViewController.h"
 
 @interface ParcelDetailViewController ()
+@property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
 @property (weak, nonatomic) IBOutlet UIView *mainBackgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelTitle;
 @property (weak, nonatomic) IBOutlet UIView *separatorView;
@@ -26,8 +27,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *forwardAddress;
 @property (weak, nonatomic) IBOutlet UILabel *trackingNoTitle;
 @property (weak, nonatomic) IBOutlet UILabel *trackingNo;
-@property (weak, nonatomic) IBOutlet UITextView *adminComments;
-
+@property (strong, nonatomic) IBOutlet UILabel *adminCommentTitle;
+@property (strong, nonatomic) IBOutlet UILabel *adminComment;
 @end
 
 @implementation ParcelDetailViewController
@@ -53,6 +54,9 @@
 #pragma mark -Custom accessors
 - (void)layoutViewObjects {
 
+    
+    
+    parcelDetailData.parcelForwardingAddress=@"dskl kl jdsflflka  kll l  lkl kj kl  jk klj klj klj l dskl kl jdsflflka  kll l  lkl kj kl  jk klj klj klj l dskl kl jdsflflka  kll l  lkl kj kl  jk klj klj klj l";
     //Set corner radius to main background view
     self.mainBackgroundView.layer.cornerRadius=cornerRadius;
     self.mainBackgroundView.layer.masksToBounds=YES;
@@ -75,15 +79,46 @@
     //Change frame of forwardAddress label and main background view
     self.forwardAddress.translatesAutoresizingMaskIntoConstraints=YES;
     self.mainBackgroundView.translatesAutoresizingMaskIntoConstraints=YES;
+    self.adminComment.translatesAutoresizingMaskIntoConstraints=YES;
+     self.adminCommentTitle.translatesAutoresizingMaskIntoConstraints=YES;
+    
+    float backgroundViewHeight=0.0;
     float forwardAddressHeight=[self getDynamicLabelHeight:parcelDetailData.parcelForwardingAddress font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-130];
-    self.mainBackgroundView.frame=CGRectMake(10, 64, [UIScreen mainScreen].bounds.size.width-20, 390);
+    float commentHeight=[self getDynamicLabelHeight:parcelDetailData.parcelComment font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-16];
+    self.forwardAddress.numberOfLines=0;
+    self.adminComment.numberOfLines=0;
+//    self.mainBackgroundView.frame=CGRectMake(10, 64, [UIScreen mainScreen].bounds.size.width-20, 390);
     if (forwardAddressHeight<21) {
         self.forwardAddress.frame=CGRectMake(8, 216, ([UIScreen mainScreen].bounds.size.width-20)-130, 21);
     }
     else {
         self.forwardAddress.frame=CGRectMake(8, 216, ([UIScreen mainScreen].bounds.size.width-20)-130, forwardAddressHeight);
-        self.mainBackgroundView.frame=CGRectMake(10, 64, [UIScreen mainScreen].bounds.size.width-20, 390+(forwardAddressHeight-21));
+//        self.mainBackgroundView.frame=CGRectMake(10, 64, [UIScreen mainScreen].bounds.size.width-20, 390+(forwardAddressHeight-21));
+//        backgroundViewHeight=390+(forwardAddressHeight-21);
     }
+    
+    //    self.mainBackgroundView.frame=CGRectMake(10, 64, [UIScreen mainScreen].bounds.size.width-20, 390);
+   
+     self.adminCommentTitle.frame=CGRectMake(8, self.forwardAddress.frame.origin.y+self.forwardAddress.frame.size.height+17, 230, 21);
+    self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-16, commentHeight);
+        
+    if (commentHeight<55) {
+        commentHeight=58;
+    }
+    
+    backgroundViewHeight=self.adminComment.frame.origin.y+commentHeight+48;
+    self.mainBackgroundView.frame=CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
+    
+     self.detailScrollView.contentSize = CGSizeMake(0,self.mainBackgroundView.frame.size.height);
+    
+//    }
+//    else {
+//        self.forwardAddress.frame=CGRectMake(8, 216, ([UIScreen mainScreen].bounds.size.width-20)-130, forwardAddressHeight);
+//        self.mainBackgroundView.frame=CGRectMake(10, 64, [UIScreen mainScreen].bounds.size.width-20, 390+(forwardAddressHeight-21));
+//        backgroundViewHeight=390+(forwardAddressHeight-21);
+//    }
+    
+    
 }
 
 - (void)showParcelDetailData {
@@ -96,21 +131,18 @@
     self.parcelStatus.text=parcelDetailData.parcelStatus;
     self.forwardAddress.text=parcelDetailData.parcelForwardingAddress;
     self.trackingNo.text=parcelDetailData.parcelTrackingNo;
-    self.adminComments.text=parcelDetailData.parcelComment;
+    self.adminComment.text=parcelDetailData.parcelComment;
+    self.parcelStatus.text=parcelDetailData.parcelStatus;
     if ([parcelDetailData.parcelStatusId isEqualToString:@"0"]) {
-        self.parcelStatus.text=@"Collected";
         self.parcelStatusBackGroundView.backgroundColor=[Constants resourceColor:1.0];
     }
     else if ([parcelDetailData.parcelStatusId isEqualToString:@"1"]) {
-        self.parcelStatus.text=@"Parcel for Collection";
         self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor:1.0];
     }
     else if ([parcelDetailData.parcelStatusId isEqualToString:@"3"]) {
-        self.parcelStatus.text=parcelDetailData.parcelStatus;
         self.parcelStatusBackGroundView.backgroundColor=[Constants returnedColor:1.0];
     }
     else {
-        self.parcelStatus.text=parcelDetailData.parcelStatus;
         self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor:1.0];
     }
 }
@@ -119,7 +151,7 @@
 #pragma mark - Get dynamic height according to string
 - (float)getDynamicLabelHeight:(NSString *)text font:(UIFont *)font widthValue:(float)widthValue{
     
-    CGSize size = CGSizeMake(widthValue,55);
+    CGSize size = CGSizeMake(widthValue,1000);
     CGRect textRect=[text
                      boundingRectWithSize:size
                      options:NSStringDrawingUsesLineFragmentOrigin

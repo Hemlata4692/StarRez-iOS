@@ -10,8 +10,10 @@
 #import "XMLDictionary.h"
 #import "NullValueChecker.h"
 
-@implementation BaseService
+NSString* const baseUrl=@"https://starrez.centurionstudents.co.uk/StarRezREST/services/query";
+NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/SaveUser";
 
+@implementation BaseService
 
 #pragma mark - Singleton instance
 - (instancetype)init{
@@ -27,7 +29,7 @@
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    NSURL *url=[NSURL URLWithString:@"https://starrez.centurionstudents.co.uk/StarRezREST/services/query"];
+    NSURL *url=[NSURL URLWithString:baseUrl];
     NSData *postData = [parameters dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     
@@ -70,7 +72,7 @@
     NSError *error;
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    NSURL *url=[NSURL URLWithString:@"http://ranosys.info/StarrezNotification/api/SaveUser"];
+    NSURL *url=[NSURL URLWithString:setDeviceTokenUrl];
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];;
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     

@@ -6,8 +6,6 @@
 //  Copyright © 2016 Ranosys. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface GlobalBackViewController : UIViewController
 
 //Add back button to all the sub screens of app.

@@ -6,7 +6,6 @@
 //  Copyright © 2016 Ranosys. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
 @protocol CustomFilterDelegate <NSObject>
 @optional
@@ -20,4 +19,5 @@
 
 @property (strong, nonatomic) IBOutlet UIView *filterContainverView;
 @property (strong, nonatomic) NSMutableDictionary *filterDict;
+@property (assign, nonatomic) BOOL isAllSelected;
 @end

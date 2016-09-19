@@ -35,7 +35,7 @@
     
     self.noRecordLabel.hidden=YES;
     isSearch=false;
-    self.title = @"Parcel";
+    self.title = @"Parcel List";
     //Add background image
     [super addBackgroungImage:@"Parcel"];
     parcelDataArray=[NSMutableArray new];

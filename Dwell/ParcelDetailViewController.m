@@ -56,7 +56,7 @@
     //Set corner radius to main background view
     self.mainBackgroundView.layer.cornerRadius=cornerRadius;
     self.mainBackgroundView.layer.masksToBounds=YES;
-    
+    self.parcelStatusBackGroundView.alpha = 0.5;
     //Make dots below title label
     CAShapeLayer *shapelayer=[CAShapeLayer layer];
     UIBezierPath *path=[UIBezierPath bezierPath];

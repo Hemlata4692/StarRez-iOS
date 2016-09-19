@@ -58,14 +58,13 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 140)];
+    UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
     headerView.backgroundColor=[UIColor whiteColor];
     // i.e. array element
-    UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 84, 84)] ;
+    UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(15, -19, 100, 100)] ;
     imgView.contentMode=UIViewContentModeScaleAspectFill;
     imgView.clipsToBounds=YES;
     imgView.image=[UIImage imageNamed:@"sidebarlogo"];
-    imgView.layer.cornerRadius=imgView.frame.size.width / 2;
     [headerView addSubview:imgView];
     return headerView;   // return headerLabel;
 }
@@ -115,7 +114,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    return 100.0;
+    return 80.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

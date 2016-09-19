@@ -50,6 +50,7 @@
     CAShapeLayer *maskLayer=[[CAShapeLayer alloc] init];
     maskLayer.frame=frame;
     maskLayer.path=maskPath.CGPath;
+    parcelStatusBackGroundView.alpha =.6;
     parcelStatusBackGroundView.layer.mask = maskLayer;
     CAShapeLayer *shapelayer=[CAShapeLayer layer];
     UIBezierPath *path=[UIBezierPath bezierPath];
@@ -64,6 +65,8 @@
     shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
     shapelayer.path=path.CGPath;
     [parcelTitle.layer addSublayer:shapelayer];
+    
+//    parcelStatus.alpha = 0.5;
 }
 
 - (void)displayData:(ParcelModel *)modelData frame:(CGRect)frame{

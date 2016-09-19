@@ -37,11 +37,6 @@
     //If user already exist then user navigate ot dashboard screen
     if (nil!=[UserDefaultManager getValue:@"userEmailId"]) {
         [UserDefaultManager setValue:[NSNumber numberWithInteger:0] key:@"indexpath"];
-//        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
-//        [self.navigationController setViewControllers: [NSArray arrayWithObject: objReveal]
-//                                             animated: YES];
-        
         UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         [self.window setRootViewController:objReveal];
@@ -49,7 +44,7 @@
         [self.window makeKeyAndVisible];
     }
     
-    //accept push notification when app is not open
+    //Accept push notification when app is not open
     application.applicationIconBadgeNumber = 0;
     NSDictionary *remoteNotifiInfo = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
@@ -57,7 +52,7 @@
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         [self application:application didReceiveRemoteNotification:remoteNotifiInfo];
     }
-    //register iphone device for push notifications
+    //Register iphone device for push notifications
     [self registerDeviceForNotification];
     return YES;
 }

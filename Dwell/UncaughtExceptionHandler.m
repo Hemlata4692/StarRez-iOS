@@ -103,6 +103,25 @@ const NSInteger UncaughtExceptionHandlerReportAddressCount = 5;
     NSString *minorVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
     
     //Get current network
+    NSString *networkType=[self getCurrentNetType];
+    
+    NSTimeZone *tz = [NSTimeZone localTimeZone];
+    NSLocale *countryLocale = [NSLocale currentLocale];
+    NSString *countryCode = [countryLocale objectForKey:NSLocaleCountryCode];
+    NSString *country = [countryLocale displayNameForKey:NSLocaleCountryCode value:countryCode];
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
+    DLog(@"%@",[dateFormatter stringFromDate:[NSDate date]]);
+    
+    NSString *crashString=[NSString stringWithFormat:@"Device: %@\nScreen name: %@\nVersion: %@ (%@)\nNetwork type: %@\niOS version: %@\nTime zone: %@,\nCountry Code: %@\nCountry name: %@\nTimestamp: %@\nException: %@",[[UIDevice currentDevice] name],strClass,
+                           majorVersion, minorVersion,networkType,[[UIDevice currentDevice] systemVersion],tz.description,countryCode,country,[dateFormatter stringFromDate:[NSDate date]],exceptionText];
+    DLog(@"%@,\n%@, \nVersion %@ (%@),\n%@,\n%@,\n%@,\n%@,\n%@,\n%@,\n%@,\n%@",[[UIDevice currentDevice] name],strClass,
+           majorVersion, minorVersion,networkType,[[UIDevice currentDevice] systemVersion],tz.description,countryLocale,countryCode,country,[dateFormatter stringFromDate:[NSDate date]],exceptionText);
+    [self callCrashWebservice:crashString];
+}
+
+- (NSString *)getCurrentNetType {
+    
     NSArray *subviews = [[[[UIApplication sharedApplication] valueForKey:@"statusBar"] valueForKey:@"foregroundView"]subviews];
     NSNumber *dataNetworkItemView = nil;
     for (id subview in subviews) {
@@ -140,19 +159,7 @@ const NSInteger UncaughtExceptionHandlerReportAddressCount = 5;
         default:
             break;
     }
-    NSTimeZone *tz = [NSTimeZone localTimeZone];
-    NSLocale *countryLocale = [NSLocale currentLocale];
-    NSString *countryCode = [countryLocale objectForKey:NSLocaleCountryCode];
-    NSString *country = [countryLocale displayNameForKey:NSLocaleCountryCode value:countryCode];
-    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
-    DLog(@"%@",[dateFormatter stringFromDate:[NSDate date]]);
-    
-    NSString *crashString=[NSString stringWithFormat:@"Device: %@\nScreen name: %@\nVersion: %@ (%@)\nNetwork type: %@\niOS version: %@\nTime zone: %@,\nCountry Code: %@\nCountry name: %@\nTimestamp: %@\nException: %@",[[UIDevice currentDevice] name],strClass,
-                           majorVersion, minorVersion,networkType,[[UIDevice currentDevice] systemVersion],tz.description,countryCode,country,[dateFormatter stringFromDate:[NSDate date]],exceptionText];
-    DLog(@"%@,\n%@, \nVersion %@ (%@),\n%@,\n%@,\n%@,\n%@,\n%@,\n%@,\n%@,\n%@",[[UIDevice currentDevice] name],strClass,
-           majorVersion, minorVersion,networkType,[[UIDevice currentDevice] systemVersion],tz.description,countryLocale,countryCode,country,[dateFormatter stringFromDate:[NSDate date]],exceptionText);
-    [self callCrashWebservice:crashString];
+    return networkType;
 }
 
 -(void)callCrashWebservice :(NSString *)crashString {

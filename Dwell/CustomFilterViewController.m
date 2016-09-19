@@ -15,6 +15,7 @@ static int heightValue=200;
     NSMutableArray *filterArray;
 }
 
+@property (strong, nonatomic) IBOutlet UIView *tapGestureView;
 @property (strong, nonatomic) IBOutlet UITableView *filterTableView;
 @property (strong, nonatomic) IBOutlet UIImageView *arrowImage;
 @end
@@ -152,6 +153,8 @@ static int heightValue=200;
 
 - (void)layoutViewObjects {
     
+    self.tapGestureView.translatesAutoresizingMaskIntoConstraints=YES;
+    self.tapGestureView.frame=CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
     filterContainverView.backgroundColor=[UIColor clearColor];
     filterContainverView.frame=CGRectMake([[UIScreen mainScreen] bounds].size.width-30, 57, 0, 0);
     self.arrowImage.frame=CGRectMake(-10, 0, 20, 11);

@@ -9,10 +9,10 @@
 #import "ParcelDetailViewController.h"
 
 @interface ParcelDetailViewController ()
+@property (strong, nonatomic) IBOutlet UIView *parcelDetailView;
 @property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
 @property (weak, nonatomic) IBOutlet UIView *mainBackgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelTitle;
-@property (weak, nonatomic) IBOutlet UIView *separatorView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelTypeTitle;
 @property (weak, nonatomic) IBOutlet UILabel *parcelType;
 @property (weak, nonatomic) IBOutlet UILabel *receiptDateTitle;
@@ -53,10 +53,7 @@
 
 #pragma mark -Custom accessors
 - (void)layoutViewObjects {
-
     
-    
-    parcelDetailData.parcelForwardingAddress=@"dskl kl jdsflflka  kll l  lkl kj kl  jk klj klj klj l dskl kl jdsflflka  kll l  lkl kj kl  jk klj klj klj l dskl kl jdsflflka  kll l  lkl kj kl  jk klj klj klj l";
     //Set corner radius to main background view
     self.mainBackgroundView.layer.cornerRadius=cornerRadius;
     self.mainBackgroundView.layer.masksToBounds=YES;
@@ -75,58 +72,68 @@
     shapelayer.path=path.CGPath;
     [_parcelTitle.layer addSublayer:shapelayer];
     
-    //Change frame of forwardAddress label and main background view
-    self.forwardAddress.translatesAutoresizingMaskIntoConstraints=YES;
-    self.mainBackgroundView.translatesAutoresizingMaskIntoConstraints=YES;
-    self.adminComment.translatesAutoresizingMaskIntoConstraints=YES;
-     self.adminCommentTitle.translatesAutoresizingMaskIntoConstraints=YES;
-    
-    float backgroundViewHeight=0.0;
+    [self removeAutolayout];//Remove autolayout
+    [self changeViewFrame];//Change frame according to forwarding address and comment
+}
+
+- (void)changeViewFrame {
+ 
+    self.parcelDetailView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    float backgroundViewHeight=0.0;//Initialize back view size
     float forwardAddressHeight=[self getDynamicLabelHeight:parcelDetailData.parcelForwardingAddress font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-130];
     float commentHeight=[self getDynamicLabelHeight:parcelDetailData.parcelComment font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-16];
     self.forwardAddress.numberOfLines=0;
     self.adminComment.numberOfLines=0;
-//    self.mainBackgroundView.frame=CGRectMake(10, 64, [UIScreen mainScreen].bounds.size.width-20, 390);
     if (forwardAddressHeight<21) {
-        self.forwardAddress.frame=CGRectMake(8, 216, ([UIScreen mainScreen].bounds.size.width-20)-130, 21);
+        self.forwardAddress.frame=CGRectMake(8, 216, ([UIScreen mainScreen].bounds.size.width-20)-138, 21);
     }
     else {
-        self.forwardAddress.frame=CGRectMake(8, 216, ([UIScreen mainScreen].bounds.size.width-20)-130, forwardAddressHeight);
-//        self.mainBackgroundView.frame=CGRectMake(10, 64, [UIScreen mainScreen].bounds.size.width-20, 390+(forwardAddressHeight-21));
-//        backgroundViewHeight=390+(forwardAddressHeight-21);
+        self.forwardAddress.frame=CGRectMake(8, self.forwardAddressTitle.frame.origin.y+self.forwardAddressTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-138, forwardAddressHeight);
     }
-    
-    //    self.mainBackgroundView.frame=CGRectMake(10, 64, [UIScreen mainScreen].bounds.size.width-20, 390);
-   
-     self.adminCommentTitle.frame=CGRectMake(8, self.forwardAddress.frame.origin.y+self.forwardAddress.frame.size.height+17, 230, 21);
+    self.adminCommentTitle.frame=CGRectMake(8, self.forwardAddress.frame.origin.y+self.forwardAddress.frame.size.height+17, 230, 21);
     self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-16, commentHeight);
-        
+    
     if (commentHeight<55) {
         commentHeight=58;
     }
-    
     backgroundViewHeight=self.adminComment.frame.origin.y+commentHeight+48;
     self.mainBackgroundView.frame=CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
-    
-     self.detailScrollView.contentSize = CGSizeMake(0,self.mainBackgroundView.frame.size.height);
-    
-//    }
-//    else {
-//        self.forwardAddress.frame=CGRectMake(8, 216, ([UIScreen mainScreen].bounds.size.width-20)-130, forwardAddressHeight);
-//        self.mainBackgroundView.frame=CGRectMake(10, 64, [UIScreen mainScreen].bounds.size.width-20, 390+(forwardAddressHeight-21));
-//        backgroundViewHeight=390+(forwardAddressHeight-21);
-//    }
-    
-    
+    self.parcelStatusBackGroundView.frame=CGRectMake(0, self.mainBackgroundView.frame.size.height-40, self.mainBackgroundView.frame.size.width, 40);
+    self.detailScrollView.scrollEnabled=false;
+    if ((backgroundViewHeight+64)>[UIScreen mainScreen].bounds.size.height) {
+        self.detailScrollView.scrollEnabled=true;
+        self.parcelDetailView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, backgroundViewHeight+100);
+    }
+}
+
+- (void)removeAutolayout {
+    self.parcelDetailView.translatesAutoresizingMaskIntoConstraints=YES;
+    self.forwardAddress.translatesAutoresizingMaskIntoConstraints=YES;
+    self.mainBackgroundView.translatesAutoresizingMaskIntoConstraints=YES;
+    self.adminComment.translatesAutoresizingMaskIntoConstraints=YES;
+    self.adminCommentTitle.translatesAutoresizingMaskIntoConstraints=YES;
+    self.parcelStatusBackGroundView.translatesAutoresizingMaskIntoConstraints=YES;
 }
 
 - (void)showParcelDetailData {
     
     self.parcelTitle.text=parcelDetailData.parcelTitle;
     self.parcelType.text=parcelDetailData.parcelType;
-    self.receiptDate.text=parcelDetailData.parcelReceiptDate;
+    //Check recipt date is nil
+    if ((nil==parcelDetailData.parcelReceiptDate)||[parcelDetailData.parcelReceiptDate isEqualToString:@""]) {
+        self.receiptDate.text=@"NA";
+    }
+    else {
+        self.receiptDate.text=parcelDetailData.parcelReceiptDate;
+    }
     self.shippingType.text=parcelDetailData.parcelShippingType;
-    self.issueDate.text=parcelDetailData.parcelIssueDate;
+    //Check issued date is nil
+    if ((nil==parcelDetailData.parcelIssueDate)||[parcelDetailData.parcelIssueDate isEqualToString:@""]) {
+        self.issueDate.text=@"NA";
+    }
+    else {
+        self.issueDate.text=parcelDetailData.parcelIssueDate;
+    }
     self.parcelStatus.text=parcelDetailData.parcelStatus;
     self.forwardAddress.text=parcelDetailData.parcelForwardingAddress;
     self.trackingNo.text=parcelDetailData.parcelTrackingNo;

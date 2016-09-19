@@ -14,6 +14,7 @@
 
 @interface ParcelListViewController ()<CustomFilterDelegate> {
 
+    CustomAlert *alertView;
     NSMutableArray *parcelDataArray;
      NSMutableArray *parcelSearchDataArray;
     UIBarButtonItem *filterBarButton;
@@ -22,6 +23,7 @@
     
 }
 @property (weak, nonatomic) IBOutlet UITableView *parcelListTableview;
+@property (strong, nonatomic) IBOutlet UILabel *noRecordLabel;
 @end
 
 @implementation ParcelListViewController
@@ -31,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.noRecordLabel.hidden=YES;
     isSearch=false;
     self.title = @"Parcel";
     //Add background image
@@ -103,11 +106,11 @@
                 [myDelegate stopIndicator];
                 if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
                     DLog(@"No record found.");
+                    self.noRecordLabel.hidden=NO;
                     //                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"User does not exist in the system." doneButtonText:@"OK" cancelButtonText:@""];
                 }
                 else {
-                    DLog(@"Something went wrong, Please try again.");
-                    //                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                   alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
                 }
             });
         }];

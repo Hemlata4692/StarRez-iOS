@@ -57,15 +57,6 @@
     self.mainBackgroundView.layer.cornerRadius=cornerRadius;
     self.mainBackgroundView.layer.masksToBounds=YES;
     
-    //Round status view from bottom sides
-    _parcelStatusBackGroundView.translatesAutoresizingMaskIntoConstraints = YES;
-    _parcelStatusBackGroundView.frame=CGRectMake(_parcelStatusBackGroundView.frame.origin.x, _parcelStatusBackGroundView.frame.origin.y, self.view.frame.size.width-18, _parcelStatusBackGroundView.frame.size.height);
-    UIBezierPath *maskPath=[UIBezierPath bezierPathWithRoundedRect:_parcelStatusBackGroundView.bounds byRoundingCorners:( UIRectCornerBottomLeft | UIRectCornerBottomRight) cornerRadii:CGSizeMake(5.0, 5.0)];
-        CAShapeLayer *maskLayer=[[CAShapeLayer alloc] init];
-    maskLayer.frame=self.view.frame;
-    maskLayer.path=maskPath.CGPath;
-    _parcelStatusBackGroundView.layer.mask=maskLayer;
-    
     //Make dots below title label
     CAShapeLayer *shapelayer=[CAShapeLayer layer];
     UIBezierPath *path=[UIBezierPath bezierPath];
@@ -80,6 +71,19 @@
     shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
     shapelayer.path=path.CGPath;
     [_parcelTitle.layer addSublayer:shapelayer];
+    
+    //Change frame of forwardAddress label and main background view
+    self.forwardAddress.translatesAutoresizingMaskIntoConstraints=YES;
+    self.mainBackgroundView.translatesAutoresizingMaskIntoConstraints=YES;
+    float forwardAddressHeight=[self getDynamicLabelHeight:parcelDetailData.parcelForwardingAddress font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-130];
+    self.mainBackgroundView.frame=CGRectMake(10, 64, [UIScreen mainScreen].bounds.size.width-20, 390);
+    if (forwardAddressHeight<21) {
+        self.forwardAddress.frame=CGRectMake(8, 216, ([UIScreen mainScreen].bounds.size.width-20)-130, 21);
+    }
+    else {
+        self.forwardAddress.frame=CGRectMake(8, 216, ([UIScreen mainScreen].bounds.size.width-20)-130, forwardAddressHeight);
+        self.mainBackgroundView.frame=CGRectMake(10, 64, [UIScreen mainScreen].bounds.size.width-20, 390+(forwardAddressHeight-21));
+    }
 }
 
 - (void)showParcelDetailData {
@@ -109,6 +113,19 @@
         self.parcelStatus.text=parcelDetailData.parcelStatus;
         self.parcelStatusBackGroundView.backgroundColor=[Constants eventColor:1.0];
     }
+}
+#pragma mark - end
+
+#pragma mark - Get dynamic height according to string
+- (float)getDynamicLabelHeight:(NSString *)text font:(UIFont *)font widthValue:(float)widthValue{
+    
+    CGSize size = CGSizeMake(widthValue,55);
+    CGRect textRect=[text
+                     boundingRectWithSize:size
+                     options:NSStringDrawingUsesLineFragmentOrigin
+                     attributes:@{NSFontAttributeName:font}
+                     context:nil];
+    return textRect.size.height;
 }
 #pragma mark - end
 /*

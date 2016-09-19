@@ -30,7 +30,7 @@
     menuItems = @[@"Dashboard", @"Parcel",@"Logout"];
     labelColor= @[[Constants dashboardColor],[Constants parcelColor]];
     // menuItems = @[@"Dashboard", @"Maintenance", @"Parcel", @"Resources", @"Events",@"Information", @"Help",@"Logout"];
-    [self.tableView setSeparatorColor:[UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0]];
+    [self.tableView setSeparatorColor:[UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1.0]];
 }
 
 - (void)didReceiveMemoryWarning {

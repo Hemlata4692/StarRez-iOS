@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MMMaterialDesignSpinner.h"
+#import "UncaughtExceptionHandler.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate () {
     
@@ -21,11 +23,38 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-   
+   //Call crashlytics method
+    [self performSelector:@selector(installUncaughtExceptionHandler) withObject:nil afterDelay:0];
+    //Set navigation theam
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.0/255.0 green:58.0/255.0 blue:78.0/255.0 alpha:1.0]];
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeueLTCom-Lt" size:19.0], NSFontAttributeName, nil]];
-    application.statusBarHidden = NO;
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont calibriBoldWithSize:19], NSFontAttributeName, nil]];
+    application.statusBarHidden = NO;//Unhide status bar
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self.navigationController = (UINavigationController *)[self.window rootViewController];
+    [self.navigationController setNavigationBarHidden:YES];
+    //If user already exist then user navigate ot dashboard screen
+    if (nil!=[UserDefaultManager getValue:@"userEmailId"]) {
+        //If user already loged in then navigate to dashboard
+        [UserDefaultManager setValue:[NSNumber numberWithInteger:0] key:@"indexpath"];
+        UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
+        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        [self.window setRootViewController:objReveal];
+        [self.window setBackgroundColor:[UIColor whiteColor]];
+        [self.window makeKeyAndVisible];
+    }
+    
+    //Accept push notification when app is not open
+    application.applicationIconBadgeNumber = 0;
+    NSDictionary *remoteNotifiInfo = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    if (remoteNotifiInfo) {
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        [self application:application didReceiveRemoteNotification:remoteNotifiInfo];
+    }
+    //Register iphone device for push notifications
+    [self registerDeviceForNotification];
     return YES;
 }
 
@@ -53,8 +82,8 @@
 
 #pragma mark - Global indicator view
 //Show indicator
-- (void)showIndicator
-{
+- (void)showIndicator:(UIColor*)spinnerColor {
+    
     spinnerBackground=[[UIImageView alloc]initWithFrame:CGRectMake(3, 3, 50, 50)];
     spinnerBackground.backgroundColor=[UIColor whiteColor];
     spinnerBackground.layer.cornerRadius=25.0f;
@@ -64,7 +93,7 @@
     loaderView.backgroundColor=[UIColor colorWithRed:63.0/255.0 green:63.0/255.0 blue:63.0/255.0 alpha:0.3];
     [loaderView addSubview:spinnerBackground];
     self.spinnerView = [[MMMaterialDesignSpinner alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    self.spinnerView.tintColor = [UIColor colorWithRed:144.0/255.0 green:187.0/255.0 blue:62.0/255.0 alpha:1.0];
+    self.spinnerView.tintColor = spinnerColor;
     self.spinnerView.center = CGPointMake(CGRectGetMidX(self.window.bounds), CGRectGetMidY(self.window.bounds));
     self.spinnerView.lineWidth=3.0f;
     [self.window addSubview:loaderView];
@@ -77,6 +106,50 @@
     [loaderView removeFromSuperview];
     [self.spinnerView removeFromSuperview];
     [self.spinnerView stopAnimating];
+}
+#pragma mark - end
+
+- (void)installUncaughtExceptionHandler {
+    
+    InstallUncaughtExceptionHandler();
+}
+
+#pragma mark - Push notification methods
+//Get permission for iphone and ipad devices to receive push notifications
+- (void)registerDeviceForNotification {
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+}
+
+//Get device token to register device for push notifications
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken1{
+   
+    NSString *token = [[deviceToken1 description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    DLog(@"content---.......................%@", token);
+    [UserDefaultManager setValue:token key:@"deviceToken"];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+   
+    DLog(@"push notification response.............%@",userInfo);
+}
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+    
+    DLog(@"did failtoRegister and testing : %@",[NSString stringWithFormat: @"Error: %@", err]);
+}
+
+//Unregister push notification
+- (void)unrigisterForNotification {
+    
+    [[UIApplication sharedApplication] unregisterForRemoteNotifications];
 }
 #pragma mark - end
 @end

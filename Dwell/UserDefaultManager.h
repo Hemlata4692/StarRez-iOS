@@ -12,4 +12,6 @@
 + (void)setValue : (id)value key :(NSString *)key;
 + (id)getValue : (NSString *)key;
 + (void)removeValue : (NSString *)key;
+//Get dynamic height of label
++ (float)getDynamicLabelHeight:(NSString *)text font:(UIFont *)font widthValue:(float)widthValue;
 @end

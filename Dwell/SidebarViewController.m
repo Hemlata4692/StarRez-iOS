@@ -26,9 +26,9 @@
     
     menuItems = [[NSArray alloc]init];
     labelColor= [[NSArray alloc]init];
-    menuItems = @[@"Dashboard", @"Parcel",@"Logout"];
-    labelColor= @[[Constants dashboardColor],[Constants blueBackgroundColor]];
-    // menuItems = @[@"Dashboard", @"Maintenance", @"Parcel", @"Resources", @"Events",@"Information", @"Help",@"Logout"];
+//    menuItems = @[@"Dashboard", @"Parcel",@"Logout"];
+    labelColor= @[[Constants dashboardColor],[Constants orangeBackgroundColor],[Constants blueBackgroundColor],[Constants greenBackgroundColor:1.0],[Constants yellowBackgroundColor:1.0],[Constants darkGreenBackgroundColor],[Constants grayBackgroundColor],[Constants logoutColor]];
+     menuItems = @[@"Dashboard", @"Maintenance", @"Parcel", @"Resources", @"Events",@"Information", @"Help",@"Logout"];
     [self.tableView setSeparatorColor:[UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1.0]];
 }
 
@@ -122,7 +122,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [UserDefaultManager setValue:[NSNumber numberWithInteger:indexPath.row] key:@"indexpath"];
-    if (indexPath.row==2) {
+    if (indexPath.row==7) {
         [UserDefaultManager setValue:nil key:@"indexpath"];
         [UserDefaultManager setValue:nil key:@"userEmailId"];
         [UserDefaultManager setValue:nil key:@"entryId"];

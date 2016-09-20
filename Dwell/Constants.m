@@ -29,4 +29,20 @@
 + (UIColor*)redBackgroundColor:(float)alpha {
     return [UIColor colorWithRed:229.0/255 green:41.0/255.0 blue:35.0/255.0 alpha:alpha];
 }
+
++ (UIColor*)orangeBackgroundColor {
+    return [UIColor colorWithRed:226.0/255 green:114.0/255.0 blue:50.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)darkGreenBackgroundColor {
+    return [UIColor colorWithRed:136.0/255 green:157.0/255.0 blue:92.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)grayBackgroundColor {
+    return [UIColor colorWithRed:107.0/255 green:107.0/255.0 blue:107.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)logoutColor {
+    return [UIColor colorWithRed:225.0/255 green:100.0/255.0 blue:92.0/255.0 alpha:1.0];
+}
 @end

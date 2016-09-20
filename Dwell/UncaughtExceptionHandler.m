@@ -103,6 +103,25 @@ const NSInteger UncaughtExceptionHandlerReportAddressCount = 5;
     NSString *minorVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
     
     //Get current network
+    NSString *networkType=[self getCurrentNetType];
+    
+    NSTimeZone *tz = [NSTimeZone localTimeZone];
+    NSLocale *countryLocale = [NSLocale currentLocale];
+    NSString *countryCode = [countryLocale objectForKey:NSLocaleCountryCode];
+    NSString *country = [countryLocale displayNameForKey:NSLocaleCountryCode value:countryCode];
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
+    DLog(@"%@",[dateFormatter stringFromDate:[NSDate date]]);
+    
+    NSString *crashString=[NSString stringWithFormat:@"Device: %@\nScreen name: %@\nVersion: %@ (%@)\nNetwork type: %@\niOS version: %@\nTime zone: %@,\nCountry Code: %@\nCountry name: %@\nTimestamp: %@\nException: %@",[[UIDevice currentDevice] name],strClass,
+                           majorVersion, minorVersion,networkType,[[UIDevice currentDevice] systemVersion],tz.description,countryCode,country,[dateFormatter stringFromDate:[NSDate date]],exceptionText];
+    DLog(@"%@,\n%@, \nVersion %@ (%@),\n%@,\n%@,\n%@,\n%@,\n%@,\n%@,\n%@,\n%@",[[UIDevice currentDevice] name],strClass,
+           majorVersion, minorVersion,networkType,[[UIDevice currentDevice] systemVersion],tz.description,countryLocale,countryCode,country,[dateFormatter stringFromDate:[NSDate date]],exceptionText);
+    [self callCrashWebservice:crashString];
+}
+
+- (NSString *)getCurrentNetType {
+    
     NSArray *subviews = [[[[UIApplication sharedApplication] valueForKey:@"statusBar"] valueForKey:@"foregroundView"]subviews];
     NSNumber *dataNetworkItemView = nil;
     for (id subview in subviews) {
@@ -114,45 +133,33 @@ const NSInteger UncaughtExceptionHandlerReportAddressCount = 5;
     NSString *networkType=@"";
     switch ([[dataNetworkItemView valueForKey:@"dataNetworkType"]integerValue]) {
         case 0:
-            NSLog(@"No wifi or cellular");
+            DLog(@"No wifi or cellular");
             networkType=@"No wifi or cellular";
             break;
         case 1:
-            NSLog(@"2G");
+            DLog(@"2G");
             networkType=@"2G";
             break;
         case 2:
-            NSLog(@"3G");
+            DLog(@"3G");
             networkType=@"3G";
             break;
         case 3:
-            NSLog(@"4G");
+            DLog(@"4G");
             networkType=@"4G";
             break;
         case 4:
-            NSLog(@"LTE");
+            DLog(@"LTE");
             networkType=@"LTE";
             break;
         case 5:
-            NSLog(@"Wifi");
+            DLog(@"Wifi");
             networkType=@"Wifi";
             break;
         default:
             break;
     }
-    NSTimeZone *tz = [NSTimeZone localTimeZone];
-    NSLocale *countryLocale = [NSLocale currentLocale];
-    NSString *countryCode = [countryLocale objectForKey:NSLocaleCountryCode];
-    NSString *country = [countryLocale displayNameForKey:NSLocaleCountryCode value:countryCode];
-    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
-    NSLog(@"%@",[dateFormatter stringFromDate:[NSDate date]]);
-    
-    NSString *crashString=[NSString stringWithFormat:@"Device: %@\nScreen name: %@\nVersion: %@ (%@)\nNetwork type: %@\niOS version: %@\nTime zone: %@,\nCountry Code: %@\nCountry name: %@\nTimestamp: %@\nException: %@",[[UIDevice currentDevice] name],strClass,
-                           majorVersion, minorVersion,networkType,[[UIDevice currentDevice] systemVersion],tz.description,countryCode,country,[dateFormatter stringFromDate:[NSDate date]],exceptionText];
-    DLog(@"%@,\n%@, \nVersion %@ (%@),\n%@,\n%@,\n%@,\n%@,\n%@,\n%@,\n%@,\n%@",[[UIDevice currentDevice] name],strClass,
-           majorVersion, minorVersion,networkType,[[UIDevice currentDevice] systemVersion],tz.description,countryLocale,countryCode,country,[dateFormatter stringFromDate:[NSDate date]],exceptionText);
-    [self callCrashWebservice:crashString];
+    return networkType;
 }
 
 -(void)callCrashWebservice :(NSString *)crashString {
@@ -173,17 +180,15 @@ const NSInteger UncaughtExceptionHandlerReportAddressCount = 5;
     [request setHTTPBody:postData];
     
     NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                              NSString *responseString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-                                              NSLog(@"data is %@",responseString);
+                                              DLog(@"data is %@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
                                               dismissed = YES;
                                           }];
     [postDataTask resume];
 }
 
-- (void)handleException:(NSException *)exception
-{
-	[self validateAndSaveCriticalApplicationData];
+- (void)handleException:(NSException *)exception {
     
+	[self validateAndSaveCriticalApplicationData];
     DLog(@"Debug details follow:\nname--:%@\n%@fghfghf\n%@\n%@",[exception name],[exception reason],[[exception userInfo] objectForKey:UncaughtExceptionHandlerAddressesKey],[exception userInfo]);
     
     exceptionText=[NSString stringWithFormat:@"%@\n%@\n%@",[exception name],[exception reason],[exception userInfo]];

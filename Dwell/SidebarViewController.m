@@ -10,27 +10,26 @@
 #import "SWRevealViewController.h"
 #import "UIImage+deviceSpecificMedia.h"
 
-
 @interface SidebarViewController (){
     NSArray *menuItems;
     NSArray *labelColor;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *sideBarTable;
-
 @end
 
 @implementation SidebarViewController
 
+#pragma mark - View life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     menuItems = [[NSArray alloc]init];
     labelColor= [[NSArray alloc]init];
     menuItems = @[@"Dashboard", @"Parcel",@"Logout"];
-    labelColor= @[[Constants dashboardColor],[Constants parcelColor]];
+    labelColor= @[[Constants dashboardColor],[Constants blueBackgroundColor]];
     // menuItems = @[@"Dashboard", @"Maintenance", @"Parcel", @"Resources", @"Events",@"Information", @"Help",@"Logout"];
-    [self.tableView setSeparatorColor:[UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0]];
+    [self.tableView setSeparatorColor:[UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1.0]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,22 +49,24 @@
     
     [self.revealViewController.frontViewController.view setUserInteractionEnabled:YES];
 }
+#pragma mark - end
+
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     // Return the number of rows in the section.
     return menuItems.count;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 140)];
+    UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
     headerView.backgroundColor=[UIColor whiteColor];
     // i.e. array element
-    UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 84, 84)] ;
+    UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(15, -20, 100, 100)] ;
     imgView.contentMode=UIViewContentModeScaleAspectFill;
     imgView.clipsToBounds=YES;
     imgView.image=[UIImage imageNamed:@"sidebarlogo"];
-    imgView.layer.cornerRadius=imgView.frame.size.width / 2;
     [headerView addSubview:imgView];
     return headerView;   // return headerLabel;
 }
@@ -86,7 +87,7 @@
         CGRect frameL;
         frameL.origin.x = 0;
         frameL.origin.y = 0;
-        frameL.size.height = 45;
+        frameL.size.height = 61;
         frameL.size.width = 5;
         UIButton *AlertNameLHS = [[UIButton alloc] initWithFrame:frameL];
         AlertNameLHS.backgroundColor=[labelColor objectAtIndex:indexPath.row];
@@ -115,7 +116,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    return 100.0;
+    return 80.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -127,11 +128,10 @@
         [UserDefaultManager setValue:nil key:@"entryId"];
         [myDelegate unrigisterForNotification];
         
-        UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        myDelegate.window.rootViewController = myDelegate.navigationController;
-        UIViewController *firstVC=[sb instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        [myDelegate.navigationController setViewControllers: [NSArray arrayWithObject: firstVC]
-                                                   animated: YES];
+        UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        
+        UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
+        myDelegate.window.rootViewController = navigation;
     }
 }
 
@@ -141,7 +141,6 @@
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
         [cell setSeparatorInset:UIEdgeInsetsZero];
     }
-    
     // Prevent the cell from inheriting the Table View's margin settings
     if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
         [cell setPreservesSuperviewLayoutMargins:NO];
@@ -154,20 +153,9 @@
     if ([[UserDefaultManager getValue:@"indexpath"]integerValue]==indexPath.row) {
         [cell setSelected:YES animated:NO];
     }
-    
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    
-    //    if (![[UserDefaultManager getValue:@"isDriverProfileCompleted"] isEqualToString:@"True"])
-    //    {
-    //        return NO;
-    //    }
-    //    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    //    if (indexPath.row == 11||indexPath.row == 10||indexPath.row == 9||indexPath.row == 6||indexPath.row == 4|| indexPath.row == 8||indexPath.row == 3|| indexPath.row == 7| indexPath.row == 5||indexPath.row == 12)
-    //    {
-    //        return NO;
-    //    }
     
     return YES;
 }
@@ -177,7 +165,6 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    //    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     // Set the title of navigation bar by using the menu items
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;

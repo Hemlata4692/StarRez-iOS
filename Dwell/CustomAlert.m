@@ -11,7 +11,7 @@
 @implementation CustomAlert
 @synthesize yourView;
 
-#pragma mark - Called for simple alert and with textview
+#pragma mark - Called for simple alert
 - (instancetype)initWithTitle:(NSString*)titleText tagValue:(int)tagValue delegate:(id)delegate message:(NSString*)messageText doneButtonText:(NSString*)doneButtonText cancelButtonText:(NSString*)cancelButtonText {
     
     _delegate=delegate;

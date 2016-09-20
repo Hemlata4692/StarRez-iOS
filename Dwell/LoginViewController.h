@@ -6,10 +6,7 @@
 //  Copyright © 2016 Ranosys. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
 @interface LoginViewController : UIViewController
-
-
 @end
 

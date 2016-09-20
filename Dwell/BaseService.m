@@ -10,8 +10,10 @@
 #import "XMLDictionary.h"
 #import "NullValueChecker.h"
 
-@implementation BaseService
+NSString* const baseUrl=@"https://starrez.centurionstudents.co.uk/StarRezREST/services/query";
+NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/SaveUser";
 
+@implementation BaseService
 
 #pragma mark - Singleton instance
 - (instancetype)init{
@@ -27,7 +29,7 @@
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    NSURL *url=[NSURL URLWithString:@"https://starrez.centurionstudents.co.uk/StarRezREST/services/query"];
+    NSURL *url=[NSURL URLWithString:baseUrl];
     NSData *postData = [parameters dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     
@@ -40,8 +42,7 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
     
-    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-                                          {
+    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                               NSString *responseString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
                                                NSMutableDictionary* responseData=[NSMutableDictionary new];
                                               if ([responseString isEqualToString:@""]) {
@@ -49,7 +50,6 @@
                                                   failure(responseData);
                                               }
                                               else if ((NULL!=responseString)&&(nil!=responseString)) {
-                                                  
                                                    responseData=(NSMutableDictionary *)[NullValueChecker checkArrayForNullValue:[[[XMLDictionaryParser sharedInstance] dictionaryWithString:responseString] mutableCopy]];
                                                   if (responseData.count!=0) {
                                                       [responseData setObject:@"1" forKey:@"success"];
@@ -61,16 +61,16 @@
                                                   }
                                               }
                                           }];
-    
     [postDataTask resume];
 }
 
+//Post method for save device token services
 - (void)jsonPost:(NSDictionary *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     NSError *error;
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    NSURL *url=[NSURL URLWithString:@"http://ranosys.info/StarrezNotification/api/SaveUser"];
+    NSURL *url=[NSURL URLWithString:setDeviceTokenUrl];
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];;
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     
@@ -87,10 +87,9 @@
                                               NSMutableDictionary* responseData=[NSMutableDictionary new];
                                               if ([responseString isEqualToString:@""]) {
                                                   [responseData setObject:@"2" forKey:@"success"];
-                                                  failure(responseData);
+                                                  success(responseData);
                                               }
                                               else if ((NULL!=responseString)&&(nil!=responseString)) {
-                                                  
                                                   responseData=(NSMutableDictionary *)[NullValueChecker checkArrayForNullValue:[[[XMLDictionaryParser sharedInstance] dictionaryWithString:responseString] mutableCopy]];
                                                   if (responseData.count!=0) {
                                                       [responseData setObject:@"1" forKey:@"success"];
@@ -98,11 +97,10 @@
                                                   }
                                                   else {
                                                       [responseData setObject:@"0" forKey:@"success"];
-                                                      failure(responseData);
+                                                      success(responseData);
                                                   }
                                               }
                                           }];
-    
     [postDataTask resume];
 }
 #pragma mark - end

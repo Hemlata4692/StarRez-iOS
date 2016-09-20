@@ -6,10 +6,11 @@
 //  Copyright © 2016 Ranosys. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ParcelModel.h"
 
 @interface ParcelCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIView *mainBackgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelTitle;
 @property (weak, nonatomic) IBOutlet UIView *separatorView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelTypeTitle;
@@ -22,4 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *issueDate;
 @property (weak, nonatomic) IBOutlet UIView *parcelStatusBackGroundView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelStatus;
+
+- (void)displayData:(ParcelModel *)modelData frame:(CGRect)frame;
 @end

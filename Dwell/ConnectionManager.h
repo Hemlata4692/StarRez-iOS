@@ -10,6 +10,7 @@
 
 @class LoginModel;
 @class ParcelModel;
+@class ResourceModel;
 
 @interface ConnectionManager : NSObject
 
@@ -23,4 +24,10 @@
 
 //Parcel list with detail
 - (void)getParcelList:(ParcelModel *)parcelData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
+
+//Resource list with detail
+- (void)getResourceList:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
+//Resource type list
+- (void)getResourceType:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end
+

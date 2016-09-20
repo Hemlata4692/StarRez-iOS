@@ -40,7 +40,7 @@
     parcelDataArray=[NSMutableArray new];
     parcelSearchDataArray=[NSMutableArray new];
     parcelStatusDict=[NSMutableDictionary new];
-    [myDelegate showIndicator:[Constants blueBackgroundColor]];
+    [myDelegate showIndicator:[Constants blueBackgroundColor:1.0]];
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
     [self performSelector:@selector(getParcelListService) withObject:nil afterDelay:.1];
     // Do any additional setup after loading the view.

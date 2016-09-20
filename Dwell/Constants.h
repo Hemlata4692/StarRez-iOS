@@ -12,7 +12,7 @@ static const float cornerRadius=15.0;
 @interface Constants : NSObject
 
 + (UIColor*)dashboardColor;
-+ (UIColor*)blueBackgroundColor;
++ (UIColor*)blueBackgroundColor:(float)alpha;
 + (UIColor*)yellowBackgroundColor:(float)alpha;
 + (UIColor*)greenBackgroundColor:(float)alpha;
 + (UIColor*)redBackgroundColor:(float)alpha;
@@ -20,4 +20,6 @@ static const float cornerRadius=15.0;
 + (UIColor*)darkGreenBackgroundColor;
 + (UIColor*)grayBackgroundColor;
 + (UIColor*)logoutColor;
++ (UIColor*)historyColor:(float)alpha;
++ (UIColor*)cancelColor:(float)alpha;
 @end

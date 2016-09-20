@@ -57,7 +57,7 @@
             alertMessage.hidden=NO;
         }
         //If show single button alert then hidden cancelButton else show cancelButton with doneButton
-         cancelButton.frame=CGRectMake(0, alertMessage.frame.origin.y + alertMessage.frame.size.height + 20, 150, 50);
+         cancelButton.frame=CGRectMake(0, alertMessage.frame.origin.y + alertMessage.frame.size.height + 8, 150, 50);
         if ([doneButtonText isEqualToString:@""] || [cancelButtonText isEqualToString:@""]) {
             doneButton.frame=CGRectMake(0, alertMessage.frame.origin.y + alertMessage.frame.size.height + 8, alertContainerView.frame.size.width, 50);
             cancelButton.hidden=YES;

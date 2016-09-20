@@ -71,9 +71,21 @@
     [self layoutCellObject:frame];
     parcelTitle.text=modelData.parcelTitle;
     parcelType.text=modelData.parcelType;
-    receiptDate.text=modelData.parcelReceiptDate;
     shippingType.text=modelData.parcelShippingType;
-    issueDate.text=modelData.parcelIssueDate;
+    //Check recipt date is nil
+    if ((nil==modelData.parcelReceiptDate)||[modelData.parcelReceiptDate isEqualToString:@""]) {
+        receiptDate.text=@"NA";
+    }
+    else {
+        receiptDate.text=modelData.parcelReceiptDate;
+    }
+    //Check issued date is nil
+    if ((nil==modelData.parcelIssueDate)||[modelData.parcelIssueDate isEqualToString:@""]) {
+        issueDate.text=@"NA";
+    }
+    else {
+        issueDate.text=modelData.parcelIssueDate;
+    }
     parcelStatus.text=modelData.parcelStatus;
     if ([modelData.parcelStatusId isEqualToString:@"0"]) {
         parcelStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor:0.6];

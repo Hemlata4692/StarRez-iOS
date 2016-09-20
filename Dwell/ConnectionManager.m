@@ -12,6 +12,8 @@
 #import "LoginService.h"
 #import "ParcelModel.h"
 #import "ParcelService.h"
+#import "ResourceModel.h"
+#import "ResourceService.h"
 
 @implementation ConnectionManager
 
@@ -27,7 +29,7 @@
 }
 #pragma mark - end
 
-#pragma mark - Login user
+#pragma mark - Get parcel list with detail
 - (void)getParcelList:(ParcelModel *)parcelData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     ParcelService *parcelService = [[ParcelService alloc] init];
@@ -78,6 +80,47 @@
         //Send device token to server for push notification
         DLog(@"device token  response %@",response);
         success(userData);
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
+#pragma mark - end
+
+#pragma mark - Get resource list with detail
+- (void)getResourceList:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    ResourceService *resourceService = [[ResourceService alloc] init];
+    [resourceService getResourceList:^(id response) {
+        //Resource data from server response and store in data model
+        DLog(@"%@",[response valueForKeyPath:@"entry.content.Record.EntryParcelID"]);
+        if (NULL!=[response objectForKey:@"entry"]&&[[response objectForKey:@"entry"] count]!=0) {
+            success(response);
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"0" forKey:@"success"];
+            failure(responseDict);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
+#pragma mark - end
+
+#pragma mark - Get resource type list
+- (void)getResourceType:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    ResourceService *resourceService = [[ResourceService alloc] init];
+    [resourceService getResourceType:^(id response) {
+        //Resource data from server response and store in data model
+        if (NULL!=[response objectForKey:@"entry"]&&[[response objectForKey:@"entry"] count]!=0) {
+            success(response);
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"0" forKey:@"success"];
+            failure(responseDict);
+        }
     } onFailure:^(id error) {
         failure(error);
     }] ;

@@ -31,14 +31,16 @@
 
     [self viewLayout:dataArray index:index];
     if (index<(dataArray.count)) {
-        if (index==1) {
-            
-        }
-        else {
-            
+        if (index!=(dataArray.count)) {
+            textFieldTitle.text=[dataArray objectAtIndex:index];
+            if (index<dataArray.count-2) {
+                resourceTextField.placeholder=@"Please Select";
+            }
+            else {
+                resourceTextField.placeholder=@"Please Date & Time";
+            }
         }
     }
-    
 }
 
 - (void)viewLayout:(NSMutableArray *)dataArray index:(int)index {
@@ -49,14 +51,18 @@
     }
     else {
         if (index!=1) {
+            dropDownArrow.hidden=NO;
+            resourceTextField.enabled=false;
             [resourceTextField addTextFieldPadding:resourceTextField];
+        }
+        else {
+            resourceTextField.enabled=true;
+            dropDownArrow.hidden=YES;
+            [resourceTextField removeTextFieldPadding:resourceTextField];
         }
         bookResourceContainerView.layer.cornerRadius=cornerRadius;
         bookResourceContainerView.layer.masksToBounds=YES;
-        
     }
-    
-   
 }
 
 @end

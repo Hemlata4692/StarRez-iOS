@@ -1484,7 +1484,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Afq-mL-Ifr">
-                                                            <rect key="frame" x="16" y="2" width="289" height="73"/>
+                                                            <rect key="frame" x="16" y="2" width="288" height="73"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESOURCE TYPE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckj-Jz-7Hl">
                                                                     <rect key="frame" x="12" y="8" width="181" height="21"/>
@@ -1498,7 +1498,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please Select" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dbZ-ER-vgm">
-                                                                    <rect key="frame" x="12" y="34" width="241" height="21"/>
+                                                                    <rect key="frame" x="11" y="34" width="266" height="21"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="21" id="XaU-BK-Sfr"/>
@@ -1506,9 +1506,12 @@
                                                                     <color key="textColor" red="0.26666666666666666" green="0.27058823529411763" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="17"/>
                                                                     <textInputTraits key="textInputTraits"/>
+                                                                    <connections>
+                                                                        <outlet property="delegate" destination="FnZ-0D-dBg" id="ii9-wc-FdO"/>
+                                                                    </connections>
                                                                 </textField>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpb-Z1-WDv">
-                                                                    <rect key="frame" x="8" y="57" width="274" height="1"/>
+                                                                    <rect key="frame" x="7" y="57" width="274" height="1"/>
                                                                     <color key="backgroundColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="1" id="npu-mB-D79"/>
@@ -1529,14 +1532,14 @@
                                                             <color key="backgroundColor" white="1" alpha="0.65035467791411039" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="Mpb-Z1-WDv" secondAttribute="trailing" constant="7" id="AJD-Pz-yaZ"/>
-                                                                <constraint firstAttribute="trailing" secondItem="dbZ-ER-vgm" secondAttribute="trailing" constant="36" id="Cu1-Cd-jYY"/>
-                                                                <constraint firstItem="Mpb-Z1-WDv" firstAttribute="leading" secondItem="Afq-mL-Ifr" secondAttribute="leading" constant="8" id="GkQ-Yb-TXA"/>
+                                                                <constraint firstAttribute="trailing" secondItem="dbZ-ER-vgm" secondAttribute="trailing" constant="11" id="Cu1-Cd-jYY"/>
+                                                                <constraint firstItem="Mpb-Z1-WDv" firstAttribute="leading" secondItem="Afq-mL-Ifr" secondAttribute="leading" constant="7" id="GkQ-Yb-TXA"/>
                                                                 <constraint firstItem="Mpb-Z1-WDv" firstAttribute="top" secondItem="dbZ-ER-vgm" secondAttribute="bottom" constant="2" id="LhQ-Sz-7Yy"/>
                                                                 <constraint firstItem="ckj-Jz-7Hl" firstAttribute="leading" secondItem="Afq-mL-Ifr" secondAttribute="leading" constant="12" id="UUd-hI-YMZ"/>
                                                                 <constraint firstItem="Lyx-iE-jvP" firstAttribute="centerY" secondItem="dbZ-ER-vgm" secondAttribute="centerY" id="Wz5-cO-2er"/>
                                                                 <constraint firstAttribute="height" constant="73" id="iNA-Fg-ds1"/>
-                                                                <constraint firstItem="dbZ-ER-vgm" firstAttribute="leading" secondItem="Afq-mL-Ifr" secondAttribute="leading" constant="12" id="pjN-tq-AaS"/>
-                                                                <constraint firstItem="Lyx-iE-jvP" firstAttribute="leading" secondItem="dbZ-ER-vgm" secondAttribute="trailing" constant="8" id="wOa-S7-ukD"/>
+                                                                <constraint firstItem="dbZ-ER-vgm" firstAttribute="leading" secondItem="Afq-mL-Ifr" secondAttribute="leading" constant="11" id="pjN-tq-AaS"/>
+                                                                <constraint firstItem="Lyx-iE-jvP" firstAttribute="leading" secondItem="dbZ-ER-vgm" secondAttribute="trailing" constant="-16" id="wOa-S7-ukD"/>
                                                                 <constraint firstItem="dbZ-ER-vgm" firstAttribute="top" secondItem="ckj-Jz-7Hl" secondAttribute="bottom" constant="5" id="xlt-Qb-pZE"/>
                                                                 <constraint firstItem="ckj-Jz-7Hl" firstAttribute="top" secondItem="Afq-mL-Ifr" secondAttribute="top" constant="8" id="xoQ-gR-FIa"/>
                                                             </constraints>
@@ -1544,7 +1547,7 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="Afq-mL-Ifr" firstAttribute="leading" secondItem="XVz-ML-6e7" secondAttribute="leading" constant="16" id="MrR-Bv-rhb"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Afq-mL-Ifr" secondAttribute="trailing" constant="15" id="Y4r-x0-hKW"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Afq-mL-Ifr" secondAttribute="trailing" constant="16" id="Y4r-x0-hKW"/>
                                                         <constraint firstItem="Afq-mL-Ifr" firstAttribute="top" secondItem="XVz-ML-6e7" secondAttribute="top" constant="2" id="reI-wU-kyL"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
@@ -1593,6 +1596,25 @@
                                             <outlet property="delegate" destination="FnZ-0D-dBg" id="bh6-VW-C6u"/>
                                         </connections>
                                     </tableView>
+                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="SFC-4n-Chj">
+                                        <rect key="frame" x="0.0" y="1000" width="320" height="216"/>
+                                        <color key="backgroundColor" red="0.84313725490000002" green="0.84313725490000002" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="496141658.12775099">
+                                            <!--2016-09-21 09:07:38 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6AW-Fa-fpi">
+                                        <rect key="frame" x="0.0" y="1000" width="320" height="216"/>
+                                        <color key="backgroundColor" red="0.84313725490196079" green="0.84313725490196079" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="FnZ-0D-dBg" id="kvK-yq-eyq"/>
+                                            <outlet property="delegate" destination="FnZ-0D-dBg" id="Hho-fZ-EON"/>
+                                        </connections>
+                                    </pickerView>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q50-lM-0qT">
+                                        <rect key="frame" x="0.0" y="966" width="320" height="44"/>
+                                        <items/>
+                                    </toolbar>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1764705882" green="0.70196078429999997" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1613,6 +1635,11 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="datePickerView" destination="SFC-4n-Chj" id="4WX-6Y-1Pe"/>
+                        <outlet property="resourcePickerView" destination="6AW-Fa-fpi" id="vSi-2S-93u"/>
+                        <outlet property="toolBarView" destination="q50-lM-0qT" id="teU-KO-BtX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mUW-GK-fhD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

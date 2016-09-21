@@ -13,7 +13,7 @@
 //Set textfield padding without side image
 - (void)addTextFieldPadding: (UITextField *)textfield {
     
-    UIView *rightPadding = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 0, 0)];
+    UIView *rightPadding = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     textfield.rightView = rightPadding;
     textfield.rightViewMode = UITextFieldViewModeAlways;
 }

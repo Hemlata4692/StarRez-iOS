@@ -117,6 +117,9 @@
             });
         }];
     }
+    else {
+        [myDelegate stopIndicator];
+    }
 }
 #pragma mark - end
 
@@ -177,6 +180,13 @@
         parcelSearchDataArray =[[parcelDataArray filteredArrayUsingPredicate:orPredicate] mutableCopy];
     }
     [self.parcelListTableview reloadData];
+}
+#pragma mark - end
+
+#pragma mark - Custom alert delegates
+- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+    
+    [alertView dismissAlertView];
 }
 #pragma mark - end
 /*

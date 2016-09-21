@@ -22,10 +22,27 @@
 #pragma mark - Get resource type list
 - (void)getResourceType:(void (^)(id))success onFailure:(void (^)(id))failure {
     
-//    NSString *parameters = [NSString stringWithFormat:@"SELECT rt.[Description], rt.[ResourceTypeID], bk.[RoomLocationID] FROM [Booking] as bk LEFT JOIN ResourceType as rt ON rt.RoomLocationID = bk.RoomLocationID WHERE bk.[EntryID] = '%@'",[UserDefaultManager getValue:@"entryId"]];
+    NSString *parameters = [NSString stringWithFormat:@"SELECT rt.[Description], rt.[ResourceTypeID], rt.[MinBookingHours], rt.[MaxBookingHours], bk.[RoomLocationID] FROM [Booking] as bk LEFT JOIN ResourceType as rt ON rt.RoomLocationID = bk.RoomLocationID WHERE bk.[EntryID] = '%@'",[UserDefaultManager getValue:@"entryId"]];
 //    DLog(@"request dict %@",parameters);
-    NSString *parameters = [NSString stringWithFormat:@"SELECT [RoomLocationID], [Description], [RoomLocationAreaID], [CategoryID], [CountryID] FROM [RoomLocation] WHERE [RoomLocationAreaID] IN ('1')"];
+//    NSString *parameters = [NSString stringWithFormat:@"SELECT [RoomLocationID], [Description], [RoomLocationAreaID], [CategoryID], [CountryID] FROM [RoomLocation] WHERE [RoomLocationAreaID] IN ('1')"];
+//    DLog(@"request dict %@",parameters);
+//    NSString *parameters = [NSString stringWithFormat:@"SELECT rt.[Description], rt.[ResourceTypeID], rt.[MinBookingHours], rt.[MaxBookingHours] FROM ResourceType as rt"];
     DLog(@"request dict %@",parameters);
+    
+    [super post:parameters onSuccess:success onFailure:failure];
+}
+#pragma mark - end
+
+#pragma mark - Get location according to selected resource type
+- (void)getLocationList:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    NSString *parameters = [NSString stringWithFormat:@"SELECT [RoomLocationID], [Description], [RoomLocationAreaID], [CategoryID], [CountryID] FROM [RoomLocation] WHERE [RoomLocationAreaID] IN ('1')"];
+    //    DLog(@"request dict %@",parameters);
+    //    NSString *parameters = [NSString stringWithFormat:@"SELECT [RoomLocationID], [Description], [RoomLocationAreaID], [CategoryID], [CountryID] FROM [RoomLocation] WHERE [RoomLocationAreaID] IN ('1')"];
+    //    DLog(@"request dict %@",parameters);
+    //    NSString *parameters = [NSString stringWithFormat:@"SELECT rt.[Description], rt.[ResourceTypeID], rt.[MinBookingHours], rt.[MaxBookingHours] FROM ResourceType as rt"];
+    DLog(@"request dict %@",parameters);
+    
     [super post:parameters onSuccess:success onFailure:failure];
 }
 #pragma mark - end

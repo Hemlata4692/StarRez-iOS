@@ -124,6 +124,9 @@
             });
         }];
     }
+    else {
+        [myDelegate stopIndicator];
+    }
 }
 #pragma mark - end
 
@@ -192,6 +195,13 @@
     
     BookResourceViewController *objBookResource = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BookResourceViewController"];
     [self.navigationController pushViewController:objBookResource animated:YES];
+}
+#pragma mark - end
+
+#pragma mark - Custom alert delegates
+- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+    
+    [alertView dismissAlertView];
 }
 #pragma mark - end
 /*

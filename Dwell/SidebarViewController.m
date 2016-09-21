@@ -29,6 +29,7 @@
     menuItems = [[NSArray alloc]init];
     labelColor= [[NSArray alloc]init];
 //    menuItems = @[@"Dashboard", @"Parcel",@"Logout"];
+//    labelColor= @[[Constants dashboardColor],[Constants blueBackgroundColor:1.0],[Constants logoutColor]];
     labelColor= @[[Constants dashboardColor],[Constants orangeBackgroundColor],[Constants blueBackgroundColor:1.0],[Constants greenBackgroundColor:1.0],[Constants yellowBackgroundColor:1.0],[Constants darkGreenBackgroundColor],[Constants grayBackgroundColor],[Constants logoutColor]];
      menuItems = @[@"Dashboard", @"Maintenance", @"Parcel", @"Resources", @"Events",@"Information", @"Help",@"Logout"];
     [self.tableView setSeparatorColor:[UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1.0]];
@@ -125,7 +126,7 @@
     
     [UserDefaultManager setValue:[NSNumber numberWithInteger:indexPath.row] key:@"indexpath"];
     if (indexPath.row==7) {
-         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Incorrect password. Password must be of 6 digits. Ex: 123456" doneButtonText:@"Yes" cancelButtonText:@"No"];
+         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Are you sure you want to logout?" doneButtonText:@"Yes" cancelButtonText:@"No"];
     }
 }
 

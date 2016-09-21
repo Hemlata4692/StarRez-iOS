@@ -92,12 +92,11 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
                 parcelDataArray=[userData mutableCopy];
-                
                 //Get all type status in parcelStatusDict
                 NSMutableArray *tempStatusKeyArray=[NSMutableArray new];
                 for (int i=0; i<parcelDataArray.count; i++) {
                     tempStatusKeyArray=[[parcelStatusDict allKeys] mutableCopy];
-                    if (![tempStatusKeyArray containsObject:[[parcelDataArray objectAtIndex:i] parcelStatusId]]) {
+                    if (![tempStatusKeyArray containsObject:[NSString stringWithFormat:@"%@,%@",[[parcelDataArray objectAtIndex:i] parcelStatus],[[parcelDataArray objectAtIndex:i] parcelStatusId]]]) {
                         [parcelStatusDict setObject:@"NO" forKey:[NSString stringWithFormat:@"%@,%@",[[parcelDataArray objectAtIndex:i] parcelStatus],[[parcelDataArray objectAtIndex:i] parcelStatusId]]];
                         [tempStatusKeyArray addObject:[NSString stringWithFormat:@"%@,%@",[[parcelDataArray objectAtIndex:i] parcelStatus],[[parcelDataArray objectAtIndex:i] parcelStatusId]]];
                     }

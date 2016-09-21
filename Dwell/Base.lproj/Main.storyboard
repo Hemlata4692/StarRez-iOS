@@ -79,7 +79,6 @@
             <string>HandOfSean</string>
             <string>HandOfSean</string>
             <string>HandOfSean</string>
-            <string>HandOfSean</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -644,7 +643,7 @@
                                                                 <constraint firstAttribute="height" constant="1" id="UH7-4q-ZHX"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -1473,12 +1472,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRZ-65-EPv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="OEC-HI-8YM">
-                                        <rect key="frame" x="0.0" y="141" width="320" height="427"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="60" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="OEC-HI-8YM">
+                                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookResourceInputCell" rowHeight="88" id="7e8-0X-3pe" customClass="BookResourceCell">
-                                                <rect key="frame" x="0.0" y="65" width="320" height="88"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BookResourceInputCell" rowHeight="88" id="7e8-0X-3pe" customClass="BookResourceCell">
+                                                <rect key="frame" x="0.0" y="114" width="320" height="88"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7e8-0X-3pe" id="XVz-ML-6e7">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
@@ -1557,15 +1556,15 @@
                                                     <outlet property="textFieldTitle" destination="ckj-Jz-7Hl" id="IDv-vY-fss"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookResourceButtonCell" rowHeight="60" id="22N-Oj-i5s" customClass="BookResourceCell">
-                                                <rect key="frame" x="0.0" y="153" width="320" height="60"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BookResourceButtonCell" rowHeight="60" id="22N-Oj-i5s" customClass="BookResourceCell">
+                                                <rect key="frame" x="0.0" y="202" width="320" height="60"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="22N-Oj-i5s" id="4ul-bt-3sh">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Qi-Pb-GBe">
-                                                            <rect key="frame" x="20" y="8" width="280" height="44"/>
+                                                            <rect key="frame" x="25" y="8" width="270" height="44"/>
                                                             <color key="backgroundColor" red="1" green="0.80784313730000001" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="44" id="Zjh-ci-xrB"/>
@@ -1576,37 +1575,31 @@
                                                             </state>
                                                         </button>
                                                     </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="1Qi-Pb-GBe" firstAttribute="top" secondItem="4ul-bt-3sh" secondAttribute="top" constant="8" id="3og-8o-CDU"/>
-                                                        <constraint firstItem="1Qi-Pb-GBe" firstAttribute="leading" secondItem="4ul-bt-3sh" secondAttribute="leading" constant="20" id="6Wn-Ea-mZ6"/>
-                                                        <constraint firstAttribute="trailing" secondItem="1Qi-Pb-GBe" secondAttribute="trailing" constant="20" id="hGv-KW-LfX"/>
+                                                        <constraint firstItem="1Qi-Pb-GBe" firstAttribute="leading" secondItem="4ul-bt-3sh" secondAttribute="leading" constant="25" id="6Wn-Ea-mZ6"/>
+                                                        <constraint firstAttribute="trailing" secondItem="1Qi-Pb-GBe" secondAttribute="trailing" constant="25" id="hGv-KW-LfX"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <connections>
                                                     <outlet property="searchButton" destination="1Qi-Pb-GBe" id="rK9-FP-Mh0"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="FnZ-0D-dBg" id="8mk-1y-FFG"/>
+                                            <outlet property="delegate" destination="FnZ-0D-dBg" id="bh6-VW-C6u"/>
+                                        </connections>
                                     </tableView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book resource by filling up below form" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1c-UW-gfY">
-                                        <rect key="frame" x="0.0" y="83" width="320" height="39"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="39" id="mUm-Ic-RSk"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HandOfSean" family="Hand Of Sean" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1764705882" green="0.70196078429999997" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="OEC-HI-8YM" firstAttribute="leading" secondItem="VRZ-65-EPv" secondAttribute="leading" id="I0Q-7m-xtR"/>
-                                    <constraint firstItem="W1c-UW-gfY" firstAttribute="leading" secondItem="VRZ-65-EPv" secondAttribute="leading" id="JGF-8y-uau"/>
-                                    <constraint firstAttribute="trailing" secondItem="OEC-HI-8YM" secondAttribute="trailing" id="KK7-NS-uce"/>
-                                    <constraint firstAttribute="bottom" secondItem="OEC-HI-8YM" secondAttribute="bottom" id="Rs9-wM-sKQ"/>
-                                    <constraint firstItem="OEC-HI-8YM" firstAttribute="top" secondItem="W1c-UW-gfY" secondAttribute="bottom" constant="19" id="Zdq-kd-WBs"/>
-                                    <constraint firstAttribute="trailing" secondItem="W1c-UW-gfY" secondAttribute="trailing" id="bQd-1H-3LY"/>
-                                    <constraint firstItem="W1c-UW-gfY" firstAttribute="top" secondItem="VRZ-65-EPv" secondAttribute="top" constant="83" id="wXQ-0o-QZR"/>
+                                    <constraint firstItem="OEC-HI-8YM" firstAttribute="leading" secondItem="VRZ-65-EPv" secondAttribute="leading" id="KLo-Ci-Meg"/>
+                                    <constraint firstAttribute="trailing" secondItem="OEC-HI-8YM" secondAttribute="trailing" id="NNX-jJ-jwJ"/>
+                                    <constraint firstItem="OEC-HI-8YM" firstAttribute="top" secondItem="VRZ-65-EPv" secondAttribute="top" constant="64" id="OGm-Ct-OFt"/>
+                                    <constraint firstAttribute="bottom" secondItem="OEC-HI-8YM" secondAttribute="bottom" id="Xe5-hh-U6Q"/>
                                 </constraints>
                             </view>
                         </subviews>

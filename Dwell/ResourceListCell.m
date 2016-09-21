@@ -114,4 +114,9 @@
         resourceStatusBackGroundView.backgroundColor=[Constants cancelColor:0.6];
     }
 }
+
+- (void)displayData:(NSMutableArray *)dataArray index:(int)index {
+
+    
+}
 @end

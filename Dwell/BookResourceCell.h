@@ -15,4 +15,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *resourceTextField;
 @property (strong, nonatomic) IBOutlet UIImageView *dropDownArrow;
 @property (strong, nonatomic) IBOutlet UIButton *searchButton;
+
+- (void)displayData:(NSMutableArray *)dataArray index:(int)index;
 @end

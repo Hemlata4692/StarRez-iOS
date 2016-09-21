@@ -15,6 +15,7 @@
     
     CustomAlert *alertView;
     NSMutableArray *bookResourceTypeArray, *bookResourceLocationArray;
+    NSArray *inputFieldTitleArray;
 }
 @property (weak, nonatomic) IBOutlet UITableView *bookResourceFormTableView;
 @end
@@ -31,7 +32,9 @@
     bookResourceLocationArray=[NSMutableArray new];
     bookResourceTypeArray=[NSMutableArray new];
     bookResourceLocationArray=[NSMutableArray new];
-    [myDelegate showIndicator:[Constants greenBackgroundColor:1.0]];
+    inputFieldTitleArray=@[@"RESOURCE TYPE",@"RESOURCE NAME",@"LOCATION",@"FROM",@"TO"];
+    
+//    [myDelegate showIndicator:[Constants greenBackgroundColor:1.0]];
 //    [self performSelector:@selector(getResourceType) withObject:nil afterDelay:.1];
     // Do any additional setup after loading the view.
 }
@@ -76,6 +79,83 @@
             });
         }];
     }
+}
+#pragma mark - end
+
+#pragma mark - Tableview methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 50.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView * headerView;
+    headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width,50.0)];
+    headerView.backgroundColor = [UIColor clearColor];
+    
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 44)];
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont handseanWithSize:17];
+    label.text = @"Book resource by filling up below form.";
+    [headerView addSubview:label];
+    
+    return headerView;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return inputFieldTitleArray.count+1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row!=inputFieldTitleArray.count) {
+        return 88.0;
+    }
+    else {
+        return 60.0;
+    }
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    BookResourceCell *cell;
+    if (indexPath.row!=inputFieldTitleArray.count) {
+        NSString *simpleTableIdentifier = @"BookResourceInputCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+        if (cell == nil) {
+            cell = [[BookResourceCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+        }
+        [cell displayData:[inputFieldTitleArray mutableCopy] index:(int)indexPath.row];
+    }
+    else {
+        NSString *simpleTableIdentifier = @"BookResourceButtonCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+        if (cell == nil) {
+            cell = [[BookResourceCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+        }
+        [cell displayData:[inputFieldTitleArray mutableCopy] index:(int)indexPath.row];
+    }
+        return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+//    ResourceDetailViewController *objresourceDetail = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ResourceDetailViewController"];
+//    if (isSearch) {
+//        objresourceDetail.resourceDetailData=[resourceSearchDataArray objectAtIndex:indexPath.row];
+//    }
+//    else {
+//        objresourceDetail.resourceDetailData=[resourceDataArray objectAtIndex:indexPath.row];
+//    }
+//    [self.navigationController pushViewController:objresourceDetail animated:YES];
 }
 #pragma mark - end
 

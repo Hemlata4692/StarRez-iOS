@@ -12,4 +12,5 @@
 
 - (void)addTextFieldPadding: (UITextField *)textfield;
 - (void)addTextFieldPaddingWithoutImages: (UITextField *)textfield;
+- (void)removeTextFieldPadding: (UITextField *)textfield;
 @end

@@ -12,7 +12,8 @@
 #import "LoginService.h"
 #import "ParcelModel.h"
 #import "ParcelService.h"
-
+#import "MainatenanceModel.h"
+#import "MaintenanceService.h"
 @implementation ConnectionManager
 
 #pragma mark - Shared instance
@@ -45,6 +46,28 @@
     } onFailure:^(id error) {
         failure(error);
     }] ;
+}
+#pragma mark - end
+
+#pragma mark - Maintenance list
+- (void)getMaintenancelList:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure {
+    
+    MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
+    [mainatenanceService getMaintenanceList:^(id response) {
+        //Parse data from server response and store in datamodel
+        DLog(@"%@",[response valueForKeyPath:@"entry.content.Record.Cause"]);
+        if (NULL!=[response objectForKey:@"entry"]&&[[response objectForKey:@"entry"] count]!=0) {
+            success(response);
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"0" forKey:@"success"];
+            failure(responseDict);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+    
 }
 #pragma mark - end
 

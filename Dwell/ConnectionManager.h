@@ -10,7 +10,7 @@
 
 @class LoginModel;
 @class ParcelModel;
-
+@class MainatenanceModel;
 @interface ConnectionManager : NSObject
 
 + (instancetype)sharedManager;
@@ -23,4 +23,7 @@
 
 //Parcel list with detail
 - (void)getParcelList:(ParcelModel *)parcelData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
+
+//Get Maintenance listing
+- (void)getMaintenancelList:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
 @end

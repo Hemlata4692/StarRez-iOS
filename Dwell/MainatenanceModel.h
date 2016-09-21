@@ -16,6 +16,7 @@
 @property(retain,nonatomic)NSString *status;
 @property(retain,nonatomic)NSString *cause;
 @property(retain,nonatomic)NSString *commetns;
+@property(retain,nonatomic)NSString *category;
 
 + (instancetype)sharedUser;
 //Maintenance listing

@@ -92,7 +92,6 @@
         
         statusBackgroundVIew.backgroundColor = [Constants greenBackgroundColor:1.0];
     }else if ([modelData.status isEqualToString:@"Awaiting for Contractor"]||[modelData.status isEqualToString:@"Awaiting for Parts"]||[modelData.status isEqualToString:@"Job in Progress"]){
-        
         statusBackgroundVIew.backgroundColor = [Constants yellowBackgroundColor:1.0];
     }
     else{

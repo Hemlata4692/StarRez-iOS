@@ -10,6 +10,7 @@
 		4A412A471D8AC64E00E70791 /* ParcelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A412A461D8AC64E00E70791 /* ParcelDetailViewController.m */; };
 		4A412A4B1D8AC6A800E70791 /* GlobalBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A412A4A1D8AC6A800E70791 /* GlobalBackViewController.m */; };
 		4A92B91F1D8FF4DF008D4462 /* underDevelopement.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A92B91E1D8FF4DF008D4462 /* underDevelopement.png */; };
+		951EC2FF1D929A0A006C98F8 /* MaintenanceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 951EC2FE1D929A0A006C98F8 /* MaintenanceDetailViewController.m */; };
 		95E74D041D9107F300C5CA8B /* MaintenanceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D031D9107F300C5CA8B /* MaintenanceListViewController.m */; };
 		95E74D071D91122C00C5CA8B /* MaintenanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D061D91122C00C5CA8B /* MaintenanceCell.m */; };
 		95E74D0D1D91303200C5CA8B /* maintenance-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E74D091D91303200C5CA8B /* maintenance-568h@2x.png */; };
@@ -74,6 +75,8 @@
 		4A412A491D8AC6A800E70791 /* GlobalBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalBackViewController.h; sourceTree = "<group>"; };
 		4A412A4A1D8AC6A800E70791 /* GlobalBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalBackViewController.m; sourceTree = "<group>"; };
 		4A92B91E1D8FF4DF008D4462 /* underDevelopement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = underDevelopement.png; sourceTree = "<group>"; };
+		951EC2FD1D929A0A006C98F8 /* MaintenanceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceDetailViewController.h; sourceTree = "<group>"; };
+		951EC2FE1D929A0A006C98F8 /* MaintenanceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceDetailViewController.m; sourceTree = "<group>"; };
 		95E74D021D9107F300C5CA8B /* MaintenanceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceListViewController.h; sourceTree = "<group>"; };
 		95E74D031D9107F300C5CA8B /* MaintenanceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceListViewController.m; sourceTree = "<group>"; };
 		95E74D051D91122C00C5CA8B /* MaintenanceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceCell.h; sourceTree = "<group>"; };
@@ -208,9 +211,19 @@
 			name = GlobalBackView;
 			sourceTree = "<group>";
 		};
+		951EC2FC1D9299EE006C98F8 /* MaintenanceDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				951EC2FD1D929A0A006C98F8 /* MaintenanceDetailViewController.h */,
+				951EC2FE1D929A0A006C98F8 /* MaintenanceDetailViewController.m */,
+			);
+			name = MaintenanceDetailView;
+			sourceTree = "<group>";
+		};
 		95E74D001D91078300C5CA8B /* maintenanceModule */ = {
 			isa = PBXGroup;
 			children = (
+				951EC2FC1D9299EE006C98F8 /* MaintenanceDetailView */,
 				95E74D011D9107CA00C5CA8B /* maintenanceListView */,
 			);
 			name = maintenanceModule;
@@ -824,6 +837,7 @@
 				B7F716201D8A9C57006C8178 /* Reachability.m in Sources */,
 				95E74D181D914FF700C5CA8B /* MaintenanceService.m in Sources */,
 				4A412A4B1D8AC6A800E70791 /* GlobalBackViewController.m in Sources */,
+				951EC2FF1D929A0A006C98F8 /* MaintenanceDetailViewController.m in Sources */,
 				B75B2CB41D8806D2007EEE42 /* UIView+RoundedCorner.m in Sources */,
 				B7D06C571D8974EC00A5FA94 /* LoginModel.m in Sources */,
 				B7C7A36C1D8A639800D7DF06 /* SidebarViewController.m in Sources */,

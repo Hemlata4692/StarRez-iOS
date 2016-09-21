@@ -10,7 +10,8 @@
 #import "MaintenanceCell.h"
 #import "MainatenanceModel.h"
 #import "CustomFilterViewController.h"
-@interface MaintenanceListViewController ()<CustomFilterDelegate>
+#import "MaintenanceDetailViewController.h"
+@interface MaintenanceListViewController ()<CustomFilterDelegate,CustomAlertDelegate>
 {
    UIBarButtonItem *filterBarButton;
     CustomAlert *alertView;
@@ -142,7 +143,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MainatenanceModel *objModel = [maintenanceArray objectAtIndex:indexPath.row];
+    MainatenanceModel *objModel;
+    if (isSearch)    {
+    objModel= [maintenanceSearchDataArray objectAtIndex:indexPath.row];
+    }
+    else{
+    objModel= [maintenanceArray objectAtIndex:indexPath.row];
+    }
+    
 
     float titleHeight=[UserDefaultManager getDynamicLabelHeight:[objModel title] font:[UIFont handseanWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-125];
     float forwardAddressHeight=[UserDefaultManager getDynamicLabelHeight:[[maintenanceArray objectAtIndex:indexPath.row] detail] font:[UIFont calibriNormalWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-25];
@@ -152,7 +160,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
+    MaintenanceDetailViewController *objDetail = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MaintenanceDetailViewController"];
+    if (isSearch) {
+        objDetail.objMainatenanceModel=[maintenanceSearchDataArray objectAtIndex:indexPath.row];
+    }
+    else {
+        objDetail.objMainatenanceModel=[maintenanceArray objectAtIndex:indexPath.row];
+    }
+    [self.navigationController pushViewController:objDetail animated:YES];
 }
 #pragma mark - end
 
@@ -172,6 +187,13 @@
         maintenanceSearchDataArray =[[maintenanceArray filteredArrayUsingPredicate:orPredicate] mutableCopy];
     }
     [self.maintenanceTable reloadData];
+}
+#pragma mark - end
+
+#pragma mark - Custom alert delegates
+- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+    
+    [alertView dismissAlertView];
 }
 #pragma mark - end
 /*

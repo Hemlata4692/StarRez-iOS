@@ -42,12 +42,15 @@
             tempModel.title=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.sub_category"];
             tempModel.detail=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.title"];
             NSDate *dateCompleted = [dateFormatter dateFromString:[[[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.CompleteDate"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-                        NSDate *dateReported = [dateFormatter dateFromString:[[[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateReported"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-                        [dateFormatter setDateFormat:@"dd MMM, yy"];
+            NSDate *dateReported = [dateFormatter dateFromString:[[[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateReported"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+            [dateFormatter setDateFormat:@"dd MMM, yy"];
             tempModel.completedDate=[dateFormatter stringFromDate:dateCompleted];
             //            tempModel.parcelShippingType=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.shipping_type_val"];
-                        tempModel.reportedDate=[dateFormatter stringFromDate:dateReported];
-                        tempModel.status=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status"];
+            tempModel.reportedDate=[dateFormatter stringFromDate:dateReported];
+            tempModel.status=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status"];
+            tempModel.category=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.main_category"];
+            tempModel.cause=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Cause"];
+            tempModel.commetns=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.comments"];
             
             if (!tempModel.status) {
                 tempModel.status=@"Submitted";
@@ -59,10 +62,10 @@
             //            tempModel.parcelComment=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Comments"];
             //            tempModel.parcelID=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.EntryParcelID"];
             [dataArray addObject:tempModel];
-           
+            
             
         }
-         success(dataArray);
+        success(dataArray);
     } onFailure:^(id error) {
         failure(error);
     }];

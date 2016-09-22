@@ -68,6 +68,24 @@
             //shapelayer.lineDashPhase = 3.0f;
             shapelayer.path = path.CGPath;
             [titleLbl.layer addSublayer:shapelayer];
+            
+            //round top of the label
+            CGRect labelFrame = CGRectMake(0, 0, self.view.frame.size.width-34, titleHeight+20);
+            UIView *bgView = (UILabel *)[cell.contentView viewWithTag:11];
+            bgView.translatesAutoresizingMaskIntoConstraints = YES;
+            bgView.frame = CGRectMake(0, 0, labelFrame.size.width, labelFrame.size.height);
+            UIBezierPath *maskPath = [UIBezierPath
+                                      bezierPathWithRoundedRect:labelFrame
+                                      byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight)
+                                      cornerRadii:CGSizeMake(20, 20)
+                                      ];
+            
+            CAShapeLayer *maskLayer = [CAShapeLayer layer];
+            
+            maskLayer.frame = labelFrame;
+            maskLayer.path = maskPath.CGPath;
+            
+            bgView.layer.mask = maskLayer;
             return cell;
             break;
         }
@@ -145,7 +163,7 @@
             if (objMainatenanceModel.commetns) {
                 commentsLabel.text = objMainatenanceModel.commetns;
                 float commentsHeight=[UserDefaultManager getDynamicLabelHeight:commentsLabel.text font:[UIFont calibriNormalWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-40];
-                commentsLabel.frame = CGRectMake(commentsLabel.frame.origin.x, commentsLabel.frame.origin.y, ([UIScreen mainScreen].bounds.size.width-20)-40, commentsHeight);
+                commentsLabel.frame = CGRectMake(commentsLabel.frame.origin.x, commentsLabel.frame.origin.y-5, ([UIScreen mainScreen].bounds.size.width-20)-40, commentsHeight);
             }else{
                 commentsLabel.frame = CGRectMake(commentsLabel.frame.origin.x, commentsLabel.frame.origin.y, ([UIScreen mainScreen].bounds.size.width-20)-40, 30);
                 commentsLabel.text = @"NA";
@@ -172,6 +190,22 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ButtonCell"] ;
                 
             }
+            CGRect labelFrame = CGRectMake(0, 0, self.view.frame.size.width-34, cell.contentView.frame.size.height);
+            UILabel *closeLabel = (UILabel *)[cell.contentView viewWithTag:10];
+            closeLabel.translatesAutoresizingMaskIntoConstraints = YES;
+            closeLabel.frame = CGRectMake(0, 0, labelFrame.size.width, cell.contentView.frame.size.height);
+            UIBezierPath *maskPath = [UIBezierPath
+                                      bezierPathWithRoundedRect:labelFrame
+                                      byRoundingCorners:(UIRectCornerBottomLeft | UIRectCornerBottomRight)
+                                      cornerRadii:CGSizeMake(20, 20)
+                                      ];
+            
+            CAShapeLayer *maskLayer = [CAShapeLayer layer];
+            
+            maskLayer.frame = labelFrame;
+            maskLayer.path = maskPath.CGPath;
+            
+            closeLabel.layer.mask = maskLayer;
             //cell.contentView.layer.cornerRadius = cornerRadius;
             return cell;
             break;

@@ -11,15 +11,18 @@
 #import "UncaughtExceptionHandler.h"
 #import "LoginViewController.h"
 
-@interface AppDelegate () {
+@interface AppDelegate ()<CustomAlertDelegate> {
     
     UIView *loaderView;
+    CustomAlert* alertView;
     UIImageView *spinnerBackground;
 }
 @property (strong, nonatomic) MMMaterialDesignSpinner *spinnerView;
 @end
 
 @implementation AppDelegate
+@synthesize currentNavigationController;
+@synthesize notificationDict;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -44,7 +47,9 @@
         [self.window setBackgroundColor:[UIColor whiteColor]];
         [self.window makeKeyAndVisible];
     }
-    
+    notificationDict = [NSMutableDictionary new];
+    [notificationDict setObject:@"Other" forKey:@"toScreen"];
+    [notificationDict setObject:@"No" forKey:@"isNotification"];
     //Accept push notification when app is not open
     application.applicationIconBadgeNumber = 0;
     NSDictionary *remoteNotifiInfo = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -55,6 +60,7 @@
     }
     //Register iphone device for push notifications
     [self registerDeviceForNotification];
+    
     return YES;
 }
 
@@ -139,6 +145,17 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
    
     DLog(@"push notification response.............%@",userInfo);
+    if ((application.applicationState == UIApplicationStateActive) || (application.applicationState == UIApplicationStateBackground)) {
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] doneButtonText:@"OK" cancelButtonText:@""];
+            
+    }
+    else {
+        [notificationDict setObject:@"Yes" forKey:@"isNotification"];
+        [notificationDict setObject:@"ParcelListViewController" forKey:@"toScreen"];        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
+        [self.navigationController setViewControllers: [NSArray arrayWithObject: objReveal]
+                                             animated: YES];
+    }
 }
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
@@ -150,6 +167,18 @@
 - (void)unrigisterForNotification {
     
     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+}
+#pragma mark - end
+
+#pragma mark - Custom alert delegates
+- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+    
+    [alertView dismissAlertView];
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    UIViewController * carListView = [storyboard instantiateViewControllerWithIdentifier:@"ParcelListViewController"];
+    [currentNavigationController setViewControllers: [NSArray arrayWithObject: carListView]
+                                         animated: YES];
 }
 #pragma mark - end
 @end

@@ -10,7 +10,8 @@
 //Variable declaration
 @property (strong, nonatomic) UIWindow *window;
 @property (retain, nonatomic) UINavigationController *navigationController;
-
+@property (retain, nonatomic) UINavigationController *currentNavigationController;
+@property(nonatomic,retain)NSMutableDictionary *notificationDict;
 //Method declaration
 //Global loader
 - (void)showIndicator:(UIColor*)spinnerColor;

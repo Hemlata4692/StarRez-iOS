@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title=@"Parcel Detail";
+    self.navigationItem.title=@"Parcel Detail";
     [super addBackgroungImage:@"Parcel"];
     [self layoutViewObjects];
     [self showParcelDetailData];

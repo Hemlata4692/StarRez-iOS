@@ -32,7 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Parcel List";
+    DLog(@"this is parcel listing.....");
+    [UserDefaultManager setValue:[NSNumber numberWithInteger:2] key:@"indexpath"];
+    self.navigationItem.title = @"Parcel List";
     self.noRecordLabel.hidden=YES;
     isSearch=false;
     //Add background image

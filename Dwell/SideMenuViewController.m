@@ -21,7 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[self navigationController] setNavigationBarHidden:NO animated:NO];    
+    [[self navigationController] setNavigationBarHidden:NO animated:NO];
+    myDelegate.currentNavigationController=self.navigationController;
     [self setTransparentNavigtionBar];
     [self addLeftBarButtonWithImage:[UIImage imageNamed:@"menu.png"]];
     

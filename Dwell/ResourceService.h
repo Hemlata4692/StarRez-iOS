@@ -17,5 +17,5 @@
 //Get resource type list
 - (void)getResourceType:(void (^)(id))success onFailure:(void (^)(id))failure;
 //Get location according to selected resource type
-- (void)getLocationList:(void (^)(id))success onFailure:(void (^)(id))failure;
+- (void)getLocationList:(NSString *)locationId success:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end

@@ -17,7 +17,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Dashboard";
+    if ([[myDelegate.notificationDict objectForKey:@"isNotification"] isEqualToString:@"Yes"]) {
+        [myDelegate.notificationDict setObject:@"No" forKey:@"isNotification"];
+        UIViewController * profileView = [self.storyboard instantiateViewControllerWithIdentifier:[myDelegate.notificationDict objectForKey:@"toScreen"]];
+        [self.navigationController pushViewController:profileView animated:NO];
+        return;
+    }
+    self.navigationItem.title = @"Dashboard";
     //Add background image
     [super addBackgroungImage:@"Dashboard"];
     // Do any additional setup after loading the view.

@@ -1507,7 +1507,7 @@
                                                                     <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="17"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                     <connections>
-                                                                        <outlet property="delegate" destination="FnZ-0D-dBg" id="ii9-wc-FdO"/>
+                                                                        <outlet property="delegate" destination="FnZ-0D-dBg" id="PnE-yg-O0a"/>
                                                                     </connections>
                                                                 </textField>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpb-Z1-WDv">
@@ -1636,6 +1636,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="bookResourceFormTableView" destination="OEC-HI-8YM" id="Y2x-pb-ijC"/>
                         <outlet property="datePickerView" destination="SFC-4n-Chj" id="4WX-6Y-1Pe"/>
                         <outlet property="resourcePickerView" destination="6AW-Fa-fpi" id="vSi-2S-93u"/>
                         <outlet property="toolBarView" destination="q50-lM-0qT" id="teU-KO-BtX"/>

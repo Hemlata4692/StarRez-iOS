@@ -34,9 +34,9 @@
 #pragma mark - end
 
 #pragma mark - Get location according to selected resource type
-- (void)getLocationList:(void (^)(id))success onFailure:(void (^)(id))failure {
+- (void)getLocationList:(NSString *)locationId success:(void (^)(id))success onFailure:(void (^)(id))failure {
     
-    NSString *parameters = [NSString stringWithFormat:@"SELECT [RoomLocationID], [Description], [RoomLocationAreaID], [CategoryID], [CountryID] FROM [RoomLocation] WHERE [RoomLocationAreaID] IN ('1')"];
+    NSString *parameters = [NSString stringWithFormat:@"SELECT [RoomLocationID], [Description], [RoomLocationAreaID], [CategoryID], [CountryID] FROM [RoomLocation] WHERE [RoomLocationAreaID] IN ('%@')",locationId];
     //    DLog(@"request dict %@",parameters);
     //    NSString *parameters = [NSString stringWithFormat:@"SELECT [RoomLocationID], [Description], [RoomLocationAreaID], [CategoryID], [CountryID] FROM [RoomLocation] WHERE [RoomLocationAreaID] IN ('1')"];
     //    DLog(@"request dict %@",parameters);

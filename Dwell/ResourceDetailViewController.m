@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title=@"Resource Detail";
+    self.navigationItem.title=@"Resource Detail";
     [super addBackgroungImage:@"Resource"];
     [self layoutViewObjects];
     //Show resource data using resource model

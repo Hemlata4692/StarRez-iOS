@@ -23,7 +23,8 @@
 @property (strong, nonatomic) NSString *resourceTypeMaxHour;
 @property (strong, nonatomic) NSString *resourceTypeMinHour;
 @property (strong, nonatomic) NSString *resourceTypeLocationId;
-
+//Resource location objects declaration
+@property (strong, nonatomic) NSString *resourceLocationDescription;
 
 + (instancetype)sharedUser;
 //Resource listing with detail

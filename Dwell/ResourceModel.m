@@ -121,27 +121,22 @@
 #pragma mark - Get location list
 - (void)getLocationListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure {
     
-    
-    [[ConnectionManager sharedManager] getLocationList:self onSuccess:^(id resourceData) {
-        if (NULL!=[resourceData objectForKey:@"entry"]&&[[resourceData objectForKey:@"entry"] count]!=0) {
+    [[ConnectionManager sharedManager] getLocationList:self onSuccess:^(id resourceLocationData) {
+        if (NULL!=[resourceLocationData objectForKey:@"entry"]&&[[resourceLocationData objectForKey:@"entry"] count]!=0) {
             
             NSMutableArray *dataArray = [NSMutableArray new];
-            if ([[resourceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
+            if ([[resourceLocationData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
                 __block ResourceModel *tempModel=[ResourceModel new];
-                tempModel.resourceTypeDescription=[resourceData valueForKeyPath:@"entry.content.Record.Description"];
-                tempModel.resourceTypeMaxHour=[resourceData valueForKeyPath:@"entry.content.Record.MaxBookingHours"];
-                tempModel.resourceTypeMinHour=[resourceData valueForKeyPath:@"entry.content.Record.MinBookingHours"];
-                //                tempModel.resourceTitle=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
-                
+                tempModel.resourceLocationDescription=[resourceLocationData valueForKeyPath:@"entry.content.Record.Description"];
                 [dataArray addObject:tempModel];
             }
             else {
-                for (int i=0; i<[[resourceData objectForKey:@"entry"] count]; i++) {
+                for (int i=0; i<[[resourceLocationData objectForKey:@"entry"] count]; i++) {
                     __block ResourceModel *tempModel=[ResourceModel new];
-                    tempModel.resourceTypeDescription=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
-                    tempModel.resourceTypeMaxHour=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.MaxBookingHours"];
-                    tempModel.resourceTypeMinHour=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.MinBookingHours"];
-                    //                tempModel.resourceTitle=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
+                    tempModel.resourceTypeDescription=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
+                    tempModel.resourceTypeMaxHour=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.MaxBookingHours"];
+                    tempModel.resourceTypeMinHour=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.MinBookingHours"];
+                    //                tempModel.resourceTitle=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
                     
                     [dataArray addObject:tempModel];
                 }

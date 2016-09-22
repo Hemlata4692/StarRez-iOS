@@ -131,7 +131,7 @@
 - (void)getLocationList:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     ResourceService *resourceService = [[ResourceService alloc] init];
-    [resourceService getLocationList:^(id response) {
+    [resourceService getLocationList:resourceData.resourceTypeLocationId success:^(id response) {
         //Resource data from server response and store in data model
         if (NULL!=[response objectForKey:@"entry"]&&[[response objectForKey:@"entry"] count]!=0) {
             success(response);

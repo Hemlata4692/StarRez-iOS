@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Resource";
+    self.navigationItem.title = @"Resource";
     //Add background image
     [super addBackgroungImage:@"Resource"];
     // Do any additional setup after loading the view.

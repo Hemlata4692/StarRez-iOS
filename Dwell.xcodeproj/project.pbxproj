@@ -10,6 +10,15 @@
 		4A412A471D8AC64E00E70791 /* ParcelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A412A461D8AC64E00E70791 /* ParcelDetailViewController.m */; };
 		4A412A4B1D8AC6A800E70791 /* GlobalBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A412A4A1D8AC6A800E70791 /* GlobalBackViewController.m */; };
 		4A92B91F1D8FF4DF008D4462 /* underDevelopement.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A92B91E1D8FF4DF008D4462 /* underDevelopement.png */; };
+		951EC2FF1D929A0A006C98F8 /* MaintenanceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 951EC2FE1D929A0A006C98F8 /* MaintenanceDetailViewController.m */; };
+		95E74D041D9107F300C5CA8B /* MaintenanceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D031D9107F300C5CA8B /* MaintenanceListViewController.m */; };
+		95E74D071D91122C00C5CA8B /* MaintenanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D061D91122C00C5CA8B /* MaintenanceCell.m */; };
+		95E74D0D1D91303200C5CA8B /* maintenance-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E74D091D91303200C5CA8B /* maintenance-568h@2x.png */; };
+		95E74D0E1D91303200C5CA8B /* maintenance-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E74D0A1D91303200C5CA8B /* maintenance-667h@2x.png */; };
+		95E74D0F1D91303200C5CA8B /* maintenance-736h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E74D0B1D91303200C5CA8B /* maintenance-736h@2x.png */; };
+		95E74D101D91303200C5CA8B /* maintenance.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E74D0C1D91303200C5CA8B /* maintenance.png */; };
+		95E74D141D914A8300C5CA8B /* MainatenanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D131D914A8300C5CA8B /* MainatenanceModel.m */; };
+		95E74D181D914FF700C5CA8B /* MaintenanceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D171D914FF700C5CA8B /* MaintenanceService.m */; };
 		B75B2C761D88033A007EEE42 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C751D88033A007EEE42 /* main.m */; };
 		B75B2C791D88033A007EEE42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C781D88033A007EEE42 /* AppDelegate.m */; };
 		B75B2C7C1D88033A007EEE42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C7B1D88033A007EEE42 /* LoginViewController.m */; };
@@ -66,6 +75,20 @@
 		4A412A491D8AC6A800E70791 /* GlobalBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalBackViewController.h; sourceTree = "<group>"; };
 		4A412A4A1D8AC6A800E70791 /* GlobalBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalBackViewController.m; sourceTree = "<group>"; };
 		4A92B91E1D8FF4DF008D4462 /* underDevelopement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = underDevelopement.png; sourceTree = "<group>"; };
+		951EC2FD1D929A0A006C98F8 /* MaintenanceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceDetailViewController.h; sourceTree = "<group>"; };
+		951EC2FE1D929A0A006C98F8 /* MaintenanceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceDetailViewController.m; sourceTree = "<group>"; };
+		95E74D021D9107F300C5CA8B /* MaintenanceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceListViewController.h; sourceTree = "<group>"; };
+		95E74D031D9107F300C5CA8B /* MaintenanceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceListViewController.m; sourceTree = "<group>"; };
+		95E74D051D91122C00C5CA8B /* MaintenanceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceCell.h; sourceTree = "<group>"; };
+		95E74D061D91122C00C5CA8B /* MaintenanceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceCell.m; sourceTree = "<group>"; };
+		95E74D091D91303200C5CA8B /* maintenance-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maintenance-568h@2x.png"; sourceTree = "<group>"; };
+		95E74D0A1D91303200C5CA8B /* maintenance-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maintenance-667h@2x.png"; sourceTree = "<group>"; };
+		95E74D0B1D91303200C5CA8B /* maintenance-736h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maintenance-736h@2x.png"; sourceTree = "<group>"; };
+		95E74D0C1D91303200C5CA8B /* maintenance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maintenance.png; sourceTree = "<group>"; };
+		95E74D121D914A8300C5CA8B /* MainatenanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainatenanceModel.h; sourceTree = "<group>"; };
+		95E74D131D914A8300C5CA8B /* MainatenanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainatenanceModel.m; sourceTree = "<group>"; };
+		95E74D161D914FF700C5CA8B /* MaintenanceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceService.h; sourceTree = "<group>"; };
+		95E74D171D914FF700C5CA8B /* MaintenanceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceService.m; sourceTree = "<group>"; };
 		B75B2C711D88033A007EEE42 /* Dwell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dwell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75B2C751D88033A007EEE42 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B75B2C771D88033A007EEE42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -188,6 +211,64 @@
 			name = GlobalBackView;
 			sourceTree = "<group>";
 		};
+		951EC2FC1D9299EE006C98F8 /* MaintenanceDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				951EC2FD1D929A0A006C98F8 /* MaintenanceDetailViewController.h */,
+				951EC2FE1D929A0A006C98F8 /* MaintenanceDetailViewController.m */,
+			);
+			name = MaintenanceDetailView;
+			sourceTree = "<group>";
+		};
+		95E74D001D91078300C5CA8B /* maintenanceModule */ = {
+			isa = PBXGroup;
+			children = (
+				951EC2FC1D9299EE006C98F8 /* MaintenanceDetailView */,
+				95E74D011D9107CA00C5CA8B /* maintenanceListView */,
+			);
+			name = maintenanceModule;
+			sourceTree = "<group>";
+		};
+		95E74D011D9107CA00C5CA8B /* maintenanceListView */ = {
+			isa = PBXGroup;
+			children = (
+				95E74D021D9107F300C5CA8B /* MaintenanceListViewController.h */,
+				95E74D031D9107F300C5CA8B /* MaintenanceListViewController.m */,
+				95E74D051D91122C00C5CA8B /* MaintenanceCell.h */,
+				95E74D061D91122C00C5CA8B /* MaintenanceCell.m */,
+			);
+			name = maintenanceListView;
+			sourceTree = "<group>";
+		};
+		95E74D081D91301C00C5CA8B /* Maintenance */ = {
+			isa = PBXGroup;
+			children = (
+				95E74D091D91303200C5CA8B /* maintenance-568h@2x.png */,
+				95E74D0A1D91303200C5CA8B /* maintenance-667h@2x.png */,
+				95E74D0B1D91303200C5CA8B /* maintenance-736h@2x.png */,
+				95E74D0C1D91303200C5CA8B /* maintenance.png */,
+			);
+			name = Maintenance;
+			sourceTree = "<group>";
+		};
+		95E74D111D914A2300C5CA8B /* MaintenanceModel */ = {
+			isa = PBXGroup;
+			children = (
+				95E74D121D914A8300C5CA8B /* MainatenanceModel.h */,
+				95E74D131D914A8300C5CA8B /* MainatenanceModel.m */,
+			);
+			name = MaintenanceModel;
+			sourceTree = "<group>";
+		};
+		95E74D151D914FCE00C5CA8B /* MaintenanceService */ = {
+			isa = PBXGroup;
+			children = (
+				95E74D161D914FF700C5CA8B /* MaintenanceService.h */,
+				95E74D171D914FF700C5CA8B /* MaintenanceService.m */,
+			);
+			name = MaintenanceService;
+			sourceTree = "<group>";
+		};
 		B75B2C681D88033A007EEE42 = {
 			isa = PBXGroup;
 			children = (
@@ -245,6 +326,7 @@
 		B75B2C8C1D8803C6007EEE42 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				95E74D001D91078300C5CA8B /* maintenanceModule */,
 				4A412A481D8AC69300E70791 /* GlobalBackView */,
 				B7C7A3721D8A63AD00D7DF06 /* MenuButtonSuperView */,
 				B7C7A3761D8A63BA00D7DF06 /* ParcelModule */,
@@ -267,6 +349,7 @@
 		B75B2C8E1D8803F6007EEE42 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				95E74D111D914A2300C5CA8B /* MaintenanceModel */,
 				4A412A431D8ABF7300E70791 /* ParcelModel */,
 				B75B2C8F1D880412007EEE42 /* LoginModel */,
 			);
@@ -324,6 +407,7 @@
 		B75B2C931D88047D007EEE42 /* BackgroundImages */ = {
 			isa = PBXGroup;
 			children = (
+				95E74D081D91301C00C5CA8B /* Maintenance */,
 				B7ACD27B1D8919AB005CD42D /* Login */,
 				B7C7A3821D8A64E800D7DF06 /* Parcel */,
 				B7C7A3831D8A64FC00D7DF06 /* Dashboard */,
@@ -546,6 +630,7 @@
 		B7D06C5B1D897BAD00A5FA94 /* ServerCommunication */ = {
 			isa = PBXGroup;
 			children = (
+				95E74D151D914FCE00C5CA8B /* MaintenanceService */,
 				B7CA3C811D8AC61B006CD1FD /* ParcelService */,
 				B7D06C621D897C5300A5FA94 /* LoginService */,
 				B7D06C611D897C3C00A5FA94 /* GlobalWebservice */,
@@ -692,18 +777,22 @@
 				B7ACD26E1D890FE7005CD42D /* calibri_Normal.ttf in Resources */,
 				B7C7A3811D8A64C900D7DF06 /* login.png in Resources */,
 				B7C7A3891D8A651100D7DF06 /* Parcel-736h@3x.png in Resources */,
+				95E74D0E1D91303200C5CA8B /* maintenance-667h@2x.png in Resources */,
 				B75B2C811D88033A007EEE42 /* Assets.xcassets in Resources */,
 				B7D06C541D895CA300A5FA94 /* CustomAlert.xib in Resources */,
 				B7C7A3801D8A64C900D7DF06 /* login-736h@3x.png in Resources */,
+				95E74D0D1D91303200C5CA8B /* maintenance-568h@2x.png in Resources */,
 				B7C7A38D1D8A651900D7DF06 /* Dashboard-568h@2x.png in Resources */,
 				B7C7A3871D8A651100D7DF06 /* Parcel-568h@2x.png in Resources */,
 				B7C7A38E1D8A651900D7DF06 /* Dashboard-667h@2x.png in Resources */,
+				95E74D0F1D91303200C5CA8B /* maintenance-736h@2x.png in Resources */,
 				B75B2C7F1D88033A007EEE42 /* Main.storyboard in Resources */,
 				B7C7A37E1D8A64C900D7DF06 /* login-568h@2x.png in Resources */,
 				B7ACD26D1D890FE7005CD42D /* calibri_Bold.ttf in Resources */,
 				B7ACD26F1D890FE7005CD42D /* handsean.ttf in Resources */,
 				B7C7A3881D8A651100D7DF06 /* Parcel-667h@2x.png in Resources */,
 				4A92B91F1D8FF4DF008D4462 /* underDevelopement.png in Resources */,
+				95E74D101D91303200C5CA8B /* maintenance.png in Resources */,
 				B7C7A37F1D8A64C900D7DF06 /* login-667h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -739,16 +828,21 @@
 				B7CA3C841D8AC64B006CD1FD /* ParcelService.m in Sources */,
 				B75B2CA81D880663007EEE42 /* UserDefaultManager.m in Sources */,
 				B7ACD2761D89124B005CD42D /* UIFont+CustomFont.m in Sources */,
+				95E74D141D914A8300C5CA8B /* MainatenanceModel.m in Sources */,
 				B7C7A3711D8A63A600D7DF06 /* DashboardViewController.m in Sources */,
 				B7C7A3941D8A75B600D7DF06 /* ParcelCell.m in Sources */,
 				B7D0B8031D893087008BC202 /* CustomAlertView.m in Sources */,
+				95E74D071D91122C00C5CA8B /* MaintenanceCell.m in Sources */,
 				B79CC65D1D8BD5B300FBD7C3 /* CustomFilterViewController.m in Sources */,
 				B7F716201D8A9C57006C8178 /* Reachability.m in Sources */,
+				95E74D181D914FF700C5CA8B /* MaintenanceService.m in Sources */,
 				4A412A4B1D8AC6A800E70791 /* GlobalBackViewController.m in Sources */,
+				951EC2FF1D929A0A006C98F8 /* MaintenanceDetailViewController.m in Sources */,
 				B75B2CB41D8806D2007EEE42 /* UIView+RoundedCorner.m in Sources */,
 				B7D06C571D8974EC00A5FA94 /* LoginModel.m in Sources */,
 				B7C7A36C1D8A639800D7DF06 /* SidebarViewController.m in Sources */,
 				B7C7A3791D8A63C000D7DF06 /* ParcelListViewController.m in Sources */,
+				95E74D041D9107F300C5CA8B /* MaintenanceListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

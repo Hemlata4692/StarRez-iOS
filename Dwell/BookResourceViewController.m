@@ -21,6 +21,19 @@
     UIBarButtonItem *pickerPreviousBarButton, *pickerNextBarButton,*textfieldPreviousBarButton, *textfieldNextBarButton;
     UIToolbar *textFieldToolbar;
 }
+
+@property (strong, nonatomic) IBOutlet UIScrollView *bookResourceScrollView;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
+@property (strong, nonatomic) IBOutlet UIView *bookResourceContainerView;
+@property (strong, nonatomic) IBOutlet UITextField *sourceTypeField;
+@property (strong, nonatomic) IBOutlet UITextField *sourceNameField;
+@property (strong, nonatomic) IBOutlet UITextField *locationField;
+@property (strong, nonatomic) IBOutlet UITextField *fromDateField;
+@property (strong, nonatomic) IBOutlet UITextField *fromTimeField;
+@property (strong, nonatomic) IBOutlet UITextField *toDateField;
+@property (strong, nonatomic) IBOutlet UITextField *toTimeField;
+
+
 @property (weak, nonatomic) IBOutlet UITableView *bookResourceFormTableView;
 @property (strong, nonatomic) IBOutlet UIToolbar *toolBarView;
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePickerView;
@@ -49,6 +62,14 @@
     self.datePickerView.backgroundColor = [UIColor colorWithRed:(215.0/255.0) green:(215.0/255.0) blue:(215.0/255.0) alpha:1.0f];
     [self.datePickerView setMinimumDate:[NSDate date]];
     
+    [myDelegate showIndicator:[Constants greenBackgroundColor:1.0]];
+    [self performSelector:@selector(getResourcesTypeList) withObject:nil afterDelay:.1];
+    // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification object:nil];
@@ -56,20 +77,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification object:nil];
-    [myDelegate showIndicator:[Constants greenBackgroundColor:1.0]];
-    [self performSelector:@selector(getResourcesTypeList) withObject:nil afterDelay:.1];
-    // Do any additional setup after loading the view.
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     
-//    self.toolBarView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [[UIScreen mainScreen] bounds].size.width, self.toolBarView.frame.size.height);
-    NSDictionary* info = [notification userInfo];
-    NSValue *aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDuration:0.2];
-//    self.toolBarView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height-[aValue CGRectValue].size.height-44, [[UIScreen mainScreen] bounds].size.width, self.toolBarView.frame.size.height);
-//    [UIView commitAnimations];
+//    NSDictionary* info = [notification userInfo];
+//    NSValue *aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
 //    CGPoint center= toolbarTextField.center;
 //    CGPoint rootViewPoint = [toolbarTextField.superview convertPoint:center toView:fieldTableView];
 //    //Not working in multiple cell case
@@ -87,12 +100,19 @@
 //    }
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+}
+
 - (void)keyboardWillHide:(NSNotification *)notification {
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDuration:0.3];
-   
-//    self.toolBarView.frame = CGRectMake(0, 1000, [[UIScreen mainScreen] bounds].size.width, self.toolBarView.frame.size.height);
-//    [UIView commitAnimations];
     //Not working in multiple cell case
     //    self.fieldTableView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64);
     
@@ -128,136 +148,126 @@
 - (void)selectPreviousField {
     
     currentFieldIndex=currentFieldIndex-1;
-    if (currentFieldIndex==0) {
-        [self.view endEditing:YES];
-        [self hideDatePickerView];
-        if (bookResourceTypeArray.count!=0) {
-            pickerPreviousBarButton.enabled=false;
-            pickerNextBarButton.enabled=true;
-            [self showResourcePickerView:(lastSelectedResourceType==-1?0:lastSelectedResourceType)];
-        }
-    }
-    else if (currentFieldIndex==2) {
-        [self.view endEditing:YES];
-        [self hideDatePickerView];
-        if (bookResourceLocationArray.count!=0) {
-            [self showResourcePickerView:lastSelectedResourceLocation];
-        }
-    }
-    else if (currentFieldIndex==3) {
-        [self.view endEditing:YES];
-        [self hideResourcePickerView];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm a"];
-         NSIndexPath *indexPath=[NSIndexPath indexPathForRow:currentFieldIndex inSection:0];
-        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
-        NSDate *date;
-        if (![cell.resourceTextField.text isEqualToString:@""]) {
-            date = [dateFormat dateFromString:cell.resourceTextField.text];
-        }
-        else {
-            date = [NSDate date];
-        }
-        [_datePickerView setDate:date];
-        
-        [self showDatePickerView];
-    }
-    else if (currentFieldIndex==4) {
-        [self.view endEditing:YES];
-        pickerPreviousBarButton.enabled=true;
-        pickerNextBarButton.enabled=false;
-        [self hideResourcePickerView];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"dd/MM/yyyy"];
-         NSIndexPath *indexPath=[NSIndexPath indexPathForRow:currentFieldIndex inSection:0];
-        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
-        NSDate *date;
-        if (![cell.resourceTextField.text isEqualToString:@""]) {
-            date = [dateFormat dateFromString:cell.resourceTextField.text];
-        }
-        else {
-            date = [NSDate date];
-        }
-        [_datePickerView setDate:date];
-        [self showDatePickerView];
-    }
-    [self.view endEditing:YES];
-//    CGPoint center= toolbarTextField.center;
-//    CGPoint rootViewPoint = [toolbarTextField.superview convertPoint:center toView:fieldTableView];
-//    NSIndexPath *indexPath = [fieldTableView indexPathForRowAtPoint:rootViewPoint];
-//    FieldTableViewCell *maincell = [fieldTableView cellForRowAtIndexPath:indexPath];
-//    [maincell.textfield resignFirstResponder];
-////    if (indexPath.row>0) {
-//        NSIndexPath *newIndexPath1 = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
-//        maincell = [fieldTableView cellForRowAtIndexPath:newIndexPath1];
-//        [maincell.textfield becomeFirstResponder];
-////    }
+    [self navigateTextFields:-1];
+//    if (currentFieldIndex==0) {
+//        [self.view endEditing:YES];
+//        [self hideDatePickerView];
+//        if (bookResourceTypeArray.count!=0) {
+//            pickerPreviousBarButton.enabled=false;
+//            pickerNextBarButton.enabled=true;
+//            [self showResourcePickerView:(lastSelectedResourceType==-1?0:lastSelectedResourceType)];
+//        }
+//    }
+//    else if (currentFieldIndex==2) {
+//        [self.view endEditing:YES];
+//        [self hideDatePickerView];
+//        if (bookResourceLocationArray.count!=0) {
+//            [self showResourcePickerView:lastSelectedResourceLocation];
+//        }
+//    }
+//    else if (currentFieldIndex==3) {
+//        [self.view endEditing:YES];
+//        [self hideResourcePickerView];
+//        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//        [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm a"];
+//         NSIndexPath *indexPath=[NSIndexPath indexPathForRow:currentFieldIndex inSection:0];
+//        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
+//        NSDate *date;
+//        if (![cell.resourceTextField.text isEqualToString:@""]) {
+//            date = [dateFormat dateFromString:cell.resourceTextField.text];
+//        }
+//        else {
+//            date = [NSDate date];
+//        }
+//        [_datePickerView setDate:date];
+//        
+//        [self showDatePickerView];
+//    }
+//    else if (currentFieldIndex==4) {
+//        [self.view endEditing:YES];
+//        pickerPreviousBarButton.enabled=true;
+//        pickerNextBarButton.enabled=false;
+//        [self hideResourcePickerView];
+//        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//        [dateFormat setDateFormat:@"dd/MM/yyyy"];
+//         NSIndexPath *indexPath=[NSIndexPath indexPathForRow:currentFieldIndex inSection:0];
+//        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
+//        NSDate *date;
+//        if (![cell.resourceTextField.text isEqualToString:@""]) {
+//            date = [dateFormat dateFromString:cell.resourceTextField.text];
+//        }
+//        else {
+//            date = [NSDate date];
+//        }
+//        [_datePickerView setDate:date];
+//        [self showDatePickerView];
+//    }
 }
 
 - (void)selectNextField {
     currentFieldIndex=currentFieldIndex+1;
-    if (currentFieldIndex==0) {
-        [self.view endEditing:YES];
-        [self hideDatePickerView];
-        if (bookResourceTypeArray.count!=0) {
-            pickerPreviousBarButton.enabled=false;
-            pickerNextBarButton.enabled=true;
-            [self showResourcePickerView:(lastSelectedResourceType==-1?0:lastSelectedResourceType)];
-        }
-    }
-    else if (currentFieldIndex==1) {
-        [self.view endEditing:YES];
-        [self hideResourcePickerView];
-        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:currentFieldIndex inSection:0];
-        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
-        cell.resourceTextField.delegate=self;
-        [cell.resourceTextField  becomeFirstResponder];
-    }
-    else if (currentFieldIndex==2) {
-        [self.view endEditing:YES];
-        [self hideDatePickerView];
-        if (bookResourceLocationArray.count!=0) {
-            [self showResourcePickerView:lastSelectedResourceLocation];
-        }
-    }
-    else if (currentFieldIndex==3) {
-        [self.view endEditing:YES];
-        [self hideResourcePickerView];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm a"];
-        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:currentFieldIndex inSection:0];
-        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
-        NSDate *date;
-        if (![cell.resourceTextField.text isEqualToString:@""]) {
-            date = [dateFormat dateFromString:cell.resourceTextField.text];
-        }
-        else {
-            date = [NSDate date];
-        }
-        [_datePickerView setDate:date];
-        
-        [self showDatePickerView];
-    }
-    else if (currentFieldIndex==4) {
-        [self.view endEditing:YES];
-        pickerPreviousBarButton.enabled=true;
-        pickerNextBarButton.enabled=false;
-        [self hideResourcePickerView];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"dd/MM/yyyy"];
-        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:currentFieldIndex inSection:0];
-        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
-        NSDate *date;
-        if (![cell.resourceTextField.text isEqualToString:@""]) {
-            date = [dateFormat dateFromString:cell.resourceTextField.text];
-        }
-        else {
-            date = [NSDate date];
-        }
-        [_datePickerView setDate:date];
-        [self showDatePickerView];
-    }
-    [self.view endEditing:YES];
+    [self navigateTextFields:1];
+//    if (currentFieldIndex==0) {
+//        [self.view endEditing:YES];
+//        [self hideDatePickerView];
+//        if (bookResourceTypeArray.count!=0) {
+//            pickerPreviousBarButton.enabled=false;
+//            pickerNextBarButton.enabled=true;
+//            [self showResourcePickerView:(lastSelectedResourceType==-1?0:lastSelectedResourceType)];
+//        }
+//    }
+//    else if (currentFieldIndex==1) {
+////        [self.view endEditing:YES];
+//        [self hideResourcePickerView];
+//        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:currentFieldIndex inSection:0];
+//        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
+//        cell.resourceTextField.delegate=self;
+//        [cell.resourceTextField  becomeFirstResponder];
+//    }
+//    else if (currentFieldIndex==2) {
+//        [self.view endEditing:YES];
+//        [self hideDatePickerView];
+//        if (bookResourceLocationArray.count!=0) {
+//            [self showResourcePickerView:lastSelectedResourceLocation];
+//        }
+//    }
+//    else if (currentFieldIndex==3) {
+//        [self.view endEditing:YES];
+//        [self hideResourcePickerView];
+//        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//        [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm a"];
+//        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:currentFieldIndex inSection:0];
+//        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
+//        NSDate *date;
+//        if (![cell.resourceTextField.text isEqualToString:@""]) {
+//            date = [dateFormat dateFromString:cell.resourceTextField.text];
+//        }
+//        else {
+//            date = [NSDate date];
+//        }
+//        [_datePickerView setDate:date];
+//        
+//        [self showDatePickerView];
+//    }
+//    else if (currentFieldIndex==4) {
+//        [self.view endEditing:YES];
+//        pickerPreviousBarButton.enabled=true;
+//        pickerNextBarButton.enabled=false;
+//        [self hideResourcePickerView];
+//        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//        [dateFormat setDateFormat:@"dd/MM/yyyy"];
+//        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:currentFieldIndex inSection:0];
+//        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
+//        NSDate *date;
+//        if (![cell.resourceTextField.text isEqualToString:@""]) {
+//            date = [dateFormat dateFromString:cell.resourceTextField.text];
+//        }
+//        else {
+//            date = [NSDate date];
+//        }
+//        [_datePickerView setDate:date];
+//        [self showDatePickerView];
+//    }
 }
 
 - (void)doneButtonPressed:(id)sender {
@@ -323,7 +333,7 @@
 - (void)showDatePickerView {
 
     [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationDuration:0.5];
     self.datePickerView.frame = CGRectMake(self.datePickerView.frame.origin.x, [[UIScreen mainScreen] bounds].size.height - self.datePickerView.frame.size.height, [[UIScreen mainScreen] bounds].size.width, self.datePickerView.frame.size.height);
     self.toolBarView.frame = CGRectMake(0, self.datePickerView.frame.origin.y-44, [[UIScreen mainScreen] bounds].size.width, self.toolBarView.frame.size.height);
     [UIView commitAnimations];
@@ -342,7 +352,7 @@
     
     [self.resourcePickerView selectRow:selectedIndex inComponent:0 animated:YES];
     [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationDuration:0.5];
     self.resourcePickerView.frame = CGRectMake(self.resourcePickerView.frame.origin.x, [[UIScreen mainScreen] bounds].size.height -  self.resourcePickerView.frame.size.height, [[UIScreen mainScreen] bounds].size.width, self.resourcePickerView.frame.size.height);
     self.toolBarView.frame = CGRectMake(0, self.resourcePickerView.frame.origin.y-44, [[UIScreen mainScreen] bounds].size.width, self.toolBarView.frame.size.height);
     [UIView commitAnimations];
@@ -538,58 +548,59 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     currentFieldIndex=(int)indexPath.row;
-    if (indexPath.row==0) {
-        [self.view endEditing:YES];
-        [self hideDatePickerView];
-        if (bookResourceTypeArray.count!=0) {
-            pickerPreviousBarButton.enabled=false;
-            pickerNextBarButton.enabled=true;
-            [self showResourcePickerView:(lastSelectedResourceType==-1?0:lastSelectedResourceType)];
-        }
-    }
-    else if (indexPath.row==2) {
-        [self.view endEditing:YES];
-        [self hideDatePickerView];
-        if (bookResourceLocationArray.count!=0) {
-            [self showResourcePickerView:lastSelectedResourceLocation];
-        }
-    }
-    else if (indexPath.row==3) {
-        [self.view endEditing:YES];
-        [self hideResourcePickerView];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm a"];
-        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
-        NSDate *date;
-        if (![cell.resourceTextField.text isEqualToString:@""]) {
-           date = [dateFormat dateFromString:cell.resourceTextField.text];
-        }
-        else {
-            date = [NSDate date];
-        }
-        [_datePickerView setDate:date];
-        
-        [self showDatePickerView];
-    }
-    else if (indexPath.row==4) {
-        [self.view endEditing:YES];
-        pickerPreviousBarButton.enabled=true;
-        pickerNextBarButton.enabled=false;
-        [self hideResourcePickerView];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"dd/MM/yyyy"];
-        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
-        NSDate *date;
-        if (![cell.resourceTextField.text isEqualToString:@""]) {
-            date = [dateFormat dateFromString:cell.resourceTextField.text];
-        }
-        else {
-            date = [NSDate date];
-        }
-        [_datePickerView setDate:date];
-        [self showDatePickerView];
-    }
-    
+    [self navigateTextFields:0];
+//    if (indexPath.row==0) {
+//        [self.view endEditing:YES];
+//        [self hideDatePickerView];
+//        if (bookResourceTypeArray.count!=0) {
+//            pickerPreviousBarButton.enabled=false;
+//            pickerNextBarButton.enabled=true;
+//            [self showResourcePickerView:(lastSelectedResourceType==-1?0:lastSelectedResourceType)];
+//        }
+//    }
+//    else if (indexPath.row==2) {
+//        [self.view endEditing:YES];
+//        [self hideDatePickerView];
+//        if (bookResourceLocationArray.count!=0) {
+//            [self showResourcePickerView:lastSelectedResourceLocation];
+//        }
+//    }
+//    else if (indexPath.row==3) {
+//        [self.view endEditing:YES];
+//        [self hideResourcePickerView];
+//        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//        [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm a"];
+//        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
+//        NSDate *date;
+//        if (![cell.resourceTextField.text isEqualToString:@""]) {
+//           date = [dateFormat dateFromString:cell.resourceTextField.text];
+//        }
+//        else {
+//            date = [NSDate date];
+//        }
+//        [_datePickerView setDate:date];
+//        
+//        [self showDatePickerView];
+//    }
+//    else if (indexPath.row==4) {
+//        [self.view endEditing:YES];
+//        pickerPreviousBarButton.enabled=true;
+//        pickerNextBarButton.enabled=false;
+//        [self hideResourcePickerView];
+//        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//        [dateFormat setDateFormat:@"dd/MM/yyyy"];
+//        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
+//        NSDate *date;
+//        if (![cell.resourceTextField.text isEqualToString:@""]) {
+//            date = [dateFormat dateFromString:cell.resourceTextField.text];
+//        }
+//        else {
+//            date = [NSDate date];
+//        }
+//        [_datePickerView setDate:date];
+//        [self showDatePickerView];
+//    }
+//    
 }
 #pragma mark - end
 
@@ -631,6 +642,104 @@
     [alertView dismissAlertView];
 }
 #pragma mark - end
+
+//Moving one input field to another field
+- (void)navigateTextFields:(int)selectType {
+    
+    pickerPreviousBarButton.enabled=true;
+    pickerNextBarButton.enabled=true;
+    if (currentFieldIndex==0) {
+        [self.view endEditing:YES];
+        [self hideDatePickerView];
+        if (bookResourceTypeArray.count!=0) {
+            pickerPreviousBarButton.enabled=false;
+            pickerNextBarButton.enabled=true;
+            [self showResourcePickerView:(lastSelectedResourceType==-1?0:lastSelectedResourceType)];
+        }
+    }
+    else if (currentFieldIndex==1) {
+        [self hideResourcePickerView];
+        [self hideDatePickerView];
+        if (selectType!=0) {
+            NSIndexPath *indexPath=[NSIndexPath indexPathForRow:currentFieldIndex inSection:0];
+            BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
+            cell.resourceTextField.delegate=self;
+            [cell.resourceTextField  becomeFirstResponder];
+        }
+    }
+    else if (currentFieldIndex==2) {
+        [self.view endEditing:YES];
+        [self hideDatePickerView];
+        if (bookResourceLocationArray.count!=0) {
+            [self showResourcePickerView:lastSelectedResourceLocation];
+        }
+    }
+    else if (currentFieldIndex==3) {
+        [self.view endEditing:YES];
+        [self hideResourcePickerView];
+        [self hideDatePickerView];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm a"];
+        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:currentFieldIndex inSection:0];
+        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
+        NSDate *date;
+        if (![cell.resourceTextField.text isEqualToString:@""]) {
+            date = [dateFormat dateFromString:cell.resourceTextField.text];
+        }
+        else {
+            date = [NSDate date];
+        }
+        [_datePickerView setDate:date];
+        
+        [self showDatePickerView];
+    }
+    else if (currentFieldIndex==4) {
+        [self.view endEditing:YES];
+        [self hideDatePickerView];
+        [self hideResourcePickerView];
+        pickerPreviousBarButton.enabled=true;
+        pickerNextBarButton.enabled=false;
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm a"];
+        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:currentFieldIndex inSection:0];
+        BookResourceCell *cell=(BookResourceCell *)[self.bookResourceFormTableView cellForRowAtIndexPath:indexPath];
+        DLog(@"%@",cell.resourceTextField.text);
+        NSDate *date;
+        if (![cell.resourceTextField.text isEqualToString:@""]) {
+            date = [dateFormat dateFromString:cell.resourceTextField.text];
+        }
+        else {
+            date = [NSDate date];
+        }
+        [_datePickerView setDate:date];
+        [self showDatePickerView];
+    }
+}
+
+
+- (IBAction)sourceType:(UIButton *)sender {
+}
+
+- (IBAction)sourceName:(UIButton *)sender {
+}
+
+- (IBAction)location:(UIButton *)sender {
+}
+
+- (IBAction)fromDate:(UIButton *)sender {
+}
+
+- (IBAction)fromTime:(UIButton *)sender {
+}
+
+- (IBAction)todate:(UIButton *)sender {
+}
+
+- (IBAction)toTime:(UIButton *)sender {
+}
+
+- (IBAction)search:(UIButton *)sender {
+}
 /*
 #pragma mark - Navigation
 

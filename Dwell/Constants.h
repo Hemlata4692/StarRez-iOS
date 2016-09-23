@@ -22,4 +22,5 @@ static const float cornerRadius=15.0;
 + (UIColor*)logoutColor;
 + (UIColor*)historyColor:(float)alpha;
 + (UIColor*)cancelColor:(float)alpha;
++ (UIColor*)navigationColor;
 @end

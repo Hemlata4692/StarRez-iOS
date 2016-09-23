@@ -53,4 +53,8 @@
 + (UIColor*)cancelColor:(float)alpha {
     return [UIColor colorWithRed:108.0/255 green:108.0/255.0 blue:108.0/255.0 alpha:1.0];
 }
+
++ (UIColor*)navigationColor {
+    return [UIColor colorWithRed:118.0/255 green:44.0/255.0 blue:134.0/255.0 alpha:1.0];
+}
 @end

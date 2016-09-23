@@ -19,6 +19,17 @@
 		95E74D101D91303200C5CA8B /* maintenance.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E74D0C1D91303200C5CA8B /* maintenance.png */; };
 		95E74D141D914A8300C5CA8B /* MainatenanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D131D914A8300C5CA8B /* MainatenanceModel.m */; };
 		95E74D181D914FF700C5CA8B /* MaintenanceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D171D914FF700C5CA8B /* MaintenanceService.m */; };
+		B7465A941D950C28008B315A /* ResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465A931D950C28008B315A /* ResourceService.m */; };
+		B7465A9C1D951116008B315A /* BookResourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465A9B1D951116008B315A /* BookResourceCell.m */; };
+		B7465A9F1D95111C008B315A /* BookResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465A9E1D95111C008B315A /* BookResourceViewController.m */; };
+		B7465AA61D951176008B315A /* ResourceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465AA51D951176008B315A /* ResourceDetailViewController.m */; };
+		B7465AA91D95117E008B315A /* ResourceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465AA81D95117E008B315A /* ResourceListCell.m */; };
+		B7465AAC1D951183008B315A /* ResourceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465AAB1D951183008B315A /* ResourceListViewController.m */; };
+		B7465AB01D95133C008B315A /* ResourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465AAF1D95133C008B315A /* ResourceModel.m */; };
+		B7465AB71D95209B008B315A /* Resource-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7465AB31D95209B008B315A /* Resource-568h@2x.png */; };
+		B7465AB81D95209B008B315A /* Resource-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7465AB41D95209B008B315A /* Resource-667h@2x.png */; };
+		B7465AB91D95209B008B315A /* Resource-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7465AB51D95209B008B315A /* Resource-736h@3x.png */; };
+		B7465ABA1D95209B008B315A /* Resource.png in Resources */ = {isa = PBXBuildFile; fileRef = B7465AB61D95209B008B315A /* Resource.png */; };
 		B75B2C761D88033A007EEE42 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C751D88033A007EEE42 /* main.m */; };
 		B75B2C791D88033A007EEE42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C781D88033A007EEE42 /* AppDelegate.m */; };
 		B75B2C7C1D88033A007EEE42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C7B1D88033A007EEE42 /* LoginViewController.m */; };
@@ -89,6 +100,24 @@
 		95E74D131D914A8300C5CA8B /* MainatenanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainatenanceModel.m; sourceTree = "<group>"; };
 		95E74D161D914FF700C5CA8B /* MaintenanceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceService.h; sourceTree = "<group>"; };
 		95E74D171D914FF700C5CA8B /* MaintenanceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceService.m; sourceTree = "<group>"; };
+		B7465A921D950C28008B315A /* ResourceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceService.h; sourceTree = "<group>"; };
+		B7465A931D950C28008B315A /* ResourceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceService.m; sourceTree = "<group>"; };
+		B7465A9A1D951116008B315A /* BookResourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookResourceCell.h; sourceTree = "<group>"; };
+		B7465A9B1D951116008B315A /* BookResourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookResourceCell.m; sourceTree = "<group>"; };
+		B7465A9D1D95111C008B315A /* BookResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookResourceViewController.h; sourceTree = "<group>"; };
+		B7465A9E1D95111C008B315A /* BookResourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookResourceViewController.m; sourceTree = "<group>"; };
+		B7465AA41D951176008B315A /* ResourceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceDetailViewController.h; sourceTree = "<group>"; };
+		B7465AA51D951176008B315A /* ResourceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceDetailViewController.m; sourceTree = "<group>"; };
+		B7465AA71D95117E008B315A /* ResourceListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceListCell.h; sourceTree = "<group>"; };
+		B7465AA81D95117E008B315A /* ResourceListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceListCell.m; sourceTree = "<group>"; };
+		B7465AAA1D951183008B315A /* ResourceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceListViewController.h; sourceTree = "<group>"; };
+		B7465AAB1D951183008B315A /* ResourceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceListViewController.m; sourceTree = "<group>"; };
+		B7465AAE1D95133C008B315A /* ResourceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceModel.h; sourceTree = "<group>"; };
+		B7465AAF1D95133C008B315A /* ResourceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceModel.m; sourceTree = "<group>"; };
+		B7465AB31D95209B008B315A /* Resource-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Resource-568h@2x.png"; sourceTree = "<group>"; };
+		B7465AB41D95209B008B315A /* Resource-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Resource-667h@2x.png"; sourceTree = "<group>"; };
+		B7465AB51D95209B008B315A /* Resource-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Resource-736h@3x.png"; sourceTree = "<group>"; };
+		B7465AB61D95209B008B315A /* Resource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resource.png; sourceTree = "<group>"; };
 		B75B2C711D88033A007EEE42 /* Dwell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dwell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75B2C751D88033A007EEE42 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B75B2C771D88033A007EEE42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -269,6 +298,108 @@
 			name = MaintenanceService;
 			sourceTree = "<group>";
 		};
+		B7465A911D950C21008B315A /* ResourceService */ = {
+			isa = PBXGroup;
+			children = (
+				B7465A921D950C28008B315A /* ResourceService.h */,
+				B7465A931D950C28008B315A /* ResourceService.m */,
+			);
+			name = ResourceService;
+			sourceTree = "<group>";
+		};
+		B7465A951D9510BA008B315A /* ResourceModule */ = {
+			isa = PBXGroup;
+			children = (
+				B7465AA31D95116B008B315A /* ResourceDetail */,
+				B7465AA01D951149008B315A /* ResourceList */,
+				B7465A961D9510D9008B315A /* BookResource */,
+			);
+			name = ResourceModule;
+			sourceTree = "<group>";
+		};
+		B7465A961D9510D9008B315A /* BookResource */ = {
+			isa = PBXGroup;
+			children = (
+				B7465A991D9510F4008B315A /* BookResourceView */,
+				B7465A971D9510E1008B315A /* BookResourceCell */,
+			);
+			name = BookResource;
+			sourceTree = "<group>";
+		};
+		B7465A971D9510E1008B315A /* BookResourceCell */ = {
+			isa = PBXGroup;
+			children = (
+				B7465A9A1D951116008B315A /* BookResourceCell.h */,
+				B7465A9B1D951116008B315A /* BookResourceCell.m */,
+			);
+			name = BookResourceCell;
+			sourceTree = "<group>";
+		};
+		B7465A991D9510F4008B315A /* BookResourceView */ = {
+			isa = PBXGroup;
+			children = (
+				B7465A9D1D95111C008B315A /* BookResourceViewController.h */,
+				B7465A9E1D95111C008B315A /* BookResourceViewController.m */,
+			);
+			name = BookResourceView;
+			sourceTree = "<group>";
+		};
+		B7465AA01D951149008B315A /* ResourceList */ = {
+			isa = PBXGroup;
+			children = (
+				B7465AA21D95115C008B315A /* ResourceListView */,
+				B7465AA11D951156008B315A /* ResourceListCell */,
+			);
+			name = ResourceList;
+			sourceTree = "<group>";
+		};
+		B7465AA11D951156008B315A /* ResourceListCell */ = {
+			isa = PBXGroup;
+			children = (
+				B7465AA71D95117E008B315A /* ResourceListCell.h */,
+				B7465AA81D95117E008B315A /* ResourceListCell.m */,
+			);
+			name = ResourceListCell;
+			sourceTree = "<group>";
+		};
+		B7465AA21D95115C008B315A /* ResourceListView */ = {
+			isa = PBXGroup;
+			children = (
+				B7465AAA1D951183008B315A /* ResourceListViewController.h */,
+				B7465AAB1D951183008B315A /* ResourceListViewController.m */,
+			);
+			name = ResourceListView;
+			sourceTree = "<group>";
+		};
+		B7465AA31D95116B008B315A /* ResourceDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B7465AA41D951176008B315A /* ResourceDetailViewController.h */,
+				B7465AA51D951176008B315A /* ResourceDetailViewController.m */,
+			);
+			name = ResourceDetail;
+			sourceTree = "<group>";
+		};
+		B7465AAD1D951334008B315A /* ResourceModel */ = {
+			isa = PBXGroup;
+			children = (
+				B7465AAE1D95133C008B315A /* ResourceModel.h */,
+				B7465AAF1D95133C008B315A /* ResourceModel.m */,
+			);
+			name = ResourceModel;
+			sourceTree = "<group>";
+		};
+		B7465AB21D952091008B315A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				B7465AB31D95209B008B315A /* Resource-568h@2x.png */,
+				B7465AB41D95209B008B315A /* Resource-667h@2x.png */,
+				B7465AB51D95209B008B315A /* Resource-736h@3x.png */,
+				B7465AB61D95209B008B315A /* Resource.png */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
 		B75B2C681D88033A007EEE42 = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +457,7 @@
 		B75B2C8C1D8803C6007EEE42 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B7465A951D9510BA008B315A /* ResourceModule */,
 				95E74D001D91078300C5CA8B /* maintenanceModule */,
 				4A412A481D8AC69300E70791 /* GlobalBackView */,
 				B7C7A3721D8A63AD00D7DF06 /* MenuButtonSuperView */,
@@ -349,6 +481,7 @@
 		B75B2C8E1D8803F6007EEE42 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B7465AAD1D951334008B315A /* ResourceModel */,
 				95E74D111D914A2300C5CA8B /* MaintenanceModel */,
 				4A412A431D8ABF7300E70791 /* ParcelModel */,
 				B75B2C8F1D880412007EEE42 /* LoginModel */,
@@ -407,6 +540,7 @@
 		B75B2C931D88047D007EEE42 /* BackgroundImages */ = {
 			isa = PBXGroup;
 			children = (
+				B7465AB21D952091008B315A /* Resource */,
 				95E74D081D91301C00C5CA8B /* Maintenance */,
 				B7ACD27B1D8919AB005CD42D /* Login */,
 				B7C7A3821D8A64E800D7DF06 /* Parcel */,
@@ -630,6 +764,7 @@
 		B7D06C5B1D897BAD00A5FA94 /* ServerCommunication */ = {
 			isa = PBXGroup;
 			children = (
+				B7465A911D950C21008B315A /* ResourceService */,
 				95E74D151D914FCE00C5CA8B /* MaintenanceService */,
 				B7CA3C811D8AC61B006CD1FD /* ParcelService */,
 				B7D06C621D897C5300A5FA94 /* LoginService */,
@@ -781,11 +916,14 @@
 				B75B2C811D88033A007EEE42 /* Assets.xcassets in Resources */,
 				B7D06C541D895CA300A5FA94 /* CustomAlert.xib in Resources */,
 				B7C7A3801D8A64C900D7DF06 /* login-736h@3x.png in Resources */,
+				B7465AB81D95209B008B315A /* Resource-667h@2x.png in Resources */,
 				95E74D0D1D91303200C5CA8B /* maintenance-568h@2x.png in Resources */,
 				B7C7A38D1D8A651900D7DF06 /* Dashboard-568h@2x.png in Resources */,
 				B7C7A3871D8A651100D7DF06 /* Parcel-568h@2x.png in Resources */,
 				B7C7A38E1D8A651900D7DF06 /* Dashboard-667h@2x.png in Resources */,
 				95E74D0F1D91303200C5CA8B /* maintenance-736h@2x.png in Resources */,
+				B7465ABA1D95209B008B315A /* Resource.png in Resources */,
+				B7465AB71D95209B008B315A /* Resource-568h@2x.png in Resources */,
 				B75B2C7F1D88033A007EEE42 /* Main.storyboard in Resources */,
 				B7C7A37E1D8A64C900D7DF06 /* login-568h@2x.png in Resources */,
 				B7ACD26D1D890FE7005CD42D /* calibri_Bold.ttf in Resources */,
@@ -794,6 +932,7 @@
 				4A92B91F1D8FF4DF008D4462 /* underDevelopement.png in Resources */,
 				95E74D101D91303200C5CA8B /* maintenance.png in Resources */,
 				B7C7A37F1D8A64C900D7DF06 /* login-667h@2x.png in Resources */,
+				B7465AB91D95209B008B315A /* Resource-736h@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,17 +954,23 @@
 				B75B2C991D88060B007EEE42 /* BSKeyboardControls.m in Sources */,
 				B7D06C6C1D897D7900A5FA94 /* XMLDictionary.m in Sources */,
 				B75B2C791D88033A007EEE42 /* AppDelegate.m in Sources */,
+				B7465A9F1D95111C008B315A /* BookResourceViewController.m in Sources */,
 				B7CA3C801D8AC357006CD1FD /* ParcelModel.m in Sources */,
+				B7465AAC1D951183008B315A /* ResourceListViewController.m in Sources */,
 				B7C7A3751D8A63B400D7DF06 /* SideMenuViewController.m in Sources */,
 				B75B2C761D88033A007EEE42 /* main.m in Sources */,
+				B7465A9C1D951116008B315A /* BookResourceCell.m in Sources */,
 				B75B2CB01D8806C1007EEE42 /* UITextField+Padding.m in Sources */,
+				B7465AA91D95117E008B315A /* ResourceListCell.m in Sources */,
 				B7D06C651D897C5F00A5FA94 /* LoginService.m in Sources */,
 				B7D0B7FD1D893052008BC202 /* CustomAlert.m in Sources */,
 				B75B2CB81D8806E4007EEE42 /* UIImage+deviceSpecificMedia.m in Sources */,
+				B7465AA61D951176008B315A /* ResourceDetailViewController.m in Sources */,
 				B7D06C601D897BD800A5FA94 /* ConnectionManager.m in Sources */,
 				B75B2CAC1D8806AD007EEE42 /* UITextField+Validations.m in Sources */,
 				B7F7161F1D8A9C57006C8178 /* Internet.m in Sources */,
 				B7CA3C841D8AC64B006CD1FD /* ParcelService.m in Sources */,
+				B7465AB01D95133C008B315A /* ResourceModel.m in Sources */,
 				B75B2CA81D880663007EEE42 /* UserDefaultManager.m in Sources */,
 				B7ACD2761D89124B005CD42D /* UIFont+CustomFont.m in Sources */,
 				95E74D141D914A8300C5CA8B /* MainatenanceModel.m in Sources */,
@@ -841,6 +986,7 @@
 				B75B2CB41D8806D2007EEE42 /* UIView+RoundedCorner.m in Sources */,
 				B7D06C571D8974EC00A5FA94 /* LoginModel.m in Sources */,
 				B7C7A36C1D8A639800D7DF06 /* SidebarViewController.m in Sources */,
+				B7465A941D950C28008B315A /* ResourceService.m in Sources */,
 				B7C7A3791D8A63C000D7DF06 /* ParcelListViewController.m in Sources */,
 				95E74D041D9107F300C5CA8B /* MaintenanceListViewController.m in Sources */,
 			);

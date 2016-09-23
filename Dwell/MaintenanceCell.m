@@ -95,7 +95,7 @@
         statusBackgroundVIew.backgroundColor = [Constants yellowBackgroundColor:1.0];
     }
     else{
-     statusBackgroundVIew.backgroundColor = [Constants blueBackgroundColor];
+        statusBackgroundVIew.backgroundColor = [Constants blueBackgroundColor:1.0];
     }
     
     

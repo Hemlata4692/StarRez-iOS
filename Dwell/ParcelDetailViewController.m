@@ -120,8 +120,27 @@
 
 - (void)showParcelDetailData {
     
-    self.parcelTitle.text=parcelDetailData.parcelTitle;
-    self.parcelType.text=parcelDetailData.parcelType;
+    //Check parcel title is nil
+    if ((nil==parcelDetailData.parcelTitle)||[parcelDetailData.parcelTitle isEqualToString:@""]) {
+        self.parcelTitle.text=@"NA";
+    }
+    else {
+        self.parcelTitle.text=parcelDetailData.parcelTitle;
+    }
+    //Check parcel type is nil
+    if ((nil==parcelDetailData.parcelType)||[parcelDetailData.parcelType isEqualToString:@""]) {
+        self.parcelType.text=@"NA";
+    }
+    else {
+        self.parcelType.text=parcelDetailData.parcelType;
+    }
+    //Check parcel shipping type is nil
+    if ((nil==parcelDetailData.parcelShippingType)||[parcelDetailData.parcelShippingType isEqualToString:@""]) {
+        self.shippingType.text=@"NA";
+    }
+    else {
+        self.shippingType.text=parcelDetailData.parcelShippingType;
+    }
     //Check recipt date is nil
     if ((nil==parcelDetailData.parcelReceiptDate)||[parcelDetailData.parcelReceiptDate isEqualToString:@""]) {
         self.receiptDate.text=@"NA";
@@ -129,7 +148,6 @@
     else {
         self.receiptDate.text=parcelDetailData.parcelReceiptDate;
     }
-    self.shippingType.text=parcelDetailData.parcelShippingType;
     //Check issued date is nil
     if ((nil==parcelDetailData.parcelIssueDate)||[parcelDetailData.parcelIssueDate isEqualToString:@""]) {
         self.issueDate.text=@"NA";
@@ -137,11 +155,34 @@
     else {
         self.issueDate.text=parcelDetailData.parcelIssueDate;
     }
-    self.parcelStatus.text=parcelDetailData.parcelStatus;
-    self.forwardAddress.text=parcelDetailData.parcelForwardingAddress;
-    self.trackingNo.text=parcelDetailData.parcelTrackingNo;
-    self.adminComment.text=parcelDetailData.parcelComment;
-    self.parcelStatus.text=parcelDetailData.parcelStatus;
+    //Check parcel status is nil
+    if ((nil==parcelDetailData.parcelStatus)||[parcelDetailData.parcelStatus isEqualToString:@""]) {
+        self.parcelStatus.text=@"NA";
+    }
+    else {
+        self.parcelStatus.text=parcelDetailData.parcelStatus;
+    }
+    //Check parcel forwarding address is nil
+    if ((nil==parcelDetailData.parcelForwardingAddress)||[parcelDetailData.parcelForwardingAddress isEqualToString:@""]) {
+        self.forwardAddress.text=@"NA";
+    }
+    else {
+        self.forwardAddress.text=parcelDetailData.parcelForwardingAddress;
+    }
+    //Check parcel tracking number is nil
+    if ((nil==parcelDetailData.parcelTrackingNo)||[parcelDetailData.parcelTrackingNo isEqualToString:@""]) {
+        self.trackingNo.text=@"NA";
+    }
+    else {
+        self.trackingNo.text=parcelDetailData.parcelTrackingNo;
+    }
+    //Check admin comment is nil
+    if ((nil==parcelDetailData.parcelComment)||[parcelDetailData.parcelComment isEqualToString:@""]) {
+        self.adminComment.text=@"NA";
+    }
+    else {
+        self.adminComment.text=parcelDetailData.parcelComment;
+    }
     if ([parcelDetailData.parcelStatusId isEqualToString:@"0"]) {
         self.parcelStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor:0.6];
     }

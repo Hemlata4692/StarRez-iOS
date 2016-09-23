@@ -12,7 +12,7 @@
 #import "ParcelModel.h"
 #import "CustomFilterViewController.h"
 
-@interface ParcelListViewController ()<CustomFilterDelegate> {
+@interface ParcelListViewController ()<CustomFilterDelegate,CustomAlertDelegate> {
 
     CustomAlert *alertView;
     NSMutableArray *parcelDataArray;
@@ -32,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [UserDefaultManager setValue:[NSNumber numberWithInteger:2] key:@"indexpath"];
     self.title = @"Parcel List";
     self.noRecordLabel.hidden=YES;
     isSearch=false;
@@ -40,7 +41,7 @@
     parcelDataArray=[NSMutableArray new];
     parcelSearchDataArray=[NSMutableArray new];
     parcelStatusDict=[NSMutableDictionary new];
-    [myDelegate showIndicator:[Constants blueBackgroundColor]];
+    [myDelegate showIndicator:[Constants blueBackgroundColor:1.0]];
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
     [self performSelector:@selector(getParcelListService) withObject:nil afterDelay:.1];
     // Do any additional setup after loading the view.
@@ -178,6 +179,13 @@
         parcelSearchDataArray =[[parcelDataArray filteredArrayUsingPredicate:orPredicate] mutableCopy];
     }
     [self.parcelListTableview reloadData];
+}
+#pragma mark - end
+
+#pragma mark - Custom alert delegates
+- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+    
+    [alertView dismissAlertView];
 }
 #pragma mark - end
 /*

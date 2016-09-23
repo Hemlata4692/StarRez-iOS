@@ -13,4 +13,7 @@
 
 //Add different backgroung image
 - (void)addBackgroungImage : (NSString *)imageName;
+
+//Check internet connectivity
+- (bool)checkInternetConnection;
 @end

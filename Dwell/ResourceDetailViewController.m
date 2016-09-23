@@ -1,0 +1,201 @@
+//
+//  ResourceDetailViewController.m
+//  Dwell
+//
+//  Created by Ranosys on 20/09/16.
+//  Copyright © 2016 Ranosys. All rights reserved.
+//
+
+#import "ResourceDetailViewController.h"
+
+@interface ResourceDetailViewController ()
+//Get view outlets
+@property (strong, nonatomic) IBOutlet UIView *resourceDetailView;
+@property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
+@property (weak, nonatomic) IBOutlet UIView *mainBackgroundView;
+@property (weak, nonatomic) IBOutlet UILabel *resourceTitle;
+@property (weak, nonatomic) IBOutlet UILabel *resourceType;
+@property (weak, nonatomic) IBOutlet UILabel *fromDate;
+@property (weak, nonatomic) IBOutlet UILabel *toDate;
+@property (weak, nonatomic) IBOutlet UIView *resourceStatusBackGroundView;
+@property (weak, nonatomic) IBOutlet UILabel *resourceStatus;
+@property (weak, nonatomic) IBOutlet UILabel *resourceDescription;
+@property (strong, nonatomic) IBOutlet UILabel *adminCommentTitle;
+@property (strong, nonatomic) IBOutlet UILabel *adminComment;
+@end
+
+@implementation ResourceDetailViewController
+@synthesize resourceDetailData;
+
+#pragma mark - View life cycle
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.navigationItem.title=@"Resource Detail";
+    [super addBackgroungImage:@"Resource"];
+    [self layoutViewObjects];
+    //Show resource data using resource model
+    [self showResourceDetailData];
+    // Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+#pragma mark - end
+
+#pragma mark -Custom accessors
+- (void)layoutViewObjects {
+    
+    //Set corner radius to main background view
+    self.mainBackgroundView.layer.cornerRadius=cornerRadius;
+    self.mainBackgroundView.layer.masksToBounds=YES;
+    //Make dots below title label
+    CAShapeLayer *shapelayer=[CAShapeLayer layer];
+    UIBezierPath *path=[UIBezierPath bezierPath];
+    //Draw a line
+    [path moveToPoint:CGPointMake(0.0,self.resourceTitle.frame.size.height)]; //Add yourStartPoint here
+    [path addLineToPoint:CGPointMake(self.view.frame.size.width-20, self.resourceTitle.frame.size.height)];//Add yourEndPoint here
+    UIColor *fill=[UIColor colorWithRed:72.0/255.0 green:73.0/255.0 blue:73.0/255.0 alpha:1.0];
+    shapelayer.strokeStart=0.0;
+    shapelayer.strokeColor=fill.CGColor;
+    shapelayer.lineWidth=1.0f;
+    shapelayer.lineJoin=kCALineJoinRound;
+    shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
+    shapelayer.path=path.CGPath;
+    [self.resourceTitle.layer addSublayer:shapelayer];
+    
+    [self removeAutolayout];//Remove autolayout
+    [self changeViewFrame];//Change frame according to forwarding address and comment
+}
+
+- (void)changeViewFrame {
+    
+    self.resourceDetailView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    float backgroundViewHeight=0.0;//Initialize back view size
+    //Get dynamic height according to resource description text
+    float descriptionHeight=[UserDefaultManager getDynamicLabelHeight:resourceDetailData.resourceDescription font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-16];
+    //Get dynamic height according to resource comment text
+    float commentHeight=[UserDefaultManager getDynamicLabelHeight:resourceDetailData.resourceComment font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-16];
+    self.resourceDescription.numberOfLines=0;
+    self.adminComment.numberOfLines=0;
+    if (descriptionHeight<21) {
+        descriptionHeight=21;
+    }
+    //Change framing of uiview object according to text lenght
+    self.resourceDescription.frame=CGRectMake(8, 216, ([UIScreen mainScreen].bounds.size.width-20)-16, descriptionHeight);
+    self.adminCommentTitle.frame=CGRectMake(8, self.resourceDescription.frame.origin.y+self.resourceDescription.frame.size.height+17, 230, 21);
+    //If comment height is zero set admin comment height 21(by default)
+    if (commentHeight<21) {
+         self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-16, 21);
+    }
+    else {
+        self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-16, commentHeight);
+    }
+    
+    if (commentHeight<55) {
+        commentHeight=58;
+    }
+    //Change main view height according to uiview object height
+    backgroundViewHeight=self.adminComment.frame.origin.y+commentHeight+48;
+    self.mainBackgroundView.frame=CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
+    self.resourceStatusBackGroundView.frame=CGRectMake(0, self.mainBackgroundView.frame.size.height-40, self.mainBackgroundView.frame.size.width, 40);
+    self.detailScrollView.scrollEnabled=false;
+    //Scrolling is disable if view height more then screen size
+    if ((backgroundViewHeight+64)>[UIScreen mainScreen].bounds.size.height) {
+        self.detailScrollView.scrollEnabled=true;
+        self.resourceDetailView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, backgroundViewHeight+100);
+    }
+}
+
+- (void)removeAutolayout {
+    
+    self.resourceDetailView.translatesAutoresizingMaskIntoConstraints=YES;
+    self.resourceDescription.translatesAutoresizingMaskIntoConstraints=YES;
+    self.mainBackgroundView.translatesAutoresizingMaskIntoConstraints=YES;
+    self.adminComment.translatesAutoresizingMaskIntoConstraints=YES;
+    self.adminCommentTitle.translatesAutoresizingMaskIntoConstraints=YES;
+    self.resourceStatusBackGroundView.translatesAutoresizingMaskIntoConstraints=YES;
+}
+
+- (void)showResourceDetailData {
+    
+    //Check resource title is nil
+    if ((nil==resourceDetailData.resourceTitle)||[resourceDetailData.resourceTitle isEqualToString:@""]) {
+        self.resourceTitle.text=@"NA";
+    }
+    else {
+        self.resourceTitle.text=resourceDetailData.resourceTitle;
+    }
+    //Check resource type is nil
+    if ((nil==resourceDetailData.resourceType)||[resourceDetailData.resourceType isEqualToString:@""]) {
+        self.resourceType.text=@"NA";
+    }
+    else {
+        self.resourceType.text=resourceDetailData.resourceType;
+    }
+    //Check fromDate is nil
+    if ((nil==resourceDetailData.resourceFromDate)||[resourceDetailData.resourceFromDate isEqualToString:@""]) {
+        self.fromDate.text=@"NA";
+    }
+    else {
+        self.fromDate.text=resourceDetailData.resourceFromDate;
+    }
+    //Check toDate is nil
+    if ((nil==resourceDetailData.resourceToDate)||[resourceDetailData.resourceToDate isEqualToString:@""]) {
+        self.toDate.text=@"NA";
+    }
+    else {
+        self.toDate.text=resourceDetailData.resourceToDate;
+    }
+    //Check resource status is nil
+    if ((nil==resourceDetailData.resourceStatus)||[resourceDetailData.resourceStatus isEqualToString:@""]) {
+        self.resourceStatus.text=@"NA";
+    }
+    else {
+        self.resourceStatus.text=resourceDetailData.resourceStatus;
+    }
+    //Check resource description is nil
+    if ((nil==resourceDetailData.resourceDescription)||[resourceDetailData.resourceDescription isEqualToString:@""]) {
+        self.resourceDescription.text=@"NA";
+    }
+    else {
+        self.resourceDescription.text=resourceDetailData.resourceDescription;
+    }
+    //Check resource comment is nil
+    if ((nil==resourceDetailData.resourceComment)||[resourceDetailData.resourceComment isEqualToString:@""]) {
+        self.adminComment.text=@"NA";
+    }
+    else {
+        self.adminComment.text=resourceDetailData.resourceComment;
+    }
+    //Set status background view color according to status
+    if ([resourceDetailData.resourceStatusId isEqualToString:@"0"]) {
+        self.resourceStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor:0.6];
+    }
+    else if ([resourceDetailData.resourceStatusId isEqualToString:@"1"]) {
+        self.resourceStatusBackGroundView.backgroundColor=[Constants redBackgroundColor:0.6];
+    }
+    else if ([resourceDetailData.resourceStatusId isEqualToString:@"2"]) {
+        self.resourceStatusBackGroundView.backgroundColor=[Constants historyColor:0.6];
+    }
+    else if ([resourceDetailData.resourceStatusId isEqualToString:@"3"]) {
+        self.resourceStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
+    }
+    else {
+        self.resourceStatusBackGroundView.backgroundColor=[Constants cancelColor:0.6];
+    }
+}
+#pragma mark - end
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

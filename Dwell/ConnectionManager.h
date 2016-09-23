@@ -10,6 +10,7 @@
 
 @class LoginModel;
 @class ParcelModel;
+@class ResourceModel;
 @class MainatenanceModel;
 @interface ConnectionManager : NSObject
 
@@ -26,4 +27,11 @@
 
 //Get Maintenance listing
 - (void)getMaintenancelList:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
+
+//Resource list with detail
+- (void)getResourceList:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
+//Resource type list
+- (void)getResourceType:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
+//Get location list
+- (void)getLocationList:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end

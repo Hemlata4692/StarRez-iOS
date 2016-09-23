@@ -14,6 +14,9 @@
 #import "ParcelService.h"
 #import "MainatenanceModel.h"
 #import "MaintenanceService.h"
+#import "ResourceService.h"
+#import "ResourceModel.h"
+
 @implementation ConnectionManager
 
 #pragma mark - Shared instance
@@ -105,5 +108,67 @@
         failure(error);
     }] ;
 }
+#pragma mark - end.
+
+#pragma mark - Get resource list with detail
+- (void)getResourceList:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    ResourceService *resourceService = [[ResourceService alloc] init];
+    [resourceService getResourceList:^(id response) {
+        //Resource data from server response and store in data model
+        DLog(@"%@",[response valueForKeyPath:@"entry.content.Record.EntryParcelID"]);
+        if (NULL!=[response objectForKey:@"entry"]&&[[response objectForKey:@"entry"] count]!=0) {
+            success(response);
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"0" forKey:@"success"];
+            failure(responseDict);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
 #pragma mark - end
+
+#pragma mark - Get resource type list
+- (void)getResourceType:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    ResourceService *resourceService = [[ResourceService alloc] init];
+    [resourceService getResourceType:^(id response) {
+        //Resource data from server response and store in data model
+        if (NULL!=[response objectForKey:@"entry"]&&[[response objectForKey:@"entry"] count]!=0) {
+            success(response);
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"0" forKey:@"success"];
+            failure(responseDict);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
+#pragma mark - end
+
+#pragma mark - Get location list
+- (void)getLocationList:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    ResourceService *resourceService = [[ResourceService alloc] init];
+    [resourceService getLocationList:resourceData.resourceTypeLocationId success:^(id response) {
+        //Resource data from server response and store in data model
+        if (NULL!=[response objectForKey:@"entry"]&&[[response objectForKey:@"entry"] count]!=0) {
+            success(response);
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"0" forKey:@"success"];
+            failure(responseDict);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
+#pragma mark - end
+
 @end

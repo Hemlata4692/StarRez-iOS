@@ -14,7 +14,7 @@
     return [UIColor colorWithRed:230.0/255 green:68.0/255.0 blue:62.0/255.0 alpha:1.0];
 }
 
-+ (UIColor*)blueBackgroundColor {
++ (UIColor*)blueBackgroundColor:(float)alpha {
     return [UIColor colorWithRed:49.0/255 green:104.0/255.0 blue:178.0/255.0 alpha:1.0];
 }
 
@@ -44,5 +44,17 @@
 
 + (UIColor*)logoutColor {
     return [UIColor colorWithRed:225.0/255 green:100.0/255.0 blue:92.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)historyColor:(float)alpha {
+    return [UIColor colorWithRed:138.0/255 green:74.0/255.0 blue:158.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)cancelColor:(float)alpha {
+    return [UIColor colorWithRed:108.0/255 green:108.0/255.0 blue:108.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)navigationColor {
+    return [UIColor colorWithRed:118.0/255 green:44.0/255.0 blue:134.0/255.0 alpha:1.0];
 }
 @end

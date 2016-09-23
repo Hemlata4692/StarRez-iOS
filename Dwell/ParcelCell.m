@@ -69,12 +69,48 @@
 - (void)displayData:(ParcelModel *)modelData frame:(CGRect)frame{
     
     [self layoutCellObject:frame];
-    parcelTitle.text=modelData.parcelTitle;
-    parcelType.text=modelData.parcelType;
-    receiptDate.text=modelData.parcelReceiptDate;
-    shippingType.text=modelData.parcelShippingType;
-    issueDate.text=modelData.parcelIssueDate;
-    parcelStatus.text=modelData.parcelStatus;
+    //Check parcel title is nil
+    if ((nil==modelData.parcelTitle)||[modelData.parcelTitle isEqualToString:@""]) {
+        parcelTitle.text=@"NA";
+    }
+    else {
+        parcelTitle.text=modelData.parcelTitle;
+    }
+    //Check parcel type is nil
+    if ((nil==modelData.parcelType)||[modelData.parcelType isEqualToString:@""]) {
+        parcelType.text=@"NA";
+    }
+    else {
+        parcelType.text=modelData.parcelType;
+    }
+    //Check parcel shipping type is nil
+    if ((nil==modelData.parcelShippingType)||[modelData.parcelShippingType isEqualToString:@""]) {
+        shippingType.text=@"NA";
+    }
+    else {
+        shippingType.text=modelData.parcelShippingType;
+    }
+    //Check recipt date is nil
+    if ((nil==modelData.parcelReceiptDate)||[modelData.parcelReceiptDate isEqualToString:@""]) {
+        receiptDate.text=@"NA";
+    }
+    else {
+        receiptDate.text=modelData.parcelReceiptDate;
+    }
+    //Check issued date is nil
+    if ((nil==modelData.parcelIssueDate)||[modelData.parcelIssueDate isEqualToString:@""]) {
+        issueDate.text=@"NA";
+    }
+    else {
+        issueDate.text=modelData.parcelIssueDate;
+    }
+    //Check parcel status is nil
+    if ((nil==modelData.parcelStatus)||[modelData.parcelStatus isEqualToString:@""]) {
+        parcelStatus.text=@"NA";
+    }
+    else {
+        parcelStatus.text=modelData.parcelStatus;
+    }
     if ([modelData.parcelStatusId isEqualToString:@"0"]) {
         parcelStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor:0.6];
     }
@@ -85,7 +121,7 @@
         parcelStatusBackGroundView.backgroundColor=[Constants redBackgroundColor:0.6];
     }
     else {
-         parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
+        parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
     }
 }
 @end

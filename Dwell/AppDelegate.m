@@ -151,7 +151,8 @@
     }
     else {
         [notificationDict setObject:@"Yes" forKey:@"isNotification"];
-        [notificationDict setObject:@"ParcelListViewController" forKey:@"toScreen"];        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        [notificationDict setObject:@"ParcelListViewController" forKey:@"toScreen"];
+        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
         [self.navigationController setViewControllers: [NSArray arrayWithObject: objReveal]
                                              animated: YES];

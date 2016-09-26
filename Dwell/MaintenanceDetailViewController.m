@@ -24,6 +24,8 @@
     self.title=@"Maintenance Detail";
     [super addBackgroungImage:@""];
     self.maintenanceDetailTableView.layer.cornerRadius = 3;
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -286,6 +288,30 @@
 #pragma mark - end
 
 #pragma mark - Webservice
+
+- (void)categoryService{
+    
+    if ([super checkInternetConnection]) {
+        MainatenanceModel *mainatenanceData = [MainatenanceModel sharedUser];
+        [mainatenanceData getCategoryListOnSuccess:^(id userData) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myDelegate stopIndicator];
+                
+            });
+        } onfailure:^(id error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myDelegate stopIndicator];
+                if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
+                    DLog(@"No record found.");
+                    
+                }
+                else {
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                }
+            });
+        }];
+    }
+}
 
 - (void)cancelService{
     

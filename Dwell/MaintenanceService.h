@@ -15,4 +15,7 @@
 
 //Cancel service
 - (void)cancelService:(void (^)(id))success onFailure:(void (^)(id))failure;
+
+//Category service
+- (void)getCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end

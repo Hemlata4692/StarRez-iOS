@@ -11,6 +11,7 @@
 #import "MainatenanceModel.h"
 #import "CustomFilterViewController.h"
 #import "MaintenanceDetailViewController.h"
+#import "AddNewJobViewController.h"
 @interface MaintenanceListViewController ()<CustomFilterDelegate,CustomAlertDelegate>
 {
    UIBarButtonItem *filterBarButton;
@@ -74,6 +75,12 @@
     filterViewObj.filterDict=[parcelStatusDict mutableCopy];
     [filterViewObj setModalPresentationStyle:UIModalPresentationOverCurrentContext];
     [self presentViewController:filterViewObj animated:NO completion:nil];
+}
+
+- (IBAction)addJob:(id)sender {
+    
+    AddNewJobViewController *objAddJob = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddNewJobViewController"];
+    [self.navigationController pushViewController:objAddJob animated:YES];
 }
 #pragma mark - end
 

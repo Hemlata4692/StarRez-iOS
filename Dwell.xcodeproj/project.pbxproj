@@ -11,6 +11,7 @@
 		4A412A4B1D8AC6A800E70791 /* GlobalBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A412A4A1D8AC6A800E70791 /* GlobalBackViewController.m */; };
 		4A92B91F1D8FF4DF008D4462 /* underDevelopement.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A92B91E1D8FF4DF008D4462 /* underDevelopement.png */; };
 		951EC2FF1D929A0A006C98F8 /* MaintenanceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 951EC2FE1D929A0A006C98F8 /* MaintenanceDetailViewController.m */; };
+		95D27D2B1D994D7B00EBA799 /* AddNewJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D27D2A1D994D7B00EBA799 /* AddNewJobViewController.m */; };
 		95E74D041D9107F300C5CA8B /* MaintenanceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D031D9107F300C5CA8B /* MaintenanceListViewController.m */; };
 		95E74D071D91122C00C5CA8B /* MaintenanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D061D91122C00C5CA8B /* MaintenanceCell.m */; };
 		95E74D0D1D91303200C5CA8B /* maintenance-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E74D091D91303200C5CA8B /* maintenance-568h@2x.png */; };
@@ -20,7 +21,6 @@
 		95E74D141D914A8300C5CA8B /* MainatenanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D131D914A8300C5CA8B /* MainatenanceModel.m */; };
 		95E74D181D914FF700C5CA8B /* MaintenanceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D171D914FF700C5CA8B /* MaintenanceService.m */; };
 		B7465A941D950C28008B315A /* ResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465A931D950C28008B315A /* ResourceService.m */; };
-		B7465A9C1D951116008B315A /* BookResourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465A9B1D951116008B315A /* BookResourceCell.m */; };
 		B7465A9F1D95111C008B315A /* BookResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465A9E1D95111C008B315A /* BookResourceViewController.m */; };
 		B7465AA61D951176008B315A /* ResourceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465AA51D951176008B315A /* ResourceDetailViewController.m */; };
 		B7465AA91D95117E008B315A /* ResourceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465AA81D95117E008B315A /* ResourceListCell.m */; };
@@ -88,6 +88,8 @@
 		4A92B91E1D8FF4DF008D4462 /* underDevelopement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = underDevelopement.png; sourceTree = "<group>"; };
 		951EC2FD1D929A0A006C98F8 /* MaintenanceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceDetailViewController.h; sourceTree = "<group>"; };
 		951EC2FE1D929A0A006C98F8 /* MaintenanceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceDetailViewController.m; sourceTree = "<group>"; };
+		95D27D291D994D7B00EBA799 /* AddNewJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewJobViewController.h; sourceTree = "<group>"; };
+		95D27D2A1D994D7B00EBA799 /* AddNewJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewJobViewController.m; sourceTree = "<group>"; };
 		95E74D021D9107F300C5CA8B /* MaintenanceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceListViewController.h; sourceTree = "<group>"; };
 		95E74D031D9107F300C5CA8B /* MaintenanceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceListViewController.m; sourceTree = "<group>"; };
 		95E74D051D91122C00C5CA8B /* MaintenanceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceCell.h; sourceTree = "<group>"; };
@@ -249,9 +251,19 @@
 			name = MaintenanceDetailView;
 			sourceTree = "<group>";
 		};
+		95D27D281D994D1B00EBA799 /* NewJob */ = {
+			isa = PBXGroup;
+			children = (
+				95D27D291D994D7B00EBA799 /* AddNewJobViewController.h */,
+				95D27D2A1D994D7B00EBA799 /* AddNewJobViewController.m */,
+			);
+			name = NewJob;
+			sourceTree = "<group>";
+		};
 		95E74D001D91078300C5CA8B /* maintenanceModule */ = {
 			isa = PBXGroup;
 			children = (
+				95D27D281D994D1B00EBA799 /* NewJob */,
 				951EC2FC1D9299EE006C98F8 /* MaintenanceDetailView */,
 				95E74D011D9107CA00C5CA8B /* maintenanceListView */,
 			);
@@ -946,6 +958,7 @@
 				B75B2CC51D880CFD007EEE42 /* Constants.m in Sources */,
 				B75B2CBC1D880958007EEE42 /* MMMaterialDesignSpinner.m in Sources */,
 				B7D06C701D8984BD00A5FA94 /* NullValueChecker.m in Sources */,
+				95D27D2B1D994D7B00EBA799 /* AddNewJobViewController.m in Sources */,
 				B7C7A36D1D8A639800D7DF06 /* SWRevealViewController.m in Sources */,
 				4A412A471D8AC64E00E70791 /* ParcelDetailViewController.m in Sources */,
 				B7D06C681D897C7600A5FA94 /* BaseService.m in Sources */,
@@ -959,7 +972,6 @@
 				B7465AAC1D951183008B315A /* ResourceListViewController.m in Sources */,
 				B7C7A3751D8A63B400D7DF06 /* SideMenuViewController.m in Sources */,
 				B75B2C761D88033A007EEE42 /* main.m in Sources */,
-				B7465A9C1D951116008B315A /* BookResourceCell.m in Sources */,
 				B75B2CB01D8806C1007EEE42 /* UITextField+Padding.m in Sources */,
 				B7465AA91D95117E008B315A /* ResourceListCell.m in Sources */,
 				B7D06C651D897C5F00A5FA94 /* LoginService.m in Sources */,

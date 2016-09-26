@@ -8,7 +8,10 @@
 
 #import "MaintenanceDetailViewController.h"
 #import "MainatenanceModel.h"
-@interface MaintenanceDetailViewController ()
+@interface MaintenanceDetailViewController ()<CustomAlertDelegate>
+{
+  CustomAlert *alertView;
+}
 @property (weak, nonatomic) IBOutlet UITableView *maintenanceDetailTableView;
 
 @end
@@ -19,8 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title=@"Maintenance Detail";
-    [super addBackgroungImage:@"maintenance"];
-    self.maintenanceDetailTableView.layer.cornerRadius = cornerRadius;
+    [super addBackgroungImage:@""];
+    self.maintenanceDetailTableView.layer.cornerRadius = 3;
     // Do any additional setup after loading the view.
 }
 
@@ -51,24 +54,8 @@
             UILabel *titleLbl = (UILabel *)[cell.contentView viewWithTag:1];
             titleLbl.text = objMainatenanceModel.title;
             //calcualte dynamic height of title label
-            float titleHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.title font:[UIFont handseanWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-20];
+            float titleHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.title font:[UIFont calibriNormalWithSize:20] widthValue:([UIScreen mainScreen].bounds.size.width-20)-20];
             titleLbl.frame = CGRectMake(titleLbl.frame.origin.x, titleLbl.frame.origin.y, ([UIScreen mainScreen].bounds.size.width-20)-20, titleHeight+15);
-            
-            CAShapeLayer *shapelayer = [CAShapeLayer layer];
-            UIBezierPath *path = [UIBezierPath bezierPath];
-            //draw a line
-            [path moveToPoint:CGPointMake(0.0, titleLbl.frame.size.height)]; //add yourStartPoint here
-            [path addLineToPoint:CGPointMake(self.view.frame.size.width, titleLbl.frame.size.height)];// add yourEndPoint here
-            UIColor *fill = [UIColor blackColor];
-            shapelayer.strokeStart = 0.0;
-            shapelayer.strokeColor = fill.CGColor;
-            shapelayer.lineWidth = 1.0f;
-            shapelayer.lineJoin = kCALineJoinRound;
-            shapelayer.lineDashPattern = [NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
-            //shapelayer.lineDashPhase = 3.0f;
-            shapelayer.path = path.CGPath;
-            [titleLbl.layer addSublayer:shapelayer];
-            
             //round top of the label
             CGRect labelFrame = CGRectMake(0, 0, self.view.frame.size.width-34, titleHeight+20);
             UIView *bgView = (UILabel *)[cell.contentView viewWithTag:11];
@@ -77,7 +64,7 @@
             UIBezierPath *maskPath = [UIBezierPath
                                       bezierPathWithRoundedRect:labelFrame
                                       byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight)
-                                      cornerRadii:CGSizeMake(20, 20)
+                                      cornerRadii:CGSizeMake(5, 5)
                                       ];
             
             CAShapeLayer *maskLayer = [CAShapeLayer layer];
@@ -190,6 +177,7 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ButtonCell"] ;
                 
             }
+            
             CGRect labelFrame = CGRectMake(0, 0, self.view.frame.size.width-34, cell.contentView.frame.size.height);
             UILabel *closeLabel = (UILabel *)[cell.contentView viewWithTag:10];
             closeLabel.translatesAutoresizingMaskIntoConstraints = YES;
@@ -197,7 +185,7 @@
             UIBezierPath *maskPath = [UIBezierPath
                                       bezierPathWithRoundedRect:labelFrame
                                       byRoundingCorners:(UIRectCornerBottomLeft | UIRectCornerBottomRight)
-                                      cornerRadii:CGSizeMake(20, 20)
+                                      cornerRadii:CGSizeMake(5, 5)
                                       ];
             
             CAShapeLayer *maskLayer = [CAShapeLayer layer];
@@ -206,6 +194,14 @@
             maskLayer.path = maskPath.CGPath;
             
             closeLabel.layer.mask = maskLayer;
+            if ([objMainatenanceModel.status isEqualToString:@"Closed by student"]) {
+                
+                cell.alpha = 0.7;
+                closeLabel.alpha = 0.7;
+            }else{
+                cell.alpha = 1.0;
+                closeLabel.alpha = 1.0;
+            }
             //cell.contentView.layer.cornerRadius = cornerRadius;
             return cell;
             break;
@@ -229,7 +225,7 @@
     switch (indexPath.row) {
         case 0:
         {
-            float titleHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.title font:[UIFont handseanWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-20];
+            float titleHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.title font:[UIFont calibriNormalWithSize:20] widthValue:([UIScreen mainScreen].bounds.size.width-20)-20];
             return titleHeight+20;
             break;
         }
@@ -269,16 +265,62 @@
             return 70.0;
             break;
         case 6:
-            return 50.0;
+            return 35.0;
             break;
             
         default:
-            return 50.0;
+            return 30.0;
             break;
     }
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row==6 && !([objMainatenanceModel.status isEqualToString:@"Closed by student"])) {
+        
+        [myDelegate showIndicator:[Constants orangeBackgroundColor]];
+        [self performSelector:@selector(cancelService) withObject:nil afterDelay:.1];
+    }
+}
+#pragma mark - end
+
+#pragma mark - Webservice
+
+- (void)cancelService{
+    
+    [UserDefaultManager setValue:objMainatenanceModel.maintenenceId key:@"maintainId"];
+    if ([super checkInternetConnection]) {
+        MainatenanceModel *mainatenanceData = [MainatenanceModel sharedUser];
+        [mainatenanceData cancelServiceOnSuccess:^(id userData) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myDelegate stopIndicator];
+               alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"This maintenance request has been closed successfully." doneButtonText:@"OK" cancelButtonText:@""];
+                objMainatenanceModel.status = @"Closed by student";
+                [maintenanceDetailTableView reloadData];
+            });
+        } onfailure:^(id error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myDelegate stopIndicator];
+                if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
+                    DLog(@"No record found.");
+                    
+                }
+                else {
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                }
+            });
+        }];
+    }
+}
+#pragma mark - end
+
+#pragma mark - Custom alert delegates
+- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+    
+    [alertView dismissAlertView];
+}
+#pragma mark - end
 /*
 #pragma mark - Navigation
 

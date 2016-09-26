@@ -64,6 +64,47 @@ NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/
     [postDataTask resume];
 }
 
+//Post method for XML services
+- (void)xmlPost:(NSString *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"https://starrez.centurionstudents.co.uk/StarRezREST/services/update/RoomSpaceMaintenance/%@",[UserDefaultManager getValue:@"maintainId"]]];
+    NSData *postData = [parameters dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request addValue:@"starrez.temp2" forHTTPHeaderField:@"StarRezUsername"];
+    [request addValue:@"9591404d-1069-4290-b121-63b1a7e9e932" forHTTPHeaderField:@"StarRezPassword"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    
+    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSString *responseString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        NSMutableDictionary* responseData=[NSMutableDictionary new];
+        if ([responseString isEqualToString:@""]) {
+            [responseData setObject:@"2" forKey:@"success"];
+            failure(responseData);
+        }
+        else if ((NULL!=responseString)&&(nil!=responseString)) {
+            responseData=(NSMutableDictionary *)[NullValueChecker checkArrayForNullValue:[[[XMLDictionaryParser sharedInstance] dictionaryWithString:responseString] mutableCopy]];
+            if (responseData.count!=0) {
+                [responseData setObject:@"1" forKey:@"success"];
+                success(responseData);
+            }
+            else {
+                [responseData setObject:@"0" forKey:@"success"];
+                failure(responseData);
+            }
+        }
+    }];
+    [postDataTask resume];
+}
+
+
 //Post method for save device token services
 - (void)jsonPost:(NSDictionary *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     

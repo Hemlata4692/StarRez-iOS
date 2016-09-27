@@ -37,7 +37,7 @@
     self.noRecordLabel.hidden=YES;
     isSearch=false;
     //Add background image
-    [super addBackgroungImage:@"Parcel"];
+    //[super addBackgroungImage:@"Parcel"];
     parcelDataArray=[NSMutableArray new];
     parcelSearchDataArray=[NSMutableArray new];
     parcelStatusDict=[NSMutableDictionary new];

@@ -25,7 +25,7 @@
     }
     self.navigationItem.title = @"Dashboard";
     //Add background image
-    [super addBackgroungImage:@"Dashboard"];
+    [super addBackgroungImage:@""];
     // Do any additional setup after loading the view.
 }
 

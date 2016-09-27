@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface MainatenanceModel : NSObject
+@property(retain,nonatomic)NSString *maintenenceId;
 @property(retain,nonatomic)NSString *title;
 @property(retain,nonatomic)NSString *completedDate;
 @property(retain,nonatomic)NSString *reportedDate;
@@ -21,4 +22,10 @@
 + (instancetype)sharedUser;
 //Maintenance listing
 - (void)getMaintenanceListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
+
+//Cancel service
+- (void)cancelServiceOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
+
+//Get category
+- (void)getCategoryListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
 @end

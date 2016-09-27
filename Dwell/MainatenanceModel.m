@@ -51,6 +51,7 @@
             tempModel.category=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.main_category"];
             tempModel.cause=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Cause"];
             tempModel.commetns=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.comments"];
+            tempModel.maintenenceId=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceID"];
             
             if (!tempModel.status) {
                 tempModel.status=@"Submitted";
@@ -65,6 +66,38 @@
             
             
         }
+        success(dataArray);
+    } onFailure:^(id error) {
+        failure(error);
+    }];
+}
+- (void)cancelServiceOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure{
+    
+    [[ConnectionManager sharedManager] cancelServiceOnSuccess:self onSuccess:^(id parcelData) {
+
+        success(parcelData);
+    } onFailure:^(id error) {
+        failure(error);
+    }];
+}
+
+- (void)getCategoryListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;{
+    
+    [[ConnectionManager sharedManager] getCategoryOnSuccess:self onSuccess:^(id parcelData) {
+        
+        NSMutableArray *dataArray = [NSMutableArray new];
+        for (int i=0; i<[[parcelData objectForKey:@"entry"] count]; i++) {
+            
+            __block MainatenanceModel *tempModel=[MainatenanceModel new];
+            tempModel.title=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
+            tempModel.maintenenceId=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceCategoryID"];
+            
+            if (!tempModel.status) {
+                tempModel.status=@"Submitted";
+            }
+           [dataArray addObject:tempModel];
+        }
+        
         success(dataArray);
     } onFailure:^(id error) {
         failure(error);

@@ -13,6 +13,7 @@
 #import "UIView+RoundedCorner.h"
 #import "LoginModel.h"
 #import "Internet.h"
+#import "UITextField+Padding.h"
 
 @interface LoginViewController ()<BSKeyboardControlsDelegate,CustomAlertDelegate> {
 
@@ -89,9 +90,14 @@
 //Add corner radius to objects
 - (void)addBorderCornerRadius {
     
-    [self.emailIdTextfield setCornerRadius:cornerRadius];
-    [self.passwordTextfield setCornerRadius:cornerRadius];
-    [self.loginButton setCornerRadius:cornerRadius];
+    [self.emailIdTextfield setCornerRadius:29];
+    [self.passwordTextfield setCornerRadius:29];
+    [self.loginButton setCornerRadius:25];
+    [self.emailIdTextfield setTextBorder:self.emailIdTextfield color:[UIColor colorWithRed:212.0/255.0 green:185.0/255.0 blue:219.0/255.0 alpha:1.0]];
+    [self.passwordTextfield setTextBorder:self.passwordTextfield color:[UIColor colorWithRed:212.0/255.0 green:185.0/255.0 blue:219.0/255.0 alpha:1.0]];
+    
+    [self.emailIdTextfield addTextFieldPadding:self.emailIdTextfield];
+    [self.passwordTextfield addTextFieldPadding:self.passwordTextfield];
 }
 #pragma mark - end
 

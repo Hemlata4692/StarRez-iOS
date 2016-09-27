@@ -8,7 +8,7 @@
 
 #import "MaintenanceCell.h"
 #import "MainatenanceModel.h"
-
+#import "UIView+RoundedCorner.h"
 @implementation MaintenanceCell
 @synthesize titleLabel;
 @synthesize dateLabel;
@@ -16,6 +16,7 @@
 @synthesize statusBackgroundVIew;
 @synthesize statusLabel;
 @synthesize mainBackgroundView;
+@synthesize titleBgVIew;
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -26,47 +27,24 @@
     //set dynamic height of title
     titleLabel.translatesAutoresizingMaskIntoConstraints = YES;
     descriptionField.translatesAutoresizingMaskIntoConstraints = YES;
+    titleBgVIew.translatesAutoresizingMaskIntoConstraints = YES;
     descriptionField.numberOfLines = 0;
     titleLabel.numberOfLines = 0;
 
-    float titleHeight=[UserDefaultManager getDynamicLabelHeight:titleLabel.text font:[UIFont handseanWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-125];
-    titleLabel.frame = CGRectMake(titleLabel.frame.origin.x, titleLabel.frame.origin.y, ([UIScreen mainScreen].bounds.size.width-20)-125, titleHeight+15);
-
+    float titleHeight=[UserDefaultManager getDynamicLabelHeight:titleLabel.text font:[UIFont calibriNormalWithSize:20] widthValue:([UIScreen mainScreen].bounds.size.width-20)-125];
+    titleLabel.frame = CGRectMake(titleLabel.frame.origin.x, titleLabel.frame.origin.y, ([UIScreen mainScreen].bounds.size.width-20)-125, titleHeight+25);
+    titleBgVIew.frame = CGRectMake(titleBgVIew.frame.origin.x, titleBgVIew.frame.origin.y, ([UIScreen mainScreen].bounds.size.width-16), titleLabel.frame.size.height);
     //set dynamic height of description label.
     
     float descriptionFieldHeight=[UserDefaultManager getDynamicLabelHeight:descriptionField.text font:[UIFont calibriNormalWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-25];
     descriptionField.frame = CGRectMake(descriptionField.frame.origin.x, titleLabel.frame.origin.y+titleLabel.frame.size.height+10, ([UIScreen mainScreen].bounds.size.width-20)-25, descriptionFieldHeight);
-    
-    
-    self.backgroundColor=[UIColor clearColor];
-    self.contentView.backgroundColor=[UIColor clearColor];
     //Set corner radius to main background view
-    mainBackgroundView.layer.cornerRadius=cornerRadius;
+    [self.mainBackgroundView addShadowWithCornerRadius:self.mainBackgroundView color:[UIColor lightGrayColor] borderColor:[UIColor whiteColor] radius:5.0f];
+    mainBackgroundView.layer.cornerRadius=6;
     mainBackgroundView.layer.masksToBounds=YES;
     //Round status view from bottom sides
     statusBackgroundVIew.translatesAutoresizingMaskIntoConstraints=YES;
     statusBackgroundVIew.frame=CGRectMake(statusBackgroundVIew.frame.origin.x, descriptionField.frame.origin.y+descriptionField.frame.size.height+10, frame.size.width-32, statusBackgroundVIew.frame.size.height);
-    UIBezierPath *maskPath=[UIBezierPath bezierPathWithRoundedRect:statusBackgroundVIew.bounds byRoundingCorners:( UIRectCornerBottomLeft | UIRectCornerBottomRight) cornerRadii:CGSizeMake(3.0, 3.0)];
-    
-    //Make dots below title label
-    CAShapeLayer *maskLayer=[[CAShapeLayer alloc] init];
-    maskLayer.frame=frame;
-    maskLayer.path=maskPath.CGPath;
-    statusBackgroundVIew.layer.mask = maskLayer;
-    statusBackgroundVIew.alpha = 0.7;
-    CAShapeLayer *shapelayer=[CAShapeLayer layer];
-    UIBezierPath *path=[UIBezierPath bezierPath];
-    //Draw a line
-    [path moveToPoint:CGPointMake(0.0, titleLabel.frame.size.height)]; //Add yourStartPoint here
-    [path addLineToPoint:CGPointMake(frame.size.width-40, titleLabel.frame.size.height)];//Add yourEndPoint here
-    UIColor *fill=[UIColor colorWithRed:72.0/255.0 green:73.0/255.0 blue:73.0/255.0 alpha:1.0];
-    shapelayer.strokeStart=0.0;
-    shapelayer.strokeColor=fill.CGColor;
-    shapelayer.lineWidth=1.0f;
-    shapelayer.lineJoin=kCALineJoinRound;
-    shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
-    shapelayer.path=path.CGPath;
-    [titleLabel.layer addSublayer:shapelayer];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

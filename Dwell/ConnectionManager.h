@@ -28,6 +28,13 @@
 //Get Maintenance listing
 - (void)getMaintenancelList:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
 
+//Canscel service
+- (void)cancelServiceOnSuccess:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
+
+//Get Category service
+- (void)getCategoryOnSuccess:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
+
+
 //Resource list with detail
 - (void)getResourceList:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 //Resource type list

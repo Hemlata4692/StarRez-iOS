@@ -12,4 +12,10 @@
 
 //Get maintenance list data
 - (void)getMaintenanceList:(void (^)(id))success onFailure:(void (^)(id))failure;
+
+//Cancel service
+- (void)cancelService:(void (^)(id))success onFailure:(void (^)(id))failure;
+
+//Category service
+- (void)getCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end

@@ -11,6 +11,7 @@
 #import "MainatenanceModel.h"
 #import "CustomFilterViewController.h"
 #import "MaintenanceDetailViewController.h"
+#import "AddNewJobViewController.h"
 @interface MaintenanceListViewController ()<CustomFilterDelegate,CustomAlertDelegate>
 {
    UIBarButtonItem *filterBarButton;
@@ -31,12 +32,17 @@
     [super viewDidLoad];
     self.title = @"Maintenance";
     //Add background image
-    [super addBackgroungImage:@"maintenance"];
+    [super addBackgroungImage:@""];
     maintenanceArray = [[NSMutableArray alloc]init];
-    [myDelegate showIndicator:[Constants orangeBackgroundColor]];
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
-    [self performSelector:@selector(getMaintenanceListService) withObject:nil afterDelay:.1];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    [myDelegate showIndicator:[Constants orangeBackgroundColor]];
+    [self performSelector:@selector(getMaintenanceListService) withObject:nil afterDelay:.1];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,6 +75,12 @@
     filterViewObj.filterDict=[parcelStatusDict mutableCopy];
     [filterViewObj setModalPresentationStyle:UIModalPresentationOverCurrentContext];
     [self presentViewController:filterViewObj animated:NO completion:nil];
+}
+
+- (IBAction)addJob:(id)sender {
+    
+    AddNewJobViewController *objAddJob = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddNewJobViewController"];
+    [self.navigationController pushViewController:objAddJob animated:YES];
 }
 #pragma mark - end
 
@@ -152,9 +164,9 @@
     }
     
 
-    float titleHeight=[UserDefaultManager getDynamicLabelHeight:[objModel title] font:[UIFont handseanWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-125];
+    float titleHeight=[UserDefaultManager getDynamicLabelHeight:[objModel title] font:[UIFont calibriNormalWithSize:20] widthValue:([UIScreen mainScreen].bounds.size.width-20)-125];
     float forwardAddressHeight=[UserDefaultManager getDynamicLabelHeight:[[maintenanceArray objectAtIndex:indexPath.row] detail] font:[UIFont calibriNormalWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-25];
-    return forwardAddressHeight+titleHeight+95.0;
+    return forwardAddressHeight+titleHeight+105.0;
 
 }
 

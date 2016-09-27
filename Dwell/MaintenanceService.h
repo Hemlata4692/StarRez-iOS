@@ -18,4 +18,8 @@
 
 //Category service
 - (void)getCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure;
+
+//Subcategory service
+- (void)getSubCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure;
+
 @end

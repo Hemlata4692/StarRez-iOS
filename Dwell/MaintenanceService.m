@@ -31,5 +31,12 @@
     DLog(@"request dict %@",parameters);
     [super post:parameters onSuccess:success onFailure:failure];
 }
+
+- (void)getSubCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure{
+    
+    NSString *parameters = [NSString stringWithFormat:@"SELECT [RoomSpaceMaintenanceItemID], [RoomSpaceMaintenanceCategoryID], [Comments], [Description] FROM [RoomSpaceMaintenanceItem] WHERE [RoomSpaceMaintenanceCategoryID] = %@",[UserDefaultManager getValue:@"categoryId"] ];
+    DLog(@"request dict %@",parameters);
+    [super post:parameters onSuccess:success onFailure:failure];
+}
 @end
 

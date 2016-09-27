@@ -112,6 +112,26 @@
         failure(error);
     }] ;
 }
+
+//Get Subcategory service
+- (void)getSubCategoryOnSuccess:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure{
+    
+    MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
+    [mainatenanceService getSubCategoryService:^(id response) {
+        //Parse data from server response and store in datamodel
+        DLog(@"%@",[response valueForKeyPath:@"entry.content.Record.Cause"]);
+        if (NULL!=[response objectForKey:@"entry"]&&[[response objectForKey:@"entry"] count]!=0) {
+            success(response);
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"0" forKey:@"success"];
+            failure(responseDict);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
 #pragma mark - end
 
 #pragma mark - Login user

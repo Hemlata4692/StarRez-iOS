@@ -51,10 +51,10 @@
     [self layoutCellObject:frame];
     //Check parcel title is nil
     if ((nil==modelData.parcelTitle)||[modelData.parcelTitle isEqualToString:@""]) {
-        parcelTitle.text=@"    NA";
+        parcelTitle.text=@"  NA";
     }
     else {
-        parcelTitle.text=[NSString stringWithFormat:@"    %@",modelData.parcelTitle];
+        parcelTitle.text=[NSString stringWithFormat:@"  %@",modelData.parcelTitle];
     }
     //Check parcel type is nil
     if ((nil==modelData.parcelType)||[modelData.parcelType isEqualToString:@""]) {

@@ -30,10 +30,8 @@
     [super viewDidLoad];
     
     menuItems = [[NSArray alloc]init];
-    labelColor= [[NSArray alloc]init];
-    //    menuItems = @[@"Dashboard", @"Parcel",@"Logout"];
-    //    labelColor= @[[Constants dashboardColor],[Constants blueBackgroundColor:1.0],[Constants logoutColor]];
-    labelColor= @[[Constants dashboardColor],[Constants orangeBackgroundColor],[Constants blueBackgroundColor],[Constants greenBackgroundColor],[Constants yellowBackgroundColor],[Constants darkGreenBackgroundColor],[Constants grayBackgroundColor],[Constants logoutColor]];
+    labelColor= [UIColor colorWithRed:120./255.0 green:42.0/255.0 blue:147.0/255.0 alpha:1.0];
+//    menuItems = @[@"Dashboard", @"Parcel",@"Logout"];
      menuItems = @[@"Dashboard", @"Maintenance", @"Parcel", @"Resources", @"Events",@"Information", @"Help",@"Logout"];
     unselectedItems =@[@"dashboardUnselected",@"maintenanceUnselected",@"parcelUnselected",@"resourcesUnselected",@"eventsUnselected",@"informationUnselected",@"helpUnselected",@"logoutUnselected"];
     selectedItems =@[@"dashboardSelected",@"maintenanceSelected",@"parcelSelected",@"resourcesSelected",@"eventsSelected",@"informationSelected",@"helpSelected",@"logoutSelected"];

@@ -65,11 +65,12 @@ NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/
 }
 
 //Post method for XML services
-- (void)xmlPost:(NSString *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+- (void)xmlPost:(NSString *)path parameters:(NSString *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"https://starrez.centurionstudents.co.uk/StarRezREST/services/update/RoomSpaceMaintenance/%@",[UserDefaultManager getValue:@"maintainId"]]];
+    path=[NSString stringWithFormat:@"https://starrez.centurionstudents.co.uk/StarRezREST/services/%@",path];
+    NSURL *url=[NSURL URLWithString:path];
     NSData *postData = [parameters dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     

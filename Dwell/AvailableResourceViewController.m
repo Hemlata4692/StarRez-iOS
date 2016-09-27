@@ -9,6 +9,8 @@
 #import "AvailableResourceViewController.h"
 #import "CustomFilterViewController.h"
 #import "UIView+RoundedCorner.h"
+#import "CustomAlertView.h"
+#import "ResourceListViewController.h"
 
 @interface AvailableResourceViewController ()<CustomFilterDelegate> {
 
@@ -23,6 +25,9 @@
 
 @implementation AvailableResourceViewController
 @synthesize availableResourceData;
+@synthesize selectedResourceId;
+@synthesize selectedToDataTime;
+@synthesize selectedFromDataTime;
 
 #pragma mark - View life cycle
 - (void)viewDidLoad {
@@ -42,11 +47,11 @@
     [self removeAutolayout];
     DLog(@"%f,%f",[UIScreen mainScreen].bounds.size.height,[UIScreen mainScreen].bounds.size.height-64);
     //Set height view according to table view array data
-    if(([UIScreen mainScreen].bounds.size.height-94)>(((self.availableResourceData.count)*60.0)+50.0)) {
+    if(([UIScreen mainScreen].bounds.size.height-94)>(((availableResourceData.count)*60.0)+50.0)) {
         self.availableResourceMainView.frame=CGRectMake(15, 15, [UIScreen mainScreen].bounds.size.width-30, [UIScreen mainScreen].bounds.size.height-94);
     }
     else {
-        self.availableResourceMainView.frame=CGRectMake(15, 15, [UIScreen mainScreen].bounds.size.width-30, ((self.availableResourceData.count)*60.0)+50.0);
+        self.availableResourceMainView.frame=CGRectMake(15, 15, [UIScreen mainScreen].bounds.size.width-30, ((availableResourceData.count)*60.0)+50.0);
     }
     
     [self.availableResourceMainView addShadowWithCornerRadius:self.availableResourceMainView color:[UIColor lightGrayColor] borderColor:[UIColor whiteColor] radius:5.0f];  //Add corner radius and shadow
@@ -112,7 +117,52 @@
     
    if (indexPath.row!=0) {
         selectedResource=(int)indexPath.row-1;
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:3 delegate:self message:@"Do you want to request this resource" doneButtonText:@"Yes" cancelButtonText:@"No"];
    }
+}
+#pragma mark - end
+
+#pragma mark - Custom alert delegates
+- (void)customAlertDelegateAction:(CustomAlertView *)customAlert option:(int)option{
+    
+    [alertView dismissAlertView];
+    if ((customAlert.alertTagValue==3)&&(option==1)) {
+        [myDelegate showIndicator:[Constants navigationColor]];
+        [self performSelector:@selector(setRequestResourceService) withObject:nil afterDelay:.1];
+    }
+    else if (customAlert.alertTagValue==10) {
+        for (UIViewController* viewController in self.navigationController.viewControllers) {
+            
+            //This if condition checks whether the viewController's class is MyGroupViewController
+            // if true that means its the MyGroupViewController (which has been pushed at some point)
+            if ([viewController isKindOfClass:[ResourceListViewController class]] ) {
+                
+                ResourceListViewController *objAvailableResource = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ResourceListViewController"];
+                [self.navigationController popToViewController:objAvailableResource animated:YES];
+            }
+        }
+    }
+}
+
+- (void)setRequestResourceService {
+
+    ResourceModel *resourceData=[ResourceModel sharedUser];
+    resourceData.resourceFromDate=selectedFromDataTime;
+    resourceData.resourceToDate=selectedToDataTime;
+    resourceData.resourceId=[[availableResourceData objectAtIndex:selectedResource] resourceId];
+    //        resourceData.resourceDescription=self.sourceNameField.text;
+    [resourceData setRequestResourceOnSuccess:^(id availableResourceData) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [myDelegate stopIndicator];
+            alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:10 delegate:self message:@"Your selected resource is added" doneButtonText:@"OK" cancelButtonText:@""];
+            
+        });
+    } onfailure:^(id error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [myDelegate stopIndicator];
+            alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+        });
+    }];
 }
 #pragma mark - end
 /*

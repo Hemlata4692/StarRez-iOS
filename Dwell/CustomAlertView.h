@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *alertMessage;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 @property (strong, nonatomic) IBOutlet UIButton *doneButton;
+@property (nonatomic,assign) int alertTagValue;
 
 -(id)initWithFrame:(CGRect)frame title:(NSString*)titleText message:(NSString*)messageText doneButtonText:(NSString*)doneButtonText cancelButtonText:(NSString*)cancelButtonText;
 @end

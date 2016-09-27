@@ -183,16 +183,8 @@
         else {
              NSMutableArray *tempDataArray = [NSMutableArray new];
             [self getAllResourcesOnSuccess:tempDataArray onSuccess:^(id resourceData) {
-                DLog(@"%@",resourceData);
-                 if (NULL!=[resourceData objectForKey:@"entry"]&&[[resourceData objectForKey:@"entry"] count]!=0) {
-                     success(resourceData);
-                 }
-                 else {
-                     NSMutableDictionary *responseDict=[NSMutableDictionary new];
-                     [responseDict setObject:@"0" forKey:@"success"];
-                     failure(responseDict);
-                 }
                 
+                success(resourceData);
             } onfailure:^(id error) {
                 failure(error);
             }];
@@ -229,6 +221,26 @@
         else {
             NSMutableArray *dataArray = [NSMutableArray new];
              success(dataArray);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }];
+}
+#pragma mark - end
+
+#pragma mark - Resources request service
+- (void)setRequestResourceOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure {
+    
+    [[ConnectionManager sharedManager] setRequestResource:self onSuccess:^(id resourceData) {
+        if (NULL!=[resourceData valueForKeyPath:@"entry.content.ResourceBooking.ResourceBookingID"]) {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"1" forKey:@"success"];
+            success(responseDict);
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"0" forKey:@"success"];
+            failure(responseDict);
         }
     } onFailure:^(id error) {
         failure(error);

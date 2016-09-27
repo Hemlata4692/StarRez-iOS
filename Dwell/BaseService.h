@@ -17,5 +17,5 @@
 - (void)jsonPost:(NSDictionary *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 
 //Post method for XML services
-- (void)xmlPost:(NSString *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
+- (void)xmlPost:(NSString *)path parameters:(NSString *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end

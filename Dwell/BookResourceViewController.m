@@ -181,8 +181,8 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
-    self.datePickerView.frame = CGRectMake(0, 1000, [[UIScreen mainScreen] bounds].size.width, self.datePickerView.frame.size.height);
-    dateTimeToolbar.frame = CGRectMake(0, 1000, [[UIScreen mainScreen] bounds].size.width, dateTimeToolbar.frame.size.height);
+    self.datePickerView.frame=CGRectMake(0, 1000, [[UIScreen mainScreen] bounds].size.width, self.datePickerView.frame.size.height);
+    dateTimeToolbar.frame=CGRectMake(0, 1000, [[UIScreen mainScreen] bounds].size.width, dateTimeToolbar.frame.size.height);
     [UIView commitAnimations];
 }
 
@@ -191,8 +191,8 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     [self.resourcePickerView selectRow:selectedIndex inComponent:0 animated:YES];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
-    self.resourcePickerView.frame = CGRectMake(self.resourcePickerView.frame.origin.x, [[UIScreen mainScreen] bounds].size.height -  self.resourcePickerView.frame.size.height-64, [[UIScreen mainScreen] bounds].size.width, self.resourcePickerView.frame.size.height);
-    self.toolBarView.frame = CGRectMake(0, self.resourcePickerView.frame.origin.y-44, [[UIScreen mainScreen] bounds].size.width, self.toolBarView.frame.size.height);
+    self.resourcePickerView.frame=CGRectMake(self.resourcePickerView.frame.origin.x, [[UIScreen mainScreen] bounds].size.height - self.resourcePickerView.frame.size.height-64, [[UIScreen mainScreen] bounds].size.width, self.resourcePickerView.frame.size.height);
+    self.toolBarView.frame=CGRectMake(0, self.resourcePickerView.frame.origin.y-44, [[UIScreen mainScreen] bounds].size.width, self.toolBarView.frame.size.height);
     [UIView commitAnimations];
     [self.resourcePickerView reloadAllComponents];
 }
@@ -201,8 +201,8 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
-    self.resourcePickerView.frame = CGRectMake(0, 1000, [[UIScreen mainScreen] bounds].size.width, self.resourcePickerView.frame.size.height);
-    self.toolBarView.frame = CGRectMake(0, 1000, [[UIScreen mainScreen] bounds].size.width, self.toolBarView.frame.size.height);
+    self.resourcePickerView.frame=CGRectMake(0, 1000, [[UIScreen mainScreen] bounds].size.width, self.resourcePickerView.frame.size.height);
+    self.toolBarView.frame=CGRectMake(0, 1000, [[UIScreen mainScreen] bounds].size.width, self.toolBarView.frame.size.height);
     [UIView commitAnimations];
 }
 #pragma mark - end
@@ -213,7 +213,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     UILabel* pickerLabel = (UILabel*)view;
     if (!pickerLabel) {
        
-        pickerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width,20)];
+        pickerLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0,[[UIScreen mainScreen] bounds].size.width,20)];
         pickerLabel.font = [UIFont calibriNormalWithSize:17];
         pickerLabel.textAlignment=NSTextAlignmentCenter;
     }
@@ -266,11 +266,10 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     bookResourceTypeArray=[NSMutableArray new];
     bookResourceLocationArray=[NSMutableArray new];
     if ([super checkInternetConnection]) {
-        ResourceModel *resourceData = [ResourceModel sharedUser];
+        ResourceModel *resourceData=[ResourceModel sharedUser];
         [resourceData getResourceTypeOnSuccess:^(id resourceTypeData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
-                
                 bookResourceTypeArray=[resourceTypeData mutableCopy];
             });
         } onfailure:^(id error) {
@@ -292,19 +291,18 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     
     bookResourceLocationArray=[NSMutableArray new];
     if ([super checkInternetConnection]) {
-        ResourceModel *resourceData = [ResourceModel sharedUser];
+        ResourceModel *resourceData=[ResourceModel sharedUser];
         resourceData.resourceTypeLocationId=[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceTypeLocationId];
         [resourceData getLocationListOnSuccess:^(id locationData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
-                
                 bookResourceLocationArray=[locationData mutableCopy];
             });
         } onfailure:^(id error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
                 if ([[error objectForKey:@"success"] isEqualToString:@"2"]) {
-                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                    alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
                 }
             });
         }];
@@ -316,12 +314,12 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 
 - (void)searchService {
     
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormat=[[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm a"];
     NSDate *fromDateTimeTemp=[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,self.fromTimeField.text]];
     NSDate *toDateTimeTemp=[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,self.toTimeField.text]];
     [dateFormat setDateFormat:@"yyyy-MM-dd'T'hh:mm:ss"];
-    ResourceModel *resourceData = [ResourceModel sharedUser];
+    ResourceModel *resourceData=[ResourceModel sharedUser];
     resourceData.resourceFromDate=[dateFormat stringFromDate:fromDateTimeTemp];
     resourceData.resourceToDate=[dateFormat stringFromDate:toDateTimeTemp];
     resourceData.resourceId=[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceId];
@@ -334,22 +332,24 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
             if ([availableResourceData count]!=0) {
                 AvailableResourceViewController *objAvailableResource = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AvailableResourceViewController"];
                 objAvailableResource.availableResourceData=[availableResourceData mutableCopy];
+                objAvailableResource.selectedFromDataTime=resourceData.resourceFromDate;
+                objAvailableResource.selectedToDataTime=resourceData.resourceToDate;
+                objAvailableResource.selectedResourceId=resourceData.resourceId;
                 [self.navigationController pushViewController:objAvailableResource animated:YES];
             }
-            else{
-                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"No resources available for this name or time range." doneButtonText:@"OK" cancelButtonText:@""];
+            else {
+                alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"No resources available for this name or time range." doneButtonText:@"OK" cancelButtonText:@""];
             }
         });
     } onfailure:^(id error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [myDelegate stopIndicator];
             if ([[error objectForKey:@"success"] isEqualToString:@"2"]) {
-                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
             }
         });
     }];
 }
-
 #pragma mark - end
 
 #pragma mark - Textfield delegates

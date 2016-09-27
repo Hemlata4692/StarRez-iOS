@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fwd-xZ-4IH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fwd-xZ-4IH">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,6 +19,7 @@
             <string>Raleway</string>
         </mutableArray>
         <mutableArray key="calibri_Bold.ttf">
+            <string>Calibri-Bold</string>
             <string>Calibri-Bold</string>
             <string>Calibri-Bold</string>
             <string>Calibri-Bold</string>
@@ -105,12 +106,24 @@
             <string>Calibri</string>
             <string>Calibri</string>
             <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
+            <string>Calibri</string>
         </mutableArray>
         <mutableArray key="handsean.ttf">
-            <string>HandOfSean</string>
-            <string>HandOfSean</string>
-            <string>HandOfSean</string>
-            <string>HandOfSean</string>
             <string>HandOfSean</string>
         </mutableArray>
     </customFonts>
@@ -499,8 +512,14 @@
                                         <constraint firstItem="LqH-t5-EUZ" firstAttribute="top" secondItem="bA9-7N-gb6" secondAttribute="topMargin" constant="11" id="1xQ-fi-L1l"/>
                                         <constraint firstItem="LqH-t5-EUZ" firstAttribute="leading" secondItem="bA9-7N-gb6" secondAttribute="leadingMargin" constant="11" id="7zD-Mu-UoE"/>
                                         <constraint firstItem="Zz2-4q-hIS" firstAttribute="centerY" secondItem="bA9-7N-gb6" secondAttribute="centerY" id="ImU-HJ-1n0"/>
+                                        <constraint firstItem="Zz2-4q-hIS" firstAttribute="leading" secondItem="LqH-t5-EUZ" secondAttribute="trailing" constant="39" id="LG9-88-Wyy"/>
                                         <constraint firstItem="Zz2-4q-hIS" firstAttribute="trailing" secondItem="bA9-7N-gb6" secondAttribute="trailingMargin" id="Ozj-2Z-6tz"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="Ozj-2Z-6tz"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1969,7 +1988,7 @@
                                     <constraint firstAttribute="height" constant="50" id="bfs-Ab-D1h"/>
                                     <constraint firstAttribute="width" constant="50" id="y5N-7J-CDj"/>
                                 </constraints>
-                                <state key="normal" image="addResource"/>
+                                <state key="normal" image="plus"/>
                                 <connections>
                                     <action selector="addBookResource:" destination="odD-NW-n6K" eventType="touchUpInside" id="GjE-V7-SQl"/>
                                 </connections>
@@ -3289,7 +3308,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="addResource" width="50" height="50"/>
         <image name="checkbox" width="375" height="667"/>
         <image name="checkbox_checked" width="375" height="667"/>
         <image name="collected" width="17" height="17"/>

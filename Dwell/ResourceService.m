@@ -44,14 +44,7 @@
 - (void)getBookedResourcesList:(ResourceModel *)resourceModelData success:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     NSString *parameters;
-//    if ((nil==resourceModelData.resourceDescription)||[resourceModelData.resourceDescription isEqualToString:@""]) {
-//        parameters = [NSString stringWithFormat:@"SELECT rt.[Description], rt.[ResourceTypeID], rt.[MinBookingHours], rt.[MaxBookingHours], bk.[RoomLocationID] FROM [Booking] as bk LEFT JOIN ResourceType as rt ON rt.RoomLocationID = bk.RoomLocationID WHERE bk.[EntryID] = '%@'",[UserDefaultManager getValue:@"entryId"]];
-//    }
-////    else {
-        parameters = [NSString stringWithFormat:@"SELECT [ResourceBookingID], [ResourceId] FROM [ResourceBooking] WHERE (([DateStart] >= '%@' AND [DateStart] <= '%@') OR ([DateEnd] >= '%@' AND [DateEnd] <= '%@'))",resourceModelData.resourceFromDate,resourceModelData.resourceFromDate,resourceModelData.resourceToDate,resourceModelData.resourceToDate];
-////    }
-    
-//    SELECT [ResourceBookingID], [ResourceId] FROM [ResourceBooking] WHERE (([DateStart] >= "'.$post['DateStart'].'" AND [DateStart] <= "'.$post['DateEnd'].'") OR ([DateEnd] >= "'.$post['DateStart'].'" AND [DateEnd] <= "'.$post['DateEnd'].'"))';
+    parameters = [NSString stringWithFormat:@"SELECT [ResourceBookingID], [ResourceId] FROM [ResourceBooking] WHERE (([DateStart] >= '%@' AND [DateStart] <= '%@') OR ([DateEnd] >= '%@' AND [DateEnd] <= '%@'))",resourceModelData.resourceFromDate,resourceModelData.resourceFromDate,resourceModelData.resourceToDate,resourceModelData.resourceToDate];
     DLog(@"request dict %@",parameters);
     
     [super post:parameters onSuccess:success onFailure:failure];
@@ -64,7 +57,7 @@
     NSString *parameters;
     DLog(@"%@",bookedResourceIds);
     
-    if (((nil==resourceModelData.resourceDescription)||[resourceModelData.resourceDescription isEqualToString:@""])&&0==bookedResourceIds.count) {
+    if (((nil==resourceModelData.resourceDescription)||[resourceModelData.resourceDescription isEqualToString:@""])&&(0==bookedResourceIds.count)) {
         parameters = [NSString stringWithFormat:@"SELECT [ResourceId], [Description] FROM [Resource] WHERE [ResourceTypeID] = '%@'",resourceModelData.resourceId];
     }
     else if (((nil==resourceModelData.resourceDescription)||[resourceModelData.resourceDescription isEqualToString:@""])) {
@@ -81,4 +74,20 @@
     [super post:parameters onSuccess:success onFailure:failure];
 }
 #pragma mark - end
+
+#pragma mark - Resources request service
+- (void)setRequestResourceService:(ResourceModel *)resourceModelData success:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    NSString *parameters = [NSString stringWithFormat:@"<ResourceBooking><EntryID>%@</EntryID><ResourceID>%@</ResourceID><BookingID>0</BookingID><ResourceBookingStatusEnum>0</ResourceBookingStatusEnum><ProgramID>0</ProgramID><DateStart>%@</DateStart><DateEnd>%@</DateEnd><AutoAssigned>0</AutoAssigned><SecurityUserID>82</SecurityUserID></ResourceBooking>",[UserDefaultManager getValue:@"entryId"],resourceModelData.resourceId,resourceModelData.resourceFromDate,resourceModelData.resourceToDate];
+    DLog(@"request dict %@",parameters);
+    [super xmlPost:@"create/ResourceBooking" parameters:parameters onSuccess:success onFailure:failure];
+}
+#pragma mark - end
+
+//- (void)cancelService:(void (^)(id))success onFailure:(void (^)(id))failure{
+//    
+//    NSString *parameters = [NSString stringWithFormat:@"<RoomSpaceMaintenance><JobStatus>Closed by student</JobStatus></RoomSpaceMaintenance>"];
+//    DLog(@"request dict %@",parameters);
+//    [super xmlPost:[NSString stringWithFormat:@"update/RoomSpaceMaintenance/%@",[UserDefaultManager getValue:@"maintainId"]] parameters:parameters onSuccess:success onFailure:failure];
+//}
 @end

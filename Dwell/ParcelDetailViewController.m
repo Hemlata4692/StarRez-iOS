@@ -107,10 +107,10 @@
     
     //Check parcel title is nil
     if ((nil==parcelDetailData.parcelTitle)||[parcelDetailData.parcelTitle isEqualToString:@""]) {
-        self.parcelTitle.text=@"    NA";
+        self.parcelTitle.text=@"  NA";
     }
     else {
-        self.parcelTitle.text=[NSString stringWithFormat:@"    %@",parcelDetailData.parcelTitle];
+        self.parcelTitle.text=[NSString stringWithFormat:@"  %@",parcelDetailData.parcelTitle];
     }
     //Check parcel type is nil
     if ((nil==parcelDetailData.parcelType)||[parcelDetailData.parcelType isEqualToString:@""]) {

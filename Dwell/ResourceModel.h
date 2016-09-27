@@ -38,4 +38,6 @@
 - (void)getBookedResourcesOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
 //Get all resources list
 - (void)getAllResourcesOnSuccess:(NSMutableArray *)allResourceIds onSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
+//Resources request service
+- (void)setRequestResourceOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
 @end

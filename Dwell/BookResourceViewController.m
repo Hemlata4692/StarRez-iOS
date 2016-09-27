@@ -10,6 +10,9 @@
 #import "ParcelModel.h"
 #import "ResourceModel.h"
 #import "UIView+RoundedCorner.h"
+#import "UITextField+Validations.h"
+#import "AvailableResourceViewController.h"
+#import "UIView+Toast.h"
 
 float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 
@@ -47,7 +50,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     [super viewDidLoad];
     
     self.navigationItem.title = @"Book Resource";
-    [self removePickerViewAutolayout];  //Remove pickerView autolayouts
+    [self removeAutolayout];  //Remove pickerView autolayouts
     [self initializeVaribles];  //initialize variables and customize objects
     [self addToolBarItems]; //Add textfield and dateTime tool bar view
     [self.bookResourceContainerView addShadowWithCornerRadius:self.bookResourceContainerView color:[UIColor lightGrayColor] borderColor:[UIColor whiteColor] radius:5.0f];  //Add corner radius and shadow
@@ -57,7 +60,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     // Do any additional setup after loading the view.
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     
     [self hideResourcePickerView];
@@ -67,8 +70,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
                                                  name:UIKeyboardWillShowNotification object:nil];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -121,7 +123,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 //Toolbar done handling
 - (void)doneHandling {
     
-    self.bookResourceScrollView.contentSize = CGSizeMake(0,self.mainView.frame.size.height);
+    self.bookResourceScrollView.contentSize=CGSizeMake(0,self.mainView.frame.size.height);
     [self.bookResourceScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
@@ -156,7 +158,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     [self.view addSubview:dateTimeToolbar];
 }
 
-- (void)removePickerViewAutolayout {
+- (void)removeAutolayout {
     
     self.datePickerView.translatesAutoresizingMaskIntoConstraints=YES;
     self.toolBarView.translatesAutoresizingMaskIntoConstraints=YES;
@@ -164,8 +166,6 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     self.mainView.translatesAutoresizingMaskIntoConstraints=YES;
 }
 #pragma mark - end
-
-
 
 #pragma mark - Hide/Show pickerView
 - (void)showDatePickerView {
@@ -264,6 +264,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 - (void)getResourcesTypeList {
     
     bookResourceTypeArray=[NSMutableArray new];
+    bookResourceLocationArray=[NSMutableArray new];
     if ([super checkInternetConnection]) {
         ResourceModel *resourceData = [ResourceModel sharedUser];
         [resourceData getResourceTypeOnSuccess:^(id resourceTypeData) {
@@ -312,6 +313,43 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         [myDelegate stopIndicator];
     }
 }
+
+- (void)searchService {
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm a"];
+    NSDate *fromDateTimeTemp=[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,self.fromTimeField.text]];
+    NSDate *toDateTimeTemp=[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,self.toTimeField.text]];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'hh:mm:ss"];
+    ResourceModel *resourceData = [ResourceModel sharedUser];
+    resourceData.resourceFromDate=[dateFormat stringFromDate:fromDateTimeTemp];
+    resourceData.resourceToDate=[dateFormat stringFromDate:toDateTimeTemp];
+    resourceData.resourceId=[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceId];
+//    resourceData.resourceFromDate=@"2016-09-22T12:00:00"; //Set for testing purpose
+//    resourceData.resourceToDate=@"2016-09-22T13:00:00";   //Set for testing purpose
+    resourceData.resourceDescription=self.sourceNameField.text;
+    [resourceData getBookedResourcesOnSuccess:^(id availableResourceData) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [myDelegate stopIndicator];
+            if ([availableResourceData count]!=0) {
+                AvailableResourceViewController *objAvailableResource = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AvailableResourceViewController"];
+                objAvailableResource.availableResourceData=[availableResourceData mutableCopy];
+                [self.navigationController pushViewController:objAvailableResource animated:YES];
+            }
+            else{
+                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"No resources available for this name or time range." doneButtonText:@"OK" cancelButtonText:@""];
+            }
+        });
+    } onfailure:^(id error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [myDelegate stopIndicator];
+            if ([[error objectForKey:@"success"] isEqualToString:@"2"]) {
+                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+            }
+        });
+    }];
+}
+
 #pragma mark - end
 
 #pragma mark - Textfield delegates
@@ -322,6 +360,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
+    [self doneHandling];
     return YES;
 }
 
@@ -339,19 +378,19 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 //Moving one input field to another field
 - (void)navigateTextFields:(int)selectType {
     
+    //Initially set enabled all toolbar items
     pickerPreviousBarButton.enabled=true;
     pickerNextBarButton.enabled=true;
     dateTimeNextBarButton.enabled=true;
     dateTimePreviousBarButton.enabled=true;
-    //Resource type
-    if (currentFieldIndex==0) {
+    if (currentFieldIndex==0) { //Resource type
         
         [self.view endEditing:YES];
         [self hideDatePickerView];
         if (bookResourceTypeArray.count!=0) {
             pickerPreviousBarButton.enabled=false;
             pickerNextBarButton.enabled=true;
-            [self showResourcePickerView:(lastSelectedResourceType==-1?0:lastSelectedResourceType)];
+            [self showResourcePickerView:(lastSelectedResourceType==-1?0:lastSelectedResourceType)];    //Use tenary operator to check value is -1 or not
             [self textfieldScrollHandling:pickerViewHeight currentTextField:self.sourceTypeField];
         }
     }
@@ -364,12 +403,17 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         [self.view endEditing:YES];
         [self hideDatePickerView];
         if (bookResourceLocationArray.count!=0) {
-            [self showResourcePickerView:lastSelectedResourceLocation];
+            [self showResourcePickerView:(lastSelectedResourceLocation==-1?0:lastSelectedResourceLocation)];    //Use tenary operator to check value is -1 or not
             [self textfieldScrollHandling:pickerViewHeight currentTextField:self.locationField];
         }
-        else {
-        
+        else {  //If location array is blank then hide picker view if it is showing
             [self hideResourcePickerView];
+            if (![self.sourceTypeField.text isEqualToString:@""]) {
+                [self.view makeToast:@"Please set first resource type field"];
+            }
+            else {
+                [self.view makeToast:@"No location available"];
+            }
         }
     }
     else if (currentFieldIndex==3) {    //Resource from date
@@ -393,20 +437,29 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     else if (currentFieldIndex==4) {    //Resource from time
         [self.view endEditing:YES];
         [self hideResourcePickerView];
-        self.datePickerView.datePickerMode=UIDatePickerModeTime;
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"hh:mm a"];
-        NSDate *date;
-        if (![self.fromTimeField.text isEqualToString:@""]) {
-            date = [dateFormat dateFromString:self.fromTimeField.text];
+        if ([self.fromDateField.text isEqualToString:@""]) {
+            [self.view makeToast:@"Please set first fromDate"];
         }
         else {
-            date = [NSDate date];
+            self.datePickerView.datePickerMode=UIDatePickerModeTime;
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm"];
+            //Set seconds zero in current date
+            NSTimeInterval time = floor([[dateFormat dateFromString:[dateFormat stringFromDate:[NSDate date]]] timeIntervalSinceReferenceDate] / 60.0) * 60.0;
+            NSDate *date;
+            DLog(@"%@,%@,%@",[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,[[self.fromTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]],[[self.fromTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0],[NSDate dateWithTimeIntervalSinceReferenceDate:time]);
+            if (![self.fromTimeField.text isEqualToString:@""]&&([[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,[[self.fromTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]] compare:[NSDate dateWithTimeIntervalSinceReferenceDate:time]]!=NSOrderedAscending)) {//if([startDate compare: endDate] == NSOrderedDescending) // if start is later in time than end
+                [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm a"];
+                date = [dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,self.fromTimeField.text]];
+            }
+            else {
+                date = [NSDate date];
+            }
+            [self.datePickerView setDate:date];
+            
+            [self showDatePickerView];
+            [self textfieldScrollHandling:pickerViewHeight currentTextField:self.fromTimeField];
         }
-        [self.datePickerView setDate:date];
-        
-        [self showDatePickerView];
-        [self textfieldScrollHandling:pickerViewHeight currentTextField:self.fromTimeField];
     }
     else if (currentFieldIndex==5) {    //Resource to date
         [self.view endEditing:YES];
@@ -429,21 +482,29 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     else if (currentFieldIndex==6) {    //Resource to time
         [self.view endEditing:YES];
         [self hideResourcePickerView];
-        dateTimeNextBarButton.enabled=false;
-        dateTimePreviousBarButton.enabled=true;
-        self.datePickerView.datePickerMode=UIDatePickerModeTime;
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"hh:mm a"];
-        NSDate *date;
-        if (![self.toTimeField.text isEqualToString:@""]) {
-            date = [dateFormat dateFromString:self.toTimeField.text];
+        if ([self.toDateField.text isEqualToString:@""]) {
+            [self.view makeToast:@"Please set first toDate"];
         }
         else {
-            date = [NSDate date];
+            dateTimeNextBarButton.enabled=false;
+            dateTimePreviousBarButton.enabled=true;
+            self.datePickerView.datePickerMode=UIDatePickerModeTime;
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm"];
+            NSTimeInterval time = floor([[dateFormat dateFromString:[dateFormat stringFromDate:[NSDate date]]] timeIntervalSinceReferenceDate] / 60.0) * 60.0;
+            NSDate *date;
+            DLog(@"%@,%@,%@",[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,[[self.toTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]],[[self.toTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0],[NSDate dateWithTimeIntervalSinceReferenceDate:time]);
+            if (![self.toTimeField.text isEqualToString:@""]&&([[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,[[self.toTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]] compare:[NSDate dateWithTimeIntervalSinceReferenceDate:time]]!=NSOrderedAscending)) {//if([startDate compare: endDate] == NSOrderedDescending) // if start is later in time than end
+                [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm a"];
+                date = [dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,self.toTimeField.text]];
+            }
+            else {
+                date = [NSDate date];
+            }
+            [self.datePickerView setDate:date];
+            [self showDatePickerView];
+            [self textfieldScrollHandling:pickerViewHeight currentTextField:self.toTimeField];
         }
-        [self.datePickerView setDate:date];
-        [self showDatePickerView];
-        [self textfieldScrollHandling:pickerViewHeight currentTextField:self.toTimeField];
     }
 }
 #pragma mark - end
@@ -479,7 +540,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     else if (currentFieldIndex==2) {
         [self hideResourcePickerView];
         NSInteger index = [self.resourcePickerView selectedRowInComponent:0];
-        NSString *str=[[bookResourceLocationArray objectAtIndex:index] resourceTypeDescription];
+        NSString *str=[[bookResourceLocationArray objectAtIndex:index] resourceLocationDescription];
         self.locationField.text=str;
         lastSelectedResourceLocation=(int)index;
     }
@@ -489,7 +550,6 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         NSDate *date = self.datePickerView.date;
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"dd/MM/yyyy"];
-        //        [dateFormat setDateFormat:@"yyyy-MM-dd'T'hh:mm:ss"];
         DLog(@"%@",[dateFormat stringFromDate:date]);
         self.fromDateField.text=[dateFormat stringFromDate:date];
     }
@@ -498,7 +558,6 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         NSDate *date = self.datePickerView.date;
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"hh:mm a"];
-        //        [dateFormat setDateFormat:@"yyyy-MM-dd'T'hh:mm:ss"];
         DLog(@"%@",[dateFormat stringFromDate:date]);
         self.fromTimeField.text=[dateFormat stringFromDate:date];
     }
@@ -508,7 +567,6 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         NSDate *date = self.datePickerView.date;
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"dd/MM/yyyy"];
-        //        [dateFormat setDateFormat:@"yyyy-MM-dd'T'hh:mm:ss"];
         DLog(@"%@",[dateFormat stringFromDate:date]);
         self.toDateField.text=[dateFormat stringFromDate:date];
     }
@@ -555,6 +613,71 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 }
 
 - (IBAction)search:(UIButton *)sender {
+    
+    [self.view endEditing:YES];
+    [self hideResourcePickerView];
+    [self hideDatePickerView];
+    [self doneHandling];
+    //Perform login validations
+    if([self performValidationsForSearch]) {
+        if ([super checkInternetConnection]) {
+            [myDelegate showIndicator:[Constants navigationColor]];
+            [self performSelector:@selector(searchService) withObject:nil afterDelay:.1];
+        }
+    }
+}
+#pragma mark - end
+
+#pragma mark - Perform validation for search action
+- (BOOL)performValidationsForSearch {
+
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm"];
+    //Set time with zero seconds
+    NSTimeInterval time = floor([[dateFormat dateFromString:[dateFormat stringFromDate:[NSDate date]]] timeIntervalSinceReferenceDate] / 60.0) * 60.0;
+    NSDate *fromDateTime=[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,[[self.fromTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]];
+    NSDate *toDateTime=[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,[[self.toTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]];
+    //Get time differece between from and to date time
+    float timeDifferenceInSecond=[[self timeLeftSinceDate:fromDateTime toDateTime:toDateTime] floatValue];
+    DLog(@"%f",timeDifferenceInSecond/3600.0);
+    
+    if ([self.sourceTypeField isEmpty]||[self.locationField isEmpty]||[self.fromDateField isEmpty]||[self.fromTimeField isEmpty]||[self.toTimeField isEmpty]||[self.toDateField isEmpty]) { //If fields are empty and source name field is optional
+         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please fill in all the required fields." doneButtonText:@"OK" cancelButtonText:@""];
+        return false;
+    }
+    else if ([fromDateTime compare:[NSDate dateWithTimeIntervalSinceReferenceDate:time]]==NSOrderedAscending) { //If fromDateTime field value is less than current dateTime
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"From date is not less than current date time." doneButtonText:@"OK" cancelButtonText:@""];
+        return false;
+    }
+    else if ([toDateTime compare:[NSDate dateWithTimeIntervalSinceReferenceDate:time]]==NSOrderedAscending) {   //If toDateTime field value is less than current dateTime
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"To date is not less than current date time" doneButtonText:@"OK" cancelButtonText:@""];
+        return false;
+    }
+    else if(timeDifferenceInSecond<0.0){    //If selected dateTime(fromDateTime and toDateTime) difference is less than 0 means toDateTIme is less than fromDateTime
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please select correct date time" doneButtonText:@"OK" cancelButtonText:@""];
+        return false;
+    }
+    else if(timeDifferenceInSecond==0.0){   //If selected dateTime(fromDateTime and toDateTime) difference is 0 means toDateTIme is equal to fromDateTime
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Can't select same date time" doneButtonText:@"OK" cancelButtonText:@""];
+        return false;
+    }
+    else if((timeDifferenceInSecond/3600.0)<[[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceTypeMinHour] floatValue]){  //If selected dateTime(fromDateTime and toDateTime) difference is less than selected resource minimum hour
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Can't select same date time" doneButtonText:@"OK" cancelButtonText:@""];
+        return false;
+    }
+    else if((timeDifferenceInSecond/3600.0)>[[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceTypeMaxHour] floatValue]){ //If selected dateTime(fromDateTime and toDateTime) difference is greater than selected resource maximum hour
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Can't select same date time" doneButtonText:@"OK" cancelButtonText:@""];
+        return false;
+    }
+    return true;
+}
+
+- (NSString*)timeLeftSinceDate:(NSDate *)fromDateTime toDateTime:(NSDate *)toDateTime {
+    
+    NSString *timeLeft = @"";
+    NSInteger seconds = [fromDateTime timeIntervalSinceDate:toDateTime];
+        timeLeft =[NSString stringWithFormat: @"%ld", (long)seconds*-1];
+    return timeLeft;
 }
 #pragma mark - end
 

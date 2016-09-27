@@ -7,12 +7,14 @@
 //
 
 #import "ResourceDetailViewController.h"
+#import "UIView+RoundedCorner.h"
 
 @interface ResourceDetailViewController ()
 //Get view outlets
 @property (strong, nonatomic) IBOutlet UIView *resourceDetailView;
 @property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
 @property (weak, nonatomic) IBOutlet UIView *mainBackgroundView;
+@property (strong, nonatomic) IBOutlet UIView *backShadowView;
 @property (weak, nonatomic) IBOutlet UILabel *resourceTitle;
 @property (weak, nonatomic) IBOutlet UILabel *resourceType;
 @property (weak, nonatomic) IBOutlet UILabel *fromDate;
@@ -32,7 +34,6 @@
     [super viewDidLoad];
     
     self.navigationItem.title=@"Resource Detail";
-    [super addBackgroungImage:@"Resource"];
     [self layoutViewObjects];
     //Show resource data using resource model
     [self showResourceDetailData];
@@ -45,29 +46,14 @@
 }
 #pragma mark - end
 
-#pragma mark -Custom accessors
+#pragma mark - Custom accessors
 - (void)layoutViewObjects {
     
     //Set corner radius to main background view
-    self.mainBackgroundView.layer.cornerRadius=cornerRadius;
-    self.mainBackgroundView.layer.masksToBounds=YES;
-    //Make dots below title label
-    CAShapeLayer *shapelayer=[CAShapeLayer layer];
-    UIBezierPath *path=[UIBezierPath bezierPath];
-    //Draw a line
-    [path moveToPoint:CGPointMake(0.0,self.resourceTitle.frame.size.height)]; //Add yourStartPoint here
-    [path addLineToPoint:CGPointMake(self.view.frame.size.width-20, self.resourceTitle.frame.size.height)];//Add yourEndPoint here
-    UIColor *fill=[UIColor colorWithRed:72.0/255.0 green:73.0/255.0 blue:73.0/255.0 alpha:1.0];
-    shapelayer.strokeStart=0.0;
-    shapelayer.strokeColor=fill.CGColor;
-    shapelayer.lineWidth=1.0f;
-    shapelayer.lineJoin=kCALineJoinRound;
-    shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
-    shapelayer.path=path.CGPath;
-    [self.resourceTitle.layer addSublayer:shapelayer];
-    
     [self removeAutolayout];//Remove autolayout
     [self changeViewFrame];//Change frame according to forwarding address and comment
+    [self.mainBackgroundView setCornerRadius:5.0f];
+    [self.backShadowView addShadowWithCornerRadius:self.backShadowView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];  //Add corner radius and shadow
 }
 
 - (void)changeViewFrame {
@@ -99,8 +85,8 @@
     }
     //Change main view height according to uiview object height
     backgroundViewHeight=self.adminComment.frame.origin.y+commentHeight+48;
-    self.mainBackgroundView.frame=CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
-    self.resourceStatusBackGroundView.frame=CGRectMake(0, self.mainBackgroundView.frame.size.height-40, self.mainBackgroundView.frame.size.width, 40);
+    self.backShadowView.frame=CGRectMake(10, 8, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
+    self.resourceStatusBackGroundView.frame=CGRectMake(0, self.backShadowView.frame.size.height-40, self.backShadowView.frame.size.width, 40);
     self.detailScrollView.scrollEnabled=false;
     //Scrolling is disable if view height more then screen size
     if ((backgroundViewHeight+64)>[UIScreen mainScreen].bounds.size.height) {
@@ -113,7 +99,7 @@
     
     self.resourceDetailView.translatesAutoresizingMaskIntoConstraints=YES;
     self.resourceDescription.translatesAutoresizingMaskIntoConstraints=YES;
-    self.mainBackgroundView.translatesAutoresizingMaskIntoConstraints=YES;
+    self.backShadowView.translatesAutoresizingMaskIntoConstraints=YES;
     self.adminComment.translatesAutoresizingMaskIntoConstraints=YES;
     self.adminCommentTitle.translatesAutoresizingMaskIntoConstraints=YES;
     self.resourceStatusBackGroundView.translatesAutoresizingMaskIntoConstraints=YES;
@@ -172,19 +158,19 @@
     }
     //Set status background view color according to status
     if ([resourceDetailData.resourceStatusId isEqualToString:@"0"]) {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor:0.6];
+        self.resourceStatusBackGroundView.backgroundColor=[Constants skyBlueColor];
     }
     else if ([resourceDetailData.resourceStatusId isEqualToString:@"1"]) {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants redBackgroundColor:0.6];
+        self.resourceStatusBackGroundView.backgroundColor=[Constants redBackgroundColor];
     }
     else if ([resourceDetailData.resourceStatusId isEqualToString:@"2"]) {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants historyColor:0.6];
+        self.resourceStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
     }
     else if ([resourceDetailData.resourceStatusId isEqualToString:@"3"]) {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
+        self.resourceStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
     }
     else {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants cancelColor:0.6];
+        self.resourceStatusBackGroundView.backgroundColor=[Constants cancelColor];
     }
 }
 #pragma mark - end

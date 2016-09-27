@@ -112,16 +112,16 @@
         parcelStatus.text=modelData.parcelStatus;
     }
     if ([modelData.parcelStatusId isEqualToString:@"0"]) {
-        parcelStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor:0.6];
+        parcelStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor];
     }
     else if ([modelData.parcelStatusId isEqualToString:@"1"]) {
-        parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
+        parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
     }
     else if ([modelData.parcelStatusId isEqualToString:@"3"]) {
-        parcelStatusBackGroundView.backgroundColor=[Constants redBackgroundColor:0.6];
+        parcelStatusBackGroundView.backgroundColor=[Constants redBackgroundColor];
     }
     else {
-        parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
+        parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
     }
 }
 @end

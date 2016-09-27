@@ -171,4 +171,30 @@
 }
 #pragma mark - end
 
+#pragma mark - Get already booked resources list
+- (void)getBookedResources:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    ResourceService *resourceService = [[ResourceService alloc] init];
+    
+    [resourceService getBookedResourcesList:resourceData success:^(id response) {
+        //Resource data from server response and store in data model
+        success(response);
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
+#pragma mark - end
+
+#pragma mark - Get get all resources
+- (void)getAllResources:(NSMutableArray *)bookedResourceIds resourceData:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    ResourceService *resourceService = [[ResourceService alloc] init];
+    
+    [resourceService getAllResourcesList:bookedResourceIds resourceModelData:resourceData success:^(id response) {
+        success(response);
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
+#pragma mark - end
 @end

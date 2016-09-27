@@ -184,16 +184,16 @@
         self.adminComment.text=parcelDetailData.parcelComment;
     }
     if ([parcelDetailData.parcelStatusId isEqualToString:@"0"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor:0.6];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor];
     }
     else if ([parcelDetailData.parcelStatusId isEqualToString:@"1"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
     }
     else if ([parcelDetailData.parcelStatusId isEqualToString:@"3"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants redBackgroundColor:0.6];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants redBackgroundColor];
     }
     else {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
     }
 }
 #pragma mark - end

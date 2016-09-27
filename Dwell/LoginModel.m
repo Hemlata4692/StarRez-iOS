@@ -52,7 +52,7 @@
 }
 #pragma mark - end
 
-#pragma mark - save device token
+#pragma mark - Save device token
 - (void)saveDeviceToken:(void (^)(LoginModel *))success onfailure:(void (^)(id))failure {
     
     [[ConnectionManager sharedManager] sendDevcieToken:self onSuccess:^(LoginModel *userData) {

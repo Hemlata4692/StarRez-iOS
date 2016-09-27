@@ -33,8 +33,6 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"Resource";
-    //Add background image
-    [super addBackgroungImage:@"Resource"];
     // Do any additional setup after loading the view.
 }
 
@@ -46,7 +44,7 @@
     resourceDataArray=[NSMutableArray new];
     resourceSearchDataArray=[NSMutableArray new];
     resourceStatusDict=[NSMutableDictionary new];
-    [myDelegate showIndicator:[Constants greenBackgroundColor:1.0]];
+    [myDelegate showIndicator:[Constants navigationColor]];
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
     [self performSelector:@selector(getResourceListService) withObject:nil afterDelay:.1];
 }

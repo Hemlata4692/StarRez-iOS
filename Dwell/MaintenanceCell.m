@@ -90,12 +90,12 @@
     
     if([modelData.status isEqualToString:@"Job Completed"]){
         
-        statusBackgroundVIew.backgroundColor = [Constants greenBackgroundColor:1.0];
+        statusBackgroundVIew.backgroundColor = [Constants greenBackgroundColor];
     }else if ([modelData.status isEqualToString:@"Awaiting for Contractor"]||[modelData.status isEqualToString:@"Awaiting for Parts"]||[modelData.status isEqualToString:@"Job in Progress"]){
-        statusBackgroundVIew.backgroundColor = [Constants yellowBackgroundColor:1.0];
+        statusBackgroundVIew.backgroundColor = [Constants yellowBackgroundColor];
     }
     else{
-        statusBackgroundVIew.backgroundColor = [Constants blueBackgroundColor:1.0];
+        statusBackgroundVIew.backgroundColor = [Constants blueBackgroundColor];
     }
     
     

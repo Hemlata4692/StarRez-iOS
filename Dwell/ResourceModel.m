@@ -94,6 +94,7 @@
                 tempModel.resourceTypeMaxHour=[resourceData valueForKeyPath:@"entry.content.Record.MaxBookingHours"];
                 tempModel.resourceTypeMinHour=[resourceData valueForKeyPath:@"entry.content.Record.MinBookingHours"];
                 tempModel.resourceTypeLocationId=[resourceData valueForKeyPath:@"entry.content.Record.RoomLocationID"];
+                tempModel.resourceId=[resourceData valueForKeyPath:@"entry.content.Record.ResourceTypeID"];
                 [dataArray addObject:tempModel];
             }
             else {
@@ -101,7 +102,9 @@
                     __block ResourceModel *tempModel=[ResourceModel new];
                     tempModel.resourceTypeDescription=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
                     tempModel.resourceTypeMaxHour=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.MaxBookingHours"];
-                    tempModel.resourceTypeMinHour=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.MinBookingHours"];                    
+                    tempModel.resourceTypeMinHour=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.MinBookingHours"];
+                    tempModel.resourceTypeLocationId=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomLocationID"];
+                     tempModel.resourceId=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ResourceTypeID"];
                     [dataArray addObject:tempModel];
                 }
             }
@@ -147,6 +150,85 @@
             NSMutableDictionary *responseDict=[NSMutableDictionary new];
             [responseDict setObject:@"0" forKey:@"success"];
             failure(responseDict);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }];
+}
+#pragma mark - end
+
+#pragma mark - Get already booked resources list
+- (void)getBookedResourcesOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure {
+    
+    [[ConnectionManager sharedManager] getBookedResources:self onSuccess:^(id resourceData) {
+        if (NULL!=[resourceData objectForKey:@"entry"]&&[[resourceData objectForKey:@"entry"] count]!=0) {
+            
+            NSMutableArray *tempDataArray = [NSMutableArray new];
+            if ([[resourceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
+                [tempDataArray addObject:[resourceData valueForKeyPath:@"entry.content.Record.ResourceID"]];
+            }
+            else {
+                for (int i=0; i<[[resourceData objectForKey:@"entry"] count]; i++) {
+                    [tempDataArray addObject:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ResourceID"]];
+                }
+            }
+            [self getAllResourcesOnSuccess:tempDataArray onSuccess:^(id resourceData) {
+                DLog(@"%@",resourceData);
+                    success(resourceData);
+                
+            } onfailure:^(id error) {
+                failure(error);
+            }];
+        }
+        else {
+             NSMutableArray *tempDataArray = [NSMutableArray new];
+            [self getAllResourcesOnSuccess:tempDataArray onSuccess:^(id resourceData) {
+                DLog(@"%@",resourceData);
+                 if (NULL!=[resourceData objectForKey:@"entry"]&&[[resourceData objectForKey:@"entry"] count]!=0) {
+                     success(resourceData);
+                 }
+                 else {
+                     NSMutableDictionary *responseDict=[NSMutableDictionary new];
+                     [responseDict setObject:@"0" forKey:@"success"];
+                     failure(responseDict);
+                 }
+                
+            } onfailure:^(id error) {
+                failure(error);
+            }];
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }];
+}
+#pragma mark - end
+
+#pragma mark - Get all resources list
+- (void)getAllResourcesOnSuccess:(NSMutableArray *)allResourceIds onSuccess:(void (^)(id))success onfailure:(void (^)(id))failure {
+    
+    [[ConnectionManager sharedManager] getAllResources:allResourceIds resourceData:self onSuccess:^(id resourceData) {
+        if (NULL!=[resourceData objectForKey:@"entry"]&&[[resourceData objectForKey:@"entry"] count]!=0) {
+            
+            NSMutableArray *dataArray = [NSMutableArray new];
+            if ([[resourceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
+                __block ResourceModel *tempModel=[ResourceModel new];
+                tempModel.resourceId=[resourceData valueForKeyPath:@"entry.content.Record.ResourceID"];
+                tempModel.resourceDescription=[resourceData valueForKeyPath:@"entry.content.Record.Description"];
+                [dataArray addObject:tempModel];
+            }
+            else {
+                for (int i=0; i<[[resourceData objectForKey:@"entry"] count]; i++) {
+                    __block ResourceModel *tempModel=[ResourceModel new];
+                    tempModel.resourceId=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ResourceID"];
+                    tempModel.resourceDescription=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
+                    [dataArray addObject:tempModel];
+                }
+            }
+            success(dataArray);
+        }
+        else {
+            NSMutableArray *dataArray = [NSMutableArray new];
+             success(dataArray);
         }
     } onFailure:^(id error) {
         failure(error);

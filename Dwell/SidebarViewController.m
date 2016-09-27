@@ -10,7 +10,9 @@
 #import "SWRevealViewController.h"
 #import "UIImage+deviceSpecificMedia.h"
 
-@interface SidebarViewController (){
+@interface SidebarViewController ()<CustomAlertDelegate>{
+    
+    CustomAlert *alertView;
     NSArray *menuItems;
     NSArray *labelColor;
 }
@@ -26,8 +28,9 @@
     
     menuItems = [[NSArray alloc]init];
     labelColor= [[NSArray alloc]init];
-//    menuItems = @[@"Dashboard", @"Parcel",@"Logout"];
-    labelColor= @[[Constants dashboardColor],[Constants orangeBackgroundColor],[Constants blueBackgroundColor:1.0],[Constants greenBackgroundColor:1.0],[Constants yellowBackgroundColor:1.0],[Constants darkGreenBackgroundColor],[Constants grayBackgroundColor],[Constants logoutColor]];
+    //    menuItems = @[@"Dashboard", @"Parcel",@"Logout"];
+    //    labelColor= @[[Constants dashboardColor],[Constants blueBackgroundColor:1.0],[Constants logoutColor]];
+    labelColor= @[[Constants dashboardColor],[Constants orangeBackgroundColor],[Constants blueBackgroundColor],[Constants greenBackgroundColor],[Constants yellowBackgroundColor],[Constants darkGreenBackgroundColor],[Constants grayBackgroundColor],[Constants logoutColor]];
      menuItems = @[@"Dashboard", @"Maintenance", @"Parcel", @"Resources", @"Events",@"Information", @"Help",@"Logout"];
     [self.tableView setSeparatorColor:[UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1.0]];
 }
@@ -123,16 +126,8 @@
     
     [UserDefaultManager setValue:[NSNumber numberWithInteger:indexPath.row] key:@"indexpath"];
     if (indexPath.row==7) {
-        [UserDefaultManager setValue:nil key:@"indexpath"];
-        [UserDefaultManager setValue:nil key:@"userEmailId"];
-        [UserDefaultManager setValue:nil key:@"entryId"];
-        [myDelegate unrigisterForNotification];
-        
-        UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        
-        UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
-        myDelegate.window.rootViewController = navigation;
-    }
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Are you sure you want to logout?" doneButtonText:@"Yes" cancelButtonText:@"No"];
+     }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -161,7 +156,6 @@
 }
 
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
@@ -170,4 +164,21 @@
     UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
     destViewController.title = [[menuItems objectAtIndex:indexPath.row] capitalizedString];
 }
+
+#pragma mark - Custom alert delegates
+- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+    
+    [alertView dismissAlertView];
+    if (option!=0) {
+        [UserDefaultManager setValue:nil key:@"indexpath"];
+        [UserDefaultManager setValue:nil key:@"userEmailId"];
+        [UserDefaultManager setValue:nil key:@"entryId"];
+        [myDelegate unrigisterForNotification];
+        
+        UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
+        myDelegate.window.rootViewController = navigation;
+    }
+}
+#pragma mark - end
 @end

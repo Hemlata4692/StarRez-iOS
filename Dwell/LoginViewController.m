@@ -172,7 +172,7 @@
 - (BOOL)performValidationsForLogin {
     
     if ([self.emailIdTextfield isEmpty] || [self.passwordTextfield isEmpty]) {
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please fill in all the fields." doneButtonText:@"OK" cancelButtonText:@""];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please fill in all the required fields." doneButtonText:@"OK" cancelButtonText:@""];
         return NO;
     }
     else if (![self.emailIdTextfield isValidEmail]) {

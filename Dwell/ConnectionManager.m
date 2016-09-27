@@ -231,4 +231,51 @@
 }
 #pragma mark - end
 
+#pragma mark - Get already booked resources list
+- (void)getBookedResources:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    ResourceService *resourceService = [[ResourceService alloc] init];
+    
+    [resourceService getBookedResourcesList:resourceData success:^(id response) {
+        //Resource data from server response and store in data model
+        success(response);
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
+#pragma mark - end
+
+#pragma mark - Get get all resources
+- (void)getAllResources:(NSMutableArray *)bookedResourceIds resourceData:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    ResourceService *resourceService = [[ResourceService alloc] init];
+    
+    [resourceService getAllResourcesList:bookedResourceIds resourceModelData:resourceData success:^(id response) {
+        success(response);
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
+#pragma mark - end
+
+#pragma mark - Resources request service
+- (void)setRequestResource:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    ResourceService *resourceService = [[ResourceService alloc] init];
+    [resourceService setRequestResourceService:resourceData success:^(id response) {
+        //Resource data from server response and store in data model
+        DLog(@"%@",[response valueForKeyPath:@"entry.content.ResourceBooking.ResourceBookingID"]);
+        if (NULL!=[response objectForKey:@"entry"]&&[[response objectForKey:@"entry"] count]!=0) {
+            success(response);
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"0" forKey:@"success"];
+            failure(responseDict);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
+#pragma mark - end
 @end

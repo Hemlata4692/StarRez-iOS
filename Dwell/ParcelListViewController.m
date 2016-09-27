@@ -36,12 +36,10 @@
     self.title = @"Parcel List";
     self.noRecordLabel.hidden=YES;
     isSearch=false;
-    //Add background image
-    //[super addBackgroungImage:@"Parcel"];
     parcelDataArray=[NSMutableArray new];
     parcelSearchDataArray=[NSMutableArray new];
     parcelStatusDict=[NSMutableDictionary new];
-    [myDelegate showIndicator:[Constants blueBackgroundColor:1.0]];
+    [myDelegate showIndicator:[Constants blueBackgroundColor]];
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
     [self performSelector:@selector(getParcelListService) withObject:nil afterDelay:.1];
     // Do any additional setup after loading the view.

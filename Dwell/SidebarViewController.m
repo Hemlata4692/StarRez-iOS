@@ -10,7 +10,9 @@
 #import "SWRevealViewController.h"
 #import "UIImage+deviceSpecificMedia.h"
 
-@interface SidebarViewController (){
+@interface SidebarViewController ()<CustomAlertDelegate>{
+    
+    CustomAlert *alertView;
     NSArray *menuItems;
     UIColor *labelColor;
     
@@ -134,16 +136,8 @@
     
     [UserDefaultManager setValue:[NSNumber numberWithInteger:indexPath.row] key:@"indexpath"];
     if (indexPath.row==7) {
-        [UserDefaultManager setValue:nil key:@"indexpath"];
-        [UserDefaultManager setValue:nil key:@"userEmailId"];
-        [UserDefaultManager setValue:nil key:@"entryId"];
-        [myDelegate unrigisterForNotification];
-        
-        UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        
-        UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
-        myDelegate.window.rootViewController = navigation;
-    }
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Are you sure you want to logout?" doneButtonText:@"Yes" cancelButtonText:@"No"];
+     }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -172,7 +166,6 @@
 }
 
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
@@ -181,4 +174,21 @@
     UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
     destViewController.title = [[menuItems objectAtIndex:indexPath.row] capitalizedString];
 }
+
+#pragma mark - Custom alert delegates
+- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+    
+    [alertView dismissAlertView];
+    if (option!=0) {
+        [UserDefaultManager setValue:nil key:@"indexpath"];
+        [UserDefaultManager setValue:nil key:@"userEmailId"];
+        [UserDefaultManager setValue:nil key:@"entryId"];
+        [myDelegate unrigisterForNotification];
+        
+        UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
+        myDelegate.window.rootViewController = navigation;
+    }
+}
+#pragma mark - end
 @end

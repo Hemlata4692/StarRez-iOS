@@ -22,7 +22,7 @@
     
     NSString *parameters = [NSString stringWithFormat:@"<RoomSpaceMaintenance><JobStatus>Closed by student</JobStatus></RoomSpaceMaintenance>"];
     DLog(@"request dict %@",parameters);
-    [super xmlPost:parameters onSuccess:success onFailure:failure];
+    [super xmlPost:[NSString stringWithFormat:@"update/RoomSpaceMaintenance/%@",[UserDefaultManager getValue:@"maintainId"]] parameters:parameters onSuccess:success onFailure:failure];
 }
 
 - (void)getCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure{

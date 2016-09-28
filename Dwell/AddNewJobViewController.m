@@ -155,6 +155,7 @@
         [userData saveMainatenanceJobOnSuccess:^(MainatenanceModel *userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
+                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Your request has been submitted successfully." doneButtonText:@"OK" cancelButtonText:@""];
                 
             });
         } onfailure:^(id error) {

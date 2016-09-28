@@ -138,9 +138,9 @@
     MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
     [mainatenanceService saveJob:userData onSuccess:^(id response) {
         //Parse data from server response and store in datamodel
-        DLog(@"%@",[response valueForKeyPath:@"entry.content.Record.EntryID"]);
-        if (NULL!=[response valueForKeyPath:@"entry.content.Record.EntryID"]) {
-            
+        DLog(@"%@",[response valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenance"]);
+        if (NULL!=[response valueForKeyPath:@"entry.content.RoomSpaceMaintenance"]) {
+            success(response);
         }
         else {
             NSMutableDictionary *responseDict=[NSMutableDictionary new];

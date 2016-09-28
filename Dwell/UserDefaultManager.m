@@ -28,7 +28,7 @@
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:key];
 }
 
-#pragma mark - Get dynamic height according to string
+//Get dynamic height according to string
 + (float)getDynamicLabelHeight:(NSString *)text font:(UIFont *)font widthValue:(float)widthValue {
     
     CGSize size = CGSizeMake(widthValue,1000);
@@ -39,5 +39,35 @@
                      context:nil];
     return textRect.size.height;
 }
-#pragma mark - end
+
+//Convert system dateTime to GMT+1 dateTime format
++ (NSString *)sytemToGMTDateTimeFormat:(NSDate *)conversionDateTime {
+    
+     NSDateFormatter *dateFormat=[[NSDateFormatter alloc] init];
+     NSInteger seconds = [[NSTimeZone systemTimeZone] secondsFromGMT];
+    seconds+=(60*60);   //Add 1 hour in GMT seconds differece
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    NSDate *a=[conversionDateTime dateByAddingTimeInterval:seconds];
+    NSString *conversionDateTimeString=[dateFormat stringFromDate:a];
+    DLog(@"%@",conversionDateTimeString);
+    
+    return conversionDateTimeString;
+}
+
+//Convert system dateTime to GMT+1 dateTime format
++ (NSString *)GMTToSytemDateTimeFormat:(NSString *)conversionDateTime {
+    
+    NSDateFormatter *dateFormat=[[NSDateFormatter alloc] init];
+    NSInteger seconds = [[NSTimeZone systemTimeZone] secondsFromGMT];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+//    NSDate *fromDate=[dateFormat dateFromString:conversionDateTime];
+//    NSDate *a=[dateFormat dateFromString:conversionDateTime];
+//    NSDate *b=[[dateFormat dateFromString:conversionDateTime] dateByAddingTimeInterval:-(60*60)];
+    NSDate *convertedDateTime=[[[dateFormat dateFromString:conversionDateTime] dateByAddingTimeInterval:-(60*60)] dateByAddingTimeInterval:-seconds];   //First convert string to date then subtract one hour from NSDate then convert in my system date from GMT date format
+//    DLog(@"%@,%@,%@",a,b,c);
+    
+    NSString *conversionDateTimeString=[dateFormat stringFromDate:convertedDateTime];
+    DLog(@"%@",conversionDateTimeString);
+    return conversionDateTimeString;
+}
 @end

@@ -14,4 +14,8 @@
 + (void)removeValue : (NSString *)key;
 //Get dynamic height of label
 + (float)getDynamicLabelHeight:(NSString *)text font:(UIFont *)font widthValue:(float)widthValue;
+//Convert system dateTime to GMT+1 dateTime format
++ (NSString *)sytemToGMTDateTimeFormat:(NSDate *)conversionDateTime;
+//Convert GMT+1 dateTime to system dateTime format
++ (NSString *)GMTToSytemDateTimeFormat:(NSString *)conversionDateTime;
 @end

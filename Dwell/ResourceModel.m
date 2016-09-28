@@ -53,6 +53,7 @@
             for (int i=0; i<[[resourceData objectForKey:@"entry"] count]; i++) {
                 [dateFormatter setDateFormat:@"yyyy-MM-dd"];
                 [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+//                 NSInteger seconds = [[NSTimeZone systemTimeZone] secondsFromGMT];
                 __block ResourceModel *tempModel=[ResourceModel new];
                 tempModel.resourceTitle=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.resource"];
                 tempModel.resourceType=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.resource_type"];

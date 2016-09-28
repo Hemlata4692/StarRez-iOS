@@ -334,7 +334,6 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
                 objAvailableResource.availableResourceData=[availableResourceData mutableCopy];
                 objAvailableResource.selectedFromDataTime=resourceData.resourceFromDate;
                 objAvailableResource.selectedToDataTime=resourceData.resourceToDate;
-                objAvailableResource.selectedResourceId=resourceData.resourceId;
                 [self.navigationController pushViewController:objAvailableResource animated:YES];
             }
             else {

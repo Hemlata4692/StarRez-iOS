@@ -25,7 +25,6 @@
 
 @implementation AvailableResourceViewController
 @synthesize availableResourceData;
-@synthesize selectedResourceId;
 @synthesize selectedToDataTime;
 @synthesize selectedFromDataTime;
 
@@ -131,14 +130,12 @@
         [self performSelector:@selector(setRequestResourceService) withObject:nil afterDelay:.1];
     }
     else if (customAlert.alertTagValue==10) {
-        for (UIViewController* viewController in self.navigationController.viewControllers) {
-            
-            //This if condition checks whether the viewController's class is MyGroupViewController
-            // if true that means its the MyGroupViewController (which has been pushed at some point)
-            if ([viewController isKindOfClass:[ResourceListViewController class]] ) {
-                
-                ResourceListViewController *objAvailableResource = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ResourceListViewController"];
-                [self.navigationController popToViewController:objAvailableResource animated:YES];
+        for (id controller in [self.navigationController viewControllers])
+        {
+            if ([controller isKindOfClass:[ResourceListViewController class]])
+            {
+                [self.navigationController popToViewController:controller animated:YES];
+                break;
             }
         }
     }

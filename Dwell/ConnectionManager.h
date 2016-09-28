@@ -34,6 +34,12 @@
 //Get Category service
 - (void)getCategoryOnSuccess:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
 
+//Get Subcategory service
+- (void)getSubCategoryOnSuccess:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
+
+//Save maintenance job
+- (void)saveMaintenanceJob:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
+
 //Resource list with detail
 - (void)getResourceList:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 //Resource type list

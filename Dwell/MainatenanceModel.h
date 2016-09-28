@@ -18,7 +18,9 @@
 @property(retain,nonatomic)NSString *cause;
 @property(retain,nonatomic)NSString *commetns;
 @property(retain,nonatomic)NSString *category;
-
+@property(retain,nonatomic)NSString *subcategory;
+@property(retain,nonatomic)NSString *subcategoryId;
+@property(retain,nonatomic)NSString *isPresent;
 + (instancetype)sharedUser;
 //Maintenance listing
 - (void)getMaintenanceListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
@@ -28,4 +30,10 @@
 
 //Get category
 - (void)getCategoryListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
+
+//Get subcategory
+- (void)getSubCategoryListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
+
+//Save Mainatenance job
+- (void)saveMainatenanceJobOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
 @end

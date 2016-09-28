@@ -13,10 +13,19 @@
 #import "UIView+RoundedCorner.h"
 #import "MainatenanceModel.h"
 @interface AddNewJobViewController ()<UITextFieldDelegate,BSKeyboardControlsDelegate>{
+   
     NSArray *addNewJobTextFieldArray;
-    NSMutableArray *countryCodeArray;
+    NSMutableArray *categoryArray;
+     NSMutableArray *subcategoryArray;
     CustomAlert *alertView;
     BOOL isCategoryPicker;
+    int categoryPickerIndex;
+    int subcategoryPickerIndex;
+    
+    NSString *catId;
+    NSString *subCatId;
+    NSString *isPresent;
+    
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -39,6 +48,7 @@
 @end
 
 @implementation AddNewJobViewController
+
 #pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,21 +61,30 @@
     //Add corner radius
     [self addCornerRadius];
     [myDelegate showIndicator:[Constants orangeBackgroundColor]];
+    //Get category list from server.
     [self performSelector:@selector(categoryService) withObject:nil afterDelay:.1];
-    countryCodeArray=[[NSMutableArray alloc] init];
+    categoryArray=[[NSMutableArray alloc] init];
+    subcategoryArray = [[NSMutableArray alloc]init];
     
+    categoryPickerIndex =-1;
+    subcategoryPickerIndex = -1;
+    _commentsTextField.text = @"";
+    isPresent = @"0";
 }
--(void)viewWillAppear:(BOOL)animated
+
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.pickerView.translatesAutoresizingMaskIntoConstraints=YES;
     self.pickerToolBar.translatesAutoresizingMaskIntoConstraints=YES;
 }
--(void)addCornerRadius
+
+- (void)addCornerRadius
 {
     [self.saveButton.layer setCornerRadius:22];
     [self.addJobContainerView addShadowWithCornerRadius:self.addJobContainerView color:[UIColor lightGrayColor] borderColor:[UIColor whiteColor] radius:5.0f];  //Add corner radius and shadow
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -79,7 +98,7 @@
         MainatenanceModel *mainatenanceData = [MainatenanceModel sharedUser];
         [mainatenanceData getCategoryListOnSuccess:^(id userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                countryCodeArray = [userData mutableCopy];
+                categoryArray = [userData mutableCopy];
                 [myDelegate stopIndicator];
                 
             });
@@ -97,6 +116,63 @@
         }];
     }
 }
+
+- (void)subCategoryService :(NSString *)categoryId {
+    
+    if ([super checkInternetConnection]) {
+        MainatenanceModel *mainatenanceData = [MainatenanceModel sharedUser];
+        [UserDefaultManager setValue:categoryId key:@"categoryId"];
+        [mainatenanceData getSubCategoryListOnSuccess:^(id userData) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myDelegate stopIndicator];
+                subcategoryArray = [userData mutableCopy];
+            });
+        } onfailure:^(id error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myDelegate stopIndicator];
+                if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
+                    DLog(@"No record found.");
+                    
+                }
+                else {
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                }
+            });
+        }];
+    }
+}
+
+- (void)saveJob{
+    
+     MainatenanceModel *userData = [MainatenanceModel sharedUser];
+    userData.maintenenceId =catId;
+    userData.subcategoryId = subCatId;
+    userData.detail =self.descriptionTextField.text;
+    userData.cause = self.causeTextField.text;
+    userData.commetns = self.commentsTextField.text;
+    userData.isPresent = isPresent;
+    if ([super checkInternetConnection]) {
+        [userData saveMainatenanceJobOnSuccess:^(MainatenanceModel *userData) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myDelegate stopIndicator];
+                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Your request has been submitted successfully." doneButtonText:@"OK" cancelButtonText:@""];
+                
+            });
+        } onfailure:^(id error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myDelegate stopIndicator];
+                if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                }
+                else {
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                }
+            });
+        }];
+    }
+}
+#pragma mark - end
+
 #pragma mark - Keyboard control delegate
 - (void)keyboardControls:(BSKeyboardControls *)keyboardControls selectedField:(UIView *)field inDirection:(BSKeyboardControlsDirection)direction {
     
@@ -109,11 +185,14 @@
     [keyboardControls.activeField resignFirstResponder];
 }
 #pragma mark - end
+
 #pragma mark - Textfield delegates
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
     [self.keyboardControls setActiveField:textField];
     [self hidePickerWithAnimation];
     CGSize result = [[UIScreen mainScreen] bounds].size;
+    //Change scrollview scrolling offset according to the screen size and current active field.
     if(result.height < 568) {
         [self.scrollView setContentOffset:CGPointMake(0, textField.frame.origin.y-110) animated:YES];
     } else if (result.height == 568) {
@@ -124,20 +203,24 @@
         }
     }
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     [textField resignFirstResponder];
     return YES;
 }
+
 - (IBAction)checkboxButtonClicked:(id)sender {
     if ([sender isSelected])
     {
+        isPresent  = @"0";
         [sender setSelected:NO];
         [_checkboxImageView setImage:[UIImage imageNamed:@"checkbox.png"]];
     }
     else
     {
+         isPresent  = @"1";
         [sender setSelected:YES];
         [_checkboxImageView setImage:[UIImage imageNamed:@"checkbox_selected.png"]];
     }
@@ -147,13 +230,9 @@
 #pragma mark - Login validation
 - (BOOL)performValidationsForAddNewJob {
     
-    if ([self.categoryTextField isEmpty] || [self.itemTextField isEmpty]|| [self.descriptionTextField isEmpty]|| [self.causeTextField isEmpty]|| [self.commentsTextField isEmpty]) {
+    //Apply validations for mandatory fields. Comments and tick mark are not mandatory.
+    if ([self.categoryTextField isEmpty] || [self.itemTextField isEmpty]|| [self.descriptionTextField isEmpty]|| [self.causeTextField isEmpty]) {
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please fill in all the required fields." doneButtonText:@"OK" cancelButtonText:@""];
-        return NO;
-    }
-    else if (![self.checkboxButton isSelected])
-    {
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Kindly agree to our terms & conditions." doneButtonText:@"OK" cancelButtonText:@""];
         return NO;
     }
     else {
@@ -164,6 +243,7 @@
 
 #pragma mark - IBActions
 - (IBAction)selectCategoryButtonClicked:(id)sender {
+    
     isCategoryPicker = YES;
     [self.keyboardControls.activeField resignFirstResponder];
     [self.pickerView setNeedsLayout];
@@ -171,11 +251,16 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     [self.pickerView reloadAllComponents];
+    if (categoryPickerIndex>=0) {
+        [self.pickerView selectRow:categoryPickerIndex inComponent:0 animated:YES];
+    }
     self.pickerView.frame = CGRectMake(self.pickerView.frame.origin.x, self.view.bounds.size.height-self.pickerView.frame.size.height , self.view.bounds.size.width, self.pickerView.frame.size.height);
     self.pickerToolBar.frame = CGRectMake(self.pickerToolBar.frame.origin.x, self.pickerView.frame.origin.y-44, self.view.bounds.size.width, self.pickerToolBar.frame.size.height);
     [UIView commitAnimations];
 }
+
 - (IBAction)selectItemButtonClicked:(id)sender {
+    
     isCategoryPicker = NO;
     [self.keyboardControls.activeField resignFirstResponder];
     [self.pickerView setNeedsLayout];
@@ -183,36 +268,70 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     [self.pickerView reloadAllComponents];
+    if (categoryPickerIndex>=0) {
+        [self.pickerView selectRow:subcategoryPickerIndex inComponent:0 animated:YES];
+    }
     self.pickerView.frame = CGRectMake(self.pickerView.frame.origin.x, self.view.bounds.size.height-self.pickerView.frame.size.height , self.view.bounds.size.width, self.pickerView.frame.size.height);
     self.pickerToolBar.frame = CGRectMake(self.pickerToolBar.frame.origin.x, self.pickerView.frame.origin.y-44, self.view.bounds.size.width, self.pickerToolBar.frame.size.height);
     [UIView commitAnimations];
 }
+
 - (IBAction)savebuttonClicked:(id)sender {
+    
     [self.keyboardControls.activeField resignFirstResponder];
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     Internet *internet=[[Internet alloc] init];
     //perform add new job validations
     if([self performValidationsForAddNewJob]) {
         if (![internet start]) {
+            
+            [myDelegate showIndicator:nil];
+            [self performSelector:@selector(saveJob) withObject:nil afterDelay:0.1];
         }
     }
 }
+
 - (IBAction)pickerToolBarDoneClicked:(id)sender {
+   
+    //This check determines which picker should response i.e. which field should be filled: category or subcategory.
     if (isCategoryPicker) {
         NSInteger index = [self.pickerView selectedRowInComponent:0];
-        NSString *str=[countryCodeArray objectAtIndex:index];
-        self.categoryTextField.text=str;
+        MainatenanceModel *model = [categoryArray objectAtIndex:index];
+        categoryPickerIndex = (int)index;
+        NSString *str=model.title;
+        catId = model.maintenenceId;
+        //This check avoids frequent service calling in case if we are selecting the same category.
+        if (![self.categoryTextField.text isEqualToString:str]) {
+           //Fetch subcategory on basis of selected category.
+            self.categoryTextField.text=str;
+            self.itemTextField.text = @"";
+            [myDelegate showIndicator:nil];
+            [self performSelector:@selector(subCategoryService:) withObject:model.maintenenceId afterDelay:0.1];
+            
+        }else{
+            
+            self.categoryTextField.text=str;
+            
+        }
+        
+        
     } else {
+        //code to set value on subcategory field
         NSInteger index = [self.pickerView selectedRowInComponent:0];
-        NSString *str=[countryCodeArray objectAtIndex:index];
+        MainatenanceModel *model = [subcategoryArray objectAtIndex:index];
+        subcategoryPickerIndex = (int)index;
+        NSString *str=model.subcategory;
+        subCatId = model.subcategoryId;
         self.itemTextField.text=str;
     }
     [self hidePickerWithAnimation];
 }
 
 #pragma mark - end
+
 #pragma mark - Picker View methods
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+   
     UILabel* pickerLabel = (UILabel*)view;
     if (!pickerLabel)
     {
@@ -220,30 +339,51 @@
         pickerLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
         pickerLabel.textAlignment=NSTextAlignmentCenter;
     }
-    NSString *str=[countryCodeArray objectAtIndex:row];
-    NSArray *myArray = [str componentsSeparatedByString:@","];
-    str=[NSString stringWithFormat:@"%@ %@",[myArray objectAtIndex:0],[myArray objectAtIndex:1]];
+    MainatenanceModel *model;
+    NSString *str;
+    if (isCategoryPicker) {
+    model = [categoryArray objectAtIndex:row];
+        str=model.title;
+    }else{
+        model = [subcategoryArray objectAtIndex:row];
+        str=model.subcategory;
+    }
+    
     pickerLabel.text=str;
     return pickerLabel;
 }
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
 }
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return countryCodeArray.count;
+    if (isCategoryPicker) {
+        return categoryArray.count;
+    }else{
+        return subcategoryArray.count;
+    }
 }
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     [_keyboardControls.activeField resignFirstResponder];
     
-    NSString *str=[countryCodeArray objectAtIndex:row];
-    NSArray *myArray = [str componentsSeparatedByString:@","];
-    str=[NSString stringWithFormat:@"%@ %@",[myArray objectAtIndex:0],[myArray objectAtIndex:1]];
+    MainatenanceModel *model;
+    NSString *str;
+    if (isCategoryPicker) {
+        model = [categoryArray objectAtIndex:row];
+        str=model.title;
+    }else{
+        model = [subcategoryArray objectAtIndex:row];
+        str=model.subcategory;
+    }
     return str;
 }
--(void)hidePickerWithAnimation
+
+- (void)hidePickerWithAnimation
 {
     self.scrollView.scrollEnabled = YES;
     [UIView beginAnimations:nil context:NULL];

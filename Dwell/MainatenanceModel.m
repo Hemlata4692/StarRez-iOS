@@ -108,13 +108,48 @@
             tempModel.title=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
             tempModel.maintenenceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceCategoryID"];
             
-            if (!tempModel.status) {
-                tempModel.status=@"Submitted";
+            if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
+                
+                [dataArray addObject:tempModel];
             }
-           [dataArray addObject:tempModel];
+            
         }
         
         success(dataArray);
+    } onFailure:^(id error) {
+        failure(error);
+    }];
+}
+
+- (void)getSubCategoryListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure{
+    
+    [[ConnectionManager sharedManager] getSubCategoryOnSuccess:self onSuccess:^(id parcelData) {
+        
+        NSMutableArray *dataArray = [NSMutableArray new];
+        for (int i=0; i<[[parcelData objectForKey:@"entry"] count]; i++) {
+            
+            __block MainatenanceModel *tempModel=[MainatenanceModel new];
+            tempModel.subcategory=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
+            tempModel.subcategoryId=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceItemID"];
+            
+            if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
+                
+                [dataArray addObject:tempModel];
+            }
+            
+        }
+        
+        success(dataArray);
+    } onFailure:^(id error) {
+        failure(error);
+    }];
+}
+
+- (void)saveMainatenanceJobOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure{
+    
+    [[ConnectionManager sharedManager] saveMaintenanceJob:self onSuccess:^(id parcelData) {
+        
+        success(parcelData);
     } onFailure:^(id error) {
         failure(error);
     }];

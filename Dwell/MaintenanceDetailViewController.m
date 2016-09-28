@@ -24,7 +24,7 @@
     self.title=@"Maintenance Detail";
     [super addBackgroungImage:@""];
     self.maintenanceDetailTableView.layer.cornerRadius = 3;
-    
+    //Set corner radius to main background view
     
     // Do any additional setup after loading the view.
 }
@@ -68,12 +68,9 @@
                                       byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight)
                                       cornerRadii:CGSizeMake(5, 5)
                                       ];
-            
             CAShapeLayer *maskLayer = [CAShapeLayer layer];
-            
             maskLayer.frame = labelFrame;
             maskLayer.path = maskPath.CGPath;
-            
             bgView.layer.mask = maskLayer;
             return cell;
             break;

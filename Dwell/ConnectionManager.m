@@ -132,6 +132,25 @@
         failure(error);
     }] ;
 }
+
+- (void)saveMaintenanceJob:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure {
+    
+    MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
+    [mainatenanceService saveJob:userData onSuccess:^(id response) {
+        //Parse data from server response and store in datamodel
+        DLog(@"%@",[response valueForKeyPath:@"entry.content.Record.EntryID"]);
+        if (NULL!=[response valueForKeyPath:@"entry.content.Record.EntryID"]) {
+            
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"0" forKey:@"success"];
+            failure(responseDict);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
 #pragma mark - end
 
 #pragma mark - Login user
@@ -143,6 +162,8 @@
         DLog(@"%@",[response valueForKeyPath:@"entry.content.Record.EntryID"]);
         if (NULL!=[response valueForKeyPath:@"entry.content.Record.EntryID"]) {
             userData.entryId=[response valueForKeyPath:@"entry.content.Record.EntryID"];
+            [UserDefaultManager setValue:[NSString stringWithFormat:@"%@ %@ %@",[response valueForKeyPath:@"entry.content.Record.NameTitle"],[response valueForKeyPath:@"entry.content.Record.NameFirst"],[response valueForKeyPath:@"entry.content.Record.NameLast"]] key:@"userName"];
+            [UserDefaultManager setValue:[response valueForKeyPath:@"entry.content.Record.RoomSpaceID"] key:@"RoomSpaceID"];
             success(userData);
         }
         else {

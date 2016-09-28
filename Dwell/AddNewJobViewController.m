@@ -21,6 +21,11 @@
     BOOL isCategoryPicker;
     int categoryPickerIndex;
     int subcategoryPickerIndex;
+    
+    NSString *catId;
+    NSString *subCatId;
+    NSString *isPresent;
+    
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -63,6 +68,8 @@
     
     categoryPickerIndex =-1;
     subcategoryPickerIndex = -1;
+    _commentsTextField.text = @"";
+    isPresent = @"0";
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -134,6 +141,35 @@
         }];
     }
 }
+
+- (void)saveJob{
+    
+     MainatenanceModel *userData = [MainatenanceModel sharedUser];
+    userData.maintenenceId =catId;
+    userData.subcategoryId = subCatId;
+    userData.detail =self.descriptionTextField.text;
+    userData.cause = self.causeTextField.text;
+    userData.commetns = self.commentsTextField.text;
+    userData.isPresent = isPresent;
+    if ([super checkInternetConnection]) {
+        [userData saveMainatenanceJobOnSuccess:^(MainatenanceModel *userData) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myDelegate stopIndicator];
+                
+            });
+        } onfailure:^(id error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myDelegate stopIndicator];
+                if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                }
+                else {
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                }
+            });
+        }];
+    }
+}
 #pragma mark - end
 
 #pragma mark - Keyboard control delegate
@@ -177,11 +213,13 @@
 - (IBAction)checkboxButtonClicked:(id)sender {
     if ([sender isSelected])
     {
+        isPresent  = @"0";
         [sender setSelected:NO];
         [_checkboxImageView setImage:[UIImage imageNamed:@"checkbox.png"]];
     }
     else
     {
+         isPresent  = @"1";
         [sender setSelected:YES];
         [_checkboxImageView setImage:[UIImage imageNamed:@"checkbox_selected.png"]];
     }
@@ -245,6 +283,9 @@
     //perform add new job validations
     if([self performValidationsForAddNewJob]) {
         if (![internet start]) {
+            
+            [myDelegate showIndicator:nil];
+            [self performSelector:@selector(saveJob) withObject:nil afterDelay:0.1];
         }
     }
 }
@@ -257,6 +298,7 @@
         MainatenanceModel *model = [categoryArray objectAtIndex:index];
         categoryPickerIndex = (int)index;
         NSString *str=model.title;
+        catId = model.maintenenceId;
         //This check avoids frequent service calling in case if we are selecting the same category.
         if (![self.categoryTextField.text isEqualToString:str]) {
            //Fetch subcategory on basis of selected category.
@@ -278,6 +320,7 @@
         MainatenanceModel *model = [subcategoryArray objectAtIndex:index];
         subcategoryPickerIndex = (int)index;
         NSString *str=model.subcategory;
+        subCatId = model.subcategoryId;
         self.itemTextField.text=str;
     }
     [self hidePickerWithAnimation];

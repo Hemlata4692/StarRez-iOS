@@ -14,10 +14,6 @@
 		95D27D2B1D994D7B00EBA799 /* AddNewJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D27D2A1D994D7B00EBA799 /* AddNewJobViewController.m */; };
 		95E74D041D9107F300C5CA8B /* MaintenanceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D031D9107F300C5CA8B /* MaintenanceListViewController.m */; };
 		95E74D071D91122C00C5CA8B /* MaintenanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D061D91122C00C5CA8B /* MaintenanceCell.m */; };
-		95E74D0D1D91303200C5CA8B /* maintenance-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E74D091D91303200C5CA8B /* maintenance-568h@2x.png */; };
-		95E74D0E1D91303200C5CA8B /* maintenance-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E74D0A1D91303200C5CA8B /* maintenance-667h@2x.png */; };
-		95E74D0F1D91303200C5CA8B /* maintenance-736h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E74D0B1D91303200C5CA8B /* maintenance-736h@2x.png */; };
-		95E74D101D91303200C5CA8B /* maintenance.png in Resources */ = {isa = PBXBuildFile; fileRef = 95E74D0C1D91303200C5CA8B /* maintenance.png */; };
 		95E74D141D914A8300C5CA8B /* MainatenanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D131D914A8300C5CA8B /* MainatenanceModel.m */; };
 		95E74D181D914FF700C5CA8B /* MaintenanceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D171D914FF700C5CA8B /* MaintenanceService.m */; };
 		B7465A941D950C28008B315A /* ResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465A931D950C28008B315A /* ResourceService.m */; };
@@ -26,10 +22,6 @@
 		B7465AA91D95117E008B315A /* ResourceListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465AA81D95117E008B315A /* ResourceListCell.m */; };
 		B7465AAC1D951183008B315A /* ResourceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465AAB1D951183008B315A /* ResourceListViewController.m */; };
 		B7465AB01D95133C008B315A /* ResourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465AAF1D95133C008B315A /* ResourceModel.m */; };
-		B7465AB71D95209B008B315A /* Resource-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7465AB31D95209B008B315A /* Resource-568h@2x.png */; };
-		B7465AB81D95209B008B315A /* Resource-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7465AB41D95209B008B315A /* Resource-667h@2x.png */; };
-		B7465AB91D95209B008B315A /* Resource-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7465AB51D95209B008B315A /* Resource-736h@3x.png */; };
-		B7465ABA1D95209B008B315A /* Resource.png in Resources */ = {isa = PBXBuildFile; fileRef = B7465AB61D95209B008B315A /* Resource.png */; };
 		B75B2C761D88033A007EEE42 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C751D88033A007EEE42 /* main.m */; };
 		B75B2C791D88033A007EEE42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C781D88033A007EEE42 /* AppDelegate.m */; };
 		B75B2C7C1D88033A007EEE42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C7B1D88033A007EEE42 /* LoginViewController.m */; };
@@ -58,9 +50,6 @@
 		B7C7A37F1D8A64C900D7DF06 /* login-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A37B1D8A64C900D7DF06 /* login-667h@2x.png */; };
 		B7C7A3801D8A64C900D7DF06 /* login-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A37C1D8A64C900D7DF06 /* login-736h@3x.png */; };
 		B7C7A3811D8A64C900D7DF06 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A37D1D8A64C900D7DF06 /* login.png */; };
-		B7C7A3871D8A651100D7DF06 /* Parcel-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A3841D8A651100D7DF06 /* Parcel-568h@2x.png */; };
-		B7C7A3881D8A651100D7DF06 /* Parcel-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A3851D8A651100D7DF06 /* Parcel-667h@2x.png */; };
-		B7C7A3891D8A651100D7DF06 /* Parcel-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A3861D8A651100D7DF06 /* Parcel-736h@3x.png */; };
 		B7C7A38D1D8A651900D7DF06 /* Dashboard-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A38A1D8A651900D7DF06 /* Dashboard-568h@2x.png */; };
 		B7C7A38E1D8A651900D7DF06 /* Dashboard-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A38B1D8A651900D7DF06 /* Dashboard-667h@2x.png */; };
 		B7C7A38F1D8A651900D7DF06 /* Dashboard-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A38C1D8A651900D7DF06 /* Dashboard-736h@3x.png */; };
@@ -923,28 +912,17 @@
 				B7C7A38F1D8A651900D7DF06 /* Dashboard-736h@3x.png in Resources */,
 				B7ACD26E1D890FE7005CD42D /* calibri_Normal.ttf in Resources */,
 				B7C7A3811D8A64C900D7DF06 /* login.png in Resources */,
-				B7C7A3891D8A651100D7DF06 /* Parcel-736h@3x.png in Resources */,
-				95E74D0E1D91303200C5CA8B /* maintenance-667h@2x.png in Resources */,
 				B75B2C811D88033A007EEE42 /* Assets.xcassets in Resources */,
 				B7D06C541D895CA300A5FA94 /* CustomAlert.xib in Resources */,
 				B7C7A3801D8A64C900D7DF06 /* login-736h@3x.png in Resources */,
-				B7465AB81D95209B008B315A /* Resource-667h@2x.png in Resources */,
-				95E74D0D1D91303200C5CA8B /* maintenance-568h@2x.png in Resources */,
 				B7C7A38D1D8A651900D7DF06 /* Dashboard-568h@2x.png in Resources */,
-				B7C7A3871D8A651100D7DF06 /* Parcel-568h@2x.png in Resources */,
 				B7C7A38E1D8A651900D7DF06 /* Dashboard-667h@2x.png in Resources */,
-				95E74D0F1D91303200C5CA8B /* maintenance-736h@2x.png in Resources */,
-				B7465ABA1D95209B008B315A /* Resource.png in Resources */,
-				B7465AB71D95209B008B315A /* Resource-568h@2x.png in Resources */,
 				B75B2C7F1D88033A007EEE42 /* Main.storyboard in Resources */,
 				B7C7A37E1D8A64C900D7DF06 /* login-568h@2x.png in Resources */,
 				B7ACD26D1D890FE7005CD42D /* calibri_Bold.ttf in Resources */,
 				B7ACD26F1D890FE7005CD42D /* handsean.ttf in Resources */,
-				B7C7A3881D8A651100D7DF06 /* Parcel-667h@2x.png in Resources */,
 				4A92B91F1D8FF4DF008D4462 /* underDevelopement.png in Resources */,
-				95E74D101D91303200C5CA8B /* maintenance.png in Resources */,
 				B7C7A37F1D8A64C900D7DF06 /* login-667h@2x.png in Resources */,
-				B7465AB91D95209B008B315A /* Resource-736h@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

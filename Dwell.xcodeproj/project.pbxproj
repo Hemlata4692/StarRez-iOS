@@ -16,6 +16,8 @@
 		95E74D071D91122C00C5CA8B /* MaintenanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D061D91122C00C5CA8B /* MaintenanceCell.m */; };
 		95E74D141D914A8300C5CA8B /* MainatenanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D131D914A8300C5CA8B /* MainatenanceModel.m */; };
 		95E74D181D914FF700C5CA8B /* MaintenanceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D171D914FF700C5CA8B /* MaintenanceService.m */; };
+		B719DAC41D9A8489000A5D0D /* AvailableResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B719DAC31D9A8489000A5D0D /* AvailableResourceViewController.m */; };
+		B719DAC81D9A9711000A5D0D /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = B719DAC71D9A9711000A5D0D /* UIView+Toast.m */; };
 		B7465A941D950C28008B315A /* ResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465A931D950C28008B315A /* ResourceService.m */; };
 		B7465A9F1D95111C008B315A /* BookResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465A9E1D95111C008B315A /* BookResourceViewController.m */; };
 		B7465AA61D951176008B315A /* ResourceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465AA51D951176008B315A /* ResourceDetailViewController.m */; };
@@ -83,18 +85,16 @@
 		95E74D031D9107F300C5CA8B /* MaintenanceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceListViewController.m; sourceTree = "<group>"; };
 		95E74D051D91122C00C5CA8B /* MaintenanceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceCell.h; sourceTree = "<group>"; };
 		95E74D061D91122C00C5CA8B /* MaintenanceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceCell.m; sourceTree = "<group>"; };
-		95E74D091D91303200C5CA8B /* maintenance-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maintenance-568h@2x.png"; sourceTree = "<group>"; };
-		95E74D0A1D91303200C5CA8B /* maintenance-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maintenance-667h@2x.png"; sourceTree = "<group>"; };
-		95E74D0B1D91303200C5CA8B /* maintenance-736h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "maintenance-736h@2x.png"; sourceTree = "<group>"; };
-		95E74D0C1D91303200C5CA8B /* maintenance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maintenance.png; sourceTree = "<group>"; };
 		95E74D121D914A8300C5CA8B /* MainatenanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainatenanceModel.h; sourceTree = "<group>"; };
 		95E74D131D914A8300C5CA8B /* MainatenanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainatenanceModel.m; sourceTree = "<group>"; };
 		95E74D161D914FF700C5CA8B /* MaintenanceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceService.h; sourceTree = "<group>"; };
 		95E74D171D914FF700C5CA8B /* MaintenanceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceService.m; sourceTree = "<group>"; };
+		B719DAC21D9A8489000A5D0D /* AvailableResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvailableResourceViewController.h; sourceTree = "<group>"; };
+		B719DAC31D9A8489000A5D0D /* AvailableResourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvailableResourceViewController.m; sourceTree = "<group>"; };
+		B719DAC61D9A9711000A5D0D /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		B719DAC71D9A9711000A5D0D /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		B7465A921D950C28008B315A /* ResourceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceService.h; sourceTree = "<group>"; };
 		B7465A931D950C28008B315A /* ResourceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceService.m; sourceTree = "<group>"; };
-		B7465A9A1D951116008B315A /* BookResourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookResourceCell.h; sourceTree = "<group>"; };
-		B7465A9B1D951116008B315A /* BookResourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookResourceCell.m; sourceTree = "<group>"; };
 		B7465A9D1D95111C008B315A /* BookResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookResourceViewController.h; sourceTree = "<group>"; };
 		B7465A9E1D95111C008B315A /* BookResourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookResourceViewController.m; sourceTree = "<group>"; };
 		B7465AA41D951176008B315A /* ResourceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceDetailViewController.h; sourceTree = "<group>"; };
@@ -105,10 +105,6 @@
 		B7465AAB1D951183008B315A /* ResourceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceListViewController.m; sourceTree = "<group>"; };
 		B7465AAE1D95133C008B315A /* ResourceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceModel.h; sourceTree = "<group>"; };
 		B7465AAF1D95133C008B315A /* ResourceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceModel.m; sourceTree = "<group>"; };
-		B7465AB31D95209B008B315A /* Resource-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Resource-568h@2x.png"; sourceTree = "<group>"; };
-		B7465AB41D95209B008B315A /* Resource-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Resource-667h@2x.png"; sourceTree = "<group>"; };
-		B7465AB51D95209B008B315A /* Resource-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Resource-736h@3x.png"; sourceTree = "<group>"; };
-		B7465AB61D95209B008B315A /* Resource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resource.png; sourceTree = "<group>"; };
 		B75B2C711D88033A007EEE42 /* Dwell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dwell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75B2C751D88033A007EEE42 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B75B2C771D88033A007EEE42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -158,9 +154,6 @@
 		B7C7A37B1D8A64C900D7DF06 /* login-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-667h@2x.png"; sourceTree = "<group>"; };
 		B7C7A37C1D8A64C900D7DF06 /* login-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-736h@3x.png"; sourceTree = "<group>"; };
 		B7C7A37D1D8A64C900D7DF06 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
-		B7C7A3841D8A651100D7DF06 /* Parcel-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Parcel-568h@2x.png"; sourceTree = "<group>"; };
-		B7C7A3851D8A651100D7DF06 /* Parcel-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Parcel-667h@2x.png"; sourceTree = "<group>"; };
-		B7C7A3861D8A651100D7DF06 /* Parcel-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Parcel-736h@3x.png"; sourceTree = "<group>"; };
 		B7C7A38A1D8A651900D7DF06 /* Dashboard-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard-568h@2x.png"; sourceTree = "<group>"; };
 		B7C7A38B1D8A651900D7DF06 /* Dashboard-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard-667h@2x.png"; sourceTree = "<group>"; };
 		B7C7A38C1D8A651900D7DF06 /* Dashboard-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard-736h@3x.png"; sourceTree = "<group>"; };
@@ -270,17 +263,6 @@
 			name = maintenanceListView;
 			sourceTree = "<group>";
 		};
-		95E74D081D91301C00C5CA8B /* Maintenance */ = {
-			isa = PBXGroup;
-			children = (
-				95E74D091D91303200C5CA8B /* maintenance-568h@2x.png */,
-				95E74D0A1D91303200C5CA8B /* maintenance-667h@2x.png */,
-				95E74D0B1D91303200C5CA8B /* maintenance-736h@2x.png */,
-				95E74D0C1D91303200C5CA8B /* maintenance.png */,
-			);
-			name = Maintenance;
-			sourceTree = "<group>";
-		};
 		95E74D111D914A2300C5CA8B /* MaintenanceModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +279,24 @@
 				95E74D171D914FF700C5CA8B /* MaintenanceService.m */,
 			);
 			name = MaintenanceService;
+			sourceTree = "<group>";
+		};
+		B719DABE1D9A8464000A5D0D /* AvailableResourceViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B719DAC21D9A8489000A5D0D /* AvailableResourceViewController.h */,
+				B719DAC31D9A8489000A5D0D /* AvailableResourceViewController.m */,
+			);
+			name = AvailableResourceViewController;
+			sourceTree = "<group>";
+		};
+		B719DAC51D9A9704000A5D0D /* ToastFile */ = {
+			isa = PBXGroup;
+			children = (
+				B719DAC61D9A9711000A5D0D /* UIView+Toast.h */,
+				B719DAC71D9A9711000A5D0D /* UIView+Toast.m */,
+			);
+			name = ToastFile;
 			sourceTree = "<group>";
 		};
 		B7465A911D950C21008B315A /* ResourceService */ = {
@@ -321,19 +321,10 @@
 		B7465A961D9510D9008B315A /* BookResource */ = {
 			isa = PBXGroup;
 			children = (
+				B719DABE1D9A8464000A5D0D /* AvailableResourceViewController */,
 				B7465A991D9510F4008B315A /* BookResourceView */,
-				B7465A971D9510E1008B315A /* BookResourceCell */,
 			);
 			name = BookResource;
-			sourceTree = "<group>";
-		};
-		B7465A971D9510E1008B315A /* BookResourceCell */ = {
-			isa = PBXGroup;
-			children = (
-				B7465A9A1D951116008B315A /* BookResourceCell.h */,
-				B7465A9B1D951116008B315A /* BookResourceCell.m */,
-			);
-			name = BookResourceCell;
 			sourceTree = "<group>";
 		};
 		B7465A991D9510F4008B315A /* BookResourceView */ = {
@@ -388,17 +379,6 @@
 				B7465AAF1D95133C008B315A /* ResourceModel.m */,
 			);
 			name = ResourceModel;
-			sourceTree = "<group>";
-		};
-		B7465AB21D952091008B315A /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				B7465AB31D95209B008B315A /* Resource-568h@2x.png */,
-				B7465AB41D95209B008B315A /* Resource-667h@2x.png */,
-				B7465AB51D95209B008B315A /* Resource-736h@3x.png */,
-				B7465AB61D95209B008B315A /* Resource.png */,
-			);
-			name = Resource;
 			sourceTree = "<group>";
 		};
 		B75B2C681D88033A007EEE42 = {
@@ -519,6 +499,7 @@
 		B75B2C911D880452007EEE42 /* CategoryClasses */ = {
 			isa = PBXGroup;
 			children = (
+				B719DAC51D9A9704000A5D0D /* ToastFile */,
 				B75B2CB51D8806DD007EEE42 /* UIImageCategory */,
 				B75B2CB11D8806CB007EEE42 /* CornderRadius */,
 				B75B2CAD1D8806BA007EEE42 /* PaddingCategory */,
@@ -541,10 +522,7 @@
 		B75B2C931D88047D007EEE42 /* BackgroundImages */ = {
 			isa = PBXGroup;
 			children = (
-				B7465AB21D952091008B315A /* Resource */,
-				95E74D081D91301C00C5CA8B /* Maintenance */,
 				B7ACD27B1D8919AB005CD42D /* Login */,
-				B7C7A3821D8A64E800D7DF06 /* Parcel */,
 				B7C7A3831D8A64FC00D7DF06 /* Dashboard */,
 			);
 			name = BackgroundImages;
@@ -713,16 +691,6 @@
 				B7C7A3911D8A75A400D7DF06 /* ParcelListCell */,
 			);
 			name = ParcelModule;
-			sourceTree = "<group>";
-		};
-		B7C7A3821D8A64E800D7DF06 /* Parcel */ = {
-			isa = PBXGroup;
-			children = (
-				B7C7A3841D8A651100D7DF06 /* Parcel-568h@2x.png */,
-				B7C7A3851D8A651100D7DF06 /* Parcel-667h@2x.png */,
-				B7C7A3861D8A651100D7DF06 /* Parcel-736h@3x.png */,
-			);
-			name = Parcel;
 			sourceTree = "<group>";
 		};
 		B7C7A3831D8A64FC00D7DF06 /* Dashboard */ = {
@@ -957,6 +925,7 @@
 				B75B2CB81D8806E4007EEE42 /* UIImage+deviceSpecificMedia.m in Sources */,
 				B7465AA61D951176008B315A /* ResourceDetailViewController.m in Sources */,
 				B7D06C601D897BD800A5FA94 /* ConnectionManager.m in Sources */,
+				B719DAC81D9A9711000A5D0D /* UIView+Toast.m in Sources */,
 				B75B2CAC1D8806AD007EEE42 /* UITextField+Validations.m in Sources */,
 				B7F7161F1D8A9C57006C8178 /* Internet.m in Sources */,
 				B7CA3C841D8AC64B006CD1FD /* ParcelService.m in Sources */,
@@ -974,6 +943,7 @@
 				4A412A4B1D8AC6A800E70791 /* GlobalBackViewController.m in Sources */,
 				951EC2FF1D929A0A006C98F8 /* MaintenanceDetailViewController.m in Sources */,
 				B75B2CB41D8806D2007EEE42 /* UIView+RoundedCorner.m in Sources */,
+				B719DAC41D9A8489000A5D0D /* AvailableResourceViewController.m in Sources */,
 				B7D06C571D8974EC00A5FA94 /* LoginModel.m in Sources */,
 				B7C7A36C1D8A639800D7DF06 /* SidebarViewController.m in Sources */,
 				B7465A941D950C28008B315A /* ResourceService.m in Sources */,

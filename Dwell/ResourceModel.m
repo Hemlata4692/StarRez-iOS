@@ -56,8 +56,8 @@
                 __block ResourceModel *tempModel=[ResourceModel new];
                 tempModel.resourceTitle=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.resource"];
                 tempModel.resourceType=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.resource_type"];
-                NSDate *fromDate = [dateFormatter dateFromString:[[[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateStart"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-                NSDate *toDate = [dateFormatter dateFromString:[[[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateEnd"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                NSDate *fromDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateStart"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                NSDate *toDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateEnd"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
                 [dateFormatter setDateFormat:@"dd MMM, yy"];
                 tempModel.resourceFromDate=[dateFormatter stringFromDate:fromDate];
                 tempModel.resourceToDate=[dateFormatter stringFromDate:toDate];
@@ -93,7 +93,7 @@
                 tempModel.resourceTypeDescription=[resourceData valueForKeyPath:@"entry.content.Record.Description"];
                 tempModel.resourceTypeMaxHour=[resourceData valueForKeyPath:@"entry.content.Record.MaxBookingHours"];
                 tempModel.resourceTypeMinHour=[resourceData valueForKeyPath:@"entry.content.Record.MinBookingHours"];
-                tempModel.resourceTypeLocationId=[resourceData valueForKeyPath:@"entry.content.Record.RoomLocationID"];
+                tempModel.resourceTypeLocationId=[resourceData valueForKeyPath:@"entry.content.Record.RoomLocationAreaID"];
                 tempModel.resourceId=[resourceData valueForKeyPath:@"entry.content.Record.ResourceTypeID"];
                 [dataArray addObject:tempModel];
             }
@@ -131,16 +131,14 @@
             if ([[resourceLocationData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
                 __block ResourceModel *tempModel=[ResourceModel new];
                 tempModel.resourceLocationDescription=[resourceLocationData valueForKeyPath:@"entry.content.Record.Description"];
+                tempModel.resourceTypeLocationId=[resourceLocationData valueForKeyPath:@"entry.content.Record.RoomLocationID"];
                 [dataArray addObject:tempModel];
             }
             else {
                 for (int i=0; i<[[resourceLocationData objectForKey:@"entry"] count]; i++) {
                     __block ResourceModel *tempModel=[ResourceModel new];
                     tempModel.resourceTypeDescription=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
-                    tempModel.resourceTypeMaxHour=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.MaxBookingHours"];
-                    tempModel.resourceTypeMinHour=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.MinBookingHours"];
-                    //                tempModel.resourceTitle=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
-                    
+                    tempModel.resourceTypeLocationId=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomLocationID"];
                     [dataArray addObject:tempModel];
                 }
             }

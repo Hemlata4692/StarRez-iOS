@@ -14,5 +14,4 @@
 @property(nonatomic,strong)NSMutableArray *availableResourceData;
 @property(nonatomic,strong)NSString *selectedFromDataTime;
 @property(nonatomic,strong)NSString *selectedToDataTime;
-@property(nonatomic,strong)NSString *selectedResourceId;
 @end

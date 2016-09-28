@@ -44,6 +44,7 @@
     resourceDataArray=[NSMutableArray new];
     resourceSearchDataArray=[NSMutableArray new];
     resourceStatusDict=[NSMutableDictionary new];
+    [self.resourceListTableview reloadData];
     [myDelegate showIndicator:[Constants navigationColor]];
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
     [self performSelector:@selector(getResourceListService) withObject:nil afterDelay:.1];
@@ -88,6 +89,7 @@
 //Get resource list webservice
 - (void)getResourceListService {
     
+    self.noRecordLabel.hidden=YES;
     resourceStatusDict=[NSMutableDictionary new];
     if ([super checkInternetConnection]) {
         ResourceModel *resourceData = [ResourceModel sharedUser];

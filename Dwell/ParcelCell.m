@@ -7,6 +7,7 @@
 //
 
 #import "ParcelCell.h"
+#import "UIView+RoundedCorner.h"
 
 @implementation ParcelCell
 @synthesize parcelTitle;
@@ -22,6 +23,7 @@
 @synthesize parcelStatusBackGroundView;
 @synthesize parcelStatus;
 @synthesize mainBackgroundView;
+@synthesize shadowBackView;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -43,7 +45,8 @@
     mainBackgroundView.layer.masksToBounds=YES;
     //Round status view from bottom sides
     parcelStatusBackGroundView.translatesAutoresizingMaskIntoConstraints=YES;
-    parcelStatusBackGroundView.frame=CGRectMake(parcelStatusBackGroundView.frame.origin.x, parcelStatusBackGroundView.frame.origin.y, frame.size.width-32, parcelStatusBackGroundView.frame.size.height);
+    parcelStatusBackGroundView.frame=CGRectMake(parcelStatusBackGroundView.frame.origin.x, parcelStatusBackGroundView.frame.origin.y, frame.size.width-30, parcelStatusBackGroundView.frame.size.height);
+    [shadowBackView addShadowWithCornerRadius:shadowBackView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];  //Add corner radius and shadow
 }
 
 - (void)displayData:(ParcelModel *)modelData frame:(CGRect)frame{

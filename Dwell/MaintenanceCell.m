@@ -24,8 +24,6 @@
 
 - (void)layoutCellObject :(CGRect)frame {
     
-    
-    
     //set dynamic height of title
     titleLabel.translatesAutoresizingMaskIntoConstraints = YES;
     descriptionField.translatesAutoresizingMaskIntoConstraints = YES;

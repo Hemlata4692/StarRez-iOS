@@ -52,7 +52,6 @@
             tempModel.cause=[maintenanceData valueForKeyPath:@"entry.content.Record.Cause"];
             tempModel.commetns=[maintenanceData valueForKeyPath:@"entry.content.Record.comments"];
             tempModel.maintenenceId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceID"];
-            
             if (!tempModel.status) {
                 tempModel.status=@"Submitted";
             }
@@ -75,7 +74,6 @@
                 tempModel.cause=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Cause"];
                 tempModel.commetns=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.comments"];
                 tempModel.maintenenceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceID"];
-                
                 if (!tempModel.status) {
                     tempModel.status=@"Submitted";
                 }
@@ -102,43 +100,64 @@
     [[ConnectionManager sharedManager] getCategoryOnSuccess:self onSuccess:^(id maintenanceData) {
         
         NSMutableArray *dataArray = [NSMutableArray new];
-        for (int i=0; i<[[maintenanceData objectForKey:@"entry"] count]; i++) {
-            
+        if ([[maintenanceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
             __block MainatenanceModel *tempModel=[MainatenanceModel new];
-            tempModel.title=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
-            tempModel.maintenenceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceCategoryID"];
+            tempModel.title=[maintenanceData valueForKeyPath:@"entry.content.Record.Description"];
+            tempModel.maintenenceId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceCategoryID"];
             
             if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
                 
                 [dataArray addObject:tempModel];
             }
-            
         }
-        
+        else {
+            for (int i=0; i<[[maintenanceData objectForKey:@"entry"] count]; i++) {
+                
+                __block MainatenanceModel *tempModel=[MainatenanceModel new];
+                tempModel.title=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
+                tempModel.maintenenceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceCategoryID"];
+                
+                if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
+                    
+                    [dataArray addObject:tempModel];
+                }
+            }
+        }
         success(dataArray);
     } onFailure:^(id error) {
         failure(error);
     }];
 }
 
-- (void)getSubCategoryListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure{
+- (void)getSubCategoryListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure {
     
-    [[ConnectionManager sharedManager] getSubCategoryOnSuccess:self onSuccess:^(id parcelData) {
+    [[ConnectionManager sharedManager] getSubCategoryOnSuccess:self onSuccess:^(id maintenanceData) {
         
         NSMutableArray *dataArray = [NSMutableArray new];
-        for (int i=0; i<[[parcelData objectForKey:@"entry"] count]; i++) {
+        if ([[maintenanceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
             
             __block MainatenanceModel *tempModel=[MainatenanceModel new];
-            tempModel.subcategory=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
-            tempModel.subcategoryId=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceItemID"];
+            tempModel.subcategory=[maintenanceData valueForKeyPath:@"entry.content.Record.Description"];
+            tempModel.subcategoryId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceItemID"];
             
             if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
                 
                 [dataArray addObject:tempModel];
             }
-            
         }
-        
+        else {
+            for (int i=0; i<[[maintenanceData objectForKey:@"entry"] count]; i++) {
+                
+                __block MainatenanceModel *tempModel=[MainatenanceModel new];
+                tempModel.subcategory=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
+                tempModel.subcategoryId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceItemID"];
+                
+                if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
+                    
+                    [dataArray addObject:tempModel];
+                }
+            }
+        }
         success(dataArray);
     } onFailure:^(id error) {
         failure(error);

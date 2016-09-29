@@ -117,6 +117,9 @@
             });
         }];
     }
+    else {
+        [myDelegate stopIndicator];
+    }
 }
 #pragma mark - end
 

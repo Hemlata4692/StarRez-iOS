@@ -134,6 +134,7 @@
             <string>Calibri</string>
             <string>Calibri</string>
             <string>Calibri</string>
+            <string>Calibri</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -607,11 +608,11 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="240" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pm7-Xd-naY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="240" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pm7-Xd-naY">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="425"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DashboardCell" rowHeight="240" id="0VJ-d0-gOe" customClass="DashboardTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DashboardCell" rowHeight="240" id="0VJ-d0-gOe" customClass="DashboardTableViewCell">
                                         <rect key="frame" x="0.0" y="1" width="320" height="240"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0VJ-d0-gOe" id="bOw-VH-xza">
@@ -808,7 +809,7 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="tN1-u7-78a" firstAttribute="top" secondItem="p97-aC-d1z" secondAttribute="top" id="OUO-DS-Q4w"/>
                                                         <constraint firstItem="tN1-u7-78a" firstAttribute="leading" secondItem="p97-aC-d1z" secondAttribute="leading" id="hGk-GL-i5j"/>
@@ -828,6 +829,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="cellContainerView" destination="tN1-u7-78a" id="JT8-Qc-9iU"/>
+                                            <outlet property="cellShadowBackView" destination="p97-aC-d1z" id="gEG-rw-fny"/>
                                             <outlet property="firstInformationDateLabel" destination="9SU-xa-r4a" id="6AV-GF-lIg"/>
                                             <outlet property="firstInformationStatusLabel" destination="SFP-TV-4Rc" id="5bQ-J0-3D0"/>
                                             <outlet property="firstInformationTitleLabel" destination="MS2-y0-qAf" id="qK7-LR-L1W"/>
@@ -924,8 +926,23 @@
                                     <outlet property="delegate" destination="s3V-sB-jdU" id="4qw-kn-LQK"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No record found." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CiG-dU-Ysi">
+                                <rect key="frame" x="0.0" y="241" width="320" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="4pF-Y3-dMP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="17"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="CiG-dU-Ysi" firstAttribute="leading" secondItem="BhK-K7-iEh" secondAttribute="leading" id="9pY-3p-2mw"/>
+                            <constraint firstItem="CiG-dU-Ysi" firstAttribute="centerY" secondItem="BhK-K7-iEh" secondAttribute="centerY" id="dJI-2A-ctf"/>
+                            <constraint firstItem="CiG-dU-Ysi" firstAttribute="centerX" secondItem="BhK-K7-iEh" secondAttribute="centerX" id="hVt-pb-vsG"/>
+                            <constraint firstAttribute="trailing" secondItem="CiG-dU-Ysi" secondAttribute="trailing" id="uCm-V3-aNY"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="BSU-we-G57"/>
@@ -933,6 +950,7 @@
                     <connections>
                         <outlet property="dashboardTableView" destination="Pm7-Xd-naY" id="b3l-dr-eOZ"/>
                         <outlet property="menuCollectionView" destination="sX3-Yu-LAG" id="W8E-VN-ncn"/>
+                        <outlet property="noRecordFoundLabel" destination="CiG-dU-Ysi" id="KFu-JV-mcj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iu9-bB-znm" userLabel="First Responder" sceneMemberID="firstResponder"/>

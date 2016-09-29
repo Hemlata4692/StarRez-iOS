@@ -115,6 +115,10 @@
             });
         }];
     }
+    else {
+        
+        [myDelegate stopIndicator];
+    }
 }
 
 - (void)subCategoryService :(NSString *)categoryId {
@@ -139,6 +143,10 @@
                 }
             });
         }];
+    }
+    else {
+        
+        [myDelegate stopIndicator];
     }
 }
 
@@ -169,6 +177,10 @@
                 }
             });
         }];
+    }
+    else {
+        
+        [myDelegate stopIndicator];
     }
 }
 #pragma mark - end

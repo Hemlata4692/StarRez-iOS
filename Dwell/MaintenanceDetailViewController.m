@@ -314,6 +314,9 @@
             });
         }];
     }
+    else {
+        [myDelegate stopIndicator];
+    }
 }
 
 - (void)cancelService{
@@ -340,6 +343,9 @@
                 }
             });
         }];
+    }
+    else {
+        [myDelegate stopIndicator];
     }
 }
 #pragma mark - end

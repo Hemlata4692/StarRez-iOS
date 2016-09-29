@@ -12,6 +12,7 @@
 #import "CustomFilterViewController.h"
 #import "MaintenanceDetailViewController.h"
 #import "AddNewJobViewController.h"
+
 @interface MaintenanceListViewController ()<CustomFilterDelegate,CustomAlertDelegate>
 {
    UIBarButtonItem *filterBarButton;
@@ -121,6 +122,9 @@
                 }
             });
         }];
+    }
+    else {
+        [myDelegate stopIndicator];
     }
 }
 #pragma mark - end

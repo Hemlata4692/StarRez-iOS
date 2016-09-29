@@ -10,6 +10,7 @@
 
 @interface DashboardTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *cellContainerView;
+@property (strong, nonatomic) IBOutlet UIView *cellShadowBackView;
 
 @property (strong, nonatomic) IBOutlet UIImageView *titleIcon;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
@@ -22,4 +23,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *thirdInformationTitleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *thirdInformationDateLabel;
 @property (strong, nonatomic) IBOutlet UILabel *thirdInformationStatusLabel;
+
+- (void)displayData:(NSMutableArray*)dashboardData selectedType:(int)selectedType;
 @end

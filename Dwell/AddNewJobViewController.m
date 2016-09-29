@@ -204,6 +204,41 @@
     }
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(textField == _commentsTextField)
+    {
+        if (range.length > 0 && [string length] == 0)
+        {
+            return YES;
+        }
+        if (textField.text.length > 40 && range.length == 0)
+        {
+            return NO;
+        }
+        else
+        {
+            return YES;
+        }
+    }
+    else if(textField == _causeTextField)
+    {
+        if (range.length > 0 && [string length] == 0)
+        {
+            return YES;
+        }
+        if (textField.text.length > 100 && range.length == 0)
+        {
+            return NO;
+        }
+        else
+        {
+            return YES;
+        }
+    }
+    return YES;
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];

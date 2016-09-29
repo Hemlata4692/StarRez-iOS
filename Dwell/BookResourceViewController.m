@@ -501,7 +501,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
             dateTimePreviousBarButton.enabled=true;
             self.datePickerView.datePickerMode=UIDatePickerModeTime;
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-            [dateFormat setDateFormat:@"dd/MM/yyyy hh:mm"];
+            [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm"];
             NSTimeInterval time = floor([[dateFormat dateFromString:[dateFormat stringFromDate:[NSDate date]]] timeIntervalSinceReferenceDate] / 60.0) * 60.0;
             NSDate *date;
             DLog(@"%@,%@,%@",[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,[[self.toTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]],[[self.toTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0],[NSDate dateWithTimeIntervalSinceReferenceDate:time]);
@@ -643,13 +643,15 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 - (BOOL)performValidationsForSearch {
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm"];
+    [dateFormat setDateFormat:@"dd-MM-yyyy"];
     //Set time with zero seconds
     NSTimeInterval time = floor([[dateFormat dateFromString:[dateFormat stringFromDate:[NSDate date]]] timeIntervalSinceReferenceDate] / 60.0) * 60.0;
-    NSDate *fromDateTime=[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,[[self.fromTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]];
-    NSDate *toDateTime=[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,[[self.toTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]];
+    NSDate *fromDateTime=[dateFormat dateFromString:[NSString stringWithFormat:@"%@",self.fromDateField.text]];
+    NSDate *toDateTime=[dateFormat dateFromString:[NSString stringWithFormat:@"%@",self.toDateField.text]];
+    DLog(@"%@",[NSDate dateWithTimeIntervalSinceReferenceDate:time]);
     //Get time differece between from and to date time
-    float timeDifferenceInSecond=[[self timeLeftSinceDate:fromDateTime toDateTime:toDateTime] floatValue];
+    [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm"];
+    float timeDifferenceInSecond=[[self timeLeftSinceDate:[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,[[self.fromTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]] toDateTime:[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,[[self.toTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]]] floatValue];
     DLog(@"%f",timeDifferenceInSecond/3600.0);
     
     if ([self.sourceTypeField isEmpty]||[self.locationField isEmpty]||[self.fromDateField isEmpty]||[self.fromTimeField isEmpty]||[self.toTimeField isEmpty]||[self.toDateField isEmpty]) { //If fields are empty and source name field is optional
@@ -673,11 +675,11 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         return false;
     }
     else if((timeDifferenceInSecond/3600.0)<[[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceTypeMinHour] floatValue]){  //If selected dateTime(fromDateTime and toDateTime) difference is less than selected resource minimum hour
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Can't select same date time" doneButtonText:@"OK" cancelButtonText:@""];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Can't select date time less than given minimum hour." doneButtonText:@"OK" cancelButtonText:@""];
         return false;
     }
     else if((timeDifferenceInSecond/3600.0)>[[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceTypeMaxHour] floatValue]){ //If selected dateTime(fromDateTime and toDateTime) difference is greater than selected resource maximum hour
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Can't select same date time" doneButtonText:@"OK" cancelButtonText:@""];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Can't select date time greater than given maximum hour." doneButtonText:@"OK" cancelButtonText:@""];
         return false;
     }
     return true;

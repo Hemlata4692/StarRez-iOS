@@ -25,8 +25,6 @@
     [super xmlPost:[NSString stringWithFormat:@"update/RoomSpaceMaintenance/%@",[UserDefaultManager getValue:@"maintainId"]] parameters:parameters onSuccess:success onFailure:failure];
 }
 
-
-
 - (void)getCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure{
     
     NSString *parameters = @"SELECT [RoomSpaceMaintenanceCategoryID], [Description], [Comments] FROM [RoomSpaceMaintenanceCategory]";

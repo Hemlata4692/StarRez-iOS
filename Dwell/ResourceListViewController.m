@@ -39,6 +39,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     
+    [UserDefaultManager setValue:[NSNumber numberWithInteger:3] key:@"indexpath"];
     self.noRecordLabel.hidden=YES;
     isSearch=false;
     resourceDataArray=[NSMutableArray new];

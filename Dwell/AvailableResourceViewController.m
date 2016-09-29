@@ -116,7 +116,7 @@
     
    if (indexPath.row!=0) {
         selectedResource=(int)indexPath.row-1;
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:3 delegate:self message:@"Do you want to request this resource" doneButtonText:@"Yes" cancelButtonText:@"No"];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:3 delegate:self message:@"Do you want to request this resource?" doneButtonText:@"Yes" cancelButtonText:@"No"];
    }
 }
 #pragma mark - end
@@ -151,7 +151,7 @@
     [resourceData setRequestResourceOnSuccess:^(id availableResourceData) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [myDelegate stopIndicator];
-            alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:10 delegate:self message:@"Your request has been submitted successfully" doneButtonText:@"OK" cancelButtonText:@""];
+            alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:10 delegate:self message:@"Your request has been submitted successfully." doneButtonText:@"OK" cancelButtonText:@""];
             
         });
     } onfailure:^(id error) {

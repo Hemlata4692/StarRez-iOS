@@ -41,6 +41,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    [UserDefaultManager setValue:[NSNumber numberWithInteger:1] key:@"indexpath"];
     [myDelegate showIndicator:[Constants orangeBackgroundColor]];
     [self performSelector:@selector(getMaintenanceListService) withObject:nil afterDelay:.1];
 }

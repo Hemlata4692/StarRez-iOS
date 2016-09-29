@@ -114,7 +114,8 @@
             descriptionLabel.numberOfLines = 0;
             descriptionLabel.translatesAutoresizingMaskIntoConstraints = YES;
             descriptionLabel.text = objMainatenanceModel.detail;
-            float descriptionHeight=[UserDefaultManager getDynamicLabelHeight:descriptionLabel.text font:[UIFont calibriNormalWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-40];
+            float descriptionHeight=[UserDefaultManager getDynamicLabelHeight:descriptionLabel.text font:[UIFont calibriNormalWithSize:15] widthValue:([UIScreen mainScreen].bounds.size.width-20)-40];
+           // descriptionLabel.backgroundColor = [UIColor redColor];
             descriptionLabel.frame = CGRectMake(descriptionLabel.frame.origin.x, descriptionLabel.frame.origin.y, ([UIScreen mainScreen].bounds.size.width-20)-40, descriptionHeight);
             return cell;
             break;
@@ -132,7 +133,7 @@
             causeLabel.translatesAutoresizingMaskIntoConstraints = YES;
             if (objMainatenanceModel.cause) {
                 causeLabel.text = objMainatenanceModel.cause;
-                float causeHeight=[UserDefaultManager getDynamicLabelHeight:causeLabel.text font:[UIFont calibriNormalWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-40];
+                float causeHeight=[UserDefaultManager getDynamicLabelHeight:causeLabel.text font:[UIFont calibriNormalWithSize:15] widthValue:([UIScreen mainScreen].bounds.size.width-20)-40];
                 causeLabel.frame = CGRectMake(causeLabel.frame.origin.x, causeLabel.frame.origin.y, ([UIScreen mainScreen].bounds.size.width-20)-40, causeHeight);
             }else{
                 causeLabel.frame = CGRectMake(causeLabel.frame.origin.x, causeLabel.frame.origin.y, ([UIScreen mainScreen].bounds.size.width-20)-40, 30);
@@ -155,7 +156,7 @@
             commentsLabel.translatesAutoresizingMaskIntoConstraints = YES;
             if (objMainatenanceModel.commetns) {
                 commentsLabel.text = objMainatenanceModel.commetns;
-                float commentsHeight=[UserDefaultManager getDynamicLabelHeight:commentsLabel.text font:[UIFont calibriNormalWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-40];
+                float commentsHeight=[UserDefaultManager getDynamicLabelHeight:commentsLabel.text font:[UIFont calibriNormalWithSize:15] widthValue:([UIScreen mainScreen].bounds.size.width-20)-40];
                 commentsLabel.frame = CGRectMake(commentsLabel.frame.origin.x, commentsLabel.frame.origin.y-5, ([UIScreen mainScreen].bounds.size.width-20)-40, commentsHeight);
             }else{
                 commentsLabel.frame = CGRectMake(commentsLabel.frame.origin.x, commentsLabel.frame.origin.y, ([UIScreen mainScreen].bounds.size.width-20)-40, 30);
@@ -240,14 +241,14 @@
             break;
         case 2:
         {
-            float descriptionHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.detail font:[UIFont calibriNormalWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-40];
+            float descriptionHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.detail font:[UIFont calibriNormalWithSize:15] widthValue:([UIScreen mainScreen].bounds.size.width-20)-40];
             return descriptionHeight+40;
             break;
         }
         case 3:
         {
             if (objMainatenanceModel.cause) {
-                float causeHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.cause font:[UIFont calibriNormalWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-40];
+                float causeHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.cause font:[UIFont calibriNormalWithSize:15] widthValue:([UIScreen mainScreen].bounds.size.width-20)-40];
                 return causeHeight+40;
             }
             else{
@@ -259,7 +260,7 @@
             break;
         case 4:
             if (objMainatenanceModel.commetns) {
-                float commentsHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.commetns font:[UIFont calibriNormalWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-40];
+                float commentsHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.commetns font:[UIFont calibriNormalWithSize:15] widthValue:([UIScreen mainScreen].bounds.size.width-20)-40];
                 return commentsHeight+45;
             }
             else{
@@ -268,7 +269,7 @@
             }
             break;
         case 5:
-            return 70.0;
+            return 0.0;
             break;
         case 6:
             return 35.0;

@@ -250,12 +250,12 @@
 			children = (
 				95D27D281D994D1B00EBA799 /* NewJob */,
 				951EC2FC1D9299EE006C98F8 /* MaintenanceDetailView */,
-				95E74D011D9107CA00C5CA8B /* maintenanceListView */,
+				95E74D011D9107CA00C5CA8B /* MaintenanceListView */,
 			);
 			name = maintenanceModule;
 			sourceTree = "<group>";
 		};
-		95E74D011D9107CA00C5CA8B /* maintenanceListView */ = {
+		95E74D011D9107CA00C5CA8B /* MaintenanceListView */ = {
 			isa = PBXGroup;
 			children = (
 				95E74D021D9107F300C5CA8B /* MaintenanceListViewController.h */,
@@ -263,7 +263,7 @@
 				95E74D051D91122C00C5CA8B /* MaintenanceCell.h */,
 				95E74D061D91122C00C5CA8B /* MaintenanceCell.m */,
 			);
-			name = maintenanceListView;
+			name = MaintenanceListView;
 			sourceTree = "<group>";
 		};
 		95E74D111D914A2300C5CA8B /* MaintenanceModel */ = {

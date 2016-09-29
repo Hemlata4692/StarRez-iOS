@@ -61,6 +61,11 @@
     //Add corner radius
     [self addCornerRadius];
     [myDelegate showIndicator:[Constants orangeBackgroundColor]];
+    if (self.view.bounds.size.height>568) {
+        self.addJobContainerView.translatesAutoresizingMaskIntoConstraints = YES;
+        self.addJobContainerView.frame = CGRectMake(self.addJobContainerView.frame.origin.x, self.addJobContainerView.frame.origin.y, self.view.bounds.size.width-30, self.view.bounds.size.height-95);
+        _scrollView.scrollEnabled = NO;
+    }
     //Get category list from server.
     [self performSelector:@selector(categoryService) withObject:nil afterDelay:.1];
     categoryArray=[[NSMutableArray alloc] init];

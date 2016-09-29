@@ -137,7 +137,16 @@
     [UserDefaultManager setValue:[NSNumber numberWithInteger:indexPath.row] key:@"indexpath"];
     if (indexPath.row==7) {
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Are you sure you want to logout?" doneButtonText:@"Yes" cancelButtonText:@"No"];
-     }
+    }
+    else if (indexPath.row==4) {
+        [UserDefaultManager setValue:@"Event" key:@"ScreenName"];
+    }
+    else if (indexPath.row==5) {
+        [UserDefaultManager setValue:@"Information" key:@"ScreenName"];
+    }
+    else if (indexPath.row==6) {
+        [UserDefaultManager setValue:@"Help" key:@"ScreenName"];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {

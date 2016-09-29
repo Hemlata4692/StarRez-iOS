@@ -16,6 +16,7 @@
 		95E74D071D91122C00C5CA8B /* MaintenanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D061D91122C00C5CA8B /* MaintenanceCell.m */; };
 		95E74D141D914A8300C5CA8B /* MainatenanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D131D914A8300C5CA8B /* MainatenanceModel.m */; };
 		95E74D181D914FF700C5CA8B /* MaintenanceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D171D914FF700C5CA8B /* MaintenanceService.m */; };
+		B70EB1001D9D3E7C00215D4F /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B70EB0FF1D9D3E7C00215D4F /* InformationViewController.m */; };
 		B719DAC41D9A8489000A5D0D /* AvailableResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B719DAC31D9A8489000A5D0D /* AvailableResourceViewController.m */; };
 		B719DAC81D9A9711000A5D0D /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = B719DAC71D9A9711000A5D0D /* UIView+Toast.m */; };
 		B7465A941D950C28008B315A /* ResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465A931D950C28008B315A /* ResourceService.m */; };
@@ -90,6 +91,8 @@
 		95E74D131D914A8300C5CA8B /* MainatenanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainatenanceModel.m; sourceTree = "<group>"; };
 		95E74D161D914FF700C5CA8B /* MaintenanceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceService.h; sourceTree = "<group>"; };
 		95E74D171D914FF700C5CA8B /* MaintenanceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceService.m; sourceTree = "<group>"; };
+		B70EB0FE1D9D3E7C00215D4F /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
+		B70EB0FF1D9D3E7C00215D4F /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
 		B719DAC21D9A8489000A5D0D /* AvailableResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvailableResourceViewController.h; sourceTree = "<group>"; };
 		B719DAC31D9A8489000A5D0D /* AvailableResourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvailableResourceViewController.m; sourceTree = "<group>"; };
 		B719DAC61D9A9711000A5D0D /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
@@ -284,6 +287,15 @@
 			name = MaintenanceService;
 			sourceTree = "<group>";
 		};
+		B70EB0FD1D9D3E5800215D4F /* InformationView */ = {
+			isa = PBXGroup;
+			children = (
+				B70EB0FE1D9D3E7C00215D4F /* InformationViewController.h */,
+				B70EB0FF1D9D3E7C00215D4F /* InformationViewController.m */,
+			);
+			name = InformationView;
+			sourceTree = "<group>";
+		};
 		B719DABE1D9A8464000A5D0D /* AvailableResourceViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,6 +453,7 @@
 		B75B2C8C1D8803C6007EEE42 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B70EB0FD1D9D3E5800215D4F /* InformationView */,
 				B7465A951D9510BA008B315A /* ResourceModule */,
 				95E74D001D91078300C5CA8B /* maintenanceModule */,
 				4A412A481D8AC69300E70791 /* GlobalBackView */,
@@ -947,6 +960,7 @@
 				B7465AA61D951176008B315A /* ResourceDetailViewController.m in Sources */,
 				B7D06C601D897BD800A5FA94 /* ConnectionManager.m in Sources */,
 				B719DAC81D9A9711000A5D0D /* UIView+Toast.m in Sources */,
+				B70EB1001D9D3E7C00215D4F /* InformationViewController.m in Sources */,
 				B75B2CAC1D8806AD007EEE42 /* UITextField+Validations.m in Sources */,
 				B7F7161F1D8A9C57006C8178 /* Internet.m in Sources */,
 				B7CA3C841D8AC64B006CD1FD /* ParcelService.m in Sources */,

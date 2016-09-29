@@ -8,6 +8,8 @@
 
 #import "MaintenanceDetailViewController.h"
 #import "MainatenanceModel.h"
+#import "CustomAlertView.h"
+
 @interface MaintenanceDetailViewController ()<CustomAlertDelegate>
 {
   CustomAlert *alertView;
@@ -86,7 +88,12 @@
             UILabel * reportedDate = (UILabel *)[cell.contentView viewWithTag:2];
             reportedDate.text = objMainatenanceModel.reportedDate;
             UILabel * closedDate = (UILabel *)[cell.contentView viewWithTag:3];
-            closedDate.text = objMainatenanceModel.completedDate;
+            if (objMainatenanceModel.completedDate==nil) {
+                closedDate.text=@"NA";
+            }
+            else {
+                closedDate.text = objMainatenanceModel.completedDate;
+            }
             UILabel * status = (UILabel *)[cell.contentView viewWithTag:4];
             status.text = objMainatenanceModel.status;
             UILabel * category = (UILabel *)[cell.contentView viewWithTag:5];
@@ -278,8 +285,7 @@
 {
     if (indexPath.row==6 && !([objMainatenanceModel.status isEqualToString:@"Closed by student"])) {
         
-        [myDelegate showIndicator:[Constants orangeBackgroundColor]];
-        [self performSelector:@selector(cancelService) withObject:nil afterDelay:.1];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:3 delegate:self message:@"Are you sure to close this request?" doneButtonText:@"Yes" cancelButtonText:@"No"];
     }
 }
 #pragma mark - end
@@ -339,9 +345,13 @@
 #pragma mark - end
 
 #pragma mark - Custom alert delegates
-- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+- (void)customAlertDelegateAction:(CustomAlertView *)customAlert option:(int)option{
     
     [alertView dismissAlertView];
+    if ((customAlert.alertTagValue==3)&&(option==1)) {
+        [myDelegate showIndicator:[Constants orangeBackgroundColor]];
+        [self performSelector:@selector(cancelService) withObject:nil afterDelay:.1];
+    }
 }
 #pragma mark - end
 /*

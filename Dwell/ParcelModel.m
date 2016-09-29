@@ -39,8 +39,8 @@
                 __block ParcelModel *tempModel=[ParcelModel new];
                 tempModel.parcelTitle=[parcelData valueForKeyPath:@"entry.content.Record.Description"];
                 tempModel.parcelType=[parcelData valueForKeyPath:@"entry.content.Record.parcel_type_val"];
-                NSDate *reciptDate = [dateFormatter dateFromString:[[[parcelData valueForKeyPath:@"entry.content.Record.ReceiptDate"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-                NSDate *issuedDate = [dateFormatter dateFromString:[[[parcelData valueForKeyPath:@"entry.content.Record.IssueDate"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                NSDate *reciptDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[parcelData valueForKeyPath:@"entry.content.Record.ReceiptDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                NSDate *issuedDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[parcelData valueForKeyPath:@"entry.content.Record.IssueDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
                 [dateFormatter setDateFormat:@"dd MMM, yy"];
                 tempModel.parcelReceiptDate=[dateFormatter stringFromDate:reciptDate];
                 tempModel.parcelShippingType=[parcelData valueForKeyPath:@"entry.content.Record.shipping_type_val"];
@@ -60,8 +60,9 @@
                     __block ParcelModel *tempModel=[ParcelModel new];
                     tempModel.parcelTitle=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
                     tempModel.parcelType=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.parcel_type_val"];
-                    NSDate *reciptDate = [dateFormatter dateFromString:[[[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ReceiptDate"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-                    NSDate *issuedDate = [dateFormatter dateFromString:[[[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.IssueDate"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                    //               [UserDefaultManager GMTToSytemDateTimeFormat:[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ReceiptDate"]]
+                    NSDate *reciptDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ReceiptDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                    NSDate *issuedDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.IssueDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
                     [dateFormatter setDateFormat:@"dd MMM, yy"];
                     tempModel.parcelReceiptDate=[dateFormatter stringFromDate:reciptDate];
                     tempModel.parcelShippingType=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.shipping_type_val"];

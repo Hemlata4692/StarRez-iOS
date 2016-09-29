@@ -37,6 +37,7 @@
 		B75B2CB81D8806E4007EEE42 /* UIImage+deviceSpecificMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2CB71D8806E4007EEE42 /* UIImage+deviceSpecificMedia.m */; };
 		B75B2CBC1D880958007EEE42 /* MMMaterialDesignSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2CBB1D880958007EEE42 /* MMMaterialDesignSpinner.m */; };
 		B75B2CC51D880CFD007EEE42 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2CC41D880CFD007EEE42 /* Constants.m */; };
+		B76432911D9B7BF10000A35A /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B76432901D9B7BF10000A35A /* DashboardTableViewCell.m */; };
 		B79CC65D1D8BD5B300FBD7C3 /* CustomFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B79CC65C1D8BD5B300FBD7C3 /* CustomFilterViewController.m */; };
 		B7ACD26D1D890FE7005CD42D /* calibri_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7ACD26A1D890FE7005CD42D /* calibri_Bold.ttf */; };
 		B7ACD26E1D890FE7005CD42D /* calibri_Normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7ACD26B1D890FE7005CD42D /* calibri_Normal.ttf */; };
@@ -131,6 +132,8 @@
 		B75B2CBB1D880958007EEE42 /* MMMaterialDesignSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMaterialDesignSpinner.m; sourceTree = "<group>"; };
 		B75B2CC31D880CFD007EEE42 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		B75B2CC41D880CFD007EEE42 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		B764328F1D9B7BF10000A35A /* DashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardTableViewCell.h; sourceTree = "<group>"; };
+		B76432901D9B7BF10000A35A /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardTableViewCell.m; sourceTree = "<group>"; };
 		B79CC65B1D8BD5B300FBD7C3 /* CustomFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFilterViewController.h; sourceTree = "<group>"; };
 		B79CC65C1D8BD5B300FBD7C3 /* CustomFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomFilterViewController.m; sourceTree = "<group>"; };
 		B7ACD26A1D890FE7005CD42D /* calibri_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = calibri_Bold.ttf; sourceTree = "<group>"; };
@@ -616,6 +619,24 @@
 			name = OtherImages;
 			sourceTree = "<group>";
 		};
+		B764328D1D9B7BD00000A35A /* DashboardView */ = {
+			isa = PBXGroup;
+			children = (
+				B7C7A36F1D8A63A600D7DF06 /* DashboardViewController.h */,
+				B7C7A3701D8A63A600D7DF06 /* DashboardViewController.m */,
+			);
+			name = DashboardView;
+			sourceTree = "<group>";
+		};
+		B764328E1D9B7BD70000A35A /* DashboardCell */ = {
+			isa = PBXGroup;
+			children = (
+				B764328F1D9B7BF10000A35A /* DashboardTableViewCell.h */,
+				B76432901D9B7BF10000A35A /* DashboardTableViewCell.m */,
+			);
+			name = DashboardCell;
+			sourceTree = "<group>";
+		};
 		B79CC6551D8BD3B400FBD7C3 /* CustomFilter */ = {
 			isa = PBXGroup;
 			children = (
@@ -668,8 +689,8 @@
 		B7C7A36E1D8A63A000D7DF06 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				B7C7A36F1D8A63A600D7DF06 /* DashboardViewController.h */,
-				B7C7A3701D8A63A600D7DF06 /* DashboardViewController.m */,
+				B764328E1D9B7BD70000A35A /* DashboardCell */,
+				B764328D1D9B7BD00000A35A /* DashboardView */,
 			);
 			name = Dashboard;
 			sourceTree = "<group>";
@@ -932,6 +953,7 @@
 				B7465AB01D95133C008B315A /* ResourceModel.m in Sources */,
 				B75B2CA81D880663007EEE42 /* UserDefaultManager.m in Sources */,
 				B7ACD2761D89124B005CD42D /* UIFont+CustomFont.m in Sources */,
+				B76432911D9B7BF10000A35A /* DashboardTableViewCell.m in Sources */,
 				95E74D141D914A8300C5CA8B /* MainatenanceModel.m in Sources */,
 				B7C7A3711D8A63A600D7DF06 /* DashboardViewController.m in Sources */,
 				B7C7A3941D8A75B600D7DF06 /* ParcelCell.m in Sources */,

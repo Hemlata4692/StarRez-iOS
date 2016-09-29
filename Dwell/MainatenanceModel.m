@@ -30,41 +30,55 @@
 
 - (void)getMaintenanceListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure{
     
-    [[ConnectionManager sharedManager] getMaintenancelList:self onSuccess:^(id parcelData) {
+    [[ConnectionManager sharedManager] getMaintenancelList:self onSuccess:^(id maintenanceData) {
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         
         NSMutableArray *dataArray = [NSMutableArray new];
-        for (int i=0; i<[[parcelData objectForKey:@"entry"] count]; i++) {
+        //If single entry exist then use as dictionay
+        if ([[maintenanceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
             [dateFormatter setDateFormat:@"yyyy-MM-dd"];
             [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
             __block MainatenanceModel *tempModel=[MainatenanceModel new];
-            tempModel.title=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.sub_category"];
-            tempModel.detail=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.title"];
-            NSDate *dateCompleted = [dateFormatter dateFromString:[[[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.CompleteDate"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-            NSDate *dateReported = [dateFormatter dateFromString:[[[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateReported"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+            tempModel.title=[maintenanceData valueForKeyPath:@"entry.content.Record.sub_category"];
+            tempModel.detail=[maintenanceData valueForKeyPath:@"entry.content.Record.title"];
+            NSDate *dateCompleted = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[maintenanceData valueForKeyPath:@"entry.content.Record.CompleteDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+            NSDate *dateReported = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[maintenanceData valueForKeyPath:@"entry.content.Record.DateReported"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
             [dateFormatter setDateFormat:@"dd MMM, yy"];
             tempModel.completedDate=[dateFormatter stringFromDate:dateCompleted];
-            //            tempModel.parcelShippingType=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.shipping_type_val"];
             tempModel.reportedDate=[dateFormatter stringFromDate:dateReported];
-            tempModel.status=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status"];
-            tempModel.category=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.main_category"];
-            tempModel.cause=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Cause"];
-            tempModel.commetns=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.comments"];
-            tempModel.maintenenceId=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceID"];
-            
+            tempModel.status=[maintenanceData valueForKeyPath:@"entry.content.Record.status"];
+            tempModel.category=[maintenanceData valueForKeyPath:@"entry.content.Record.main_category"];
+            tempModel.cause=[maintenanceData valueForKeyPath:@"entry.content.Record.Cause"];
+            tempModel.commetns=[maintenanceData valueForKeyPath:@"entry.content.Record.comments"];
+            tempModel.maintenenceId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceID"];
             if (!tempModel.status) {
                 tempModel.status=@"Submitted";
             }
-            
-            //            tempModel.parcelStatusId=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ParcelStatusEnum"];
-            //            tempModel.parcelForwardingAddress=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.address_val"];
-            //            tempModel.parcelTrackingNo=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.TrackingNumber"];
-            //            tempModel.parcelComment=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Comments"];
-            //            tempModel.parcelID=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.EntryParcelID"];
             [dataArray addObject:tempModel];
-            
-            
+        }
+        else {
+            for (int i=0; i<[[maintenanceData objectForKey:@"entry"] count]; i++) {
+                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+                __block MainatenanceModel *tempModel=[MainatenanceModel new];
+                tempModel.title=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.sub_category"];
+                tempModel.detail=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.title"];
+                NSDate *dateCompleted = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.CompleteDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                NSDate *dateReported = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateReported"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                [dateFormatter setDateFormat:@"dd MMM, yy"];
+                tempModel.completedDate=[dateFormatter stringFromDate:dateCompleted];
+                tempModel.reportedDate=[dateFormatter stringFromDate:dateReported];
+                tempModel.status=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status"];
+                tempModel.category=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.main_category"];
+                tempModel.cause=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Cause"];
+                tempModel.commetns=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.comments"];
+                tempModel.maintenenceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceID"];
+                if (!tempModel.status) {
+                    tempModel.status=@"Submitted";
+                }
+                [dataArray addObject:tempModel];
+            }
         }
         success(dataArray);
     } onFailure:^(id error) {
@@ -73,9 +87,9 @@
 }
 - (void)cancelServiceOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure{
     
-    [[ConnectionManager sharedManager] cancelServiceOnSuccess:self onSuccess:^(id parcelData) {
-        
-        success(parcelData);
+    [[ConnectionManager sharedManager] cancelServiceOnSuccess:self onSuccess:^(id maintenanceData) {
+
+        success(maintenanceData);
     } onFailure:^(id error) {
         failure(error);
     }];
@@ -83,46 +97,67 @@
 
 - (void)getCategoryListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;{
     
-    [[ConnectionManager sharedManager] getCategoryOnSuccess:self onSuccess:^(id parcelData) {
+    [[ConnectionManager sharedManager] getCategoryOnSuccess:self onSuccess:^(id maintenanceData) {
         
         NSMutableArray *dataArray = [NSMutableArray new];
-        for (int i=0; i<[[parcelData objectForKey:@"entry"] count]; i++) {
-            
+        if ([[maintenanceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
             __block MainatenanceModel *tempModel=[MainatenanceModel new];
-            tempModel.title=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
-            tempModel.maintenenceId=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceCategoryID"];
+            tempModel.title=[maintenanceData valueForKeyPath:@"entry.content.Record.Description"];
+            tempModel.maintenenceId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceCategoryID"];
             
             if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
                 
                 [dataArray addObject:tempModel];
             }
-            
         }
-        
+        else {
+            for (int i=0; i<[[maintenanceData objectForKey:@"entry"] count]; i++) {
+                
+                __block MainatenanceModel *tempModel=[MainatenanceModel new];
+                tempModel.title=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
+                tempModel.maintenenceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceCategoryID"];
+                
+                if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
+                    
+                    [dataArray addObject:tempModel];
+                }
+            }
+        }
         success(dataArray);
     } onFailure:^(id error) {
         failure(error);
     }];
 }
 
-- (void)getSubCategoryListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure{
+- (void)getSubCategoryListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure {
     
-    [[ConnectionManager sharedManager] getSubCategoryOnSuccess:self onSuccess:^(id parcelData) {
+    [[ConnectionManager sharedManager] getSubCategoryOnSuccess:self onSuccess:^(id maintenanceData) {
         
         NSMutableArray *dataArray = [NSMutableArray new];
-        for (int i=0; i<[[parcelData objectForKey:@"entry"] count]; i++) {
+        if ([[maintenanceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
             
             __block MainatenanceModel *tempModel=[MainatenanceModel new];
-            tempModel.subcategory=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
-            tempModel.subcategoryId=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceItemID"];
+            tempModel.subcategory=[maintenanceData valueForKeyPath:@"entry.content.Record.Description"];
+            tempModel.subcategoryId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceItemID"];
             
             if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
                 
                 [dataArray addObject:tempModel];
             }
-            
         }
-        
+        else {
+            for (int i=0; i<[[maintenanceData objectForKey:@"entry"] count]; i++) {
+                
+                __block MainatenanceModel *tempModel=[MainatenanceModel new];
+                tempModel.subcategory=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
+                tempModel.subcategoryId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceItemID"];
+                
+                if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
+                    
+                    [dataArray addObject:tempModel];
+                }
+            }
+        }
         success(dataArray);
     } onFailure:^(id error) {
         failure(error);

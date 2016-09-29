@@ -7,12 +7,14 @@
 //
 
 #import "ParcelDetailViewController.h"
+#import "UIView+RoundedCorner.h"
 
 @interface ParcelDetailViewController ()
 //Get view outlets
 @property (strong, nonatomic) IBOutlet UIView *parcelDetailView;
 @property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
 @property (weak, nonatomic) IBOutlet UIView *mainBackgroundView;
+@property (strong, nonatomic) IBOutlet UIView *shadowBackView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelTitle;
 @property (weak, nonatomic) IBOutlet UILabel *parcelTypeTitle;
 @property (weak, nonatomic) IBOutlet UILabel *parcelType;
@@ -57,8 +59,9 @@
     
     //Set corner radius to main background view
     self.mainBackgroundView.layer.cornerRadius=3;
-    self.mainBackgroundView.layer.masksToBounds=YES;    
+    self.mainBackgroundView.layer.masksToBounds=YES;
     [self removeAutolayout];//Remove autolayout
+    [self.shadowBackView addShadowWithCornerRadius:self.shadowBackView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];  //Add corner radius and shadow
     [self changeViewFrame];//Change frame according to forwarding address and comment
 }
 
@@ -67,7 +70,7 @@
     self.parcelDetailView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     float backgroundViewHeight=0.0;//Initialize back view size
     float forwardAddressHeight=[UserDefaultManager getDynamicLabelHeight:parcelDetailData.parcelForwardingAddress font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-130];
-    //calculate height according to text added by admin
+    //Calculate height according to text added by admin
     float commentHeight=[UserDefaultManager getDynamicLabelHeight:parcelDetailData.parcelComment font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-16];
     self.forwardAddress.numberOfLines=0;
     self.adminComment.numberOfLines=0;
@@ -78,14 +81,22 @@
         self.forwardAddress.frame=CGRectMake(8, self.forwardAddressTitle.frame.origin.y+self.forwardAddressTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-138, forwardAddressHeight);
     }
     self.adminCommentTitle.frame=CGRectMake(8, self.forwardAddress.frame.origin.y+self.forwardAddress.frame.size.height+17, 230, 21);
-    self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-16, commentHeight);
     
+    //If comment height is zero set admin comment height 21(by default)
+    if (commentHeight<21) {
+        self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-16, 21);
+    }
+    else {
+        self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-16, commentHeight);
+    }
+
     if (commentHeight<55) {
         commentHeight=58;
     }
     backgroundViewHeight=self.adminComment.frame.origin.y+commentHeight+48;
-    self.mainBackgroundView.frame=CGRectMake(10, 15, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
-    self.parcelStatusBackGroundView.frame=CGRectMake(0, self.mainBackgroundView.frame.size.height-40, self.mainBackgroundView.frame.size.width, 40);
+    self.mainBackgroundView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
+    self.shadowBackView.frame=CGRectMake(10, 15, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
+    self.parcelStatusBackGroundView.frame=CGRectMake(0, self.shadowBackView.frame.size.height-40, self.shadowBackView.frame.size.width, 40);
     self.detailScrollView.scrollEnabled=false;
     if ((backgroundViewHeight+64)>[UIScreen mainScreen].bounds.size.height) {
         self.detailScrollView.scrollEnabled=true;
@@ -98,6 +109,7 @@
     self.parcelDetailView.translatesAutoresizingMaskIntoConstraints=YES;
     self.forwardAddress.translatesAutoresizingMaskIntoConstraints=YES;
     self.mainBackgroundView.translatesAutoresizingMaskIntoConstraints=YES;
+    self.shadowBackView.translatesAutoresizingMaskIntoConstraints=YES;
     self.adminComment.translatesAutoresizingMaskIntoConstraints=YES;
     self.adminCommentTitle.translatesAutoresizingMaskIntoConstraints=YES;
     self.parcelStatusBackGroundView.translatesAutoresizingMaskIntoConstraints=YES;

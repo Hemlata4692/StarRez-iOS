@@ -38,8 +38,8 @@
                 __block ResourceModel *tempModel=[ResourceModel new];
                 tempModel.resourceTitle=[resourceData valueForKeyPath:@"entry.content.Record.resource"];
                 tempModel.resourceType=[resourceData valueForKeyPath:@"entry.content.Record.resource_type"];
-                NSDate *fromDate = [dateFormatter dateFromString:[[[resourceData valueForKeyPath:@"entry.content.Record.DateStart"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-                NSDate *toDate = [dateFormatter dateFromString:[[[resourceData valueForKeyPath:@"entry.content.Record.DateEnd"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                NSDate *fromDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[resourceData valueForKeyPath:@"entry.content.Record.DateStart"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                NSDate *toDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[resourceData valueForKeyPath:@"entry.content.Record.DateEnd"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
                 [dateFormatter setDateFormat:@"dd MMM, yy"];
                 tempModel.resourceFromDate=[dateFormatter stringFromDate:fromDate];
                 tempModel.resourceToDate=[dateFormatter stringFromDate:toDate];
@@ -50,23 +50,23 @@
                 [dataArray addObject:tempModel];
             }
             else{
-            for (int i=0; i<[[resourceData objectForKey:@"entry"] count]; i++) {
-                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-                [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-                __block ResourceModel *tempModel=[ResourceModel new];
-                tempModel.resourceTitle=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.resource"];
-                tempModel.resourceType=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.resource_type"];
-                NSDate *fromDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateStart"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-                NSDate *toDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateEnd"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-                [dateFormatter setDateFormat:@"dd MMM, yy"];
-                tempModel.resourceFromDate=[dateFormatter stringFromDate:fromDate];
-                tempModel.resourceToDate=[dateFormatter stringFromDate:toDate];
-                tempModel.resourceStatus=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status"];
-                tempModel.resourceStatusId=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ResourceBookingStatusEnum"];
-                tempModel.resourceDescription=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
-                tempModel.resourceComment=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Comments"];
-                [dataArray addObject:tempModel];
-            }
+                for (int i=0; i<[[resourceData objectForKey:@"entry"] count]; i++) {
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+                    __block ResourceModel *tempModel=[ResourceModel new];
+                    tempModel.resourceTitle=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.resource"];
+                    tempModel.resourceType=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.resource_type"];
+                    NSDate *fromDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateStart"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                    NSDate *toDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateEnd"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                    [dateFormatter setDateFormat:@"dd MMM, yy"];
+                    tempModel.resourceFromDate=[dateFormatter stringFromDate:fromDate];
+                    tempModel.resourceToDate=[dateFormatter stringFromDate:toDate];
+                    tempModel.resourceStatus=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status"];
+                    tempModel.resourceStatusId=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ResourceBookingStatusEnum"];
+                    tempModel.resourceDescription=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
+                    tempModel.resourceComment=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Comments"];
+                    [dataArray addObject:tempModel];
+                }
             }
             success(dataArray);
         }

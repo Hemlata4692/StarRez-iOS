@@ -69,7 +69,7 @@
     UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 120)];
     headerView.backgroundColor=[UIColor whiteColor];
     // i.e. array element
-    UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(70, 10, 160, 50)] ;
+    UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake((headerView.frame.size.width/2)-80, 10, 160, 50)] ;
     imgView.contentMode=UIViewContentModeScaleAspectFit;
     imgView.clipsToBounds=YES;
     imgView.image=[UIImage imageNamed:@"loginLogo"];

@@ -13,6 +13,8 @@
 @interface MaintenanceDetailViewController ()<CustomAlertDelegate>
 {
   CustomAlert *alertView;
+    int indexCount;
+    float rowHeight;
 }
 @property (weak, nonatomic) IBOutlet UITableView *maintenanceDetailTableView;
 
@@ -26,9 +28,8 @@
     self.title=@"Maintenance Detail";
     [super addBackgroungImage:@""];
     self.maintenanceDetailTableView.layer.cornerRadius = 3;
-    //Set corner radius to main background view
     
-    // Do any additional setup after loading the view.
+    //Set corner radius to main background view
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,6 +75,9 @@
             maskLayer.frame = labelFrame;
             maskLayer.path = maskPath.CGPath;
             bgView.layer.mask = maskLayer;
+            
+            
+            
             return cell;
             break;
         }
@@ -288,6 +292,33 @@
         
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:3 delegate:self message:@"Are you sure to close this request?" doneButtonText:@"Yes" cancelButtonText:@"No"];
     }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGRect cellSize = cell.frame;
+    if (indexCount<7) {
+        rowHeight = rowHeight+cellSize.size.height;
+        indexCount++;
+        [self addShadowToTableview];
+    }
+    NSLog(@"cellSize is %f and index: %ld",cellSize.size.height,(long)indexPath.row);
+}
+
+- (void)addShadowToTableview{
+    
+    maintenanceDetailTableView.layer.shadowPath = nil;
+    CGRect frame = maintenanceDetailTableView.frame;
+    frame.origin.y = -5;
+    frame.origin.x = 0.0;
+    frame.size.width = self.view.bounds.size.width-33;
+    frame.size.height = rowHeight;
+    UIBezierPath *shadowPath2 = [UIBezierPath bezierPathWithRect:frame];
+    maintenanceDetailTableView.layer.masksToBounds = NO;
+    maintenanceDetailTableView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+    maintenanceDetailTableView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
+    maintenanceDetailTableView.layer.shadowOpacity = 0.5f;
+    maintenanceDetailTableView.layer.shadowPath = shadowPath2.CGPath;
 }
 #pragma mark - end
 

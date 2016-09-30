@@ -86,7 +86,7 @@
     //Change main view height according to uiview object height
     backgroundViewHeight=self.adminComment.frame.origin.y+commentHeight+48;
     self.backShadowView.frame=CGRectMake(10, 8, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
-    self.resourceStatusBackGroundView.frame=CGRectMake(0, self.backShadowView.frame.size.height-40, self.backShadowView.frame.size.width, 40);
+    self.resourceStatusBackGroundView.frame=CGRectMake(0, self.backShadowView.frame.size.height-35, self.backShadowView.frame.size.width, 35);
     self.detailScrollView.scrollEnabled=false;
     //Scrolling is disable if view height more then screen size
     if ((backgroundViewHeight+64)>[UIScreen mainScreen].bounds.size.height) {

@@ -231,7 +231,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [myDelegate stopIndicator];
             if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
-                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"User does not exist in the system." doneButtonText:@"OK" cancelButtonText:@""];
+                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Either username or password doesn't match in the system." doneButtonText:@"OK" cancelButtonText:@""];
             }
             else {
                 alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];

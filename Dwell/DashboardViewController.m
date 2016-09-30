@@ -211,6 +211,24 @@
                 [self swipeDown];
             }
             break;
+        case 4: {   //Clicked on event menu
+            [UserDefaultManager setValue:@"Event" key:@"ScreenName"];
+            UIViewController *objResourceView=[self.storyboard instantiateViewControllerWithIdentifier:@"InformationViewController"];
+            [self.navigationController pushViewController:objResourceView animated:NO];
+        }
+            break;
+        case 5: {   //Clicked on information menu
+            [UserDefaultManager setValue:@"Information" key:@"ScreenName"];
+            UIViewController *objResourceView=[self.storyboard instantiateViewControllerWithIdentifier:@"InformationViewController"];
+            [self.navigationController pushViewController:objResourceView animated:NO];
+        }
+            break;
+        case 6: {   //Clicked on help menu
+            [UserDefaultManager setValue:@"Help" key:@"ScreenName"];
+            UIViewController *objResourceView=[self.storyboard instantiateViewControllerWithIdentifier:@"InformationViewController"];
+            [self.navigationController pushViewController:objResourceView animated:NO];
+        }
+            break;
         default:
             break;
     }

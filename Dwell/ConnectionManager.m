@@ -70,7 +70,18 @@
     } onFailure:^(id error) {
         failure(error);
     }] ;
+}
+
+#pragma mark - Select maintenance id services
+- (void)getMaintenanceIdList:(NSString *)selectedId onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure {
     
+    MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
+    [mainatenanceService getMaintenanceImageId:selectedId success:^(id response) {
+        //Parse data from server response and store in datamodel
+        success(response);
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
 }
 
 //Cancel service

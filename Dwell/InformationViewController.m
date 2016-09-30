@@ -27,16 +27,19 @@
     [self addLeftBarButtonWithImage:[UIImage imageNamed:@"menu.png"]];
     [myDelegate showIndicator:[Constants navigationColor ]];
     if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Event"]) {   //If event tab click
+        [UserDefaultManager setValue:[NSNumber numberWithInteger:4] key:@"indexpath"];
         self.navigationItem.title=@"Event";
         webViewUrl=@"http://www.centurionstudents.co.uk/en/event/";
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/event/"]]];
     }
     else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Information"]) {   //If information tab click
+        [UserDefaultManager setValue:[NSNumber numberWithInteger:5] key:@"indexpath"];
         self.navigationItem.title=@"Information";
         webViewUrl=@"http://www.centurionstudents.co.uk/en/information/";
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/information/"]]];
     }
     else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Help"]) {   //If help tab click
+        [UserDefaultManager setValue:[NSNumber numberWithInteger:6] key:@"indexpath"];
         self.navigationItem.title=@"Help";
         webViewUrl=@"http://www.centurionstudents.co.uk/en/help/";
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/help/"]]];

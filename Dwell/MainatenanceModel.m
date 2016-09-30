@@ -173,4 +173,25 @@
         failure(error);
     }];
 }
+
+//Fetch selected maintenance image ids
+- (void)getMaintenanceImageIdOnSuccess:(NSString*)selectedId success:(void (^)(id))success onfailure:(void (^)(id))failure {
+    
+    [[ConnectionManager sharedManager] getMaintenanceIdList:selectedId onSuccess:^(id maintenanceData) {
+                
+        NSMutableArray *dataArray = [NSMutableArray new];
+        //If single entry exist then use as dictionay
+        if ([[maintenanceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
+            [dataArray addObject:[maintenanceData valueForKeyPath:@"entry.content.Record.RecordAttachmentID"]];
+        }
+        else if ([[maintenanceData objectForKey:@"entry"] isKindOfClass:[NSMutableArray class]]){
+            for (int i=0; i<[[maintenanceData objectForKey:@"entry"] count]; i++) {
+                [dataArray addObject:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RecordAttachmentID"]];
+            }
+        }
+        success(dataArray);
+    } onFailure:^(id error) {
+        failure(error);
+    }];
+}
 @end

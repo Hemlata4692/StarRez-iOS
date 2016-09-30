@@ -52,4 +52,6 @@
 - (void)getAllResources:(NSMutableArray *)bookedResourceIds resourceData:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 //Resources request service
 - (void)setRequestResource:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
+//Select maintenance id
+- (void)getMaintenanceIdList:(NSString *)selectedId onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
 @end

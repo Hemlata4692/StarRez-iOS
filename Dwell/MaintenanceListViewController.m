@@ -31,7 +31,7 @@
 @synthesize maintenanceArray;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Maintenance";
+    self.navigationItem.title=@"Maintenance";
     //Add background image
     [super addBackgroungImage:@""];
     maintenanceArray = [[NSMutableArray alloc]init];
@@ -87,7 +87,7 @@
 #pragma mark - end
 
 #pragma mark - Webservice
-//Get parcel list webservice
+//Get maintenance list webservice
 - (void)getMaintenanceListService {
     
     isSearch = false;

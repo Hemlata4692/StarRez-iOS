@@ -36,4 +36,7 @@
 
 //Save Mainatenance job
 - (void)saveMainatenanceJobOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
+
+//Fetch selected maintenance image ids
+- (void)getMaintenanceImageIdOnSuccess:(NSString*)selectedId success:(void (^)(id))success onfailure:(void (^)(id))failure;
 @end

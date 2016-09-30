@@ -9,12 +9,14 @@
 #import "MaintenanceDetailViewController.h"
 #import "MainatenanceModel.h"
 #import "CustomAlertView.h"
+#import "UIImageView+WebCache.h"
 
 @interface MaintenanceDetailViewController ()<CustomAlertDelegate>
 {
   CustomAlert *alertView;
     int indexCount;
     float rowHeight;
+    NSMutableArray *maintenanceImageArray;
 }
 @property (weak, nonatomic) IBOutlet UITableView *maintenanceDetailTableView;
 
@@ -25,10 +27,13 @@
 @synthesize objMainatenanceModel;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"Maintenance Detail";
-    [super addBackgroungImage:@""];
-    self.maintenanceDetailTableView.layer.cornerRadius = 3;
     
+    self.navigationItem.title=@"Maintenance Detail";
+    [super addBackgroungImage:@""];
+    self.maintenanceDetailTableView.layer.cornerRadius=3;
+    //Fetch image ids
+    [myDelegate showIndicator:[Constants navigationColor]];
+    [self performSelector:@selector(getMaintenanceListService) withObject:nil afterDelay:.1];
     //Set corner radius to main background view
 }
 
@@ -37,7 +42,34 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+#pragma mark - Webservice
+//Get parcel list webservice
+- (void)getMaintenanceListService {
+    
+    maintenanceImageArray=[NSMutableArray new];
+    if ([super checkInternetConnection]) {
+        MainatenanceModel *mainatenanceData = [MainatenanceModel sharedUser];
+        [mainatenanceData getMaintenanceImageIdOnSuccess:objMainatenanceModel.maintenenceId success:^(id userData) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myDelegate stopIndicator];
+                if ([userData count]>0) {
+                    maintenanceImageArray=[userData mutableCopy];
+                    [self.maintenanceDetailTableView reloadData];
+                }
+            });
+        } onfailure:^(id error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myDelegate stopIndicator];
+                
+                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+            });
+        }];
+    }
+    else {
+        [myDelegate stopIndicator];
+    }
+}
+#pragma mark - end
 
 #pragma mark - Tableview methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -171,11 +203,16 @@
         }
         case 5:
         {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AgreeCell"];
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CollectionViewCell"];
             if (cell == nil) {
                 
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"AgreeCell"] ;
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CollectionViewCell"] ;
                 
+            }
+            //Load image collection view if image ids exist
+            if (maintenanceImageArray.count>0) {
+                UICollectionView *imageCollectionView=(UICollectionView*)[cell viewWithTag:15];
+                [imageCollectionView reloadData];
             }
             return cell;
             break;
@@ -231,6 +268,7 @@
         }
     }
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
@@ -269,11 +307,16 @@
             }
             else{
                 
-                return 60;
+                return 90;
             }
             break;
         case 5:
-            return 0.0;
+            if (maintenanceImageArray.count==0) {
+                return 0.0;
+            }
+            else {
+                return 120.0;
+            }
             break;
         case 6:
             return 35.0;
@@ -319,6 +362,31 @@
     maintenanceDetailTableView.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
     maintenanceDetailTableView.layer.shadowOpacity = 0.5f;
     maintenanceDetailTableView.layer.shadowPath = shadowPath2.CGPath;
+}
+#pragma mark - end
+
+#pragma mark - Collection view methods
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
+    return maintenanceImageArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UICollectionViewCell *imageCell=[collectionView
+                                    dequeueReusableCellWithReuseIdentifier:@"ImageCell"
+                                    forIndexPath:indexPath];
+    UIImageView *maintenanceImage=(UIImageView*)[imageCell viewWithTag:16];
+    //Add authenticaiton to get image in (SDWebImageManager.m->init method->add httpHeader in _imageDownloader)
+    [maintenanceImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://starrez.centurionstudents.co.uk/StarRezREST/services/photo/RecordAttachment/%@",[maintenanceImageArray objectAtIndex:indexPath.row]]] placeholderImage:[UIImage imageNamed:@"placeholderImage"]];
+    maintenanceImage.layer.borderColor=[UIColor colorWithRed:200.0/255 green:200.0/255.0 blue:200.0/255.0 alpha:1.0].CGColor;
+    maintenanceImage.layer.borderWidth=1.0f;
+    
+    return imageCell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    DLog(@"%d",(int)indexPath.row);
 }
 #pragma mark - end
 

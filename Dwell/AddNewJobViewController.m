@@ -12,6 +12,8 @@
 #import "Internet.h"
 #import "UIView+RoundedCorner.h"
 #import "MainatenanceModel.h"
+#import "UIView+Toast.h"
+
 @interface AddNewJobViewController ()<UITextFieldDelegate,BSKeyboardControlsDelegate>{
    
     NSArray *addNewJobTextFieldArray;
@@ -52,7 +54,7 @@
 #pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"New Job";
+    self.navigationItem.title=@"New Job";
     //Adding textfield to keyboard controls array
     addNewJobTextFieldArray = @[self.descriptionTextField,self.causeTextField,self.commentsTextField];
     [self setKeyboardControls:[[BSKeyboardControls alloc] initWithFields:addNewJobTextFieldArray]];
@@ -168,7 +170,7 @@
         [userData saveMainatenanceJobOnSuccess:^(MainatenanceModel *userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
-                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Your request has been submitted successfully." doneButtonText:@"OK" cancelButtonText:@""];
+                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"New job has been added successfully." doneButtonText:@"OK" cancelButtonText:@""];
                 
             });
         } onfailure:^(id error) {
@@ -313,19 +315,24 @@
 
 - (IBAction)selectItemButtonClicked:(id)sender {
     
-    isCategoryPicker = NO;
-    [self.keyboardControls.activeField resignFirstResponder];
-    [self.pickerView setNeedsLayout];
-    self.scrollView.scrollEnabled = NO;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    [self.pickerView reloadAllComponents];
-    if (categoryPickerIndex>=0) {
-        [self.pickerView selectRow:subcategoryPickerIndex inComponent:0 animated:YES];
+    if (![self.categoryTextField isEmpty]) {
+        isCategoryPicker = NO;
+        [self.keyboardControls.activeField resignFirstResponder];
+        [self.pickerView setNeedsLayout];
+        self.scrollView.scrollEnabled = NO;
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3];
+        [self.pickerView reloadAllComponents];
+        if (categoryPickerIndex>=0) {
+            [self.pickerView selectRow:subcategoryPickerIndex inComponent:0 animated:YES];
+        }
+        self.pickerView.frame = CGRectMake(self.pickerView.frame.origin.x, self.view.bounds.size.height-self.pickerView.frame.size.height , self.view.bounds.size.width, self.pickerView.frame.size.height);
+        self.pickerToolBar.frame = CGRectMake(self.pickerToolBar.frame.origin.x, self.pickerView.frame.origin.y-44, self.view.bounds.size.width, self.pickerToolBar.frame.size.height);
+        [UIView commitAnimations];
     }
-    self.pickerView.frame = CGRectMake(self.pickerView.frame.origin.x, self.view.bounds.size.height-self.pickerView.frame.size.height , self.view.bounds.size.width, self.pickerView.frame.size.height);
-    self.pickerToolBar.frame = CGRectMake(self.pickerToolBar.frame.origin.x, self.pickerView.frame.origin.y-44, self.view.bounds.size.width, self.pickerToolBar.frame.size.height);
-    [UIView commitAnimations];
+    else {
+        [self.view makeToast:@"Please select a category before proceed further."];
+    }
 }
 
 - (IBAction)savebuttonClicked:(id)sender {

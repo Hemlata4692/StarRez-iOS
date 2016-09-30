@@ -33,7 +33,7 @@
     [super viewDidLoad];
     
     [UserDefaultManager setValue:[NSNumber numberWithInteger:2] key:@"indexpath"];
-    self.title = @"Parcel List";
+    self.navigationItem.title=@"Parcel List";
     self.noRecordLabel.hidden=YES;
     isSearch=false;
     parcelDataArray=[NSMutableArray new];

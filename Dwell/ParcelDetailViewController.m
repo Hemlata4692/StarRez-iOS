@@ -41,7 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title=@"Parcel Detail";
+    self.navigationItem.title=@"Parcel Detail";
     [super addBackgroungImage:@""];
     [self layoutViewObjects];
     [self showParcelDetailData];
@@ -96,7 +96,7 @@
     backgroundViewHeight=self.adminComment.frame.origin.y+commentHeight+48;
     self.mainBackgroundView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
     self.shadowBackView.frame=CGRectMake(10, 15, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
-    self.parcelStatusBackGroundView.frame=CGRectMake(0, self.shadowBackView.frame.size.height-40, self.shadowBackView.frame.size.width, 40);
+    self.parcelStatusBackGroundView.frame=CGRectMake(0, self.shadowBackView.frame.size.height-35, self.shadowBackView.frame.size.width, 35);
     self.detailScrollView.scrollEnabled=false;
     if ((backgroundViewHeight+64)>[UIScreen mainScreen].bounds.size.height) {
         self.detailScrollView.scrollEnabled=true;

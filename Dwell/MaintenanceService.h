@@ -25,4 +25,6 @@
 //Save job
 - (void)saveJob:(MainatenanceModel *)data onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 
+//Fetch selected maintenance id
+- (void)getMaintenanceImageId:(NSString *)selectedMaintenanceId success:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end

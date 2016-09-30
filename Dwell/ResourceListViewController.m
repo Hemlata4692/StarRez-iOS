@@ -39,6 +39,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     
+    //Set index to selected show in menu
     [UserDefaultManager setValue:[NSNumber numberWithInteger:3] key:@"indexpath"];
     self.noRecordLabel.hidden=YES;
     isSearch=false;
@@ -46,8 +47,8 @@
     resourceSearchDataArray=[NSMutableArray new];
     resourceStatusDict=[NSMutableDictionary new];
     [self.resourceListTableview reloadData];
+    [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];   //Add filter button in right navigation item
     [myDelegate showIndicator:[Constants navigationColor]];
-    [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
     [self performSelector:@selector(getResourceListService) withObject:nil afterDelay:.1];
 }
 
@@ -74,7 +75,7 @@
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CustomFilterViewController *filterViewObj =[storyboard instantiateViewControllerWithIdentifier:@"CustomFilterViewController"];
     filterViewObj.delegate=self;
-    if (isSearch) {
+    if (isSearch) { //If filter selected
         filterViewObj.isAllSelected=false;
     }
     else {
@@ -99,7 +100,7 @@
                 [myDelegate stopIndicator];
                 resourceDataArray=[resourceData mutableCopy];
                 
-                //Get all type status in resourceStatusDict
+                //Set all type status in resourceStatusDict
                 NSMutableArray *tempStatusKeyArray=[NSMutableArray new];
                 for (int i=0; i<resourceDataArray.count; i++) {
                     tempStatusKeyArray=[[resourceStatusDict allKeys] mutableCopy];
@@ -134,7 +135,7 @@
 #pragma mark - Tableview methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (isSearch) {
+    if (isSearch) { //If filter selected
         return resourceSearchDataArray.count;
     }
     else {
@@ -150,7 +151,7 @@
     if (cell == nil) {
         cell = [[ResourceListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-    if (isSearch) {
+    if (isSearch) { //If filter selected
         [cell displayData:[resourceSearchDataArray objectAtIndex:indexPath.row] frame:self.view.bounds];
     }
     else {
@@ -162,7 +163,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ResourceDetailViewController *objresourceDetail = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ResourceDetailViewController"];
-    if (isSearch) {
+    if (isSearch) { //If filter selected
         objresourceDetail.resourceDetailData=[resourceSearchDataArray objectAtIndex:indexPath.row];
     }
     else {

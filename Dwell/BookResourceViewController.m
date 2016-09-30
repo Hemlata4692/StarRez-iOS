@@ -168,6 +168,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 #pragma mark - end
 
 #pragma mark - Hide/Show pickerView
+//Show date pickerview
 - (void)showDatePickerView {
 
     [UIView beginAnimations:nil context:NULL];
@@ -177,6 +178,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     [UIView commitAnimations];
 }
 
+//Hide date pickerview
 - (void)hideDatePickerView {
     
     [UIView beginAnimations:nil context:NULL];
@@ -186,6 +188,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     [UIView commitAnimations];
 }
 
+//Show resource/location pickerview
 - (void)showResourcePickerView:(int)selectedIndex {
     
     [self.resourcePickerView selectRow:selectedIndex inComponent:0 animated:YES];
@@ -197,6 +200,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     [self.resourcePickerView reloadAllComponents];
 }
 
+//Hide resource/location pickerview
 - (void)hideResourcePickerView {
     
     [UIView beginAnimations:nil context:NULL];
@@ -366,6 +370,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     return YES;
 }
 
+//Method called when keyboard show
 - (void)keyboardWillShow:(NSNotification *)notification {
     
     //Set field position after show keyboard
@@ -422,7 +427,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
             }
         }
     }
-    else if (currentFieldIndex==3) {    //Resource from date
+    else if (currentFieldIndex==3) {    //Resource FromDate
         [self.view endEditing:YES];
         [self hideResourcePickerView];
         self.datePickerView.datePickerMode=UIDatePickerModeDate;
@@ -440,7 +445,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         [self showDatePickerView];
         [self textfieldScrollHandling:pickerViewHeight currentTextField:self.fromDateField];
     }
-    else if (currentFieldIndex==4) {    //Resource from time
+    else if (currentFieldIndex==4) {    //Resource FromTime
         [self.view endEditing:YES];
         [self hideResourcePickerView];
         if ([self.fromDateField.text isEqualToString:@""]) {
@@ -467,7 +472,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
             [self textfieldScrollHandling:pickerViewHeight currentTextField:self.fromTimeField];
         }
     }
-    else if (currentFieldIndex==5) {    //Resource to date
+    else if (currentFieldIndex==5) {    //Resource ToDate
         [self.view endEditing:YES];
         [self hideResourcePickerView];
         self.datePickerView.datePickerMode=UIDatePickerModeDate;
@@ -485,7 +490,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         [self showDatePickerView];
         [self textfieldScrollHandling:pickerViewHeight currentTextField:self.toDateField];
     }
-    else if (currentFieldIndex==6) {    //Resource to time
+    else if (currentFieldIndex==6) {    //Resource ToTime
         [self.view endEditing:YES];
         [self hideResourcePickerView];
         if ([self.toDateField.text isEqualToString:@""]) {

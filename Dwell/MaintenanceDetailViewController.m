@@ -11,20 +11,20 @@
 #import "CustomAlertView.h"
 #import "UIImageView+WebCache.h"
 
-@interface MaintenanceDetailViewController ()<CustomAlertDelegate>
-{
-  CustomAlert *alertView;
+@interface MaintenanceDetailViewController ()<CustomAlertDelegate> {
+    
+    CustomAlert *alertView;
     int indexCount;
     float rowHeight;
     NSMutableArray *maintenanceImageArray;
 }
 @property (weak, nonatomic) IBOutlet UITableView *maintenanceDetailTableView;
-
 @end
 
 @implementation MaintenanceDetailViewController
 @synthesize maintenanceDetailTableView;
 @synthesize objMainatenanceModel;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -34,7 +34,6 @@
     //Fetch image ids
     [myDelegate showIndicator:[Constants navigationColor]];
     [self performSelector:@selector(getMaintenanceListService) withObject:nil afterDelay:.1];
-    //Set corner radius to main background view
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,10 +89,10 @@
             }
             UILabel *titleLbl = (UILabel *)[cell.contentView viewWithTag:1];
             titleLbl.text = objMainatenanceModel.title;
-            //calcualte dynamic height of title label
+            //alcualte dynamic height of title label
             float titleHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.title font:[UIFont calibriNormalWithSize:20] widthValue:([UIScreen mainScreen].bounds.size.width-20)-20];
             titleLbl.frame = CGRectMake(titleLbl.frame.origin.x, titleLbl.frame.origin.y, ([UIScreen mainScreen].bounds.size.width-20)-20, titleHeight+15);
-            //round top of the label
+            //Round top of the label
             CGRect labelFrame = CGRectMake(0, 0, self.view.frame.size.width-34, titleHeight+20);
             UIView *bgView = (UILabel *)[cell.contentView viewWithTag:11];
             bgView.translatesAutoresizingMaskIntoConstraints = YES;
@@ -107,9 +106,6 @@
             maskLayer.frame = labelFrame;
             maskLayer.path = maskPath.CGPath;
             bgView.layer.mask = maskLayer;
-            
-            
-            
             return cell;
             break;
         }
@@ -142,9 +138,7 @@
         {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DescriptionCell"];
             if (cell == nil) {
-                
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"DescriptionCell"] ;
-                
             }
             UILabel *descriptionLabel = (UILabel *)[cell.contentView viewWithTag:6];
             descriptionLabel.numberOfLines = 0;
@@ -160,9 +154,7 @@
         {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CauseCell"];
             if (cell == nil) {
-                
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CauseCell"] ;
-                
             }
             UILabel *causeLabel = (UILabel *)[cell.contentView viewWithTag:7];
             causeLabel.numberOfLines = 0;
@@ -183,9 +175,7 @@
         {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentsCell"];
             if (cell == nil) {
-                
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CommentsCell"] ;
-                
             }
             UILabel *commentsLabel = (UILabel *)[cell.contentView viewWithTag:8];
             commentsLabel.numberOfLines = 0;
@@ -205,9 +195,7 @@
         {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CollectionViewCell"];
             if (cell == nil) {
-                
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CollectionViewCell"] ;
-                
             }
             //Load image collection view if image ids exist
             if (maintenanceImageArray.count>0) {
@@ -221,9 +209,7 @@
         {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ButtonCell"];
             if (cell == nil) {
-                
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ButtonCell"] ;
-                
             }
             
             CGRect labelFrame = CGRectMake(0, 0, self.view.frame.size.width-34, cell.contentView.frame.size.height);
@@ -250,18 +236,14 @@
                 cell.alpha = 1.0;
                 closeLabel.alpha = 1.0;
             }
-            //cell.contentView.layer.cornerRadius = cornerRadius;
             return cell;
             break;
         }
-            
         default:
         {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TitleCell"];
             if (cell == nil) {
-                
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"TitleCell"] ;
-                
             }
             return cell;
             break;
@@ -329,26 +311,26 @@
     
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.row==6 && !([objMainatenanceModel.status isEqualToString:@"Closed by student"])) {
         
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:3 delegate:self message:@"Are you sure to close this request?" doneButtonText:@"Yes" cancelButtonText:@"No"];
     }
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     CGRect cellSize = cell.frame;
     if (indexCount<7) {
         rowHeight = rowHeight+cellSize.size.height;
         indexCount++;
         [self addShadowToTableview];
     }
-    NSLog(@"cellSize is %f and index: %ld",cellSize.size.height,(long)indexPath.row);
+    DLog(@"cellSize is %f and index: %ld",cellSize.size.height,(long)indexPath.row);
 }
 
-- (void)addShadowToTableview{
+- (void)addShadowToTableview {
     
     maintenanceDetailTableView.layer.shadowPath = nil;
     CGRect frame = maintenanceDetailTableView.frame;
@@ -392,7 +374,7 @@
 
 #pragma mark - Webservice
 
-- (void)categoryService{
+- (void)categoryService {
     
     if ([super checkInternetConnection]) {
         MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
@@ -435,9 +417,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
                 if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
-                    DLog(@"No record found.");
-                    
-                }
+                    DLog(@"No record found.");                }
                 else {
                     alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
                 }

@@ -255,9 +255,6 @@
     [UIView setAnimationDuration:0.5f];
     self.menuCollectionView.frame=CGRectMake(0,self.view.bounds.size.height-self.menuCollectionView.frame.size.height, self.view.bounds.size.width, self.menuCollectionView.frame.size.height);
     self.dashboardTableView.frame=CGRectMake(0,0, self.view.bounds.size.width,self.view.bounds.size.height-self.menuCollectionView.frame.size.height-5);
-//    //For table scrolling to end
-//    CGPoint offset = CGPointMake(0, self.dashboardTableView.contentSize.height-self.dashboardTableView.frame.size.height);
-//    [self.dashboardTableView setContentOffset:offset animated:YES];
     [UIView commitAnimations];
 }
 #pragma mark - end

@@ -40,7 +40,7 @@
     float titleHeight=[UserDefaultManager getDynamicLabelHeight:titleLabel.text font:[UIFont calibriNormalWithSize:20] widthValue:([UIScreen mainScreen].bounds.size.width-20)-125];
     titleLabel.frame = CGRectMake(titleLabel.frame.origin.x, titleLabel.frame.origin.y, ([UIScreen mainScreen].bounds.size.width-20)-125, titleHeight+25);
     titleBgVIew.frame = CGRectMake(titleBgVIew.frame.origin.x, titleBgVIew.frame.origin.y, width, titleLabel.frame.size.height);
-    //set dynamic height of description label.
+    //Set dynamic height of description label.
     
     float descriptionFieldHeight=[UserDefaultManager getDynamicLabelHeight:descriptionField.text font:[UIFont calibriNormalWithSize:19] widthValue:([UIScreen mainScreen].bounds.size.width-20)-25];
     descriptionField.frame = CGRectMake(descriptionField.frame.origin.x, titleLabel.frame.origin.y+titleLabel.frame.size.height+20, ([UIScreen mainScreen].bounds.size.width-20)-25, descriptionFieldHeight);
@@ -53,22 +53,22 @@
     UIBezierPath *statusMaskPath = [UIBezierPath bezierPathWithRoundedRect:statusBackgroundVIew.bounds
                                                    byRoundingCorners:UIRectCornerBottomLeft| UIRectCornerBottomRight
                                                          cornerRadii:CGSizeMake(5.0, 5.0)];
-    // Create the shape layer and set its path
+    //Create the shape layer and set its path
     CAShapeLayer *statusMaskLayer = [CAShapeLayer layer];
     statusMaskLayer.frame = statusBackgroundVIew.bounds;
     statusMaskLayer.path = statusMaskPath.CGPath;
-    // Set the newly created shape layer as the mask for the image view's layer
+    //Set the newly created shape layer as the mask for the image view's layer
     statusBackgroundVIew.layer.mask = statusMaskLayer;
     
     //Round top of the title background
     UIBezierPath *titleMaskPath = [UIBezierPath bezierPathWithRoundedRect:titleBgVIew.bounds
                                                          byRoundingCorners:UIRectCornerTopLeft| UIRectCornerTopRight
                                                                cornerRadii:CGSizeMake(5.0, 5.0)];
-    // Create the shape layer and set its path
+    //Create the shape layer and set its path
     CAShapeLayer *titleMaskLayer = [CAShapeLayer layer];
     titleMaskLayer.frame = titleBgVIew.bounds;
     titleMaskLayer.path = titleMaskPath.CGPath;
-    // Set the newly created shape layer as the mask for the image view's layer
+    //Set the newly created shape layer as the mask for the image view's layer
     titleBgVIew.layer.mask = titleMaskLayer;
 
 }
@@ -79,7 +79,7 @@
     // Configure the view for the selected state
 }
 
-- (void)displayData:(MaintenanceModel *)modelData frame:(CGRect)frame{
+- (void)displayData:(MaintenanceModel *)modelData frame:(CGRect)frame {
     
     descriptionField.text = modelData.detail;
     titleLabel.text = modelData.title;
@@ -88,20 +88,20 @@
     dateLabel.text = modelData.reportedDate;
     if (modelData.status) {
         statusLabel.text = modelData.status;
-    }else{
+    }
+    else {
         statusLabel.text = @"NA";
     }
     
-    if([modelData.status isEqualToString:@"Job Completed"]){
+    if([modelData.status isEqualToString:@"Job Completed"]) {
         
         statusBackgroundVIew.backgroundColor = [Constants greenBackgroundColor];
-    }else if ([modelData.status isEqualToString:@"Awaiting for Contractor"]||[modelData.status isEqualToString:@"Awaiting for Parts"]||[modelData.status isEqualToString:@"Job in Progress"]){
+    }
+    else if ([modelData.status isEqualToString:@"Awaiting for Contractor"]||[modelData.status isEqualToString:@"Awaiting for Parts"]||[modelData.status isEqualToString:@"Job in Progress"]) {
         statusBackgroundVIew.backgroundColor = [Constants yellowBackgroundColor];
     }
-    else{
+    else {
         statusBackgroundVIew.backgroundColor = [Constants blueBackgroundColor];
     }
-    
-    
 }
 @end

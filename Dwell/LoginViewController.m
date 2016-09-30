@@ -201,7 +201,7 @@
     [self.keyboardControls.activeField resignFirstResponder];
     [self.loginScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     Internet *internet=[[Internet alloc] init];
-    //perform login validations
+    //Perform login validations
     if([self performValidationsForLogin]) {
         if (![internet start]) {
             [myDelegate showIndicator:[Constants dashboardColor]];

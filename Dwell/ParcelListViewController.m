@@ -32,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //Set index to selected show in menu
     [UserDefaultManager setValue:[NSNumber numberWithInteger:2] key:@"indexpath"];
     self.navigationItem.title=@"Parcel List";
     self.noRecordLabel.hidden=YES;

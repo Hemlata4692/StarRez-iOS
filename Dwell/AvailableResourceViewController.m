@@ -45,7 +45,7 @@
     
     [self removeAutolayout];
     DLog(@"%f,%f",[UIScreen mainScreen].bounds.size.height,[UIScreen mainScreen].bounds.size.height-64);
-    //Set height view according to table view array data
+    //Set view height according to table view array data
     if(([UIScreen mainScreen].bounds.size.height-94)>(((availableResourceData.count)*60.0)+50.0)) {
         self.availableResourceMainView.frame=CGRectMake(15, 15, [UIScreen mainScreen].bounds.size.width-30, [UIScreen mainScreen].bounds.size.height-94);
     }
@@ -87,7 +87,7 @@
         return 50.0;        //Set first index height
     }
     else {
-        return 60.0;
+        return 60.0;    //Set other index height
     }
 }
 
@@ -148,7 +148,6 @@
     resourceData.resourceFromDate=selectedFromDataTime;
     resourceData.resourceToDate=selectedToDataTime;
     resourceData.resourceId=[[availableResourceData objectAtIndex:selectedResource] resourceId];
-    //        resourceData.resourceDescription=self.sourceNameField.text;
     [resourceData setRequestResourceOnSuccess:^(id availableResourceData) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [myDelegate stopIndicator];

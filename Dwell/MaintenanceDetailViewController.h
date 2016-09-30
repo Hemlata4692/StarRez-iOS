@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 @class MaintenanceModel;
+
 @interface MaintenanceDetailViewController : GlobalBackViewController
+
 @property(nonatomic,retain)MaintenanceModel * objMainatenanceModel;
 @end

@@ -43,9 +43,6 @@
     //Set corner radius to main background view
     mainBackgroundView.layer.cornerRadius=3;
     mainBackgroundView.layer.masksToBounds=YES;
-    //Round status view from bottom sides
-//    parcelStatusBackGroundView.translatesAutoresizingMaskIntoConstraints=YES;
-//    parcelStatusBackGroundView.frame=CGRectMake(parcelStatusBackGroundView.frame.origin.x, parcelStatusBackGroundView.frame.origin.y, frame.size.width-30, parcelStatusBackGroundView.frame.size.height);
     [shadowBackView addShadowWithCornerRadius:shadowBackView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];  //Add corner radius and shadow
 }
 

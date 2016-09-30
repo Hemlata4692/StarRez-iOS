@@ -56,7 +56,7 @@
 #pragma mark - Webview delegates
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
-    NSLog(@"start value: %@",request.URL);
+    DLog(@"start value: %@",request.URL);
     webViewUrl=[request.URL absoluteString];
     return YES;
 }
@@ -104,7 +104,7 @@
 //Add back bar button
 - (void)addLeftBackBarButtonWithImage:(UIImage *)buttonImage {
     
-    //Navigation bar button for adding global back button for all the sub screens.
+    //Navigation bar button for adding back button.
     CGRect framing1 = CGRectMake(0, 0, 25, 25);
     UIButton *button = [[UIButton alloc] initWithFrame:framing1];
     [button setImage:buttonImage forState:UIControlStateNormal];

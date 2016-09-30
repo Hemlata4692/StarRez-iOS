@@ -13,8 +13,8 @@
 #import "MaintenanceDetailViewController.h"
 #import "AddNewJobViewController.h"
 
-@interface MaintenanceListViewController ()<CustomFilterDelegate,CustomAlertDelegate>
-{
+@interface MaintenanceListViewController ()<CustomFilterDelegate,CustomAlertDelegate> {
+    
    UIBarButtonItem *filterBarButton;
     CustomAlert *alertView;
     //Data structures for filter feature.
@@ -29,6 +29,7 @@
 @implementation MaintenanceListViewController
 @synthesize maintenanceTable;
 @synthesize maintenanceArray;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title=@"Maintenance";
@@ -39,9 +40,10 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    //Set index to selected show in menu
     [UserDefaultManager setValue:[NSNumber numberWithInteger:1] key:@"indexpath"];
     [myDelegate showIndicator:[Constants orangeBackgroundColor]];
     [self performSelector:@selector(getMaintenanceListService) withObject:nil afterDelay:.1];
@@ -62,6 +64,7 @@
     [button addTarget:self action:@selector(filterButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItems=[NSArray arrayWithObjects:filterBarButton, nil];
 }
+
 //Filter button action
 - (void)filterButtonAction:(id)sender {
     
@@ -161,14 +164,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MaintenanceModel *objModel;
-    if (isSearch)    {
+    if (isSearch) {
     objModel= [maintenanceSearchDataArray objectAtIndex:indexPath.row];
     }
     else{
     objModel= [maintenanceArray objectAtIndex:indexPath.row];
     }
     
-
     float titleHeight=[UserDefaultManager getDynamicLabelHeight:[objModel title] font:[UIFont calibriNormalWithSize:20] widthValue:([UIScreen mainScreen].bounds.size.width-20)-125];
     float forwardAddressHeight=[UserDefaultManager getDynamicLabelHeight:[[maintenanceArray objectAtIndex:indexPath.row] detail] font:[UIFont calibriNormalWithSize:19] widthValue:([UIScreen mainScreen].bounds.size.width-20)-25];
     return forwardAddressHeight+titleHeight+112.0;
@@ -188,7 +190,7 @@
 #pragma mark - end
 
 #pragma mark - Custom filter delegate
-- (void)customFilterDelegateAction:(NSMutableDictionary*)filteredData filterString:(NSString *)filterString{
+- (void)customFilterDelegateAction:(NSMutableDictionary*)filteredData filterString:(NSString *)filterString {
     
     if ([filterString isEqualToString:@"All"]) {
         isSearch=false;
@@ -207,7 +209,7 @@
 #pragma mark - end
 
 #pragma mark - Custom alert delegates
-- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option {
     
     [alertView dismissAlertView];
 }

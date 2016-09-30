@@ -79,15 +79,15 @@
     isPresent = @"0";
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     self.pickerView.translatesAutoresizingMaskIntoConstraints=YES;
     self.pickerToolBar.translatesAutoresizingMaskIntoConstraints=YES;
 }
 
-- (void)addCornerRadius
-{
+- (void)addCornerRadius {
+    
     [self.saveButton.layer setCornerRadius:22];
     [self.addJobContainerView addShadowWithCornerRadius:self.addJobContainerView color:[UIColor lightGrayColor] borderColor:[UIColor whiteColor] radius:5.0f];  //Add corner radius and shadow
 }
@@ -99,7 +99,7 @@
 
 #pragma mark - Webservice
 
-- (void)categoryService{
+- (void)categoryService {
     
     if ([super checkInternetConnection]) {
         MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
@@ -143,7 +143,6 @@
                 [myDelegate stopIndicator];
                 if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
                     DLog(@"No record found.");
-                    
                 }
                 else {
                     alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
@@ -171,7 +170,6 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
                 alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"New job has been added successfully." doneButtonText:@"OK" cancelButtonText:@""];
-                
             });
         } onfailure:^(id error) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -223,8 +221,8 @@
     }
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
     if(textField == _commentsTextField)
     {
         if (range.length > 0 && [string length] == 0)
@@ -371,14 +369,14 @@
             [myDelegate showIndicator:nil];
             [self performSelector:@selector(subCategoryService:) withObject:model.maintenanceId afterDelay:0.1];
             
-        }else{
+        }
+        else{
             
             self.categoryTextField.text=str;
             
         }
-        
-        
-    } else {
+    }
+    else {
         //code to set value on subcategory field
         NSInteger index = [self.pickerView selectedRowInComponent:0];
         MaintenanceModel *model = [subcategoryArray objectAtIndex:index];
@@ -389,15 +387,13 @@
     }
     [self hidePickerWithAnimation];
 }
-
 #pragma mark - end
 
 #pragma mark - Picker View methods
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
    
     UILabel* pickerLabel = (UILabel*)view;
-    if (!pickerLabel)
-    {
+    if (!pickerLabel) {
         pickerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,600,20)];
         pickerLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
         pickerLabel.textAlignment=NSTextAlignmentCenter;
@@ -407,7 +403,8 @@
     if (isCategoryPicker) {
     model = [categoryArray objectAtIndex:row];
         str=model.title;
-    }else{
+    }
+    else {
         model = [subcategoryArray objectAtIndex:row];
         str=model.subcategory;
     }
@@ -416,22 +413,23 @@
     return pickerLabel;
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    
     if (isCategoryPicker) {
         return categoryArray.count;
-    }else{
+    }
+    else {
         return subcategoryArray.count;
     }
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    
     [_keyboardControls.activeField resignFirstResponder];
     
     MaintenanceModel *model;
@@ -439,15 +437,18 @@
     if (isCategoryPicker) {
         model = [categoryArray objectAtIndex:row];
         str=model.title;
-    }else{
+    }
+    else {
         model = [subcategoryArray objectAtIndex:row];
         str=model.subcategory;
     }
     return str;
 }
+#pragma mark - end
 
-- (void)hidePickerWithAnimation
-{
+#pragma mark - Hide picker view animation
+- (void)hidePickerWithAnimation {
+    
     self.scrollView.scrollEnabled = YES;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
@@ -458,7 +459,7 @@
 #pragma mark - end
 
 #pragma mark - Custom alert delegates
-- (void)customAlertDelegateAction:(CustomAlertView *)customAlert option:(int)option{
+- (void)customAlertDelegateAction:(CustomAlertView *)customAlert option:(int)option {
     
     [alertView dismissAlertView];
     if (customAlert.alertTagValue==5) {
@@ -468,5 +469,4 @@
     }
 }
 #pragma mark - end
-
 @end

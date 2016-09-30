@@ -14,7 +14,7 @@
 		95D27D2B1D994D7B00EBA799 /* AddNewJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D27D2A1D994D7B00EBA799 /* AddNewJobViewController.m */; };
 		95E74D041D9107F300C5CA8B /* MaintenanceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D031D9107F300C5CA8B /* MaintenanceListViewController.m */; };
 		95E74D071D91122C00C5CA8B /* MaintenanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D061D91122C00C5CA8B /* MaintenanceCell.m */; };
-		95E74D141D914A8300C5CA8B /* MainatenanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D131D914A8300C5CA8B /* MainatenanceModel.m */; };
+		95E74D141D914A8300C5CA8B /* MaintenanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D131D914A8300C5CA8B /* MaintenanceModel.m */; };
 		95E74D181D914FF700C5CA8B /* MaintenanceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D171D914FF700C5CA8B /* MaintenanceService.m */; };
 		B70EB1001D9D3E7C00215D4F /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B70EB0FF1D9D3E7C00215D4F /* InformationViewController.m */; };
 		B719DAC41D9A8489000A5D0D /* AvailableResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B719DAC31D9A8489000A5D0D /* AvailableResourceViewController.m */; };
@@ -103,8 +103,8 @@
 		95E74D031D9107F300C5CA8B /* MaintenanceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceListViewController.m; sourceTree = "<group>"; };
 		95E74D051D91122C00C5CA8B /* MaintenanceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceCell.h; sourceTree = "<group>"; };
 		95E74D061D91122C00C5CA8B /* MaintenanceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceCell.m; sourceTree = "<group>"; };
-		95E74D121D914A8300C5CA8B /* MainatenanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainatenanceModel.h; sourceTree = "<group>"; };
-		95E74D131D914A8300C5CA8B /* MainatenanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainatenanceModel.m; sourceTree = "<group>"; };
+		95E74D121D914A8300C5CA8B /* MaintenanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceModel.h; sourceTree = "<group>"; };
+		95E74D131D914A8300C5CA8B /* MaintenanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceModel.m; sourceTree = "<group>"; };
 		95E74D161D914FF700C5CA8B /* MaintenanceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceService.h; sourceTree = "<group>"; };
 		95E74D171D914FF700C5CA8B /* MaintenanceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceService.m; sourceTree = "<group>"; };
 		B70EB0FE1D9D3E7C00215D4F /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
@@ -321,8 +321,8 @@
 		95E74D111D914A2300C5CA8B /* MaintenanceModel */ = {
 			isa = PBXGroup;
 			children = (
-				95E74D121D914A8300C5CA8B /* MainatenanceModel.h */,
-				95E74D131D914A8300C5CA8B /* MainatenanceModel.m */,
+				95E74D121D914A8300C5CA8B /* MaintenanceModel.h */,
+				95E74D131D914A8300C5CA8B /* MaintenanceModel.m */,
 			);
 			name = MaintenanceModel;
 			sourceTree = "<group>";
@@ -1069,7 +1069,7 @@
 				B758D6F51D9E432400945EE8 /* UIButton+WebCache.m in Sources */,
 				B7ACD2761D89124B005CD42D /* UIFont+CustomFont.m in Sources */,
 				B76432911D9B7BF10000A35A /* DashboardTableViewCell.m in Sources */,
-				95E74D141D914A8300C5CA8B /* MainatenanceModel.m in Sources */,
+				95E74D141D914A8300C5CA8B /* MaintenanceModel.m in Sources */,
 				B7C7A3711D8A63A600D7DF06 /* DashboardViewController.m in Sources */,
 				B7C7A3941D8A75B600D7DF06 /* ParcelCell.m in Sources */,
 				B7D0B8031D893087008BC202 /* CustomAlertView.m in Sources */,

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class MainatenanceModel;
+@class MaintenanceModel;
 @interface MaintenanceCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
@@ -17,5 +17,5 @@
 @property (weak, nonatomic) IBOutlet UIView *mainBackgroundView;
 @property (weak, nonatomic) IBOutlet UIView *titleBgVIew;
 
-- (void)displayData:(MainatenanceModel *)modelData frame:(CGRect)frame;
+- (void)displayData:(MaintenanceModel *)modelData frame:(CGRect)frame;
 @end

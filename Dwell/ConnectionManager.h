@@ -11,7 +11,7 @@
 @class LoginModel;
 @class ParcelModel;
 @class ResourceModel;
-@class MainatenanceModel;
+@class MaintenanceModel;
 @interface ConnectionManager : NSObject
 
 + (instancetype)sharedManager;
@@ -26,19 +26,19 @@
 - (void)getParcelList:(ParcelModel *)parcelData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 
 //Get Maintenance listing
-- (void)getMaintenancelList:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
+- (void)getMaintenancelList:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure;
 
 //Canscel service
-- (void)cancelServiceOnSuccess:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
+- (void)cancelServiceOnSuccess:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure;
 
 //Get Category service
-- (void)getCategoryOnSuccess:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
+- (void)getCategoryOnSuccess:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure;
 
 //Get Subcategory service
-- (void)getSubCategoryOnSuccess:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
+- (void)getSubCategoryOnSuccess:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure;
 
 //Save maintenance job
-- (void)saveMaintenanceJob:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
+- (void)saveMaintenanceJob:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure;
 
 //Resource list with detail
 - (void)getResourceList:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
@@ -53,5 +53,5 @@
 //Resources request service
 - (void)setRequestResource:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 //Select maintenance id
-- (void)getMaintenanceIdList:(NSString *)selectedId onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure;
+- (void)getMaintenanceIdList:(NSString *)selectedId onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure;
 @end

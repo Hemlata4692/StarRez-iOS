@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class MainatenanceModel;
+@class MaintenanceModel;
 @interface MaintenanceDetailViewController : GlobalBackViewController
-@property(nonatomic,retain)MainatenanceModel * objMainatenanceModel;
+@property(nonatomic,retain)MaintenanceModel * objMainatenanceModel;
 @end

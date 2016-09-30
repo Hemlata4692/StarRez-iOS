@@ -7,7 +7,7 @@
 //
 
 #import "MaintenanceDetailViewController.h"
-#import "MainatenanceModel.h"
+#import "MaintenanceModel.h"
 #import "CustomAlertView.h"
 #import "UIImageView+WebCache.h"
 
@@ -48,8 +48,8 @@
     
     maintenanceImageArray=[NSMutableArray new];
     if ([super checkInternetConnection]) {
-        MainatenanceModel *mainatenanceData = [MainatenanceModel sharedUser];
-        [mainatenanceData getMaintenanceImageIdOnSuccess:objMainatenanceModel.maintenenceId success:^(id userData) {
+        MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
+        [mainatenanceData getMaintenanceImageIdOnSuccess:objMainatenanceModel.maintenanceId success:^(id userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
                 if ([userData count]>0) {
@@ -395,7 +395,7 @@
 - (void)categoryService{
     
     if ([super checkInternetConnection]) {
-        MainatenanceModel *mainatenanceData = [MainatenanceModel sharedUser];
+        MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
         [mainatenanceData getCategoryListOnSuccess:^(id userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
@@ -421,9 +421,9 @@
 
 - (void)cancelService{
     
-    [UserDefaultManager setValue:objMainatenanceModel.maintenenceId key:@"maintainId"];
+    [UserDefaultManager setValue:objMainatenanceModel.maintenanceId key:@"maintainId"];
     if ([super checkInternetConnection]) {
-        MainatenanceModel *mainatenanceData = [MainatenanceModel sharedUser];
+        MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
         [mainatenanceData cancelServiceOnSuccess:^(id userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];

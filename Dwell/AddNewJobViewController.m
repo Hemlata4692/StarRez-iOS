@@ -11,8 +11,9 @@
 #import "UITextField+Validations.h"
 #import "Internet.h"
 #import "UIView+RoundedCorner.h"
-#import "MainatenanceModel.h"
+#import "MaintenanceModel.h"
 #import "UIView+Toast.h"
+#import "CustomAlertView.h"
 
 @interface AddNewJobViewController ()<UITextFieldDelegate,BSKeyboardControlsDelegate>{
    
@@ -26,8 +27,7 @@
     
     NSString *catId;
     NSString *subCatId;
-    NSString *isPresent;
-    
+    NSString *isPresent;    
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -102,7 +102,7 @@
 - (void)categoryService{
     
     if ([super checkInternetConnection]) {
-        MainatenanceModel *mainatenanceData = [MainatenanceModel sharedUser];
+        MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
         [mainatenanceData getCategoryListOnSuccess:^(id userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 categoryArray = [userData mutableCopy];
@@ -117,7 +117,7 @@
                     
                 }
                 else {
-                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:5 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"Retry" cancelButtonText:@""];
                 }
             });
         }];
@@ -131,7 +131,7 @@
 - (void)subCategoryService :(NSString *)categoryId {
     
     if ([super checkInternetConnection]) {
-        MainatenanceModel *mainatenanceData = [MainatenanceModel sharedUser];
+        MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
         [UserDefaultManager setValue:categoryId key:@"categoryId"];
         [mainatenanceData getSubCategoryListOnSuccess:^(id userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -159,15 +159,15 @@
 
 - (void)saveJob{
     
-     MainatenanceModel *userData = [MainatenanceModel sharedUser];
-    userData.maintenenceId =catId;
+     MaintenanceModel *userData = [MaintenanceModel sharedUser];
+    userData.maintenanceId =catId;
     userData.subcategoryId = subCatId;
     userData.detail =self.descriptionTextField.text;
     userData.cause = self.causeTextField.text;
     userData.commetns = self.commentsTextField.text;
     userData.isPresent = isPresent;
     if ([super checkInternetConnection]) {
-        [userData saveMainatenanceJobOnSuccess:^(MainatenanceModel *userData) {
+        [userData saveMainatenanceJobOnSuccess:^(MaintenanceModel *userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
                 alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"New job has been added successfully." doneButtonText:@"OK" cancelButtonText:@""];
@@ -264,21 +264,6 @@
     [textField resignFirstResponder];
     return YES;
 }
-
-- (IBAction)checkboxButtonClicked:(id)sender {
-    if ([sender isSelected])
-    {
-        isPresent  = @"0";
-        [sender setSelected:NO];
-        [_checkboxImageView setImage:[UIImage imageNamed:@"checkbox.png"]];
-    }
-    else
-    {
-         isPresent  = @"1";
-        [sender setSelected:YES];
-        [_checkboxImageView setImage:[UIImage imageNamed:@"checkbox_selected.png"]];
-    }
-}
 #pragma mark - end
 
 #pragma mark - Login validation
@@ -289,6 +274,10 @@
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please fill in all the required fields." doneButtonText:@"OK" cancelButtonText:@""];
         return NO;
     }
+    else if([isPresent isEqualToString:@"0"]) {
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"You need to accept condition to proceed." doneButtonText:@"OK" cancelButtonText:@""];
+        return NO;
+    }
     else {
         return YES;
     }
@@ -296,6 +285,21 @@
 #pragma mark - end
 
 #pragma mark - IBActions
+- (IBAction)checkboxButtonClicked:(id)sender {
+    if ([sender isSelected])
+    {
+        isPresent  = @"0";
+        [sender setSelected:NO];
+        [_checkboxImageView setImage:[UIImage imageNamed:@"checkbox.png"]];
+    }
+    else
+    {
+        isPresent  = @"1";
+        [sender setSelected:YES];
+        [_checkboxImageView setImage:[UIImage imageNamed:@"checkbox_selected.png"]];
+    }
+}
+
 - (IBAction)selectCategoryButtonClicked:(id)sender {
     
     isCategoryPicker = YES;
@@ -355,17 +359,17 @@
     //This check determines which picker should response i.e. which field should be filled: category or subcategory.
     if (isCategoryPicker) {
         NSInteger index = [self.pickerView selectedRowInComponent:0];
-        MainatenanceModel *model = [categoryArray objectAtIndex:index];
+        MaintenanceModel *model = [categoryArray objectAtIndex:index];
         categoryPickerIndex = (int)index;
         NSString *str=model.title;
-        catId = model.maintenenceId;
+        catId = model.maintenanceId;
         //This check avoids frequent service calling in case if we are selecting the same category.
         if (![self.categoryTextField.text isEqualToString:str]) {
            //Fetch subcategory on basis of selected category.
             self.categoryTextField.text=str;
             self.itemTextField.text = @"";
             [myDelegate showIndicator:nil];
-            [self performSelector:@selector(subCategoryService:) withObject:model.maintenenceId afterDelay:0.1];
+            [self performSelector:@selector(subCategoryService:) withObject:model.maintenanceId afterDelay:0.1];
             
         }else{
             
@@ -377,7 +381,7 @@
     } else {
         //code to set value on subcategory field
         NSInteger index = [self.pickerView selectedRowInComponent:0];
-        MainatenanceModel *model = [subcategoryArray objectAtIndex:index];
+        MaintenanceModel *model = [subcategoryArray objectAtIndex:index];
         subcategoryPickerIndex = (int)index;
         NSString *str=model.subcategory;
         subCatId = model.subcategoryId;
@@ -398,7 +402,7 @@
         pickerLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
         pickerLabel.textAlignment=NSTextAlignmentCenter;
     }
-    MainatenanceModel *model;
+    MaintenanceModel *model;
     NSString *str;
     if (isCategoryPicker) {
     model = [categoryArray objectAtIndex:row];
@@ -430,7 +434,7 @@
 {
     [_keyboardControls.activeField resignFirstResponder];
     
-    MainatenanceModel *model;
+    MaintenanceModel *model;
     NSString *str;
     if (isCategoryPicker) {
         model = [categoryArray objectAtIndex:row];
@@ -454,9 +458,14 @@
 #pragma mark - end
 
 #pragma mark - Custom alert delegates
-- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+- (void)customAlertDelegateAction:(CustomAlertView *)customAlert option:(int)option{
     
     [alertView dismissAlertView];
+    if (customAlert.alertTagValue==5) {
+        [myDelegate showIndicator:[Constants navigationColor]];
+        //Get category list from server.
+        [self performSelector:@selector(categoryService) withObject:nil afterDelay:.1];
+    }
 }
 #pragma mark - end
 

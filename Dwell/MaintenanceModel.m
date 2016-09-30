@@ -6,9 +6,9 @@
 //  Copyright © 2016 Ranosys. All rights reserved.
 //
 
-#import "MainatenanceModel.h"
+#import "MaintenanceModel.h"
 #import "ConnectionManager.h"
-@implementation MainatenanceModel
+@implementation MaintenanceModel
 @synthesize title;
 @synthesize detail;
 @synthesize completedDate;
@@ -17,7 +17,7 @@
 #pragma mark - Shared instance
 + (instancetype)sharedUser {
     
-    static MainatenanceModel *ainatenanceData = nil;
+    static MaintenanceModel *ainatenanceData = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         ainatenanceData = [[[self class] alloc] init];
@@ -39,7 +39,7 @@
         if ([[maintenanceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
             [dateFormatter setDateFormat:@"yyyy-MM-dd"];
             [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-            __block MainatenanceModel *tempModel=[MainatenanceModel new];
+            __block MaintenanceModel *tempModel=[MaintenanceModel new];
             tempModel.title=[maintenanceData valueForKeyPath:@"entry.content.Record.sub_category"];
             tempModel.detail=[maintenanceData valueForKeyPath:@"entry.content.Record.title"];
             NSDate *dateCompleted = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[maintenanceData valueForKeyPath:@"entry.content.Record.CompleteDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
@@ -51,7 +51,7 @@
             tempModel.category=[maintenanceData valueForKeyPath:@"entry.content.Record.main_category"];
             tempModel.cause=[maintenanceData valueForKeyPath:@"entry.content.Record.Cause"];
             tempModel.commetns=[maintenanceData valueForKeyPath:@"entry.content.Record.comments"];
-            tempModel.maintenenceId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceID"];
+            tempModel.maintenanceId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceID"];
             if (!tempModel.status) {
                 tempModel.status=@"Submitted";
             }
@@ -61,7 +61,7 @@
             for (int i=0; i<[[maintenanceData objectForKey:@"entry"] count]; i++) {
                 [dateFormatter setDateFormat:@"yyyy-MM-dd"];
                 [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-                __block MainatenanceModel *tempModel=[MainatenanceModel new];
+                __block MaintenanceModel *tempModel=[MaintenanceModel new];
                 tempModel.title=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.sub_category"];
                 tempModel.detail=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.title"];
                 NSDate *dateCompleted = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.CompleteDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
@@ -73,7 +73,7 @@
                 tempModel.category=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.main_category"];
                 tempModel.cause=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Cause"];
                 tempModel.commetns=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.comments"];
-                tempModel.maintenenceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceID"];
+                tempModel.maintenanceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceID"];
                 if (!tempModel.status) {
                     tempModel.status=@"Submitted";
                 }
@@ -101,9 +101,9 @@
         
         NSMutableArray *dataArray = [NSMutableArray new];
         if ([[maintenanceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
-            __block MainatenanceModel *tempModel=[MainatenanceModel new];
+            __block MaintenanceModel *tempModel=[MaintenanceModel new];
             tempModel.title=[maintenanceData valueForKeyPath:@"entry.content.Record.Description"];
-            tempModel.maintenenceId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceCategoryID"];
+            tempModel.maintenanceId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceCategoryID"];
             
             if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
                 
@@ -113,9 +113,9 @@
         else {
             for (int i=0; i<[[maintenanceData objectForKey:@"entry"] count]; i++) {
                 
-                __block MainatenanceModel *tempModel=[MainatenanceModel new];
+                __block MaintenanceModel *tempModel=[MaintenanceModel new];
                 tempModel.title=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
-                tempModel.maintenenceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceCategoryID"];
+                tempModel.maintenanceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceCategoryID"];
                 
                 if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
                     
@@ -136,7 +136,7 @@
         NSMutableArray *dataArray = [NSMutableArray new];
         if ([[maintenanceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
             
-            __block MainatenanceModel *tempModel=[MainatenanceModel new];
+            __block MaintenanceModel *tempModel=[MaintenanceModel new];
             tempModel.subcategory=[maintenanceData valueForKeyPath:@"entry.content.Record.Description"];
             tempModel.subcategoryId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceItemID"];
             
@@ -148,7 +148,7 @@
         else {
             for (int i=0; i<[[maintenanceData objectForKey:@"entry"] count]; i++) {
                 
-                __block MainatenanceModel *tempModel=[MainatenanceModel new];
+                __block MaintenanceModel *tempModel=[MaintenanceModel new];
                 tempModel.subcategory=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
                 tempModel.subcategoryId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceItemID"];
                 

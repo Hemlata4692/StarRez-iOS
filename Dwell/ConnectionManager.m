@@ -12,7 +12,7 @@
 #import "LoginService.h"
 #import "ParcelModel.h"
 #import "ParcelService.h"
-#import "MainatenanceModel.h"
+#import "MaintenanceModel.h"
 #import "MaintenanceService.h"
 #import "ResourceService.h"
 #import "ResourceModel.h"
@@ -53,7 +53,7 @@
 #pragma mark - end
 
 #pragma mark - Maintenance services
-- (void)getMaintenancelList:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure {
+- (void)getMaintenancelList:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure {
     
     MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
     [mainatenanceService getMaintenanceList:^(id response) {
@@ -73,7 +73,7 @@
 }
 
 #pragma mark - Select maintenance id services
-- (void)getMaintenanceIdList:(NSString *)selectedId onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure {
+- (void)getMaintenanceIdList:(NSString *)selectedId onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure {
     
     MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
     [mainatenanceService getMaintenanceImageId:selectedId success:^(id response) {
@@ -85,7 +85,7 @@
 }
 
 //Cancel service
-- (void)cancelServiceOnSuccess:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure{
+- (void)cancelServiceOnSuccess:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure{
 
     MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
     [mainatenanceService cancelService:^(id response) {
@@ -105,7 +105,7 @@
 }
 
 //Get category listing
-- (void)getCategoryOnSuccess:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure{
+- (void)getCategoryOnSuccess:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure{
     
     MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
     [mainatenanceService getCategoryService:^(id response) {
@@ -125,7 +125,7 @@
 }
 
 //Get Subcategory service
-- (void)getSubCategoryOnSuccess:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure{
+- (void)getSubCategoryOnSuccess:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure{
     
     MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
     [mainatenanceService getSubCategoryService:^(id response) {
@@ -144,7 +144,7 @@
     }] ;
 }
 
-- (void)saveMaintenanceJob:(MainatenanceModel *)userData onSuccess:(void (^)(MainatenanceModel *userData))success onFailure:(void (^)(id))failure {
+- (void)saveMaintenanceJob:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure {
     
     MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
     [mainatenanceService saveJob:userData onSuccess:^(id response) {

@@ -7,7 +7,7 @@
 //
 
 #import "BaseService.h"
-@class MainatenanceModel;
+@class MaintenanceModel;
 @interface MaintenanceService : BaseService
 
 //Get maintenance list data
@@ -23,7 +23,7 @@
 - (void)getSubCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure;
 
 //Save job
-- (void)saveJob:(MainatenanceModel *)data onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
+- (void)saveJob:(MaintenanceModel *)data onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 
 //Fetch selected maintenance id
 - (void)getMaintenanceImageId:(NSString *)selectedMaintenanceId success:(void (^)(id))success onFailure:(void (^)(id))failure;

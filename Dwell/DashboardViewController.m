@@ -8,7 +8,7 @@
 
 #import "DashboardViewController.h"
 #import "DashboardTableViewCell.h"
-#import "MainatenanceModel.h"
+#import "MaintenanceModel.h"
 #import "ParcelModel.h"
 
 #define kCellsPerRow 4  //Set columns in per rows
@@ -101,14 +101,14 @@
     
     if (dashboardDictKeys.count==2) {   //If maintenance and parcel both items exist
         if (indexPath.row==0) {
-            return 60.0+([[dashboardDictData objectForKey:@"Maintenence"] count]*60.0);
+            return 60.0+([[dashboardDictData objectForKey:@"Maintenance"] count]*60.0);
         }
         else {
             return 60.0+([[dashboardDictData objectForKey:@"Parcel"] count]*60.0);
         }
     }
-    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Maintenence"]) {     //If maintenance items exist
-        return 60.0+([[dashboardDictData objectForKey:@"Maintenence"] count]*60.0);
+    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Maintenance"]) {     //If maintenance items exist
+        return 60.0+([[dashboardDictData objectForKey:@"Maintenance"] count]*60.0);
     }
     else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Parcel"]) {      //If parcel items exist
         return 60.0+([[dashboardDictData objectForKey:@"Parcel"] count]*60.0);
@@ -128,14 +128,14 @@
     }
     if (dashboardDictKeys.count==2) {
         if (indexPath.row==0) {
-            [cell displayData:[dashboardDictData objectForKey:@"Maintenence"] selectedType:1];
+            [cell displayData:[dashboardDictData objectForKey:@"Maintenance"] selectedType:1];
         }
         else {
             [cell displayData:[dashboardDictData objectForKey:@"Parcel"] selectedType:2];
         }
     }
-    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Maintenence"]) {
-        [cell displayData:[dashboardDictData objectForKey:@"Maintenence"] selectedType:1];
+    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Maintenance"]) {
+        [cell displayData:[dashboardDictData objectForKey:@"Maintenance"] selectedType:1];
     }
     else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Parcel"]) {
         [cell displayData:[dashboardDictData objectForKey:@"Parcel"] selectedType:2];
@@ -155,7 +155,7 @@
             [self.navigationController pushViewController:objParcelView animated:NO];
         }
     }
-    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Maintenence"]) {     //If maintenance items exist
+    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Maintenance"]) {     //If maintenance items exist
         UIViewController *objMaintenanceView=[self.storyboard instantiateViewControllerWithIdentifier:@"MaintenanceListViewController"];
         [self.navigationController pushViewController:objMaintenanceView animated:NO];
     }
@@ -269,7 +269,7 @@
     dashboardDictData=[NSMutableDictionary new];
     dashboardDictKeys=[NSMutableArray new];
     if ([super checkInternetConnection]) {
-        MainatenanceModel *mainatenanceData = [MainatenanceModel sharedUser];
+        MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
         [mainatenanceData getMaintenanceListOnSuccess:^(id userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 
@@ -285,8 +285,8 @@
                         [tempMaintenanceArray addObject:[userData objectAtIndex:i]];
                     }
                 }
-                [dashboardDictData setValue:[tempMaintenanceArray mutableCopy] forKey:@"Maintenence"];
-                [dashboardDictKeys addObject:@"Maintenence"];
+                [dashboardDictData setValue:[tempMaintenanceArray mutableCopy] forKey:@"Maintenance"];
+                [dashboardDictKeys addObject:@"Maintenance"];
                 [self performSelector:@selector(callParcelList) withObject:nil afterDelay:0.0];
             });
         } onfailure:^(id error) {

@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MainatenanceModel : NSObject
-@property(retain,nonatomic)NSString *maintenenceId;
+@interface MaintenanceModel : NSObject
+@property(retain,nonatomic)NSString *maintenanceId;
 @property(retain,nonatomic)NSString *title;
 @property(retain,nonatomic)NSString *completedDate;
 @property(retain,nonatomic)NSString *reportedDate;

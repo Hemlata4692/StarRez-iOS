@@ -32,14 +32,15 @@
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             
             NSMutableArray *dataArray = [NSMutableArray new];
+            //If single entry then resourceData is dictionary type
             if ([[resourceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
                 [dateFormatter setDateFormat:@"yyyy-MM-dd"];
                 [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
                 __block ResourceModel *tempModel=[ResourceModel new];
                 tempModel.resourceTitle=[resourceData valueForKeyPath:@"entry.content.Record.resource"];
                 tempModel.resourceType=[resourceData valueForKeyPath:@"entry.content.Record.resource_type"];
-                NSDate *fromDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[resourceData valueForKeyPath:@"entry.content.Record.DateStart"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-                NSDate *toDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[resourceData valueForKeyPath:@"entry.content.Record.DateEnd"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                NSDate *fromDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[resourceData valueForKeyPath:@"entry.content.Record.DateStart"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //DateStart convert GMT+1 to system date
+                NSDate *toDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[resourceData valueForKeyPath:@"entry.content.Record.DateEnd"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //DateEnd convert GMT+1 to system date
                 [dateFormatter setDateFormat:@"dd MMM, yy"];
                 tempModel.resourceFromDate=[dateFormatter stringFromDate:fromDate];
                 tempModel.resourceToDate=[dateFormatter stringFromDate:toDate];
@@ -49,15 +50,15 @@
                 tempModel.resourceComment=[resourceData valueForKeyPath:@"entry.content.Record.Comments"];
                 [dataArray addObject:tempModel];
             }
-            else{
+            else {   //If multiple entry then resourceData is array type
                 for (int i=0; i<[[resourceData objectForKey:@"entry"] count]; i++) {
                     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
                     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
                     __block ResourceModel *tempModel=[ResourceModel new];
                     tempModel.resourceTitle=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.resource"];
                     tempModel.resourceType=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.resource_type"];
-                    NSDate *fromDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateStart"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-                    NSDate *toDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateEnd"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                    NSDate *fromDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateStart"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //DateStart convert GMT+1 to system date
+                    NSDate *toDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateEnd"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //DateEnd convert GMT+1 to system date
                     [dateFormatter setDateFormat:@"dd MMM, yy"];
                     tempModel.resourceFromDate=[dateFormatter stringFromDate:fromDate];
                     tempModel.resourceToDate=[dateFormatter stringFromDate:toDate];
@@ -88,6 +89,7 @@
         if (NULL!=[resourceData objectForKey:@"entry"]&&[[resourceData objectForKey:@"entry"] count]!=0) {
             
             NSMutableArray *dataArray = [NSMutableArray new];
+             //If single entry then resourceData is dictionary type
             if ([[resourceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
                 __block ResourceModel *tempModel=[ResourceModel new];
                 tempModel.resourceTypeDescription=[resourceData valueForKeyPath:@"entry.content.Record.Description"];
@@ -97,7 +99,7 @@
                 tempModel.resourceId=[resourceData valueForKeyPath:@"entry.content.Record.ResourceTypeID"];
                 [dataArray addObject:tempModel];
             }
-            else {
+            else {  //If multiple entry then resourceData is array type
                 for (int i=0; i<[[resourceData objectForKey:@"entry"] count]; i++) {
                     __block ResourceModel *tempModel=[ResourceModel new];
                     tempModel.resourceTypeDescription=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
@@ -128,13 +130,14 @@
         if (NULL!=[resourceLocationData objectForKey:@"entry"]&&[[resourceLocationData objectForKey:@"entry"] count]!=0) {
             
             NSMutableArray *dataArray = [NSMutableArray new];
+             //If single entry then resourceData is dictionary type
             if ([[resourceLocationData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
                 __block ResourceModel *tempModel=[ResourceModel new];
                 tempModel.resourceLocationDescription=[resourceLocationData valueForKeyPath:@"entry.content.Record.Description"];
                 tempModel.resourceTypeLocationId=[resourceLocationData valueForKeyPath:@"entry.content.Record.RoomLocationID"];
                 [dataArray addObject:tempModel];
             }
-            else {
+            else {  //If multiple entry then resourceData is array type
                 for (int i=0; i<[[resourceLocationData objectForKey:@"entry"] count]; i++) {
                     __block ResourceModel *tempModel=[ResourceModel new];
                     tempModel.resourceTypeDescription=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
@@ -162,10 +165,11 @@
         if (NULL!=[resourceData objectForKey:@"entry"]&&[[resourceData objectForKey:@"entry"] count]!=0) {
             
             NSMutableArray *tempDataArray = [NSMutableArray new];
+             //If single entry then resourceData is dictionary type
             if ([[resourceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
                 [tempDataArray addObject:[resourceData valueForKeyPath:@"entry.content.Record.ResourceID"]];
             }
-            else {
+            else {  //If multiple entry then resourceData is array type
                 for (int i=0; i<[[resourceData objectForKey:@"entry"] count]; i++) {
                     [tempDataArray addObject:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ResourceID"]];
                 }
@@ -200,13 +204,14 @@
         if (NULL!=[resourceData objectForKey:@"entry"]&&[[resourceData objectForKey:@"entry"] count]!=0) {
             
             NSMutableArray *dataArray = [NSMutableArray new];
+             //If single entry then resourceData is dictionary type
             if ([[resourceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
                 __block ResourceModel *tempModel=[ResourceModel new];
                 tempModel.resourceId=[resourceData valueForKeyPath:@"entry.content.Record.ResourceID"];
                 tempModel.resourceDescription=[resourceData valueForKeyPath:@"entry.content.Record.Description"];
                 [dataArray addObject:tempModel];
             }
-            else {
+            else {  //If multiple entry then resourceData is array type
                 for (int i=0; i<[[resourceData objectForKey:@"entry"] count]; i++) {
                     __block ResourceModel *tempModel=[ResourceModel new];
                     tempModel.resourceId=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ResourceID"];

@@ -8,7 +8,7 @@
 
 #import "DashboardTableViewCell.h"
 #import "UIView+RoundedCorner.h"
-#import "MainatenanceModel.h"
+#import "MaintenanceModel.h"
 #import "ParcelModel.h"
 
 @implementation DashboardTableViewCell
@@ -32,7 +32,7 @@
     [self.cellShadowBackView addShadowWithCornerRadius:self.cellShadowBackView color:[UIColor lightGrayColor] borderColor:[UIColor colorWithRed:241/255.0 green:241/255.0 blue:241/255.0 alpha:1.0] radius:5.0f];  //Add corner radius and shadow
 }
 
-- (void)displayData:(NSMutableArray*)dashboardData selectedType:(int)selectedType {    //Here selected type is  maintenence type(1) or parcel type(2)
+- (void)displayData:(NSMutableArray*)dashboardData selectedType:(int)selectedType {    //Here selected type is maintenance type(1) or parcel type(2)
     
     self.firstInformationStatusLabel.textColor=[UIColor darkGrayColor];     //Set byDefault color is [UIColor darkGrayColor]
     self.secondInformationStatusLabel.textColor=[UIColor darkGrayColor];    //Set byDefault color is [UIColor darkGrayColor]
@@ -53,7 +53,7 @@
     }
 }
 
-- (void)setMentenenceInformation:(MainatenanceModel*)mentenenceModelData index:(int)index {
+- (void)setMentenenceInformation:(MaintenanceModel*)mentenenceModelData index:(int)index {
 
     switch (index) {
         case 0:

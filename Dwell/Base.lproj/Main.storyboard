@@ -2763,12 +2763,12 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xsb-eA-Obi">
-                                                        <rect key="frame" x="15" y="451" width="260" height="44"/>
-                                                        <color key="backgroundColor" red="0.69803921570000005" green="0.76862745099999996" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <rect key="frame" x="15" y="451" width="260" height="50"/>
+                                                        <color key="backgroundColor" red="0.73725490196078436" green="0.85490196078431369" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="44" id="Nkc-Yc-Vpe"/>
+                                                            <constraint firstAttribute="height" constant="50" id="Nkc-Yc-Vpe"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="18"/>
+                                                        <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="21"/>
                                                         <state key="normal" title="Search">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>

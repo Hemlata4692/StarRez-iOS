@@ -38,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //register iPhone device for push notifications
+    //Register iPhone device for push notifications
     [myDelegate registerDeviceForNotification];
     //Hide navigation bar and status bar
     [[self navigationController] setNavigationBarHidden:YES animated:YES];

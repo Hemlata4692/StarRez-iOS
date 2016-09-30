@@ -7,7 +7,7 @@
 //
 
 #import "MaintenanceCell.h"
-#import "MainatenanceModel.h"
+#import "MaintenanceModel.h"
 #import "UIView+RoundedCorner.h"
 @implementation MaintenanceCell
 @synthesize titleLabel;
@@ -79,7 +79,7 @@
     // Configure the view for the selected state
 }
 
-- (void)displayData:(MainatenanceModel *)modelData frame:(CGRect)frame{
+- (void)displayData:(MaintenanceModel *)modelData frame:(CGRect)frame{
     
     descriptionField.text = modelData.detail;
     titleLabel.text = modelData.title;

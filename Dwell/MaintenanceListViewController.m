@@ -8,7 +8,7 @@
 
 #import "MaintenanceListViewController.h"
 #import "MaintenanceCell.h"
-#import "MainatenanceModel.h"
+#import "MaintenanceModel.h"
 #import "CustomFilterViewController.h"
 #import "MaintenanceDetailViewController.h"
 #import "AddNewJobViewController.h"
@@ -93,7 +93,7 @@
     isSearch = false;
     parcelStatusDict=[NSMutableDictionary new];
     if ([super checkInternetConnection]) {
-        MainatenanceModel *mainatenanceData = [MainatenanceModel sharedUser];
+        MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
         [mainatenanceData getMaintenanceListOnSuccess:^(id userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
@@ -160,7 +160,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MainatenanceModel *objModel;
+    MaintenanceModel *objModel;
     if (isSearch)    {
     objModel= [maintenanceSearchDataArray objectAtIndex:indexPath.row];
     }

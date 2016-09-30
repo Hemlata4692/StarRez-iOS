@@ -276,10 +276,10 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
                 if ([[error objectForKey:@"success"] isEqualToString:@"2"]) {
-                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:5 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"Retry" cancelButtonText:@""];
                 }
                 else {
-                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Requested Resource Type is not available." doneButtonText:@"OK" cancelButtonText:@""];
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"There is not any resource type available yet." doneButtonText:@"OK" cancelButtonText:@""];
                 }
             });
         }];
@@ -323,15 +323,10 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     NSDate *fromDateTimeTemp=[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,self.fromTimeField.text]];
     NSDate *toDateTimeTemp=[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,self.toTimeField.text]];
     
-//    [dateFormat setDateFormat:@"yyyy-MM-dd'T'hh:mm:ss"];
     ResourceModel *resourceData=[ResourceModel sharedUser];
-//    resourceData.resourceFromDate=[dateFormat stringFromDate:fromDateTimeTemp];   //Without convert to GMT+1 format
-//    resourceData.resourceToDate=[dateFormat stringFromDate:toDateTimeTemp];   //Without convert to GMT+1 format
-    resourceData.resourceFromDate=[UserDefaultManager sytemToGMTDateTimeFormat:fromDateTimeTemp];
-    resourceData.resourceToDate=[UserDefaultManager sytemToGMTDateTimeFormat:toDateTimeTemp];
+    resourceData.resourceFromDate=[UserDefaultManager sytemToGMTDateTimeFormat:fromDateTimeTemp];   //Change system to GMT+1 format
+    resourceData.resourceToDate=[UserDefaultManager sytemToGMTDateTimeFormat:toDateTimeTemp];   //Change system to GMT+1 format
     resourceData.resourceId=[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceId];
-//    resourceData.resourceFromDate=@"2016-09-22T12:00:00"; //Set for testing purpose
-//    resourceData.resourceToDate=@"2016-09-22T13:00:00";   //Set for testing purpose
     resourceData.resourceDescription=self.sourceNameField.text;
     resourceData.resourceTypeLocationId=[[bookResourceLocationArray objectAtIndex:lastSelectedResourceLocation] resourceTypeLocationId];
     [resourceData getBookedResourcesOnSuccess:^(id availableResourceData) {
@@ -345,7 +340,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
                 [self.navigationController pushViewController:objAvailableResource animated:YES];
             }
             else {
-                alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"No record found." doneButtonText:@"OK" cancelButtonText:@""];
+                alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"There is not any resource alloted yet." doneButtonText:@"OK" cancelButtonText:@""];
             }
         });
     } onfailure:^(id error) {
@@ -402,7 +397,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         }
         else {  //If location array is blank then hide picker view if it is showing
             [self hideResourcePickerView];
-            [self.view makeToast:@"Requested Resource Type is not available."];
+            [self.view makeToast:@"There is not any resource type available yet."];
         }
     }
     else if (currentFieldIndex==1) {    //Resource name
@@ -420,10 +415,10 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         else {  //If location array is blank then hide picker view if it is showing
             [self hideResourcePickerView];
             if (![self.sourceTypeField.text isEqualToString:@""]) {
-                [self.view makeToast:@"Please select Resource Type first."];
+                [self.view makeToast:@"You need to select Resource Type first."];
             }
             else {
-                [self.view makeToast:@"Requested Location Type is not available."];
+                [self.view makeToast:@"There is not any location alloted to you at this time."];
             }
         }
     }
@@ -449,7 +444,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         [self.view endEditing:YES];
         [self hideResourcePickerView];
         if ([self.fromDateField.text isEqualToString:@""]) {
-            [self.view makeToast:@"Please select From Date first."];
+            [self.view makeToast:@"You need to select From Date first."];
         }
         else {
             self.datePickerView.datePickerMode=UIDatePickerModeTime;
@@ -494,7 +489,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         [self.view endEditing:YES];
         [self hideResourcePickerView];
         if ([self.toDateField.text isEqualToString:@""]) {
-            [self.view makeToast:@"Please select To Date first."];
+            [self.view makeToast:@"You need to select To Date first."];
         }
         else {
             dateTimeNextBarButton.enabled=false;
@@ -671,20 +666,29 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         return false;
     }
     else if(timeDifferenceInSecond==0.0){   //If selected dateTime(fromDateTime and toDateTime) difference is 0 means toDateTIme is equal to fromDateTime
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"From date can not be same To date." doneButtonText:@"OK" cancelButtonText:@""];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"From and To date can not be same." doneButtonText:@"OK" cancelButtonText:@""];
         return false;
     }
     else if((timeDifferenceInSecond/3600.0)<[[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceTypeMinHour] floatValue]){  //If selected dateTime(fromDateTime and toDateTime) difference is less than selected resource minimum hour
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[NSString stringWithFormat:@"Requested resource is available only for %@ hours.",[[bookResourceTypeArray objectAtIndex:lastSelectedResourceLocation] resourceTypeMinHour]] doneButtonText:@"OK" cancelButtonText:@""];
+        if ([[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceTypeMinHour] floatValue]==1) {
+            alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[NSString stringWithFormat:@"You have to book a resource for atleast 1 hour"] doneButtonText:@"OK" cancelButtonText:@""];
+        }
+        else {
+            alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[NSString stringWithFormat:@"You have to book a resource for atleast %@ hours",[[bookResourceTypeArray objectAtIndex:lastSelectedResourceLocation] resourceTypeMinHour]] doneButtonText:@"OK" cancelButtonText:@""];
+        }
         return false;
     }
     else if((timeDifferenceInSecond/3600.0)>[[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceTypeMaxHour] floatValue]){ //If selected dateTime(fromDateTime and toDateTime) difference is greater than selected resource maximum hour
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[NSString stringWithFormat:@"Requested resource is available only for %@ hours.",[[bookResourceTypeArray objectAtIndex:lastSelectedResourceLocation] resourceTypeMaxHour]] doneButtonText:@"OK" cancelButtonText:@""];
+        if ([[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceTypeMaxHour] floatValue]==1) {
+            alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[NSString stringWithFormat:@"You cannot book this resource for more than 1 hour"] doneButtonText:@"OK" cancelButtonText:@""];
+        }
+        else {
+            alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[NSString stringWithFormat:@"You cannot book this resource for more than %@ hours",[[bookResourceTypeArray objectAtIndex:lastSelectedResourceLocation] resourceTypeMaxHour]] doneButtonText:@"OK" cancelButtonText:@""];
+        }
         return false;
     }
     return true;
 }
-
 
 - (NSString*)timeLeftSinceDate:(NSDate *)fromDateTime toDateTime:(NSDate *)toDateTime {
     
@@ -696,9 +700,14 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 #pragma mark - end
 
 #pragma mark - Custom alert delegates
-- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+- (void)customAlertDelegateAction:(CustomAlertView *)customAlert option:(int)option{
     
     [alertView dismissAlertView];
+    if (customAlert.alertTagValue==5) {
+        //Call resource type service
+        [myDelegate showIndicator:[Constants navigationColor]];
+        [self performSelector:@selector(getResourcesTypeList) withObject:nil afterDelay:.1];
+    }
 }
 #pragma mark - end
 /*

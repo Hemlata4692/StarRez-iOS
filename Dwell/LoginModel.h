@@ -19,4 +19,6 @@
 - (void)loginUserOnSuccess:(void (^)(LoginModel *))success onfailure:(void (^)(id))failure;
 //Save devcie token
 - (void)saveDeviceToken:(void (^)(LoginModel *))success onfailure:(void (^)(id))failure;
+//Logout service
+- (void)logoutService:(void (^)(LoginModel *))success onfailure:(void (^)(id))failure;
 @end

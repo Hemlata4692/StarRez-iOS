@@ -19,7 +19,7 @@
 }
 
 //Call service to cancel service
-- (void)cancelService:(void (^)(id))success onFailure:(void (^)(id))failure{
+- (void)cancelService:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     NSString *parameters = [NSString stringWithFormat:@"<RoomSpaceMaintenance><JobStatus>Closed by student</JobStatus></RoomSpaceMaintenance>"];
     DLog(@"request dict %@",parameters);
@@ -27,7 +27,7 @@
 }
 
 //Category service
-- (void)getCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure{
+- (void)getCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     NSString *parameters = @"SELECT [RoomSpaceMaintenanceCategoryID], [Description], [Comments] FROM [RoomSpaceMaintenanceCategory]";
     DLog(@"request dict %@",parameters);
@@ -35,7 +35,7 @@
 }
 
 //Subcategory service
-- (void)getSubCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure{
+- (void)getSubCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     NSString *parameters = [NSString stringWithFormat:@"SELECT [RoomSpaceMaintenanceItemID], [RoomSpaceMaintenanceCategoryID], [Comments], [Description] FROM [RoomSpaceMaintenanceItem] WHERE [RoomSpaceMaintenanceCategoryID] = %@",[UserDefaultManager getValue:@"categoryId"] ];
     DLog(@"request dict %@",parameters);
@@ -43,8 +43,8 @@
 }
 
 //Save job
-- (void)saveJob:(MaintenanceModel *)data onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure
-{
+- (void)saveJob:(MaintenanceModel *)data onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
     NSString *parameters = [NSString stringWithFormat:@"<RoomSpaceMaintenance><RoomSpaceID>%@</RoomSpaceID> <RoomSpaceMaintenanceCategoryID> %@</RoomSpaceMaintenanceCategoryID><RoomSpaceMaintenanceItemID>%@</RoomSpaceMaintenanceItemID> <PriorityID>0</PriorityID><RoomSpaceClosedID>0</RoomSpaceClosedID><ContactID>0</ContactID><DateReported>%@</DateReported><ReportedByName>%@</ReportedByName><Occupant_EntryID>%@</Occupant_EntryID><OccupantEntryName>%@</OccupantEntryName><OccupantPresent>%@</OccupantPresent><OccupantPresentReason>%@</OccupantPresentReason><JobSent>0</JobSent><Description>%@</Description><Cause>%@</Cause><Charge>0</Charge><ViewOnWeb>1</ViewOnWeb></RoomSpaceMaintenance>",[UserDefaultManager getValue:@"RoomSpaceID"],data.maintenanceId,data.subcategoryId,[UserDefaultManager sytemToGMTDateTimeFormat:[NSDate date]],[UserDefaultManager getValue:@"userName"],[UserDefaultManager getValue:@"entryId"],[UserDefaultManager getValue:@"userName"],data.isPresent,data.commetns,data.detail,data.cause];
     DLog(@"request dict %@",parameters);
     [super xmlPost:[NSString stringWithFormat:@"create/roomspacemaintenance"] parameters:parameters onSuccess:success onFailure:failure];
@@ -54,7 +54,6 @@
 - (void)getMaintenanceImageId:(NSString *)selectedMaintenanceId success:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     NSString *parameters = [NSString stringWithFormat:@"SELECT [RecordAttachmentID] FROM [RecordAttachment] WHERE [TableId] = '%@' and [TableName] = 'RoomSpaceMaintenance'",selectedMaintenanceId];
-//    NSString *parameters = [NSString stringWithFormat:@"SELECT [RecordAttachmentID] FROM [RecordAttachment] WHERE [TableId] = '%@' and [TableName] = 'RoomSpaceMaintenance'",@"5753"];  //Set for testing purpose
     DLog(@"request dict %@",parameters);
     [super post:parameters onSuccess:success onFailure:failure];
 }

@@ -41,7 +41,7 @@
     self.backgroundColor=[UIColor clearColor];
     self.contentView.backgroundColor=[UIColor clearColor];
     //Set corner radius to main background view
-    mainBackgroundView.layer.cornerRadius=3;
+    mainBackgroundView.layer.cornerRadius=5.0;
     mainBackgroundView.layer.masksToBounds=YES;
     [shadowBackView addShadowWithCornerRadius:shadowBackView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];  //Add corner radius and shadow
 }

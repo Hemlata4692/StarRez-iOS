@@ -61,23 +61,23 @@
     self.resourceDetailView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     float backgroundViewHeight=0.0;//Initialize back view size
     //Get dynamic height according to resource description text
-    float descriptionHeight=[UserDefaultManager getDynamicLabelHeight:resourceDetailData.resourceDescription font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-16];
+    float descriptionHeight=[UserDefaultManager getDynamicLabelHeight:resourceDetailData.resourceDescription font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-30)-16];
     //Get dynamic height according to resource comment text
-    float commentHeight=[UserDefaultManager getDynamicLabelHeight:resourceDetailData.resourceComment font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-16];
+    float commentHeight=[UserDefaultManager getDynamicLabelHeight:resourceDetailData.resourceComment font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-30)-16];
     self.resourceDescription.numberOfLines=0;
     self.adminComment.numberOfLines=0;
     if (descriptionHeight<21) {
         descriptionHeight=21;
     }
     //Change framing of uiview object according to text lenght
-    self.resourceDescription.frame=CGRectMake(8, 216, ([UIScreen mainScreen].bounds.size.width-20)-16, descriptionHeight);
+    self.resourceDescription.frame=CGRectMake(8, 208, ([UIScreen mainScreen].bounds.size.width-30)-16, descriptionHeight);
     self.adminCommentTitle.frame=CGRectMake(8, self.resourceDescription.frame.origin.y+self.resourceDescription.frame.size.height+17, 230, 21);
     //If comment height is zero set admin comment height 21(by default)
     if (commentHeight<21) {
-         self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-16, 21);
+         self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height-2, ([UIScreen mainScreen].bounds.size.width-30)-16, 21);
     }
     else {
-        self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-16, commentHeight);
+        self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height-2, ([UIScreen mainScreen].bounds.size.width-30)-16, commentHeight);
     }
     
     if (commentHeight<55) {
@@ -85,7 +85,7 @@
     }
     //Change main view height according to uiview object height
     backgroundViewHeight=self.adminComment.frame.origin.y+commentHeight+48;
-    self.backShadowView.frame=CGRectMake(10, 8, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
+    self.backShadowView.frame=CGRectMake(15, 15, [UIScreen mainScreen].bounds.size.width-30, backgroundViewHeight);
     self.resourceStatusBackGroundView.frame=CGRectMake(0, self.backShadowView.frame.size.height-35, self.backShadowView.frame.size.width, 35);
     self.detailScrollView.scrollEnabled=false;
     //Scrolling is disable if view height more then screen size

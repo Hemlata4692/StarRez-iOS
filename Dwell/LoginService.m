@@ -19,6 +19,7 @@
         parameters = @{@"EnteryId" : userData.entryId,
                        @"DeviceToken" : [UserDefaultManager getValue:@"deviceToken"],
                        @"DeviceType" : @"IOS",
+                       @"EmailId" : userData.userEmailId,
                        @"AppVersion" : [NSString stringWithFormat:@"%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] ]};
         
             } @catch (NSException *exception) {
@@ -26,7 +27,23 @@
         DLog(@"exception is %@",exception);
     }
     DLog(@"request dict device token code %@",parameters);
-    [super jsonPost:parameters onSuccess:success onFailure:failure];
+    [super jsonPost:@"SaveUser" parameters:parameters onSuccess:success onFailure:failure];
+}
+#pragma mark - end
+
+#pragma mark - Logout
+- (void)logoutService:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    NSDictionary *parameters;
+    @try {
+        parameters = @{@"EnteryId" : [UserDefaultManager getValue:@"entryId"]};
+        
+    } @catch (NSException *exception) {
+        
+        DLog(@"exception is %@",exception);
+    }
+    DLog(@"request dict device token code %@",parameters);
+    [super jsonPost:@"logout" parameters:parameters onSuccess:success onFailure:failure];
 }
 #pragma mark - end
 

@@ -33,6 +33,9 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"Resource";
+    resourceDataArray=[NSMutableArray new];
+    resourceSearchDataArray=[NSMutableArray new];
+    resourceStatusDict=[NSMutableDictionary new];
     // Do any additional setup after loading the view.
 }
 
@@ -43,10 +46,6 @@
     [UserDefaultManager setValue:[NSNumber numberWithInteger:3] key:@"indexpath"];
     self.noRecordLabel.hidden=YES;
     isSearch=false;
-    resourceDataArray=[NSMutableArray new];
-    resourceSearchDataArray=[NSMutableArray new];
-    resourceStatusDict=[NSMutableDictionary new];
-    [self.resourceListTableview reloadData];
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];   //Add filter button in right navigation item
     [myDelegate showIndicator:[Constants navigationColor]];
     [self performSelector:@selector(getResourceListService) withObject:nil afterDelay:.1];

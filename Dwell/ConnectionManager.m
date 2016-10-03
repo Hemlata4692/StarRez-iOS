@@ -85,7 +85,7 @@
 }
 
 //Cancel service
-- (void)cancelServiceOnSuccess:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure{
+- (void)cancelServiceOnSuccess:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure {
 
     MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
     [mainatenanceService cancelService:^(id response) {
@@ -105,7 +105,7 @@
 }
 
 //Get category listing
-- (void)getCategoryOnSuccess:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure{
+- (void)getCategoryOnSuccess:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure {
     
     MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
     [mainatenanceService getCategoryService:^(id response) {
@@ -125,7 +125,7 @@
 }
 
 //Get Subcategory service
-- (void)getSubCategoryOnSuccess:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure{
+- (void)getSubCategoryOnSuccess:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure {
     
     MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
     [mainatenanceService getSubCategoryService:^(id response) {
@@ -203,6 +203,19 @@
 }
 #pragma mark - end.
 
+#pragma mark - Logout service
+- (void)logoutService:(void (^)(LoginModel *userData))success onFailure:(void (^)(id))failure {
+    
+    LoginService *logoutObj = [[LoginService alloc] init];
+    [logoutObj logoutService:^(id response) {
+        DLog(@"logout  response %@",response);
+        success(response);
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
+#pragma mark - end.
+
 #pragma mark - Get resource list with detail
 - (void)getResourceList:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
@@ -268,7 +281,6 @@
 - (void)getBookedResources:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     ResourceService *resourceService = [[ResourceService alloc] init];
-    
     [resourceService getBookedResourcesList:resourceData success:^(id response) {
         //Resource data from server response and store in data model
         success(response);
@@ -282,7 +294,6 @@
 - (void)getAllResources:(NSMutableArray *)bookedResourceIds resourceData:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     ResourceService *resourceService = [[ResourceService alloc] init];
-    
     [resourceService getAllResourcesList:bookedResourceIds resourceModelData:resourceData success:^(id response) {
         success(response);
     } onFailure:^(id error) {

@@ -17,16 +17,15 @@
 #pragma mark - Shared instance
 + (instancetype)sharedUser {
     
-    static MaintenanceModel *ainatenanceData = nil;
+    static MaintenanceModel *maintenanceData = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        ainatenanceData = [[[self class] alloc] init];
+        maintenanceData = [[[self class] alloc] init];
     });
     
-    return ainatenanceData;
+    return maintenanceData;
 }
 #pragma mark - end
-
 
 - (void)getMaintenanceListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure{
     
@@ -40,8 +39,8 @@
             [dateFormatter setDateFormat:@"yyyy-MM-dd"];
             [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
             __block MaintenanceModel *tempModel=[MaintenanceModel new];
-            tempModel.title=[maintenanceData valueForKeyPath:@"entry.content.Record.sub_category"];
-            tempModel.detail=[maintenanceData valueForKeyPath:@"entry.content.Record.title"];
+            tempModel.title=[self setNAValue:[maintenanceData valueForKeyPath:@"entry.content.Record.sub_category"]];
+            tempModel.detail=[self setNAValue:[maintenanceData valueForKeyPath:@"entry.content.Record.title"]];
             NSDate *dateCompleted = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[maintenanceData valueForKeyPath:@"entry.content.Record.CompleteDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
             NSDate *dateReported = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[maintenanceData valueForKeyPath:@"entry.content.Record.DateReported"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
             [dateFormatter setDateFormat:@"dd MMM, yy"];
@@ -62,8 +61,8 @@
                 [dateFormatter setDateFormat:@"yyyy-MM-dd"];
                 [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
                 __block MaintenanceModel *tempModel=[MaintenanceModel new];
-                tempModel.title=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.sub_category"];
-                tempModel.detail=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.title"];
+                tempModel.title=[self setNAValue:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.sub_category"]];
+                tempModel.detail=[self setNAValue:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.title"]];
                 NSDate *dateCompleted = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.CompleteDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
                 NSDate *dateReported = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateReported"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
                 [dateFormatter setDateFormat:@"dd MMM, yy"];
@@ -85,6 +84,18 @@
         failure(error);
     }];
 }
+
+//Set NA value is model data is nil
+- (NSString *)setNAValue:(NSString*)modelDataString {
+
+    if (modelDataString) {
+        return modelDataString;
+    }
+    else {
+        return @"NA";
+    }
+}
+
 - (void)cancelServiceOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure{
     
     [[ConnectionManager sharedManager] cancelServiceOnSuccess:self onSuccess:^(id maintenanceData) {

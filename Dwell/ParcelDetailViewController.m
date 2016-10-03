@@ -58,7 +58,7 @@
 - (void)layoutViewObjects {
     
     //Set corner radius to main background view
-    self.mainBackgroundView.layer.cornerRadius=3;
+    self.mainBackgroundView.layer.cornerRadius=5.0;
     self.mainBackgroundView.layer.masksToBounds=YES;
     [self removeAutolayout];//Remove autolayout
     [self.shadowBackView addShadowWithCornerRadius:self.shadowBackView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];  //Add corner radius and shadow
@@ -69,33 +69,33 @@
  
     self.parcelDetailView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     float backgroundViewHeight=0.0;//Initialize back view size
-    float forwardAddressHeight=[UserDefaultManager getDynamicLabelHeight:parcelDetailData.parcelForwardingAddress font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-130];
+    float forwardAddressHeight=[UserDefaultManager getDynamicLabelHeight:parcelDetailData.parcelForwardingAddress font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-30)-130];
     //Calculate height according to text added by admin
-    float commentHeight=[UserDefaultManager getDynamicLabelHeight:parcelDetailData.parcelComment font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-16];
+    float commentHeight=[UserDefaultManager getDynamicLabelHeight:parcelDetailData.parcelComment font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-30)-16];
     self.forwardAddress.numberOfLines=0;
     self.adminComment.numberOfLines=0;
     if (forwardAddressHeight<21) {
-        self.forwardAddress.frame=CGRectMake(8, 216, ([UIScreen mainScreen].bounds.size.width-20)-138, 21);
+        self.forwardAddress.frame=CGRectMake(8, 208, ([UIScreen mainScreen].bounds.size.width-30)-142, 21);
     }
     else {
-        self.forwardAddress.frame=CGRectMake(8, self.forwardAddressTitle.frame.origin.y+self.forwardAddressTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-138, forwardAddressHeight);
+        self.forwardAddress.frame=CGRectMake(8, 208, ([UIScreen mainScreen].bounds.size.width-30)-142, forwardAddressHeight);
     }
     self.adminCommentTitle.frame=CGRectMake(8, self.forwardAddress.frame.origin.y+self.forwardAddress.frame.size.height+17, 230, 21);
     
     //If comment height is zero set admin comment height 21(by default)
     if (commentHeight<21) {
-        self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-16, 21);
+        self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height-2, ([UIScreen mainScreen].bounds.size.width-30)-16, 21);
     }
     else {
-        self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-16, commentHeight);
+        self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height-2, ([UIScreen mainScreen].bounds.size.width-30)-16, commentHeight);
     }
 
     if (commentHeight<55) {
         commentHeight=58;
     }
     backgroundViewHeight=self.adminComment.frame.origin.y+commentHeight+48;
-    self.mainBackgroundView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
-    self.shadowBackView.frame=CGRectMake(10, 15, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
+    self.mainBackgroundView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-30, backgroundViewHeight);
+    self.shadowBackView.frame=CGRectMake(15, 15, [UIScreen mainScreen].bounds.size.width-30, backgroundViewHeight);
     self.parcelStatusBackGroundView.frame=CGRectMake(0, self.shadowBackView.frame.size.height-35, self.shadowBackView.frame.size.width, 35);
     self.detailScrollView.scrollEnabled=false;
     if ((backgroundViewHeight+64)>[UIScreen mainScreen].bounds.size.height) {

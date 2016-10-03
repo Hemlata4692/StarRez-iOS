@@ -169,7 +169,7 @@
         [userData saveMainatenanceJobOnSuccess:^(MaintenanceModel *userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
-                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"New job has been added successfully." doneButtonText:@"OK" cancelButtonText:@""];
+                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:6 delegate:self message:@"New job has been added successfully." doneButtonText:@"OK" cancelButtonText:@""];
             });
         } onfailure:^(id error) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -215,10 +215,9 @@
     } else if (result.height == 568) {
         [self.scrollView setContentOffset:CGPointMake(0, textField.frame.origin.y-200) animated:YES];
     } else if (result.height > 568) {
-        if (textField==self.commentsTextField) {
-            [self.scrollView setContentOffset:CGPointMake(0, textField.frame.origin.y-300) animated:YES];
-        }
+        [self.scrollView setContentOffset:CGPointMake(0, textField.frame.origin.y-300) animated:YES];
     }
+    self.scrollView.scrollEnabled=NO;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -262,6 +261,11 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    self.scrollView.scrollEnabled=YES;
+    return YES;
+}
 #pragma mark - end
 
 #pragma mark - Login validation
@@ -270,10 +274,6 @@
     //Apply validations for mandatory fields. Comments and tick mark are not mandatory.
     if ([self.categoryTextField isEmpty] || [self.itemTextField isEmpty]|| [self.descriptionTextField isEmpty]|| [self.causeTextField isEmpty]) {
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please fill in all the required fields." doneButtonText:@"OK" cancelButtonText:@""];
-        return NO;
-    }
-    else if([isPresent isEqualToString:@"0"]) {
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"You need to accept condition to proceed." doneButtonText:@"OK" cancelButtonText:@""];
         return NO;
     }
     else {
@@ -300,40 +300,50 @@
 
 - (IBAction)selectCategoryButtonClicked:(id)sender {
     
-    isCategoryPicker = YES;
     [self.keyboardControls.activeField resignFirstResponder];
-    [self.pickerView setNeedsLayout];
-    self.scrollView.scrollEnabled = NO;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    [self.pickerView reloadAllComponents];
-    if (categoryPickerIndex>=0) {
-        [self.pickerView selectRow:categoryPickerIndex inComponent:0 animated:YES];
-    }
-    self.pickerView.frame = CGRectMake(self.pickerView.frame.origin.x, self.view.bounds.size.height-self.pickerView.frame.size.height , self.view.bounds.size.width, self.pickerView.frame.size.height);
-    self.pickerToolBar.frame = CGRectMake(self.pickerToolBar.frame.origin.x, self.pickerView.frame.origin.y-44, self.view.bounds.size.width, self.pickerToolBar.frame.size.height);
-    [UIView commitAnimations];
-}
-
-- (IBAction)selectItemButtonClicked:(id)sender {
-    
-    if (![self.categoryTextField isEmpty]) {
-        isCategoryPicker = NO;
-        [self.keyboardControls.activeField resignFirstResponder];
+    if (categoryArray.count!=0) {
+        isCategoryPicker = YES;
         [self.pickerView setNeedsLayout];
         self.scrollView.scrollEnabled = NO;
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];
         [self.pickerView reloadAllComponents];
         if (categoryPickerIndex>=0) {
-            [self.pickerView selectRow:subcategoryPickerIndex inComponent:0 animated:YES];
+            [self.pickerView selectRow:categoryPickerIndex inComponent:0 animated:YES];
         }
         self.pickerView.frame = CGRectMake(self.pickerView.frame.origin.x, self.view.bounds.size.height-self.pickerView.frame.size.height , self.view.bounds.size.width, self.pickerView.frame.size.height);
         self.pickerToolBar.frame = CGRectMake(self.pickerToolBar.frame.origin.x, self.pickerView.frame.origin.y-44, self.view.bounds.size.width, self.pickerToolBar.frame.size.height);
         [UIView commitAnimations];
     }
     else {
-        [self.view makeToast:@"Please select a category before proceed further."];
+        [self.view makeToast:@"There is not any category available yet."];
+    }
+}
+
+- (IBAction)selectItemButtonClicked:(id)sender {
+    
+    [self.keyboardControls.activeField resignFirstResponder];
+    if (categoryArray.count!=0) {
+        if (![self.categoryTextField isEmpty]) {
+            isCategoryPicker = NO;
+            [self.pickerView setNeedsLayout];
+            self.scrollView.scrollEnabled = NO;
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.3];
+            [self.pickerView reloadAllComponents];
+            if (categoryPickerIndex>=0) {
+                [self.pickerView selectRow:subcategoryPickerIndex inComponent:0 animated:YES];
+            }
+            self.pickerView.frame = CGRectMake(self.pickerView.frame.origin.x, self.view.bounds.size.height-self.pickerView.frame.size.height , self.view.bounds.size.width, self.pickerView.frame.size.height);
+            self.pickerToolBar.frame = CGRectMake(self.pickerToolBar.frame.origin.x, self.pickerView.frame.origin.y-44, self.view.bounds.size.width, self.pickerToolBar.frame.size.height);
+            [UIView commitAnimations];
+        }
+        else {
+            [self.view makeToast:@"Please select a category before proceed further."];
+        }
+    }
+    else {
+        [self.view makeToast:@"There is not any item alloted to you at this time."];
     }
 }
 
@@ -368,12 +378,9 @@
             self.itemTextField.text = @"";
             [myDelegate showIndicator:nil];
             [self performSelector:@selector(subCategoryService:) withObject:model.maintenanceId afterDelay:0.1];
-            
         }
-        else{
-            
+        else {
             self.categoryTextField.text=str;
-            
         }
     }
     else {
@@ -390,7 +397,7 @@
 #pragma mark - end
 
 #pragma mark - Picker View methods
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
    
     UILabel* pickerLabel = (UILabel*)view;
     if (!pickerLabel) {
@@ -466,6 +473,9 @@
         [myDelegate showIndicator:[Constants navigationColor]];
         //Get category list from server.
         [self performSelector:@selector(categoryService) withObject:nil afterDelay:.1];
+    }
+    else if (customAlert.alertTagValue==6) {
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 #pragma mark - end

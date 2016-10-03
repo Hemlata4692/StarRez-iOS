@@ -11,7 +11,9 @@
 #import "NullValueChecker.h"
 
 NSString* const baseUrl=@"https://starrez.centurionstudents.co.uk/StarRezREST/services/query";
-NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/SaveUser";
+NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/";
+NSString* const starRezUsername=@"starrez.temp2";
+NSString* const starRezPassword=@"9591404d-1069-4290-b121-63b1a7e9e932";
 
 @implementation BaseService
 
@@ -24,6 +26,7 @@ NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/
 }
 #pragma mark - end
 
+#pragma mark - Post and json services
 //Post method for other services
 - (void)post:(NSString *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
@@ -37,8 +40,8 @@ NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/
     [request setURL:url];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [request addValue:@"starrez.temp2" forHTTPHeaderField:@"StarRezUsername"];
-    [request addValue:@"9591404d-1069-4290-b121-63b1a7e9e932" forHTTPHeaderField:@"StarRezPassword"];
+    [request addValue:starRezUsername forHTTPHeaderField:@"StarRezUsername"];
+    [request addValue:starRezPassword forHTTPHeaderField:@"StarRezPassword"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
     
@@ -78,8 +81,8 @@ NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/
     [request setURL:url];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [request addValue:@"starrez.temp2" forHTTPHeaderField:@"StarRezUsername"];
-    [request addValue:@"9591404d-1069-4290-b121-63b1a7e9e932" forHTTPHeaderField:@"StarRezPassword"];
+    [request addValue:starRezUsername forHTTPHeaderField:@"StarRezUsername"];
+    [request addValue:starRezPassword forHTTPHeaderField:@"StarRezPassword"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
     
@@ -105,14 +108,13 @@ NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/
     [postDataTask resume];
 }
 
-
-//Post method for save device token services
-- (void)jsonPost:(NSDictionary *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+//Post method in json format
+- (void)jsonPost:(NSString *)path parameters:(NSDictionary *)parameters onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     NSError *error;
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    NSURL *url=[NSURL URLWithString:setDeviceTokenUrl];
+    NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",setDeviceTokenUrl,path]];
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:&error];;
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     

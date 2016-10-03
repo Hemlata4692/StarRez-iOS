@@ -32,6 +32,8 @@
             DLog(@"check");
             [UserDefaultManager setValue:userData.userEmailId key:@"userEmailId"];
             [UserDefaultManager setValue:userData.entryId key:@"entryId"];
+            
+//            [UserDefaultManager setValue:@"asd23f123sdaf1sd3" key:@"deviceToken"];//For testing purpose in simulator
             //Call save device token
             if ((nil!=[UserDefaultManager getValue:@"deviceToken"])&&(NULL!=[UserDefaultManager getValue:@"deviceToken"])) {
                 [self saveDeviceToken:^(LoginModel *userData) {
@@ -56,6 +58,19 @@
 - (void)saveDeviceToken:(void (^)(LoginModel *))success onfailure:(void (^)(id))failure {
     
     [[ConnectionManager sharedManager] sendDevcieToken:self onSuccess:^(LoginModel *userData) {
+        if (success) {
+            success (userData);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
+#pragma mark - end
+
+#pragma mark - Logout service
+- (void)logoutService:(void (^)(LoginModel *))success onfailure:(void (^)(id))failure {
+    
+    [[ConnectionManager sharedManager] logoutService:^(LoginModel *userData) {
         if (success) {
             success (userData);
         }

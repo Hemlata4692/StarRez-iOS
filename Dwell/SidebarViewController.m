@@ -9,6 +9,8 @@
 #import "SidebarViewController.h"
 #import "SWRevealViewController.h"
 #import "UIImage+deviceSpecificMedia.h"
+#import "LoginModel.h"
+#import "Internet.h"
 
 @interface SidebarViewController ()<CustomAlertDelegate>{
     
@@ -99,7 +101,7 @@
         frameL.origin.x = 0;
         frameL.origin.y = 0;
         frameL.size.height = 61;
-        frameL.size.width = 5;
+        frameL.size.width = 3;
         UIButton *AlertNameLHS = [[UIButton alloc] initWithFrame:frameL];
         AlertNameLHS.backgroundColor=labelColor;
         [cell.contentView addSubview:AlertNameLHS];
@@ -134,7 +136,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    [UserDefaultManager setValue:[NSNumber numberWithInteger:indexPath.row] key:@"indexpath"];
+    if (indexPath.row!=7) { //Not clicked on logout button
+        [UserDefaultManager setValue:[NSNumber numberWithInteger:indexPath.row] key:@"indexpath"];
+    }
     if (indexPath.row==7) {
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Are you sure you want to logout?" doneButtonText:@"Yes" cancelButtonText:@"No"];
     }
@@ -185,19 +189,53 @@
 }
 
 #pragma mark - Custom alert delegates
-- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+- (void)customAlertDelegateAction:(CustomAlertView *)customAlert option:(int)option{
     
     [alertView dismissAlertView];
     if (option!=0) {
-        [UserDefaultManager setValue:nil key:@"indexpath"];
-        [UserDefaultManager setValue:nil key:@"userEmailId"];
-        [UserDefaultManager setValue:nil key:@"entryId"];
-        [myDelegate unrigisterForNotification];
         
-        UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
-        myDelegate.window.rootViewController = navigation;
+        Internet *internet=[[Internet alloc] init];
+        if (![internet start]) {
+            [myDelegate showIndicator:[Constants navigationColor]];
+            [self performSelector:@selector(userLogout) withObject:nil afterDelay:.1];
+        }
     }
+    else if (customAlert.alertTagValue==6) {
+        
+        Internet *internet=[[Internet alloc] init];
+        if (![internet start]) {
+            [myDelegate showIndicator:[Constants navigationColor]];
+            [self performSelector:@selector(userLogout) withObject:nil afterDelay:.1];
+        }
+    }
+}
+#pragma mark - end
+
+#pragma mark - Webservice
+//User logout webservice
+- (void)userLogout {
+    
+    LoginModel *userLogin = [LoginModel sharedUser];
+    [userLogin logoutService:^(LoginModel *userData) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [myDelegate stopIndicator];
+            //Nil all userdefaultData and navigate to login screen
+            [UserDefaultManager setValue:nil key:@"indexpath"];
+            [UserDefaultManager setValue:nil key:@"userEmailId"];
+            [UserDefaultManager setValue:nil key:@"entryId"];
+            [myDelegate unrigisterForNotification];
+            
+            UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
+            myDelegate.window.rootViewController = navigation;
+        });
+    } onfailure:^(id error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [myDelegate stopIndicator];
+            
+            alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:6 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"Retry" cancelButtonText:@""];
+        });
+    }];
 }
 #pragma mark - end
 @end

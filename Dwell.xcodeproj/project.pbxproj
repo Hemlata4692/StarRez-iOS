@@ -159,7 +159,7 @@
 		B758D6EA1D9E432400945EE8 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		B758D6EB1D9E432400945EE8 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		B758D6FC1D9E6AEC00945EE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B75B2C711D88033A007EEE42 /* Dwell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dwell.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B75B2C711D88033A007EEE42 /* Centurion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Centurion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75B2C751D88033A007EEE42 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B75B2C771D88033A007EEE42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B75B2C781D88033A007EEE42 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -496,7 +496,7 @@
 		B75B2C721D88033A007EEE42 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B75B2C711D88033A007EEE42 /* Dwell.app */,
+				B75B2C711D88033A007EEE42 /* Centurion.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -960,7 +960,7 @@
 			);
 			name = Dwell;
 			productName = Dwell;
-			productReference = B75B2C711D88033A007EEE42 /* Dwell.app */;
+			productReference = B75B2C711D88033A007EEE42 /* Centurion.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1152,6 +1152,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Centurion;
 				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
 				SDKROOT = iphoneos;
 			};
@@ -1194,6 +1195,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Centurion;
 				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1212,7 +1214,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.dwell;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Centurion;
 				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
 			};
 			name = Debug;
@@ -1229,7 +1231,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.dwell;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Centurion;
 				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
 			};
 			name = Release;

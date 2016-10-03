@@ -81,11 +81,29 @@
 
 - (void)displayData:(MaintenanceModel *)modelData frame:(CGRect)frame {
     
-    descriptionField.text = modelData.detail;
-    titleLabel.text = modelData.title;
+    //Set NA if detail is blank
+    if (modelData.detail) {
+        descriptionField.text = modelData.detail;
+    }
+    else {
+        descriptionField.text = @"NA";
+    }
+    //Set NA if title is blank
+    if (modelData.title) {
+        titleLabel.text = modelData.title;
+    }
+    else {
+        titleLabel.text = @"NA";
+    }
     [self layoutCellObject:frame];
-    
-    dateLabel.text = modelData.reportedDate;
+    //Set NA if reported date is blank
+    if (modelData.reportedDate) {
+        dateLabel.text = modelData.reportedDate;
+    }
+    else {
+        dateLabel.text = @"NA";
+    }
+    //Set NA if status is blank
     if (modelData.status) {
         statusLabel.text = modelData.status;
     }

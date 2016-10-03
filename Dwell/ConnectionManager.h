@@ -54,4 +54,7 @@
 - (void)setRequestResource:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 //Select maintenance id
 - (void)getMaintenanceIdList:(NSString *)selectedId onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure;
+
+//Logout service
+- (void)logoutService:(void (^)(LoginModel *userData))success onFailure:(void (^)(id))failure;
 @end

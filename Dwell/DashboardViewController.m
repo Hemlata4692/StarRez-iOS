@@ -78,7 +78,7 @@
     DLog(@"%f,%f,%f",self.view.bounds.size.height,self.menuCollectionView.frame.size.height,self.menuCollectionView.bounds.size.height);
     //Set view frames
     self.menuCollectionView.frame=CGRectMake(0,(self.view.bounds.size.height-64)-(self.menuCollectionView.frame.size.height/2), self.view.bounds.size.width, self.menuCollectionView.frame.size.height);
-    self.dashboardTableView.frame=CGRectMake(0,0, self.view.bounds.size.width,(self.view.bounds.size.height-64)-(self.menuCollectionView.frame.size.height/2)-5);
+    self.dashboardTableView.frame=CGRectMake(0,3, self.view.bounds.size.width,(self.view.bounds.size.height-64)-(self.menuCollectionView.frame.size.height/2)-8);
 }
 
 - (void)viewCustomization {
@@ -243,7 +243,7 @@
     [UIView beginAnimations:@"animationOff" context:NULL];
     [UIView setAnimationDuration:0.5f];
     self.menuCollectionView.frame=CGRectMake(0,self.view.bounds.size.height-(self.menuCollectionView.frame.size.height/2), self.view.bounds.size.width, self.menuCollectionView.frame.size.height);
-    self.dashboardTableView.frame=CGRectMake(0,0, self.view.bounds.size.width,self.view.bounds.size.height-(self.menuCollectionView.bounds.size.height/2)-5);
+    self.dashboardTableView.frame=CGRectMake(0,3, self.view.bounds.size.width,self.view.bounds.size.height-(self.menuCollectionView.bounds.size.height/2)-8);
     [UIView commitAnimations];
 }
 
@@ -254,7 +254,7 @@
     [UIView beginAnimations:@"animationOff" context:NULL];
     [UIView setAnimationDuration:0.5f];
     self.menuCollectionView.frame=CGRectMake(0,self.view.bounds.size.height-self.menuCollectionView.frame.size.height, self.view.bounds.size.width, self.menuCollectionView.frame.size.height);
-    self.dashboardTableView.frame=CGRectMake(0,0, self.view.bounds.size.width,self.view.bounds.size.height-self.menuCollectionView.frame.size.height-5);
+    self.dashboardTableView.frame=CGRectMake(0,3, self.view.bounds.size.width,self.view.bounds.size.height-self.menuCollectionView.frame.size.height-8);
     [UIView commitAnimations];
 }
 #pragma mark - end

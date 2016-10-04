@@ -137,15 +137,29 @@
 }
 
 - (void)setMaintenanceStatusColor:(UILabel *)statusLabel status:(NSString *)status {
-
+    
+    //Set text color according to status
     if([status isEqualToString:@"Job Completed"]) {
+        
         statusLabel.textColor = [Constants greenBackgroundColor];
     }
-    else if ([status isEqualToString:@"Awaiting for Contractor"]||[status isEqualToString:@"Awaiting for Parts"]||[status isEqualToString:@"Job in Progress"]) {
+    else if ([status isEqualToString:@"Awaiting for Contractor"]||[status isEqualToString:@"Awaiting for Parts"]) {
+        statusLabel.textColor = [Constants redBackgroundColor];
+    }
+    else if ([status isEqualToString:@"Job in Progress"]) {
         statusLabel.textColor = [Constants yellowBackgroundColor];
     }
-    else {
+    else if ([status isEqualToString:@"Job Received"]) {
+        statusLabel.textColor = [Constants orangeBackgroundColor];
+    }
+    else if ([status isEqualToString:@"Job Scheduled"]) {
         statusLabel.textColor = [Constants blueBackgroundColor];
+    }
+    else if ([status isEqualToString:@"Please contact office"]) {
+        statusLabel.textColor = [Constants oliveGreenBackgroundColor];
+    }
+    else {
+        statusLabel.textColor = [Constants grayBackgroundColor];
     }
 }
 
@@ -158,7 +172,7 @@
                 self.firstInformationTitleLabel.text=parcelModelData.parcelTitle;
             }
             else {
-                self.firstInformationTitleLabel.text=@"NA";
+                self.firstInformationTitleLabel.text=@"No title available";
             }
             //Set NA if reportedDate is nil
             if(parcelModelData.parcelReceiptDate) {
@@ -171,7 +185,7 @@
             if(parcelModelData.parcelStatus) {
                 self.firstInformationStatusLabel.text=parcelModelData.parcelStatus;
                 //Set parcel status color according to given status
-                [self setParcelStatusColor:self.firstInformationStatusLabel status:parcelModelData.parcelStatus];
+                [self setParcelStatusColor:self.firstInformationStatusLabel status:parcelModelData.parcelStatusId];
             }
             else {
                 self.firstInformationStatusLabel.text=@"NA";
@@ -183,7 +197,7 @@
                 self.secondInformationTitleLabel.text=parcelModelData.parcelTitle;
             }
             else {
-                self.secondInformationTitleLabel.text=@"NA";
+                self.secondInformationTitleLabel.text=@"No title available";
             }
             //Set NA if reportedDate is nil
             if(parcelModelData.parcelReceiptDate) {
@@ -196,7 +210,7 @@
             if(parcelModelData.parcelStatus) {
                 self.secondInformationStatusLabel.text=parcelModelData.parcelStatus;
                 //Set parcel status color according to given status
-                [self setParcelStatusColor:self.secondInformationStatusLabel status:parcelModelData.parcelStatus];
+                [self setParcelStatusColor:self.secondInformationStatusLabel status:parcelModelData.parcelStatusId];
             }
             else {
                 self.secondInformationStatusLabel.text=@"NA";
@@ -208,7 +222,7 @@
                 self.thirdInformationTitleLabel.text=parcelModelData.parcelTitle;
             }
             else {
-                self.thirdInformationTitleLabel.text=@"NA";
+                self.thirdInformationTitleLabel.text=@"No title available";
             }
             //Set NA if reportedDate is nil
             if(parcelModelData.parcelReceiptDate) {
@@ -221,7 +235,7 @@
             if(parcelModelData.parcelStatus) {
                 self.thirdInformationStatusLabel.text=parcelModelData.parcelStatus;
                 //Set parcel status color according to given status
-                [self setParcelStatusColor:self.thirdInformationStatusLabel status:parcelModelData.parcelStatus];
+                [self setParcelStatusColor:self.thirdInformationStatusLabel status:parcelModelData.parcelStatusId];
             }
             else {
                 self.thirdInformationStatusLabel.text=@"NA";
@@ -235,17 +249,21 @@
 
 - (void)setParcelStatusColor:(UILabel *)statusLabel status:(NSString *)status {
     
+    //Set text color according to status
     if ([status isEqualToString:@"0"]) {
         statusLabel.textColor=[Constants greenBackgroundColor];
     }
     else if ([status isEqualToString:@"1"]) {
+        statusLabel.textColor=[Constants orangeBackgroundColor];
+    }
+    else if ([status isEqualToString:@"2"]) {
         statusLabel.textColor=[Constants yellowBackgroundColor];
     }
     else if ([status isEqualToString:@"3"]) {
-        statusLabel.textColor=[Constants redBackgroundColor];
+        statusLabel.textColor=[Constants blueBackgroundColor];
     }
     else {
-        statusLabel.textColor=[Constants yellowBackgroundColor];
+        statusLabel.textColor=[Constants grayBackgroundColor];
     }
 }
 @end

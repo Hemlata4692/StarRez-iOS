@@ -117,7 +117,7 @@
     
    if (indexPath.row!=0) {
         selectedResource=(int)indexPath.row-1;
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:3 delegate:self message:@"Do you want to request this resource?" doneButtonText:@"Yes" cancelButtonText:@"No"];
+        alertView = [[CustomAlert alloc] initWithTitle:[[availableResourceData objectAtIndex:(int)indexPath.row-1] resourceDescription] tagValue:3 delegate:self message:@"Do you want to request this resource?" doneButtonText:@"Yes" cancelButtonText:@"No"];
    }
 }
 #pragma mark - end

@@ -119,7 +119,7 @@
     
     //Check parcel title is nil
     if ((nil==parcelDetailData.parcelTitle)||[parcelDetailData.parcelTitle isEqualToString:@""]) {
-        self.parcelTitle.text=@"  NA";
+        self.parcelTitle.text=@"  No title available";
     }
     else {
         self.parcelTitle.text=[NSString stringWithFormat:@"  %@",parcelDetailData.parcelTitle];
@@ -180,17 +180,21 @@
     else {
         self.adminComment.text=parcelDetailData.parcelComment;
     }
+    //Set color according to status
     if ([parcelDetailData.parcelStatusId isEqualToString:@"0"]) {
         self.parcelStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor];
     }
     else if ([parcelDetailData.parcelStatusId isEqualToString:@"1"]) {
+        self.parcelStatusBackGroundView.backgroundColor=[Constants orangeBackgroundColor];
+    }
+    else if ([parcelDetailData.parcelStatusId isEqualToString:@"2"]) {
         self.parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
     }
     else if ([parcelDetailData.parcelStatusId isEqualToString:@"3"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants redBackgroundColor];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor];
     }
     else {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants grayBackgroundColor];
     }
 }
 #pragma mark - end

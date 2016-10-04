@@ -109,7 +109,7 @@
     
     //Check resource title is nil
     if ((nil==resourceDetailData.resourceTitle)||[resourceDetailData.resourceTitle isEqualToString:@""]) {
-        self.resourceTitle.text=@"NA";
+        self.resourceTitle.text=@"No title available";
     }
     else {
         self.resourceTitle.text=resourceDetailData.resourceTitle;
@@ -156,21 +156,24 @@
     else {
         self.adminComment.text=resourceDetailData.resourceComment;
     }
-    //Set status background view color according to status
+    //Set status back color according to fetch status
     if ([resourceDetailData.resourceStatusId isEqualToString:@"0"]) {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants skyBlueColor];
+        self.resourceStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor];
     }
     else if ([resourceDetailData.resourceStatusId isEqualToString:@"1"]) {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants redBackgroundColor];
+        self.resourceStatusBackGroundView.backgroundColor=[Constants orangeBackgroundColor];
     }
     else if ([resourceDetailData.resourceStatusId isEqualToString:@"2"]) {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
+        self.resourceStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor];
     }
     else if ([resourceDetailData.resourceStatusId isEqualToString:@"3"]) {
         self.resourceStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
     }
+    else if ([resourceDetailData.resourceStatusId isEqualToString:@"4"]) {
+        self.resourceStatusBackGroundView.backgroundColor=[Constants redBackgroundColor];
+    }
     else {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants cancelColor];
+        self.resourceStatusBackGroundView.backgroundColor=[Constants grayBackgroundColor];
     }
 }
 #pragma mark - end

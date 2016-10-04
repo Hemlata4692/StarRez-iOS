@@ -111,15 +111,28 @@
         statusLabel.text = @"NA";
     }
     
+    //Set background color according to status
     if([modelData.status isEqualToString:@"Job Completed"]) {
         
         statusBackgroundVIew.backgroundColor = [Constants greenBackgroundColor];
     }
-    else if ([modelData.status isEqualToString:@"Awaiting for Contractor"]||[modelData.status isEqualToString:@"Awaiting for Parts"]||[modelData.status isEqualToString:@"Job in Progress"]) {
+    else if ([modelData.status isEqualToString:@"Awaiting for Contractor"]||[modelData.status isEqualToString:@"Awaiting for Parts"]) {
+        statusBackgroundVIew.backgroundColor = [Constants redBackgroundColor];
+    }
+    else if ([modelData.status isEqualToString:@"Job in Progress"]) {
         statusBackgroundVIew.backgroundColor = [Constants yellowBackgroundColor];
     }
-    else {
+    else if ([modelData.status isEqualToString:@"Job Received"]) {
+        statusBackgroundVIew.backgroundColor = [Constants orangeBackgroundColor];
+    }
+    else if ([modelData.status isEqualToString:@"Job Scheduled"]) {
         statusBackgroundVIew.backgroundColor = [Constants blueBackgroundColor];
+    }
+    else if ([modelData.status isEqualToString:@"Please contact office"]) {
+        statusBackgroundVIew.backgroundColor = [Constants oliveGreenBackgroundColor];
+    }
+    else {
+        statusBackgroundVIew.backgroundColor = [Constants grayBackgroundColor];
     }
 }
 @end

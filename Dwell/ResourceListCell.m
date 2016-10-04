@@ -44,7 +44,7 @@
     [self layoutCellObject:frame];
     //Check resource title is nil
     if ((nil==modelData.resourceTitle)||[modelData.resourceTitle isEqualToString:@""]) {
-        resourceTitle.text=@"NA";
+        resourceTitle.text=@"No title available";
     }
     else {
         resourceTitle.text=modelData.resourceTitle;
@@ -80,19 +80,22 @@
     
     //Set status back color according to fetch status
     if ([modelData.resourceStatusId isEqualToString:@"0"]) {
-        resourceStatusBackGroundView.backgroundColor=[Constants skyBlueColor];
+        resourceStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor];
     }
     else if ([modelData.resourceStatusId isEqualToString:@"1"]) {
-        resourceStatusBackGroundView.backgroundColor=[Constants redBackgroundColor];
+        resourceStatusBackGroundView.backgroundColor=[Constants orangeBackgroundColor];
     }
     else if ([modelData.resourceStatusId isEqualToString:@"2"]) {
-        resourceStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
+        resourceStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor];
     }
     else if ([modelData.resourceStatusId isEqualToString:@"3"]) {
         resourceStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
     }
+    else if ([modelData.resourceStatusId isEqualToString:@"4"]) {
+        resourceStatusBackGroundView.backgroundColor=[Constants redBackgroundColor];
+    }
     else {
-        resourceStatusBackGroundView.backgroundColor=[Constants cancelColor];
+        resourceStatusBackGroundView.backgroundColor=[Constants grayBackgroundColor];
     }
 }
 @end

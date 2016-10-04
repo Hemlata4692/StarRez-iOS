@@ -1487,7 +1487,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                         </subviews>
-                                                                        <color key="backgroundColor" red="0.1764705882352941" green="0.70196078431372544" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <color key="backgroundColor" red="0.57647058823529407" green="0.6705882352941176" blue="0.42352941176470588" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <constraints>
                                                                             <constraint firstItem="bA4-VD-Fxy" firstAttribute="top" secondItem="WPU-x9-Idt" secondAttribute="top" constant="6" id="cnB-md-Uqn"/>
                                                                             <constraint firstAttribute="height" constant="35" id="f0Y-4c-XZ4"/>
@@ -3716,6 +3716,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RA5-Aa-9WK">
                                 <rect key="frame" x="0.0" y="966" width="320" height="44"/>
                                 <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="aEM-iX-KLJ"/>
                                     <barButtonItem title="Done" id="QgW-qO-uQ3">
                                         <connections>
                                             <action selector="pickerToolBarDoneClicked:" destination="ZH7-PM-dTu" id="9ja-Fu-RPL"/>

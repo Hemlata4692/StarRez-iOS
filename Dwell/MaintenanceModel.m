@@ -39,6 +39,12 @@
             [dateFormatter setDateFormat:@"yyyy-MM-dd"];
             [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
             __block MaintenanceModel *tempModel=[MaintenanceModel new];
+            if ([maintenanceData valueForKeyPath:@"entry.content.Record.sub_category"]) {
+                tempModel.title=[self setNAValue:[maintenanceData valueForKeyPath:@"entry.content.Record.sub_category"]];
+            }
+            else {
+                tempModel.title=@"No title available";
+            }
             tempModel.title=[self setNAValue:[maintenanceData valueForKeyPath:@"entry.content.Record.sub_category"]];
             tempModel.detail=[self setNAValue:[maintenanceData valueForKeyPath:@"entry.content.Record.title"]];
             NSDate *dateCompleted = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[maintenanceData valueForKeyPath:@"entry.content.Record.CompleteDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
@@ -52,7 +58,7 @@
             tempModel.commetns=[maintenanceData valueForKeyPath:@"entry.content.Record.comments"];
             tempModel.maintenanceId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceID"];
             if (!tempModel.status) {
-                tempModel.status=@"Submitted";
+                tempModel.status=@"Job Submitted";
             }
             [dataArray addObject:tempModel];
         }
@@ -61,7 +67,12 @@
                 [dateFormatter setDateFormat:@"yyyy-MM-dd"];
                 [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
                 __block MaintenanceModel *tempModel=[MaintenanceModel new];
-                tempModel.title=[self setNAValue:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.sub_category"]];
+                if ([[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.sub_category"]) {
+                    tempModel.title=[self setNAValue:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.sub_category"]];
+                }
+                else {
+                    tempModel.title=@"No title available";
+                }
                 tempModel.detail=[self setNAValue:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.title"]];
                 NSDate *dateCompleted = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.CompleteDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
                 NSDate *dateReported = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateReported"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
@@ -74,7 +85,7 @@
                 tempModel.commetns=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.comments"];
                 tempModel.maintenanceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceID"];
                 if (!tempModel.status) {
-                    tempModel.status=@"Submitted";
+                    tempModel.status=@"Job Submitted";
                 }
                 [dataArray addObject:tempModel];
             }

@@ -51,7 +51,7 @@
     [self layoutCellObject:frame];
     //Check parcel title is nil
     if ((nil==modelData.parcelTitle)||[modelData.parcelTitle isEqualToString:@""]) {
-        parcelTitle.text=@"  NA";
+        parcelTitle.text=@"  No title available";
     }
     else {
         parcelTitle.text=[NSString stringWithFormat:@"  %@",modelData.parcelTitle];
@@ -95,13 +95,16 @@
         parcelStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor];
     }
     else if ([modelData.parcelStatusId isEqualToString:@"1"]) {
+        parcelStatusBackGroundView.backgroundColor=[Constants orangeBackgroundColor];
+    }
+    else if ([modelData.parcelStatusId isEqualToString:@"2"]) {
         parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
     }
     else if ([modelData.parcelStatusId isEqualToString:@"3"]) {
-        parcelStatusBackGroundView.backgroundColor=[Constants redBackgroundColor];
+        parcelStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor];
     }
     else {
-        parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
+        parcelStatusBackGroundView.backgroundColor=[Constants grayBackgroundColor];
     }
 }
 @end

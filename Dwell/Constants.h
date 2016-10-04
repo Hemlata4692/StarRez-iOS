@@ -17,7 +17,7 @@ static const float cornerRadius=15.0;
 + (UIColor*)greenBackgroundColor;
 + (UIColor*)redBackgroundColor;
 + (UIColor*)orangeBackgroundColor;
-+ (UIColor*)darkGreenBackgroundColor;
++ (UIColor*)oliveGreenBackgroundColor;
 + (UIColor*)grayBackgroundColor;
 + (UIColor*)logoutColor;
 + (UIColor*)skyBlueColor;

@@ -87,7 +87,6 @@
             if (cell == nil) {
                 
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"TitleCell"] ;
-                
             }
             UILabel *titleLbl = (UILabel *)[cell.contentView viewWithTag:1];
             titleLbl.text = objMainatenanceModel.title;
@@ -145,7 +144,6 @@
             descriptionLabel.translatesAutoresizingMaskIntoConstraints = YES;
             descriptionLabel.text = objMainatenanceModel.detail;
             float descriptionHeight=[UserDefaultManager getDynamicLabelHeight:descriptionLabel.text font:[UIFont calibriNormalWithSize:15] widthValue:([UIScreen mainScreen].bounds.size.width-30)-16];
-           // descriptionLabel.backgroundColor = [UIColor redColor];
             descriptionLabel.frame = CGRectMake(descriptionLabel.frame.origin.x, descriptionLabel.frame.origin.y+3, ([UIScreen mainScreen].bounds.size.width-30)-16, descriptionHeight);
             return cell;
             break;

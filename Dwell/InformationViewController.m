@@ -76,20 +76,19 @@
     DLog(@"start value: %@",request.URL);
     webViewUrl=[request.URL absoluteString];
     if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Information"]) {
+        //Information view has list to navigte other webpage
         if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/information/"]) {
             if (!isLoaderShow) {
                 [myDelegate showIndicator:[Constants navigationColor]];
                  isLoaderShow=true;
                 [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
             }
-            
         }
         else {
             if (!isLoaderShow) {
                 [myDelegate showIndicator:[Constants navigationColor]];
                 isLoaderShow=true;
             }
-            
         }
     }
     return YES;

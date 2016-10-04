@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4A412A471D8AC64E00E70791 /* ParcelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A412A461D8AC64E00E70791 /* ParcelDetailViewController.m */; };
 		4A412A4B1D8AC6A800E70791 /* GlobalBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A412A4A1D8AC6A800E70791 /* GlobalBackViewController.m */; };
-		4A92B91F1D8FF4DF008D4462 /* underDevelopement.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A92B91E1D8FF4DF008D4462 /* underDevelopement.png */; };
 		951EC2FF1D929A0A006C98F8 /* MaintenanceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 951EC2FE1D929A0A006C98F8 /* MaintenanceDetailViewController.m */; };
 		95D27D2B1D994D7B00EBA799 /* AddNewJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D27D2A1D994D7B00EBA799 /* AddNewJobViewController.m */; };
 		95E74D041D9107F300C5CA8B /* MaintenanceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D031D9107F300C5CA8B /* MaintenanceListViewController.m */; };
@@ -66,13 +65,6 @@
 		B7C7A3711D8A63A600D7DF06 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C7A3701D8A63A600D7DF06 /* DashboardViewController.m */; };
 		B7C7A3751D8A63B400D7DF06 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C7A3741D8A63B400D7DF06 /* SideMenuViewController.m */; };
 		B7C7A3791D8A63C000D7DF06 /* ParcelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C7A3781D8A63C000D7DF06 /* ParcelListViewController.m */; };
-		B7C7A37E1D8A64C900D7DF06 /* login-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A37A1D8A64C900D7DF06 /* login-568h@2x.png */; };
-		B7C7A37F1D8A64C900D7DF06 /* login-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A37B1D8A64C900D7DF06 /* login-667h@2x.png */; };
-		B7C7A3801D8A64C900D7DF06 /* login-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A37C1D8A64C900D7DF06 /* login-736h@3x.png */; };
-		B7C7A3811D8A64C900D7DF06 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A37D1D8A64C900D7DF06 /* login.png */; };
-		B7C7A38D1D8A651900D7DF06 /* Dashboard-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A38A1D8A651900D7DF06 /* Dashboard-568h@2x.png */; };
-		B7C7A38E1D8A651900D7DF06 /* Dashboard-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A38B1D8A651900D7DF06 /* Dashboard-667h@2x.png */; };
-		B7C7A38F1D8A651900D7DF06 /* Dashboard-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7C7A38C1D8A651900D7DF06 /* Dashboard-736h@3x.png */; };
 		B7C7A3941D8A75B600D7DF06 /* ParcelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C7A3931D8A75B600D7DF06 /* ParcelCell.m */; };
 		B7CA3C801D8AC357006CD1FD /* ParcelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CA3C7F1D8AC357006CD1FD /* ParcelModel.m */; };
 		B7CA3C841D8AC64B006CD1FD /* ParcelService.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CA3C831D8AC64B006CD1FD /* ParcelService.m */; };
@@ -94,7 +86,6 @@
 		4A412A461D8AC64E00E70791 /* ParcelDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParcelDetailViewController.m; sourceTree = "<group>"; };
 		4A412A491D8AC6A800E70791 /* GlobalBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalBackViewController.h; sourceTree = "<group>"; };
 		4A412A4A1D8AC6A800E70791 /* GlobalBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalBackViewController.m; sourceTree = "<group>"; };
-		4A92B91E1D8FF4DF008D4462 /* underDevelopement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = underDevelopement.png; sourceTree = "<group>"; };
 		951EC2FD1D929A0A006C98F8 /* MaintenanceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceDetailViewController.h; sourceTree = "<group>"; };
 		951EC2FE1D929A0A006C98F8 /* MaintenanceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceDetailViewController.m; sourceTree = "<group>"; };
 		95D27D291D994D7B00EBA799 /* AddNewJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewJobViewController.h; sourceTree = "<group>"; };
@@ -205,13 +196,6 @@
 		B7C7A3741D8A63B400D7DF06 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
 		B7C7A3771D8A63C000D7DF06 /* ParcelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParcelListViewController.h; sourceTree = "<group>"; };
 		B7C7A3781D8A63C000D7DF06 /* ParcelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParcelListViewController.m; sourceTree = "<group>"; };
-		B7C7A37A1D8A64C900D7DF06 /* login-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-568h@2x.png"; sourceTree = "<group>"; };
-		B7C7A37B1D8A64C900D7DF06 /* login-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-667h@2x.png"; sourceTree = "<group>"; };
-		B7C7A37C1D8A64C900D7DF06 /* login-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-736h@3x.png"; sourceTree = "<group>"; };
-		B7C7A37D1D8A64C900D7DF06 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
-		B7C7A38A1D8A651900D7DF06 /* Dashboard-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard-568h@2x.png"; sourceTree = "<group>"; };
-		B7C7A38B1D8A651900D7DF06 /* Dashboard-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard-667h@2x.png"; sourceTree = "<group>"; };
-		B7C7A38C1D8A651900D7DF06 /* Dashboard-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard-736h@3x.png"; sourceTree = "<group>"; };
 		B7C7A3921D8A75B600D7DF06 /* ParcelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParcelCell.h; sourceTree = "<group>"; };
 		B7C7A3931D8A75B600D7DF06 /* ParcelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParcelCell.m; sourceTree = "<group>"; };
 		B7CA3C7E1D8AC357006CD1FD /* ParcelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParcelModel.h; sourceTree = "<group>"; };
@@ -521,7 +505,6 @@
 		B75B2C741D88033A007EEE42 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B75E3C7C1D9014A700A037B8 /* OtherImages */,
 				B75B2C941D8804E3007EEE42 /* PrifixFile */,
 				B75B2C931D88047D007EEE42 /* BackgroundImages */,
 				B75B2C921D880473007EEE42 /* Fonts */,
@@ -628,8 +611,6 @@
 		B75B2C931D88047D007EEE42 /* BackgroundImages */ = {
 			isa = PBXGroup;
 			children = (
-				B7ACD27B1D8919AB005CD42D /* Login */,
-				B7C7A3831D8A64FC00D7DF06 /* Dashboard */,
 			);
 			name = BackgroundImages;
 			sourceTree = "<group>";
@@ -714,14 +695,6 @@
 			name = ConstantFile;
 			sourceTree = "<group>";
 		};
-		B75E3C7C1D9014A700A037B8 /* OtherImages */ = {
-			isa = PBXGroup;
-			children = (
-				4A92B91E1D8FF4DF008D4462 /* underDevelopement.png */,
-			);
-			name = OtherImages;
-			sourceTree = "<group>";
-		};
 		B764328D1D9B7BD00000A35A /* DashboardView */ = {
 			isa = PBXGroup;
 			children = (
@@ -756,17 +729,6 @@
 				B7ACD2751D89124B005CD42D /* UIFont+CustomFont.m */,
 			);
 			name = CustomFont;
-			sourceTree = "<group>";
-		};
-		B7ACD27B1D8919AB005CD42D /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				B7C7A37A1D8A64C900D7DF06 /* login-568h@2x.png */,
-				B7C7A37B1D8A64C900D7DF06 /* login-667h@2x.png */,
-				B7C7A37C1D8A64C900D7DF06 /* login-736h@3x.png */,
-				B7C7A37D1D8A64C900D7DF06 /* login.png */,
-			);
-			name = Login;
 			sourceTree = "<group>";
 		};
 		B7C7A3631D8A505B00D7DF06 /* Crashlytics */ = {
@@ -815,16 +777,6 @@
 				B7C7A3911D8A75A400D7DF06 /* ParcelListCell */,
 			);
 			name = ParcelModule;
-			sourceTree = "<group>";
-		};
-		B7C7A3831D8A64FC00D7DF06 /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-				B7C7A38A1D8A651900D7DF06 /* Dashboard-568h@2x.png */,
-				B7C7A38B1D8A651900D7DF06 /* Dashboard-667h@2x.png */,
-				B7C7A38C1D8A651900D7DF06 /* Dashboard-736h@3x.png */,
-			);
-			name = Dashboard;
 			sourceTree = "<group>";
 		};
 		B7C7A3901D8A759B00D7DF06 /* ParcelListView */ = {
@@ -1001,20 +953,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7C7A38F1D8A651900D7DF06 /* Dashboard-736h@3x.png in Resources */,
 				B7ACD26E1D890FE7005CD42D /* calibri_Normal.ttf in Resources */,
-				B7C7A3811D8A64C900D7DF06 /* login.png in Resources */,
 				B7D06C541D895CA300A5FA94 /* CustomAlert.xib in Resources */,
 				B758D6FD1D9E6AEC00945EE8 /* Assets.xcassets in Resources */,
-				B7C7A3801D8A64C900D7DF06 /* login-736h@3x.png in Resources */,
-				B7C7A38D1D8A651900D7DF06 /* Dashboard-568h@2x.png in Resources */,
-				B7C7A38E1D8A651900D7DF06 /* Dashboard-667h@2x.png in Resources */,
 				B75B2C7F1D88033A007EEE42 /* Main.storyboard in Resources */,
-				B7C7A37E1D8A64C900D7DF06 /* login-568h@2x.png in Resources */,
 				B7ACD26D1D890FE7005CD42D /* calibri_Bold.ttf in Resources */,
 				B7ACD26F1D890FE7005CD42D /* handsean.ttf in Resources */,
-				4A92B91F1D8FF4DF008D4462 /* underDevelopement.png in Resources */,
-				B7C7A37F1D8A64C900D7DF06 /* login-667h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

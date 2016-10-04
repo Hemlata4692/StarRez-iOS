@@ -66,8 +66,8 @@
 //Filter button action
 - (void)filterButtonAction:(id)sender {
     
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    CustomFilterViewController *filterViewObj =[storyboard instantiateViewControllerWithIdentifier:@"CustomFilterViewController"];
+    UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CustomFilterViewController *filterViewObj=[storyboard instantiateViewControllerWithIdentifier:@"CustomFilterViewController"];
     filterViewObj.delegate=self;
     if (isSearch) {
         filterViewObj.isAllSelected=false;

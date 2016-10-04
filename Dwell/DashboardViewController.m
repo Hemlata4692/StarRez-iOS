@@ -16,8 +16,8 @@
 @interface DashboardViewController ()<CustomAlertDelegate>{
     
     CustomAlert *alertView;
-    NSArray *menuArray;
-    NSArray *menuImageArray;
+    NSArray *menuArray, *upMenuArray, *downMenuArray;
+    NSArray *menuImageArray, *upMenuImageArray, *downMenuImageArray;
     BOOL isSwipeDown;
     NSMutableArray *dashboardDictKeys;
     NSMutableDictionary *dashboardDictData;
@@ -62,10 +62,18 @@
 
     self.noRecordFoundLabel.hidden=YES;
     [UserDefaultManager setValue:[NSNumber numberWithInteger:0] key:@"indexpath"];
-    //Menu label items
-    menuArray=@[@"Maintenance",@"Parcel",@"Resources",@"Less",@"Event",@"Information",@"Help"];
-     //Menu imageView items
-    menuImageArray =@[@"maintenance",@"parcel",@"resources",@"downMenu",@"events",@"information",@"help"];
+    //Menu label at down menu
+    downMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"More",@"Event",@"Information",@"Help"];
+    //Menu image at down menu
+    downMenuImageArray =@[@"maintenance",@"parcel",@"resources",@"more",@"events",@"information",@"help"];
+    //Menu label at up menu
+    upMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"Less",@"Event",@"Information",@"Help"];
+    //Menu image at up menu
+    upMenuImageArray =@[@"maintenance",@"parcel",@"resources",@"downMenu",@"events",@"information",@"help"];
+    
+    menuArray=[downMenuArray copy];
+    menuImageArray =[downMenuImageArray copy];
+    
     //Set swipe variable initial state
     isSwipeDown=YES;//Initially already swaped down
 }
@@ -205,11 +213,16 @@
             break;
         case 3:     //Clicked on cross or arrow sign
             if (isSwipeDown) {
+                menuArray=[upMenuArray copy];
+                menuImageArray =[upMenuImageArray copy];
                 [self swipeUp];
             }
             else {
+                menuArray=[downMenuArray copy];
+                menuImageArray =[downMenuImageArray copy];
                 [self swipeDown];
             }
+            [self.menuCollectionView reloadData];
             break;
         case 4: {   //Clicked on event menu
             [UserDefaultManager setValue:@"Event" key:@"ScreenName"];

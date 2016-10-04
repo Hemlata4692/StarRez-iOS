@@ -25,7 +25,6 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     UIBarButtonItem *pickerPreviousBarButton, *pickerNextBarButton,*textfieldPreviousBarButton, *textfieldNextBarButton,*dateTimePreviousBarButton, *dateTimeNextBarButton;
     UIToolbar *textFieldToolbar,*dateTimeToolbar;
 }
-
 @property (strong, nonatomic) IBOutlet UIScrollView *bookResourceScrollView;
 @property (strong, nonatomic) IBOutlet UIView *mainView;
 @property (strong, nonatomic) IBOutlet UIView *bookResourceContainerView;
@@ -522,19 +521,20 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 
 #pragma mark - IBActions
 - (void)selectPreviousField {
-    
+    //Select previous field
     currentFieldIndex=currentFieldIndex-1;
     [self navigateTextFields:-1];
 }
 
 - (void)selectNextField {
+    //Select next field
     currentFieldIndex=currentFieldIndex+1;
     [self navigateTextFields:1];
 }
 
 - (void)doneButtonPressed:(id)sender {
     
-    if (currentFieldIndex==0) {
+    if (currentFieldIndex==0) {     //Select resource type field
         [self hideResourcePickerView];
         NSInteger index = [self.resourcePickerView selectedRowInComponent:0];
         NSString *str=[[bookResourceTypeArray objectAtIndex:index] resourceTypeDescription];
@@ -545,17 +545,17 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
             [self performSelector:@selector(getLocationList) withObject:nil afterDelay:.1];
         }
     }
-    else if (currentFieldIndex==1) {
+    else if (currentFieldIndex==1) {    //Select resource name field
         [self.view endEditing:YES];
     }
-    else if (currentFieldIndex==2) {
+    else if (currentFieldIndex==2) {    //Select location field
         [self hideResourcePickerView];
         NSInteger index = [self.resourcePickerView selectedRowInComponent:0];
         NSString *str=[[bookResourceLocationArray objectAtIndex:index] resourceLocationDescription];
         self.locationField.text=str;
         lastSelectedResourceLocation=(int)index;
     }
-    else if (currentFieldIndex==3) {
+    else if (currentFieldIndex==3) {    //Select fromDate field
         [self hideDatePickerView];
         
         NSDate *date = self.datePickerView.date;
@@ -564,7 +564,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         DLog(@"%@",[dateFormat stringFromDate:date]);
         self.fromDateField.text=[dateFormat stringFromDate:date];
     }
-    else if (currentFieldIndex==4) {
+    else if (currentFieldIndex==4) {    //Select fromTime field
         [self hideDatePickerView];
         NSDate *date = self.datePickerView.date;
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
@@ -572,7 +572,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         DLog(@"%@",[dateFormat stringFromDate:date]);
         self.fromTimeField.text=[dateFormat stringFromDate:date];
     }
-    else if (currentFieldIndex==5) {
+    else if (currentFieldIndex==5) {    //Select toDate field
         [self hideDatePickerView];
         
         NSDate *date = self.datePickerView.date;
@@ -581,16 +581,15 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         DLog(@"%@",[dateFormat stringFromDate:date]);
         self.toDateField.text=[dateFormat stringFromDate:date];
     }
-    else if (currentFieldIndex==6) {
+    else if (currentFieldIndex==6) {    //Select toTime field
         [self hideDatePickerView];
         NSDate *date = self.datePickerView.date;
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"hh:mm a"];
-        //        [dateFormat setDateFormat:@"yyyy-MM-dd'T'hh:mm:ss"];
         DLog(@"%@",[dateFormat stringFromDate:date]);
         self.toTimeField.text=[dateFormat stringFromDate:date];
     }
-    [self doneHandling];
+    [self doneHandling];    //Call done method
 }
 
 - (IBAction)sourceType:(UIButton *)sender {

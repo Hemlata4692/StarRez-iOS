@@ -51,7 +51,7 @@
 
 @implementation AddNewJobViewController
 
-#pragma mark - View lifecycle
+#pragma mark - View life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title=@"New Job";
@@ -96,9 +96,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - end
 
 #pragma mark - Webservice
-
 - (void)categoryService {
     
     if ([super checkInternetConnection]) {
@@ -107,14 +107,12 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 categoryArray = [userData mutableCopy];
                 [myDelegate stopIndicator];
-                
             });
         } onfailure:^(id error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
                 if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
                     DLog(@"No record found.");
-                    
                 }
                 else {
                     alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:5 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"Retry" cancelButtonText:@""];
@@ -222,7 +220,7 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
-    if(textField == _commentsTextField)
+    if(textField == self.commentsTextField)
     {
         if (range.length > 0 && [string length] == 0)
         {
@@ -237,7 +235,7 @@
             return YES;
         }
     }
-    else if(textField == _causeTextField)
+    else if(textField == self.causeTextField)
     {
         if (range.length > 0 && [string length] == 0)
         {
@@ -268,7 +266,7 @@
 }
 #pragma mark - end
 
-#pragma mark - Login validation
+#pragma mark - Add new job validation
 - (BOOL)performValidationsForAddNewJob {
     
     //Apply validations for mandatory fields. Comments and tick mark are not mandatory.
@@ -284,14 +282,13 @@
 
 #pragma mark - IBActions
 - (IBAction)checkboxButtonClicked:(id)sender {
-    if ([sender isSelected])
-    {
+    
+    if ([sender isSelected]) {
         isPresent  = @"0";
         [sender setSelected:NO];
         [_checkboxImageView setImage:[UIImage imageNamed:@"checkbox.png"]];
     }
-    else
-    {
+    else {
         isPresent  = @"1";
         [sender setSelected:YES];
         [_checkboxImageView setImage:[UIImage imageNamed:@"checkbox_selected.png"]];
@@ -352,7 +349,7 @@
     [self.keyboardControls.activeField resignFirstResponder];
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     Internet *internet=[[Internet alloc] init];
-    //perform add new job validations
+    //Perform add new job validations
     if([self performValidationsForAddNewJob]) {
         if (![internet start]) {
             
@@ -384,7 +381,7 @@
         }
     }
     else {
-        //code to set value on subcategory field
+        //Code to set value on subcategory field
         NSInteger index = [self.pickerView selectedRowInComponent:0];
         MaintenanceModel *model = [subcategoryArray objectAtIndex:index];
         subcategoryPickerIndex = (int)index;
@@ -438,7 +435,6 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
     [_keyboardControls.activeField resignFirstResponder];
-    
     MaintenanceModel *model;
     NSString *str;
     if (isCategoryPicker) {
@@ -471,7 +467,7 @@
     [alertView dismissAlertView];
     if (customAlert.alertTagValue==5) {
         [myDelegate showIndicator:[Constants navigationColor]];
-        //Get category list from server.
+        //Retry to get category list from server.
         [self performSelector:@selector(categoryService) withObject:nil afterDelay:.1];
     }
     else if (customAlert.alertTagValue==6) {

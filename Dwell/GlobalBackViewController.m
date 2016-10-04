@@ -14,7 +14,6 @@
     
  UIBarButtonItem *barButton,*barButton1;
 }
-
 @end
 
 @implementation GlobalBackViewController

@@ -48,7 +48,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.revealViewController.frontViewController.view setUserInteractionEnabled:NO];
+//    [self.revealViewController.frontViewController.view setUserInteractionEnabled:NO];
     [self.tableView reloadData];
 }
 
@@ -194,48 +194,16 @@
     [alertView dismissAlertView];
     if (option!=0) {
         
-        Internet *internet=[[Internet alloc] init];
-        if (![internet start]) {
-            [myDelegate showIndicator:[Constants navigationColor]];
-            [self performSelector:@selector(userLogout) withObject:nil afterDelay:.1];
-        }
-    }
-    else if (customAlert.alertTagValue==6) {
+        //Nil all userdefaultData and navigate to login screen
+        [UserDefaultManager setValue:nil key:@"indexpath"];
+        [UserDefaultManager setValue:nil key:@"userEmailId"];
+        [UserDefaultManager setValue:nil key:@"entryId"];
+        [myDelegate unrigisterForNotification];
         
-        Internet *internet=[[Internet alloc] init];
-        if (![internet start]) {
-            [myDelegate showIndicator:[Constants navigationColor]];
-            [self performSelector:@selector(userLogout) withObject:nil afterDelay:.1];
-        }
+        UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
+        myDelegate.window.rootViewController = navigation;
     }
-}
-#pragma mark - end
-
-#pragma mark - Webservice
-//User logout webservice
-- (void)userLogout {
-    
-    LoginModel *userLogin = [LoginModel sharedUser];
-    [userLogin logoutService:^(LoginModel *userData) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [myDelegate stopIndicator];
-            //Nil all userdefaultData and navigate to login screen
-            [UserDefaultManager setValue:nil key:@"indexpath"];
-            [UserDefaultManager setValue:nil key:@"userEmailId"];
-            [UserDefaultManager setValue:nil key:@"entryId"];
-            [myDelegate unrigisterForNotification];
-            
-            UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
-            UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
-            myDelegate.window.rootViewController = navigation;
-        });
-    } onfailure:^(id error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [myDelegate stopIndicator];
-            
-            alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:6 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"Retry" cancelButtonText:@""];
-        });
-    }];
 }
 #pragma mark - end
 @end

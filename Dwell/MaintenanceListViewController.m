@@ -161,13 +161,12 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     MaintenanceModel *objModel;
     if (isSearch) {
     objModel= [maintenanceSearchDataArray objectAtIndex:indexPath.row];
     }
-    else{
+    else {
     objModel= [maintenanceArray objectAtIndex:indexPath.row];
     }
     

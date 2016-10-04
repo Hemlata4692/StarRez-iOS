@@ -25,6 +25,7 @@
 @synthesize maintenanceDetailTableView;
 @synthesize objMainatenanceModel;
 
+#pragma mark - View life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -40,6 +41,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - end
 
 #pragma mark - Webservice
 //Get parcel list webservice
@@ -94,7 +96,7 @@
             titleLbl.frame = CGRectMake(titleLbl.frame.origin.x, titleLbl.frame.origin.y, ([UIScreen mainScreen].bounds.size.width-30), titleHeight+15);
             //Round top of the label
             CGRect labelFrame = CGRectMake(0, 0, self.view.frame.size.width-30, titleHeight+20);
-            UIView *bgView = (UILabel *)[cell.contentView viewWithTag:11];
+            UIView *bgView = (UIView *)[cell.contentView viewWithTag:11];
             bgView.translatesAutoresizingMaskIntoConstraints = YES;
             bgView.frame = CGRectMake(0, 0, labelFrame.size.width, labelFrame.size.height);
             UIBezierPath *maskPath = [UIBezierPath
@@ -114,8 +116,7 @@
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfoCell"];
             if (cell == nil) {
                 
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"InfoCell"] ;
-                
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"InfoCell"];
             }
             UILabel * reportedDate = (UILabel *)[cell.contentView viewWithTag:2];
             reportedDate.text = objMainatenanceModel.reportedDate;
@@ -137,7 +138,7 @@
         {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DescriptionCell"];
             if (cell == nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"DescriptionCell"] ;
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"DescriptionCell"];
             }
             UILabel *descriptionLabel = (UILabel *)[cell.contentView viewWithTag:6];
             descriptionLabel.numberOfLines = 0;
@@ -153,7 +154,7 @@
         {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CauseCell"];
             if (cell == nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CauseCell"] ;
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CauseCell"];
             }
             UILabel *causeLabel = (UILabel *)[cell.contentView viewWithTag:7];
             causeLabel.numberOfLines = 0;
@@ -173,7 +174,7 @@
         {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentsCell"];
             if (cell == nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CommentsCell"] ;
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CommentsCell"];
             }
             UILabel *commentsLabel = (UILabel *)[cell.contentView viewWithTag:8];
             commentsLabel.numberOfLines = 0;
@@ -207,9 +208,8 @@
         {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ButtonCell"];
             if (cell == nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ButtonCell"] ;
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ButtonCell"];
             }
-            
             CGRect labelFrame = CGRectMake(0, 0, self.view.frame.size.width-30, cell.contentView.frame.size.height);
             UILabel *closeLabel = (UILabel *)[cell.contentView viewWithTag:10];
             closeLabel.translatesAutoresizingMaskIntoConstraints = YES;
@@ -254,6 +254,7 @@
     switch (indexPath.row) {
         case 0:
         {
+            //Set dynamic height of cell according to title
             float titleHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.title font:[UIFont calibriNormalWithSize:20] widthValue:([UIScreen mainScreen].bounds.size.width-30)-16];
             return titleHeight+20;
             break;
@@ -263,6 +264,7 @@
             break;
         case 2:
         {
+            //Set dynamic height of cell according to detail
             float descriptionHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.detail font:[UIFont calibriNormalWithSize:15] widthValue:([UIScreen mainScreen].bounds.size.width-30)-16];
             return descriptionHeight+40;
             break;
@@ -270,23 +272,22 @@
         case 3:
         {
             if (objMainatenanceModel.cause) {
+                //Set dynamic height of cell according to cause
                 float causeHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.cause font:[UIFont calibriNormalWithSize:15] widthValue:([UIScreen mainScreen].bounds.size.width-30)-16];
                 return causeHeight+40;
             }
-            else{
-                
+            else {
                 return 60;
             }
-            
         }
             break;
         case 4:
             if (objMainatenanceModel.commetns) {
+                //Set dynamic height of cell according to comments
                 float commentsHeight=[UserDefaultManager getDynamicLabelHeight:objMainatenanceModel.commetns font:[UIFont calibriNormalWithSize:15] widthValue:([UIScreen mainScreen].bounds.size.width-30)-16];
                 return commentsHeight+45;
             }
-            else{
-                
+            else {
                 return 90;
             }
             break;
@@ -323,7 +324,7 @@
     if (indexCount<7) {
         rowHeight = rowHeight+cellSize.size.height;
         indexCount++;
-        [self addShadowToTableview];
+        [self addShadowToTableview];//Set table view shadow
     }
     DLog(@"cellSize is %f and index: %ld",cellSize.size.height,(long)indexPath.row);
 }
@@ -433,7 +434,8 @@
     
     [alertView dismissAlertView];
     if ((customAlert.alertTagValue==3)&&(option==1)) {
-        [myDelegate showIndicator:[Constants orangeBackgroundColor]];
+        //Retry service call
+        [myDelegate showIndicator:[Constants navigationColor]];
         [self performSelector:@selector(cancelService) withObject:nil afterDelay:.1];
     }
 }

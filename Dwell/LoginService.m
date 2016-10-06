@@ -19,6 +19,7 @@
         parameters = @{@"EnteryId" : userData.entryId,
                        @"DeviceToken" : [UserDefaultManager getValue:@"deviceToken"],
                        @"DeviceType" : @"IOS",
+                       @"Name" : userData.userName,
                        @"EmailId" : userData.userEmailId,
                        @"AppVersion" : [NSString stringWithFormat:@"%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] ]};
         

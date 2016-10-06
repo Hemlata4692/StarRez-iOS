@@ -13,7 +13,7 @@
 @property (strong, nonatomic) NSString *userEmailId;
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) NSString *entryId;
-
+@property (strong, nonatomic) NSString *userName;
 + (instancetype)sharedUser;
 //Login user
 - (void)loginUserOnSuccess:(void (^)(LoginModel *))success onfailure:(void (^)(id))failure;

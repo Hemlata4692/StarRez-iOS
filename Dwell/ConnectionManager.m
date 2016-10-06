@@ -174,6 +174,7 @@
         DLog(@"%@",[response valueForKeyPath:@"entry.content.Record.EntryID"]);
         if (NULL!=[response valueForKeyPath:@"entry.content.Record.EntryID"]) {
             userData.entryId=[response valueForKeyPath:@"entry.content.Record.EntryID"];
+            userData.userName=[NSString stringWithFormat:@"%@ %@",[response valueForKeyPath:@"entry.content.Record.NameFirst"],[response valueForKeyPath:@"entry.content.Record.NameLast"]];
             [UserDefaultManager setValue:[NSString stringWithFormat:@"%@ %@ %@",[response valueForKeyPath:@"entry.content.Record.NameTitle"],[response valueForKeyPath:@"entry.content.Record.NameFirst"],[response valueForKeyPath:@"entry.content.Record.NameLast"]] key:@"userName"];
             [UserDefaultManager setValue:[response valueForKeyPath:@"entry.content.Record.RoomSpaceID"] key:@"RoomSpaceID"];
             success(userData);

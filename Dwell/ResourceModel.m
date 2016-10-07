@@ -105,7 +105,7 @@
                     tempModel.resourceTypeDescription=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
                     tempModel.resourceTypeMaxHour=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.MaxBookingHours"];
                     tempModel.resourceTypeMinHour=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.MinBookingHours"];
-                    tempModel.resourceTypeLocationId=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomLocationID"];
+                    tempModel.resourceTypeLocationId=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomLocationAreaID"];
                      tempModel.resourceId=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ResourceTypeID"];
                     [dataArray addObject:tempModel];
                 }
@@ -140,7 +140,7 @@
             else {  //If multiple entry then resourceData is array type
                 for (int i=0; i<[[resourceLocationData objectForKey:@"entry"] count]; i++) {
                     __block ResourceModel *tempModel=[ResourceModel new];
-                    tempModel.resourceTypeDescription=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
+                    tempModel.resourceLocationDescription=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
                     tempModel.resourceTypeLocationId=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomLocationID"];
                     [dataArray addObject:tempModel];
                 }

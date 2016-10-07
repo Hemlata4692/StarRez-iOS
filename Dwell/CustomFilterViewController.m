@@ -29,6 +29,7 @@ static int heightValue=200;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4f];
     filterArray=[[filterDict allKeys] mutableCopy];
    filterArray = [[filterArray sortedArrayUsingSelector:@selector(compare:)] mutableCopy];    //Sorted order
     [filterArray insertObject:@"All" atIndex:0];//Insert first element bydefult "All"

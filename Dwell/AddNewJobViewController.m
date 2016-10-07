@@ -274,8 +274,12 @@
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please fill in all the required fields." doneButtonText:@"OK" cancelButtonText:@""];
         return NO;
     }
+    else if (![self.descriptionTextField validateSpecialCharactor:self.descriptionTextField.text]||![self.causeTextField validateSpecialCharactor:self.causeTextField.text]||![self.commentsTextField validateSpecialCharactor:self.commentsTextField.text]){
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Special charcters are not allowed." doneButtonText:@"OK" cancelButtonText:@""];
+        return NO;
+    }
     else {
-        return YES;
+        return NO;
     }
 }
 #pragma mark - end

@@ -45,7 +45,7 @@
     
      NSDateFormatter *dateFormat=[[NSDateFormatter alloc] init];
      NSInteger seconds = [[NSTimeZone systemTimeZone] secondsFromGMT];
-    seconds+=(60*60);   //Add 1 hour in GMT seconds differece
+    seconds=-seconds+(60*60);   //Add 1 hour in GMT seconds differece
     [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
     NSDate *a=[conversionDateTime dateByAddingTimeInterval:seconds];
     NSString *conversionDateTimeString=[dateFormat stringFromDate:a];
@@ -60,7 +60,7 @@
     NSDateFormatter *dateFormat=[[NSDateFormatter alloc] init];
     NSInteger seconds = [[NSTimeZone systemTimeZone] secondsFromGMT];
     [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
-    NSDate *convertedDateTime=[[[dateFormat dateFromString:conversionDateTime] dateByAddingTimeInterval:-(60*60)] dateByAddingTimeInterval:-seconds];   //First convert string to date then subtract one hour from NSDate then convert in my system date from GMT date format
+    NSDate *convertedDateTime=[[[dateFormat dateFromString:conversionDateTime] dateByAddingTimeInterval:-(60*60)] dateByAddingTimeInterval:seconds];   //First convert string to date then subtract one hour from NSDate then convert in my system date from GMT date format
     NSString *conversionDateTimeString=[dateFormat stringFromDate:convertedDateTime];
     DLog(@"%@",conversionDateTimeString);
     return conversionDateTimeString;

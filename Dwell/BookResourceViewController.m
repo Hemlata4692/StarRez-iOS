@@ -418,7 +418,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         }
         else {  //If location array is blank then hide picker view if it is showing
             [self hideResourcePickerView];
-            if (![self.sourceTypeField.text isEqualToString:@""]) {
+            if ([self.sourceTypeField.text isEqualToString:@""]) {
                 [self.view makeToast:@"You need to select Resource Type first."];
             }
             else {

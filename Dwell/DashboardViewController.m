@@ -63,11 +63,11 @@
     self.noRecordFoundLabel.hidden=YES;
     [UserDefaultManager setValue:[NSNumber numberWithInteger:0] key:@"indexpath"];
     //Menu label at down menu
-    downMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"More",@"Event",@"Information",@"Help"];
+    downMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"More",@"Events",@"Information",@"Help"];
     //Menu image at down menu
     downMenuImageArray =@[@"maintenance",@"parcel",@"resources",@"more",@"events",@"information",@"help"];
     //Menu label at up menu
-    upMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"Less",@"Event",@"Information",@"Help"];
+    upMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"Less",@"Events",@"Information",@"Help"];
     //Menu image at up menu
     upMenuImageArray =@[@"maintenance",@"parcel",@"resources",@"downMenu",@"events",@"information",@"help"];
     

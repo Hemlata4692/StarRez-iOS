@@ -30,8 +30,12 @@ static int heightValue=200;
     [super viewDidLoad];
     
     filterArray=[[filterDict allKeys] mutableCopy];
+   filterArray = [[filterArray sortedArrayUsingSelector:@selector(compare:)] mutableCopy];
     [filterArray insertObject:@"All" atIndex:0];//Insert first element bydefult "All"
     heightValue=(60*(int)filterArray.count)+15;
+    if (heightValue>[[UIScreen mainScreen] bounds].size.height-64) {
+        heightValue=[[UIScreen mainScreen] bounds].size.height-64;
+    }
     [self removeAutolayout];
     [self layoutViewObjects];
     [self.filterTableView reloadData];

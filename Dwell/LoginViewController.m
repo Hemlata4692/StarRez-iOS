@@ -13,6 +13,7 @@
 #import "UIView+RoundedCorner.h"
 #import "LoginModel.h"
 #import "Internet.h"
+#import "UITextField+Padding.h"
 
 @interface LoginViewController ()<BSKeyboardControlsDelegate,CustomAlertDelegate> {
 
@@ -37,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //register iPhone device for push notifications
+    //Register iPhone device for push notifications
     [myDelegate registerDeviceForNotification];
     //Hide navigation bar and status bar
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
@@ -89,9 +90,14 @@
 //Add corner radius to objects
 - (void)addBorderCornerRadius {
     
-    [self.emailIdTextfield setCornerRadius:cornerRadius];
-    [self.passwordTextfield setCornerRadius:cornerRadius];
-    [self.loginButton setCornerRadius:cornerRadius];
+    [self.emailIdTextfield setCornerRadius:29];
+    [self.passwordTextfield setCornerRadius:29];
+    [self.loginButton setCornerRadius:25];
+    [self.emailIdTextfield setTextBorder:self.emailIdTextfield color:[UIColor colorWithRed:212.0/255.0 green:185.0/255.0 blue:219.0/255.0 alpha:1.0]];
+    [self.passwordTextfield setTextBorder:self.passwordTextfield color:[UIColor colorWithRed:212.0/255.0 green:185.0/255.0 blue:219.0/255.0 alpha:1.0]];
+    
+    [self.emailIdTextfield addTextFieldPadding:self.emailIdTextfield];
+    [self.passwordTextfield addTextFieldPadding:self.passwordTextfield];
 }
 #pragma mark - end
 
@@ -172,7 +178,7 @@
 - (BOOL)performValidationsForLogin {
     
     if ([self.emailIdTextfield isEmpty] || [self.passwordTextfield isEmpty]) {
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please fill in all the fields." doneButtonText:@"OK" cancelButtonText:@""];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please fill in all the required fields." doneButtonText:@"OK" cancelButtonText:@""];
         return NO;
     }
     else if (![self.emailIdTextfield isValidEmail]) {
@@ -195,7 +201,7 @@
     [self.keyboardControls.activeField resignFirstResponder];
     [self.loginScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     Internet *internet=[[Internet alloc] init];
-    //perform login validations
+    //Perform login validations
     if([self performValidationsForLogin]) {
         if (![internet start]) {
             [myDelegate showIndicator:[Constants dashboardColor]];
@@ -225,7 +231,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [myDelegate stopIndicator];
             if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
-                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"User does not exist in the system." doneButtonText:@"OK" cancelButtonText:@""];
+                alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Either username or password doesn't match in the system." doneButtonText:@"OK" cancelButtonText:@""];
             }
             else {
                 alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];

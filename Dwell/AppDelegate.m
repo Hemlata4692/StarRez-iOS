@@ -29,28 +29,22 @@
    //Call crashlytics method
     [self performSelector:@selector(installUncaughtExceptionHandler) withObject:nil afterDelay:0];
     //Set navigation theam
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setBarTintColor:[Constants navigationColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont calibriBoldWithSize:19], NSFontAttributeName, nil]];
+    [self setNavigationTheam];
     application.statusBarHidden = NO;//Unhide status bar
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //Set initialize navigation controller
     self.navigationController = (UINavigationController *)[self.window rootViewController];
     [self.navigationController setNavigationBarHidden:YES];
     //If user already exist then user navigate ot dashboard screen
     if (nil!=[UserDefaultManager getValue:@"userEmailId"]) {
         //If user already loged in then navigate to dashboard
-        [UserDefaultManager setValue:[NSNumber numberWithInteger:0] key:@"indexpath"];
-        UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
-        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        [self.window setRootViewController:objReveal];
-        [self.window setBackgroundColor:[UIColor whiteColor]];
-        [self.window makeKeyAndVisible];
+        [self navigateToDashboardScreen];
     }
     
+    //Initialize NSMutableDictionary variable to manage screen navigation according to push notification
     notificationDict = [NSMutableDictionary new];
     [notificationDict setObject:@"Other" forKey:@"toScreen"];
     [notificationDict setObject:@"No" forKey:@"isNotification"];
+    //end
     //Accept push notification when app is not open
     application.applicationIconBadgeNumber = 0;
     NSDictionary *remoteNotifiInfo = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -59,9 +53,27 @@
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         [self application:application didReceiveRemoteNotification:remoteNotifiInfo];
     }
-    //Register iphone device for push notifications
-    [self registerDeviceForNotification];
     return YES;
+}
+
+//Set navigation header
+- (void)setNavigationTheam {
+
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:[Constants navigationColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont calibriNormalWithSize:23], NSFontAttributeName, nil]];
+}
+
+//Navigate to dashboard if user already loged in
+- (void)navigateToDashboardScreen {
+
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    [UserDefaultManager setValue:[NSNumber numberWithInteger:0] key:@"indexpath"];
+    UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window setRootViewController:objReveal];
+    [self.window setBackgroundColor:[UIColor whiteColor]];
+    [self.window makeKeyAndVisible];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -99,7 +111,7 @@
     loaderView.backgroundColor=[UIColor colorWithRed:63.0/255.0 green:63.0/255.0 blue:63.0/255.0 alpha:0.3];
     [loaderView addSubview:spinnerBackground];
     self.spinnerView = [[MMMaterialDesignSpinner alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    self.spinnerView.tintColor = spinnerColor;
+    self.spinnerView.tintColor = [UIColor colorWithRed:118.0/255 green:44.0/255.0 blue:134.0/255.0 alpha:1.0];
     self.spinnerView.center = CGPointMake(CGRectGetMidX(self.window.bounds), CGRectGetMidY(self.window.bounds));
     self.spinnerView.lineWidth=3.0f;
     [self.window addSubview:loaderView];
@@ -145,13 +157,15 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     DLog(@"push notification response.............%@",userInfo);
+    //If app is active then show alert other wise(app is terminated) navigate to ParcelListViewController through Dashboard
     if ((application.applicationState == UIApplicationStateActive) || (application.applicationState == UIApplicationStateBackground)) {
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] doneButtonText:@"OK" cancelButtonText:@""];
-        
     }
     else {
+        //Set notificationDict to navigation
         [notificationDict setObject:@"Yes" forKey:@"isNotification"];
-        [notificationDict setObject:@"ParcelListViewController" forKey:@"toScreen"];        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        [notificationDict setObject:@"ParcelListViewController" forKey:@"toScreen"];
+        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
         [self.navigationController setViewControllers: [NSArray arrayWithObject: objReveal]
                                              animated: YES];

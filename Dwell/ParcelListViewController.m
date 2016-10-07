@@ -32,16 +32,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //Set index to selected show in menu
     [UserDefaultManager setValue:[NSNumber numberWithInteger:2] key:@"indexpath"];
-    self.title = @"Parcel List";
+    self.navigationItem.title=@"Parcel List";
     self.noRecordLabel.hidden=YES;
     isSearch=false;
-    //Add background image
-    [super addBackgroungImage:@"Parcel"];
     parcelDataArray=[NSMutableArray new];
     parcelSearchDataArray=[NSMutableArray new];
     parcelStatusDict=[NSMutableDictionary new];
-    [myDelegate showIndicator:[Constants blueBackgroundColor:1.0]];
+    [myDelegate showIndicator:[Constants blueBackgroundColor]];
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
     [self performSelector:@selector(getParcelListService) withObject:nil afterDelay:.1];
     // Do any additional setup after loading the view.
@@ -67,8 +66,8 @@
 //Filter button action
 - (void)filterButtonAction:(id)sender {
     
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    CustomFilterViewController *filterViewObj =[storyboard instantiateViewControllerWithIdentifier:@"CustomFilterViewController"];
+    UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CustomFilterViewController *filterViewObj=[storyboard instantiateViewControllerWithIdentifier:@"CustomFilterViewController"];
     filterViewObj.delegate=self;
     if (isSearch) {
         filterViewObj.isAllSelected=false;
@@ -118,6 +117,9 @@
                 }
             });
         }];
+    }
+    else {
+        [myDelegate stopIndicator];
     }
 }
 #pragma mark - end

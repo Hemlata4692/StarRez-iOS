@@ -7,12 +7,14 @@
 //
 
 #import "ResourceDetailViewController.h"
+#import "UIView+RoundedCorner.h"
 
 @interface ResourceDetailViewController ()
 //Get view outlets
 @property (strong, nonatomic) IBOutlet UIView *resourceDetailView;
 @property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
 @property (weak, nonatomic) IBOutlet UIView *mainBackgroundView;
+@property (strong, nonatomic) IBOutlet UIView *backShadowView;
 @property (weak, nonatomic) IBOutlet UILabel *resourceTitle;
 @property (weak, nonatomic) IBOutlet UILabel *resourceType;
 @property (weak, nonatomic) IBOutlet UILabel *fromDate;
@@ -32,7 +34,6 @@
     [super viewDidLoad];
     
     self.navigationItem.title=@"Resource Detail";
-    [super addBackgroungImage:@"Resource"];
     [self layoutViewObjects];
     //Show resource data using resource model
     [self showResourceDetailData];
@@ -45,29 +46,14 @@
 }
 #pragma mark - end
 
-#pragma mark -Custom accessors
+#pragma mark - Custom accessors
 - (void)layoutViewObjects {
     
     //Set corner radius to main background view
-    self.mainBackgroundView.layer.cornerRadius=cornerRadius;
-    self.mainBackgroundView.layer.masksToBounds=YES;
-    //Make dots below title label
-    CAShapeLayer *shapelayer=[CAShapeLayer layer];
-    UIBezierPath *path=[UIBezierPath bezierPath];
-    //Draw a line
-    [path moveToPoint:CGPointMake(0.0,self.resourceTitle.frame.size.height)]; //Add yourStartPoint here
-    [path addLineToPoint:CGPointMake(self.view.frame.size.width-20, self.resourceTitle.frame.size.height)];//Add yourEndPoint here
-    UIColor *fill=[UIColor colorWithRed:72.0/255.0 green:73.0/255.0 blue:73.0/255.0 alpha:1.0];
-    shapelayer.strokeStart=0.0;
-    shapelayer.strokeColor=fill.CGColor;
-    shapelayer.lineWidth=1.0f;
-    shapelayer.lineJoin=kCALineJoinRound;
-    shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
-    shapelayer.path=path.CGPath;
-    [self.resourceTitle.layer addSublayer:shapelayer];
-    
     [self removeAutolayout];//Remove autolayout
     [self changeViewFrame];//Change frame according to forwarding address and comment
+    [self.mainBackgroundView setCornerRadius:5.0f];
+    [self.backShadowView addShadowWithCornerRadius:self.backShadowView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];  //Add corner radius and shadow
 }
 
 - (void)changeViewFrame {
@@ -75,23 +61,23 @@
     self.resourceDetailView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     float backgroundViewHeight=0.0;//Initialize back view size
     //Get dynamic height according to resource description text
-    float descriptionHeight=[UserDefaultManager getDynamicLabelHeight:resourceDetailData.resourceDescription font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-16];
+    float descriptionHeight=[UserDefaultManager getDynamicLabelHeight:resourceDetailData.resourceDescription font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-30)-16];
     //Get dynamic height according to resource comment text
-    float commentHeight=[UserDefaultManager getDynamicLabelHeight:resourceDetailData.resourceComment font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-16];
+    float commentHeight=[UserDefaultManager getDynamicLabelHeight:resourceDetailData.resourceComment font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-30)-16];
     self.resourceDescription.numberOfLines=0;
     self.adminComment.numberOfLines=0;
     if (descriptionHeight<21) {
         descriptionHeight=21;
     }
     //Change framing of uiview object according to text lenght
-    self.resourceDescription.frame=CGRectMake(8, 216, ([UIScreen mainScreen].bounds.size.width-20)-16, descriptionHeight);
+    self.resourceDescription.frame=CGRectMake(8, 208, ([UIScreen mainScreen].bounds.size.width-30)-16, descriptionHeight);
     self.adminCommentTitle.frame=CGRectMake(8, self.resourceDescription.frame.origin.y+self.resourceDescription.frame.size.height+17, 230, 21);
     //If comment height is zero set admin comment height 21(by default)
     if (commentHeight<21) {
-         self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-16, 21);
+         self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height-2, ([UIScreen mainScreen].bounds.size.width-30)-16, 21);
     }
     else {
-        self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-16, commentHeight);
+        self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height-2, ([UIScreen mainScreen].bounds.size.width-30)-16, commentHeight);
     }
     
     if (commentHeight<55) {
@@ -99,8 +85,8 @@
     }
     //Change main view height according to uiview object height
     backgroundViewHeight=self.adminComment.frame.origin.y+commentHeight+48;
-    self.mainBackgroundView.frame=CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
-    self.resourceStatusBackGroundView.frame=CGRectMake(0, self.mainBackgroundView.frame.size.height-40, self.mainBackgroundView.frame.size.width, 40);
+    self.backShadowView.frame=CGRectMake(15, 15, [UIScreen mainScreen].bounds.size.width-30, backgroundViewHeight);
+    self.resourceStatusBackGroundView.frame=CGRectMake(0, self.backShadowView.frame.size.height-35, self.backShadowView.frame.size.width, 35);
     self.detailScrollView.scrollEnabled=false;
     //Scrolling is disable if view height more then screen size
     if ((backgroundViewHeight+64)>[UIScreen mainScreen].bounds.size.height) {
@@ -113,7 +99,7 @@
     
     self.resourceDetailView.translatesAutoresizingMaskIntoConstraints=YES;
     self.resourceDescription.translatesAutoresizingMaskIntoConstraints=YES;
-    self.mainBackgroundView.translatesAutoresizingMaskIntoConstraints=YES;
+    self.backShadowView.translatesAutoresizingMaskIntoConstraints=YES;
     self.adminComment.translatesAutoresizingMaskIntoConstraints=YES;
     self.adminCommentTitle.translatesAutoresizingMaskIntoConstraints=YES;
     self.resourceStatusBackGroundView.translatesAutoresizingMaskIntoConstraints=YES;
@@ -123,7 +109,7 @@
     
     //Check resource title is nil
     if ((nil==resourceDetailData.resourceTitle)||[resourceDetailData.resourceTitle isEqualToString:@""]) {
-        self.resourceTitle.text=@"NA";
+        self.resourceTitle.text=@"No title available";
     }
     else {
         self.resourceTitle.text=resourceDetailData.resourceTitle;
@@ -170,21 +156,24 @@
     else {
         self.adminComment.text=resourceDetailData.resourceComment;
     }
-    //Set status background view color according to status
+    //Set status back color according to fetch status
     if ([resourceDetailData.resourceStatusId isEqualToString:@"0"]) {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor:0.6];
+        self.resourceStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor];
     }
     else if ([resourceDetailData.resourceStatusId isEqualToString:@"1"]) {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants redBackgroundColor:0.6];
+        self.resourceStatusBackGroundView.backgroundColor=[Constants orangeBackgroundColor];
     }
     else if ([resourceDetailData.resourceStatusId isEqualToString:@"2"]) {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants historyColor:0.6];
+        self.resourceStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor];
     }
     else if ([resourceDetailData.resourceStatusId isEqualToString:@"3"]) {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
+        self.resourceStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
+    }
+    else if ([resourceDetailData.resourceStatusId isEqualToString:@"4"]) {
+        self.resourceStatusBackGroundView.backgroundColor=[Constants redBackgroundColor];
     }
     else {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants cancelColor:0.6];
+        self.resourceStatusBackGroundView.backgroundColor=[Constants grayBackgroundColor];
     }
 }
 #pragma mark - end

@@ -8,11 +8,13 @@
 
 #import "MaintenanceListViewController.h"
 #import "MaintenanceCell.h"
-#import "MainatenanceModel.h"
+#import "MaintenanceModel.h"
 #import "CustomFilterViewController.h"
 #import "MaintenanceDetailViewController.h"
-@interface MaintenanceListViewController ()<CustomFilterDelegate,CustomAlertDelegate>
-{
+#import "AddNewJobViewController.h"
+
+@interface MaintenanceListViewController ()<CustomFilterDelegate,CustomAlertDelegate> {
+    
    UIBarButtonItem *filterBarButton;
     CustomAlert *alertView;
     //Data structures for filter feature.
@@ -27,16 +29,24 @@
 @implementation MaintenanceListViewController
 @synthesize maintenanceTable;
 @synthesize maintenanceArray;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Maintenance";
+    self.navigationItem.title=@"Maintenance";
     //Add background image
-    [super addBackgroungImage:@"maintenance"];
+    [super addBackgroungImage:@""];
     maintenanceArray = [[NSMutableArray alloc]init];
-    [myDelegate showIndicator:[Constants orangeBackgroundColor]];
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
-    [self performSelector:@selector(getMaintenanceListService) withObject:nil afterDelay:.1];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    //Set index to selected show in menu
+    [UserDefaultManager setValue:[NSNumber numberWithInteger:1] key:@"indexpath"];
+    [myDelegate showIndicator:[Constants orangeBackgroundColor]];
+    [self performSelector:@selector(getMaintenanceListService) withObject:nil afterDelay:.1];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,6 +64,7 @@
     [button addTarget:self action:@selector(filterButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItems=[NSArray arrayWithObjects:filterBarButton, nil];
 }
+
 //Filter button action
 - (void)filterButtonAction:(id)sender {
     
@@ -70,16 +81,22 @@
     [filterViewObj setModalPresentationStyle:UIModalPresentationOverCurrentContext];
     [self presentViewController:filterViewObj animated:NO completion:nil];
 }
+
+- (IBAction)addJob:(id)sender {
+    
+    AddNewJobViewController *objAddJob = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddNewJobViewController"];
+    [self.navigationController pushViewController:objAddJob animated:YES];
+}
 #pragma mark - end
 
 #pragma mark - Webservice
-//Get parcel list webservice
+//Get maintenance list webservice
 - (void)getMaintenanceListService {
     
     isSearch = false;
     parcelStatusDict=[NSMutableDictionary new];
     if ([super checkInternetConnection]) {
-        MainatenanceModel *mainatenanceData = [MainatenanceModel sharedUser];
+        MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
         [mainatenanceData getMaintenanceListOnSuccess:^(id userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
@@ -108,6 +125,9 @@
                 }
             });
         }];
+    }
+    else {
+        [myDelegate stopIndicator];
     }
 }
 #pragma mark - end
@@ -141,21 +161,18 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    MainatenanceModel *objModel;
-    if (isSearch)    {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    MaintenanceModel *objModel;
+    if (isSearch) {
     objModel= [maintenanceSearchDataArray objectAtIndex:indexPath.row];
     }
-    else{
+    else {
     objModel= [maintenanceArray objectAtIndex:indexPath.row];
     }
     
-
-    float titleHeight=[UserDefaultManager getDynamicLabelHeight:[objModel title] font:[UIFont handseanWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-125];
-    float forwardAddressHeight=[UserDefaultManager getDynamicLabelHeight:[[maintenanceArray objectAtIndex:indexPath.row] detail] font:[UIFont calibriNormalWithSize:14] widthValue:([UIScreen mainScreen].bounds.size.width-20)-25];
-    return forwardAddressHeight+titleHeight+95.0;
-
+    float titleHeight=[UserDefaultManager getDynamicLabelHeight:[objModel title] font:[UIFont calibriNormalWithSize:20] widthValue:([UIScreen mainScreen].bounds.size.width-20)-125];
+    float forwardAddressHeight=[UserDefaultManager getDynamicLabelHeight:[[maintenanceArray objectAtIndex:indexPath.row] detail] font:[UIFont calibriNormalWithSize:19] widthValue:([UIScreen mainScreen].bounds.size.width-20)-25];
+    return forwardAddressHeight+titleHeight+112.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -172,7 +189,7 @@
 #pragma mark - end
 
 #pragma mark - Custom filter delegate
-- (void)customFilterDelegateAction:(NSMutableDictionary*)filteredData filterString:(NSString *)filterString{
+- (void)customFilterDelegateAction:(NSMutableDictionary*)filteredData filterString:(NSString *)filterString {
     
     if ([filterString isEqualToString:@"All"]) {
         isSearch=false;
@@ -191,7 +208,7 @@
 #pragma mark - end
 
 #pragma mark - Custom alert delegates
-- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option {
     
     [alertView dismissAlertView];
 }

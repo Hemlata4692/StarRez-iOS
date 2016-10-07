@@ -10,6 +10,7 @@
 
 @interface ResourceModel : NSObject
 
+@property (strong, nonatomic) NSString *resourceId;
 @property (strong, nonatomic) NSString *resourceTitle;
 @property (strong, nonatomic) NSString *resourceType;
 @property (strong, nonatomic) NSString *resourceFromDate;
@@ -33,4 +34,10 @@
 - (void)getResourceTypeOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
 //Get location list
 - (void)getLocationListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
+//Get already booked resources list
+- (void)getBookedResourcesOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
+//Get all resources list
+- (void)getAllResourcesOnSuccess:(NSMutableArray *)allResourceIds onSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
+//Resources request service
+- (void)setRequestResourceOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
 @end

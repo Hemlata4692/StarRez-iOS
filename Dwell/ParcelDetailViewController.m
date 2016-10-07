@@ -7,12 +7,14 @@
 //
 
 #import "ParcelDetailViewController.h"
+#import "UIView+RoundedCorner.h"
 
 @interface ParcelDetailViewController ()
 //Get view outlets
 @property (strong, nonatomic) IBOutlet UIView *parcelDetailView;
 @property (strong, nonatomic) IBOutlet UIScrollView *detailScrollView;
 @property (weak, nonatomic) IBOutlet UIView *mainBackgroundView;
+@property (strong, nonatomic) IBOutlet UIView *shadowBackView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelTitle;
 @property (weak, nonatomic) IBOutlet UILabel *parcelTypeTitle;
 @property (weak, nonatomic) IBOutlet UILabel *parcelType;
@@ -39,8 +41,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title=@"Parcel Detail";
-    [super addBackgroungImage:@"Parcel"];
+    self.navigationItem.title=@"Parcel Detail";
+    [super addBackgroungImage:@""];
     [self layoutViewObjects];
     [self showParcelDetailData];
     // Do any additional setup after loading the view.
@@ -56,24 +58,10 @@
 - (void)layoutViewObjects {
     
     //Set corner radius to main background view
-    self.mainBackgroundView.layer.cornerRadius=cornerRadius;
+    self.mainBackgroundView.layer.cornerRadius=5.0;
     self.mainBackgroundView.layer.masksToBounds=YES;
-    //Make dots below title label
-    CAShapeLayer *shapelayer=[CAShapeLayer layer];
-    UIBezierPath *path=[UIBezierPath bezierPath];
-    //Draw a line
-    [path moveToPoint:CGPointMake(0.0,_parcelTitle.frame.size.height)]; //Add yourStartPoint here
-    [path addLineToPoint:CGPointMake(self.view.frame.size.width-20, _parcelTitle.frame.size.height)];//Add yourEndPoint here
-    UIColor *fill=[UIColor colorWithRed:72.0/255.0 green:73.0/255.0 blue:73.0/255.0 alpha:1.0];
-    shapelayer.strokeStart=0.0;
-    shapelayer.strokeColor=fill.CGColor;
-    shapelayer.lineWidth=1.0f;
-    shapelayer.lineJoin=kCALineJoinRound;
-    shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
-    shapelayer.path=path.CGPath;
-    [_parcelTitle.layer addSublayer:shapelayer];
-    
     [self removeAutolayout];//Remove autolayout
+    [self.shadowBackView addShadowWithCornerRadius:self.shadowBackView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];  //Add corner radius and shadow
     [self changeViewFrame];//Change frame according to forwarding address and comment
 }
 
@@ -81,26 +69,34 @@
  
     self.parcelDetailView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     float backgroundViewHeight=0.0;//Initialize back view size
-    float forwardAddressHeight=[UserDefaultManager getDynamicLabelHeight:parcelDetailData.parcelForwardingAddress font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-130];
-    //calculate height according to text added by admin
-    float commentHeight=[UserDefaultManager getDynamicLabelHeight:parcelDetailData.parcelComment font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-16];
+    float forwardAddressHeight=[UserDefaultManager getDynamicLabelHeight:parcelDetailData.parcelForwardingAddress font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-30)-130];
+    //Calculate height according to text added by admin
+    float commentHeight=[UserDefaultManager getDynamicLabelHeight:parcelDetailData.parcelComment font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-30)-16];
     self.forwardAddress.numberOfLines=0;
     self.adminComment.numberOfLines=0;
     if (forwardAddressHeight<21) {
-        self.forwardAddress.frame=CGRectMake(8, 216, ([UIScreen mainScreen].bounds.size.width-20)-138, 21);
+        self.forwardAddress.frame=CGRectMake(8, 208, ([UIScreen mainScreen].bounds.size.width-30)-142, 21);
     }
     else {
-        self.forwardAddress.frame=CGRectMake(8, self.forwardAddressTitle.frame.origin.y+self.forwardAddressTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-138, forwardAddressHeight);
+        self.forwardAddress.frame=CGRectMake(8, 208, ([UIScreen mainScreen].bounds.size.width-30)-142, forwardAddressHeight);
     }
     self.adminCommentTitle.frame=CGRectMake(8, self.forwardAddress.frame.origin.y+self.forwardAddress.frame.size.height+17, 230, 21);
-    self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height+8, ([UIScreen mainScreen].bounds.size.width-20)-16, commentHeight);
     
+    //If comment height is zero set admin comment height 21(by default)
+    if (commentHeight<21) {
+        self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height-2, ([UIScreen mainScreen].bounds.size.width-30)-16, 21);
+    }
+    else {
+        self.adminComment.frame=CGRectMake(8, self.adminCommentTitle.frame.origin.y+self.adminCommentTitle.frame.size.height-2, ([UIScreen mainScreen].bounds.size.width-30)-16, commentHeight);
+    }
+
     if (commentHeight<55) {
         commentHeight=58;
     }
     backgroundViewHeight=self.adminComment.frame.origin.y+commentHeight+48;
-    self.mainBackgroundView.frame=CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, backgroundViewHeight);
-    self.parcelStatusBackGroundView.frame=CGRectMake(0, self.mainBackgroundView.frame.size.height-40, self.mainBackgroundView.frame.size.width, 40);
+    self.mainBackgroundView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-30, backgroundViewHeight);
+    self.shadowBackView.frame=CGRectMake(15, 15, [UIScreen mainScreen].bounds.size.width-30, backgroundViewHeight);
+    self.parcelStatusBackGroundView.frame=CGRectMake(0, self.shadowBackView.frame.size.height-35, self.shadowBackView.frame.size.width, 35);
     self.detailScrollView.scrollEnabled=false;
     if ((backgroundViewHeight+64)>[UIScreen mainScreen].bounds.size.height) {
         self.detailScrollView.scrollEnabled=true;
@@ -113,6 +109,7 @@
     self.parcelDetailView.translatesAutoresizingMaskIntoConstraints=YES;
     self.forwardAddress.translatesAutoresizingMaskIntoConstraints=YES;
     self.mainBackgroundView.translatesAutoresizingMaskIntoConstraints=YES;
+    self.shadowBackView.translatesAutoresizingMaskIntoConstraints=YES;
     self.adminComment.translatesAutoresizingMaskIntoConstraints=YES;
     self.adminCommentTitle.translatesAutoresizingMaskIntoConstraints=YES;
     self.parcelStatusBackGroundView.translatesAutoresizingMaskIntoConstraints=YES;
@@ -122,10 +119,10 @@
     
     //Check parcel title is nil
     if ((nil==parcelDetailData.parcelTitle)||[parcelDetailData.parcelTitle isEqualToString:@""]) {
-        self.parcelTitle.text=@"NA";
+        self.parcelTitle.text=@"  No title available";
     }
     else {
-        self.parcelTitle.text=parcelDetailData.parcelTitle;
+        self.parcelTitle.text=[NSString stringWithFormat:@"  %@",parcelDetailData.parcelTitle];
     }
     //Check parcel type is nil
     if ((nil==parcelDetailData.parcelType)||[parcelDetailData.parcelType isEqualToString:@""]) {
@@ -183,17 +180,21 @@
     else {
         self.adminComment.text=parcelDetailData.parcelComment;
     }
+    //Set color according to status
     if ([parcelDetailData.parcelStatusId isEqualToString:@"0"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor:0.6];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor];
     }
     else if ([parcelDetailData.parcelStatusId isEqualToString:@"1"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants orangeBackgroundColor];
+    }
+    else if ([parcelDetailData.parcelStatusId isEqualToString:@"2"]) {
+        self.parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
     }
     else if ([parcelDetailData.parcelStatusId isEqualToString:@"3"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants redBackgroundColor:0.6];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor];
     }
     else {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor:0.6];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants grayBackgroundColor];
     }
 }
 #pragma mark - end

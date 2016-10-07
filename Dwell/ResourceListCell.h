@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *toDate;
 @property (weak, nonatomic) IBOutlet UIView *resourceStatusBackGroundView;
 @property (weak, nonatomic) IBOutlet UILabel *resourceStatus;
+@property (strong, nonatomic) IBOutlet UIView *backShadowView;
 
 - (void)displayData:(ResourceModel *)modelData frame:(CGRect)frame;
 @end

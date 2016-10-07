@@ -30,7 +30,7 @@ static int heightValue=200;
     [super viewDidLoad];
     
     filterArray=[[filterDict allKeys] mutableCopy];
-   filterArray = [[filterArray sortedArrayUsingSelector:@selector(compare:)] mutableCopy];
+   filterArray = [[filterArray sortedArrayUsingSelector:@selector(compare:)] mutableCopy];    //Sorted order
     [filterArray insertObject:@"All" atIndex:0];//Insert first element bydefult "All"
     heightValue=(60*(int)filterArray.count)+15;
     if (heightValue>[[UIScreen mainScreen] bounds].size.height-64) {

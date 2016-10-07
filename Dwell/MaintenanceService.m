@@ -29,7 +29,7 @@
 //Category service
 - (void)getCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure {
     
-    NSString *parameters = @"SELECT [RoomSpaceMaintenanceCategoryID], [Description], [Comments] FROM [RoomSpaceMaintenanceCategory]";
+    NSString *parameters = @"SELECT [RoomSpaceMaintenanceCategoryID], [Description], [Comments] FROM [RoomSpaceMaintenanceCategory] ORDER BY [Description] ASC";
     DLog(@"request dict %@",parameters);
     [super post:parameters onSuccess:success onFailure:failure];
 }
@@ -37,7 +37,7 @@
 //Subcategory service
 - (void)getSubCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure {
     
-    NSString *parameters = [NSString stringWithFormat:@"SELECT [RoomSpaceMaintenanceItemID], [RoomSpaceMaintenanceCategoryID], [Comments], [Description] FROM [RoomSpaceMaintenanceItem] WHERE [RoomSpaceMaintenanceCategoryID] = %@",[UserDefaultManager getValue:@"categoryId"] ];
+    NSString *parameters = [NSString stringWithFormat:@"SELECT [RoomSpaceMaintenanceItemID], [RoomSpaceMaintenanceCategoryID], [Comments], [Description] FROM [RoomSpaceMaintenanceItem] WHERE [RoomSpaceMaintenanceCategoryID] = %@ ORDER BY [Description] ASC",[UserDefaultManager getValue:@"categoryId"] ];
     DLog(@"request dict %@",parameters);
     [super post:parameters onSuccess:success onFailure:failure];
 }

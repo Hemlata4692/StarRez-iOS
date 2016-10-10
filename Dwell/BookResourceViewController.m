@@ -343,7 +343,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
                 [self.navigationController pushViewController:objAvailableResource animated:YES];
             }
             else {
-                alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"There is not any resource alloted yet." doneButtonText:@"OK" cancelButtonText:@""];
+                alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"There is not any resource allotted to you yet." doneButtonText:@"OK" cancelButtonText:@""];
             }
         });
     } onfailure:^(id error) {
@@ -452,15 +452,23 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         }
         else {
             self.datePickerView.datePickerMode=UIDatePickerModeTime;
+            
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
             [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm"];
+            
+            NSDateFormatter *secondDateFormat = [[NSDateFormatter alloc]init];
+            [secondDateFormat setDateFormat:@"dd-MM-yyyy"];//Check date comparision
+             NSDate *fromDateTime=[secondDateFormat dateFromString:[NSString stringWithFormat:@"%@",self.fromDateField.text]];
             //Set seconds zero in current date
             NSTimeInterval time = floor([[dateFormat dateFromString:[dateFormat stringFromDate:[NSDate date]]] timeIntervalSinceReferenceDate] / 60.0) * 60.0;
+            NSTimeInterval secondTime = floor([[secondDateFormat dateFromString:[secondDateFormat stringFromDate:[NSDate date]]] timeIntervalSinceReferenceDate] / 60.0) * 60.0;//Check date comparision
             NSDate *date;
-            DLog(@"%@,%@,%@",[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,[[self.fromTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]],[[self.fromTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0],[NSDate dateWithTimeIntervalSinceReferenceDate:time]);
             if (![self.fromTimeField.text isEqualToString:@""]&&([[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,[[self.fromTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]] compare:[NSDate dateWithTimeIntervalSinceReferenceDate:time]]!=NSOrderedAscending)) {//if([startDate compare: endDate] == NSOrderedDescending) // if start is later in time than end
                 [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm a"];
                 date = [dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,self.fromTimeField.text]];
+            }
+            else if (([fromDateTime compare:[NSDate dateWithTimeIntervalSinceReferenceDate:secondTime]]==NSOrderedDescending)) {
+                date = [secondDateFormat dateFromString:[NSString stringWithFormat:@"%@",self.fromDateField.text]];
             }
             else {
                 date = [NSDate date];
@@ -501,12 +509,21 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
             self.datePickerView.datePickerMode=UIDatePickerModeTime;
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
             [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm"];
+            
+            NSDateFormatter *secondDateFormat = [[NSDateFormatter alloc]init];
+            [secondDateFormat setDateFormat:@"dd-MM-yyyy"];//Check date comparision
+            NSDate *toDateTime=[secondDateFormat dateFromString:[NSString stringWithFormat:@"%@",self.toDateField.text]];
+            
             NSTimeInterval time = floor([[dateFormat dateFromString:[dateFormat stringFromDate:[NSDate date]]] timeIntervalSinceReferenceDate] / 60.0) * 60.0;
+            NSTimeInterval secondTime = floor([[secondDateFormat dateFromString:[secondDateFormat stringFromDate:[NSDate date]]] timeIntervalSinceReferenceDate] / 60.0) * 60.0;//Check date comparision
             NSDate *date;
             DLog(@"%@,%@,%@",[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,[[self.toTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]],[[self.toTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0],[NSDate dateWithTimeIntervalSinceReferenceDate:time]);
             if (![self.toTimeField.text isEqualToString:@""]&&([[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,[[self.toTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]] compare:[NSDate dateWithTimeIntervalSinceReferenceDate:time]]!=NSOrderedAscending)) {//if([startDate compare: endDate] == NSOrderedDescending) // if start is later in time than end
                 [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm a"];
                 date = [dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,self.toTimeField.text]];
+            }
+            else if (([toDateTime compare:[NSDate dateWithTimeIntervalSinceReferenceDate:secondTime]]==NSOrderedDescending)) {
+                date = [secondDateFormat dateFromString:[NSString stringWithFormat:@"%@",self.toDateField.text]];
             }
             else {
                 date = [NSDate date];
@@ -649,8 +666,9 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     NSDate *toDateTime=[dateFormat dateFromString:[NSString stringWithFormat:@"%@",self.toDateField.text]];
     DLog(@"%@",[NSDate dateWithTimeIntervalSinceReferenceDate:time]);
     //Get time differece between from and to date time
-    [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm"];
-    float timeDifferenceInSecond=[[self timeLeftSinceDate:[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,[[self.fromTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]] toDateTime:[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,[[self.toTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]]] floatValue];
+    [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm a"];
+//    float timeDifferenceInSecond=[[self timeLeftSinceDate:[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,[[self.fromTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]] toDateTime:[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,[[self.toTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]]] floatValue];
+    float timeDifferenceInSecond=[[self timeLeftSinceDate:[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,self.fromTimeField.text]] toDateTime:[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,self.toTimeField.text]]] floatValue];
     DLog(@"%f",timeDifferenceInSecond/3600.0);
     
     if ([self.sourceTypeField isEmpty]||[self.locationField isEmpty]||[self.fromDateField isEmpty]||[self.fromTimeField isEmpty]||[self.toTimeField isEmpty]||[self.toDateField isEmpty]) { //If fields are empty and source name field is optional

@@ -2774,7 +2774,7 @@
                                                             <action selector="search:" destination="Jr3-fB-Jg7" eventType="touchUpInside" id="rgs-mf-8QW"/>
                                                         </connections>
                                                     </button>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please Select" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HqE-eU-Gpx">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Resource Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HqE-eU-Gpx">
                                                         <rect key="frame" x="15" y="164" width="260" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="53u-66-yOH"/>

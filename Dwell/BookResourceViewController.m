@@ -343,7 +343,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
                 [self.navigationController pushViewController:objAvailableResource animated:YES];
             }
             else {
-                alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"There is not any resource allotted to you yet." doneButtonText:@"OK" cancelButtonText:@""];
+                alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"This resource cannot be allotted to you." doneButtonText:@"OK" cancelButtonText:@""];
             }
         });
     } onfailure:^(id error) {
@@ -684,7 +684,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         return false;
     }
     else if(timeDifferenceInSecond<0.0){    //If selected dateTime(fromDateTime and toDateTime) difference is less than 0 means toDateTIme is less than fromDateTime
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"From date-time cannot be greater then To date-time." doneButtonText:@"OK" cancelButtonText:@""];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"From date-time cannot be greater than To date-time." doneButtonText:@"OK" cancelButtonText:@""];
         return false;
     }
     else if(timeDifferenceInSecond==0.0){   //If selected dateTime(fromDateTime and toDateTime) difference is 0 means toDateTIme is equal to fromDateTime

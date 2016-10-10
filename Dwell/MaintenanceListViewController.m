@@ -171,7 +171,7 @@
     }
     
     float titleHeight=[UserDefaultManager getDynamicLabelHeight:[objModel title] font:[UIFont calibriNormalWithSize:20] widthValue:([UIScreen mainScreen].bounds.size.width-20)-125];
-    float forwardAddressHeight=[UserDefaultManager getDynamicLabelHeight:[[maintenanceArray objectAtIndex:indexPath.row] detail] font:[UIFont calibriNormalWithSize:19] widthValue:([UIScreen mainScreen].bounds.size.width-20)-25];
+    float forwardAddressHeight=[UserDefaultManager getDynamicLabelHeight:[objModel detail] font:[UIFont calibriNormalWithSize:19] widthValue:([UIScreen mainScreen].bounds.size.width-20)-26];
     return forwardAddressHeight+titleHeight+112.0;
 }
 

@@ -42,7 +42,7 @@
     titleBgVIew.frame = CGRectMake(titleBgVIew.frame.origin.x, titleBgVIew.frame.origin.y, width, titleLabel.frame.size.height);
     //Set dynamic height of description label.
     
-    float descriptionFieldHeight=[UserDefaultManager getDynamicLabelHeight:descriptionField.text font:[UIFont calibriNormalWithSize:19] widthValue:([UIScreen mainScreen].bounds.size.width-20)-25];
+    float descriptionFieldHeight=[UserDefaultManager getDynamicLabelHeight:descriptionField.text font:[UIFont calibriNormalWithSize:19] widthValue:([UIScreen mainScreen].bounds.size.width-20)-26];
     descriptionField.frame = CGRectMake(descriptionField.frame.origin.x, titleLabel.frame.origin.y+titleLabel.frame.size.height+20, ([UIScreen mainScreen].bounds.size.width-20)-25, descriptionFieldHeight);
     //Set corner radius to main background view
     [self.mainBackgroundView addShadowWithCornerRadius:self.mainBackgroundView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];

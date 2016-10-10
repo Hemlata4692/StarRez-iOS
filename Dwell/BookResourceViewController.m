@@ -455,7 +455,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
             
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
             [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm"];
-            
+            //Set date format to check selected From date is greater than current time
             NSDateFormatter *secondDateFormat = [[NSDateFormatter alloc]init];
             [secondDateFormat setDateFormat:@"dd-MM-yyyy"];//Check date comparision
              NSDate *fromDateTime=[secondDateFormat dateFromString:[NSString stringWithFormat:@"%@",self.fromDateField.text]];
@@ -509,7 +509,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
             self.datePickerView.datePickerMode=UIDatePickerModeTime;
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
             [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm"];
-            
+            //Set date format to check selected From date is greater than current time
             NSDateFormatter *secondDateFormat = [[NSDateFormatter alloc]init];
             [secondDateFormat setDateFormat:@"dd-MM-yyyy"];//Check date comparision
             NSDate *toDateTime=[secondDateFormat dateFromString:[NSString stringWithFormat:@"%@",self.toDateField.text]];
@@ -676,19 +676,19 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         return false;
     }
     else if ([fromDateTime compare:[NSDate dateWithTimeIntervalSinceReferenceDate:time]]==NSOrderedAscending) { //If fromDateTime field value is less than current dateTime
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"From time cannot be less than current time." doneButtonText:@"OK" cancelButtonText:@""];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"From date-time cannot be less than current date-time." doneButtonText:@"OK" cancelButtonText:@""];
         return false;
     }
     else if ([toDateTime compare:[NSDate dateWithTimeIntervalSinceReferenceDate:time]]==NSOrderedAscending) {   //If toDateTime field value is less than current dateTime
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"To time cannot be less than current time." doneButtonText:@"OK" cancelButtonText:@""];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"To date-time cannot be less than current date-time." doneButtonText:@"OK" cancelButtonText:@""];
         return false;
     }
     else if(timeDifferenceInSecond<0.0){    //If selected dateTime(fromDateTime and toDateTime) difference is less than 0 means toDateTIme is less than fromDateTime
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"From time cannot be greater then To time." doneButtonText:@"OK" cancelButtonText:@""];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"From date-time cannot be greater then To date-time." doneButtonText:@"OK" cancelButtonText:@""];
         return false;
     }
     else if(timeDifferenceInSecond==0.0){   //If selected dateTime(fromDateTime and toDateTime) difference is 0 means toDateTIme is equal to fromDateTime
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"From and To time cannot be same." doneButtonText:@"OK" cancelButtonText:@""];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"From and To date-time cannot be same." doneButtonText:@"OK" cancelButtonText:@""];
         return false;
     }
     else if((timeDifferenceInSecond/3600.0)<[[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceTypeMinHour] floatValue]){  //If selected dateTime(fromDateTime and toDateTime) difference is less than selected resource minimum hour

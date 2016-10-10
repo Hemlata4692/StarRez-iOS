@@ -51,7 +51,7 @@
 }
 
 - (BOOL)validateSpecialCharactor:(NSString *)text {
-    NSString *Regex = @"[A-Za-z0-9.?^]*";
+    NSString *Regex = @"[A-Za-z0-9.?^ ]*";
     NSPredicate *TestResult = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", Regex];
     return [TestResult evaluateWithObject:text];
 }

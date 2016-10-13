@@ -40,6 +40,13 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 @property (strong, nonatomic) IBOutlet UIToolbar *toolBarView;
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePickerView;
 @property (strong, nonatomic) IBOutlet UIPickerView *resourcePickerView;
+
+//Field titles
+@property (strong, nonatomic) IBOutlet UILabel *resourceTypeTitle;
+@property (strong, nonatomic) IBOutlet UILabel *locationTitle;
+@property (strong, nonatomic) IBOutlet UILabel *fromTitle;
+@property (strong, nonatomic) IBOutlet UILabel *toTitle;
+
 @end
 
 @implementation BookResourceViewController
@@ -99,6 +106,12 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     else {
         self.mainView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64);
     }
+    
+    //Set red star(mandatory fields)
+    self.resourceTypeTitle.attributedText=[self setAttributrdString:self.resourceTypeTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
+    self.locationTitle.attributedText=[self setAttributrdString:self.locationTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
+    self.fromTitle.attributedText=[self setAttributrdString:self.fromTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
+    self.toTitle.attributedText=[self setAttributrdString:self.toTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
     
     [self doneHandling];
 }
@@ -730,6 +743,20 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         [myDelegate showIndicator:[Constants navigationColor]];
         [self performSelector:@selector(getResourcesTypeList) withObject:nil afterDelay:.1];
     }
+}
+#pragma mark - end
+
+#pragma mark - Customize string
+- (NSMutableAttributedString *)setAttributrdString:(NSString *)string selectedString:(NSString *)selectedString selectedColor:(UIColor *)selectedColor {
+    
+    NSRange range = [string rangeOfString:selectedString];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:string];
+    [attrString beginEditing];
+    [attrString addAttribute:NSForegroundColorAttributeName
+                       value:selectedColor
+                       range:NSMakeRange(range.location, [selectedString length])];
+    [attrString endEditing];
+    return attrString;
 }
 #pragma mark - end
 /*

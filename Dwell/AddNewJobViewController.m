@@ -47,6 +47,12 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIToolbar *pickerToolBar;
 
+//Field titles
+@property (strong, nonatomic) IBOutlet UILabel *categorytitle;
+@property (strong, nonatomic) IBOutlet UILabel *itemTitle;
+@property (strong, nonatomic) IBOutlet UILabel *descriptionTitle;
+@property (strong, nonatomic) IBOutlet UILabel *causeTitle;
+
 @end
 
 @implementation AddNewJobViewController
@@ -77,6 +83,7 @@
     subcategoryPickerIndex = -1;
     _commentsTextField.text = @"";
     isPresent = @"0";
+    [self addMandatoryField];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -97,6 +104,15 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - end
+
+- (void)addMandatoryField {
+
+    //Set red star(mandatory fields)
+    self.categorytitle.attributedText=[self setAttributrdString:self.categorytitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
+    self.itemTitle.attributedText=[self setAttributrdString:self.itemTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
+    self.descriptionTitle.attributedText=[self setAttributrdString:self.descriptionTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
+    self.causeTitle.attributedText=[self setAttributrdString:self.causeTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
+}
 
 #pragma mark - Webservice
 - (void)categoryService {
@@ -477,6 +493,20 @@
     else if (customAlert.alertTagValue==6) {
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+#pragma mark - end
+
+#pragma mark - Customize string
+- (NSMutableAttributedString *)setAttributrdString:(NSString *)string selectedString:(NSString *)selectedString selectedColor:(UIColor *)selectedColor {
+    
+    NSRange range = [string rangeOfString:selectedString];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:string];
+    [attrString beginEditing];
+    [attrString addAttribute:NSForegroundColorAttributeName
+                       value:selectedColor
+                       range:NSMakeRange(range.location, [selectedString length])];
+    [attrString endEditing];
+    return attrString;
 }
 #pragma mark - end
 @end

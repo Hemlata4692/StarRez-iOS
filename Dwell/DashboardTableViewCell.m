@@ -34,21 +34,44 @@
 
 - (void)displayData:(NSMutableArray*)dashboardData selectedType:(int)selectedType {    //Here selected type is maintenance type(1) or parcel type(2)
     
+    self.firstInformationView.hidden=NO;
+    self.secondInformationView.hidden=NO;
+    self.thirdInformationView.hidden=NO;
+    self.noRecordAvailable.hidden=YES;
+    
     self.firstInformationStatusLabel.textColor=[UIColor darkGrayColor];     //Set byDefault color is [UIColor darkGrayColor]
     self.secondInformationStatusLabel.textColor=[UIColor darkGrayColor];    //Set byDefault color is [UIColor darkGrayColor]
     self.thirdInformationStatusLabel.textColor=[UIColor darkGrayColor];     //Set byDefault color is [UIColor darkGrayColor]
     if (selectedType==1) {
         self.titleLabel.text=@"Maintenance";
         self.titleIcon.image=[UIImage imageNamed:@"maintenanceUnselected"];
-        for (int i=0; i<dashboardData.count; i++) {
-            [self setMentenenceInformation:[dashboardData objectAtIndex:i] index:i];
+        if (dashboardData.count==0) {
+            self.noRecordAvailable.hidden=NO;
+            self.noRecordAvailable.text=@"No job available.";
+            self.firstInformationView.hidden=YES;
+            self.secondInformationView.hidden=YES;
+            self.thirdInformationView.hidden=YES;
+        }
+        else {
+            for (int i=0; i<dashboardData.count; i++) {
+                [self setMentenenceInformation:[dashboardData objectAtIndex:i] index:i];
+            }
         }
     }
     else {
         self.titleLabel.text=@"Parcel";
         self.titleIcon.image=[UIImage imageNamed:@"parcelUnselected"];
-        for (int i=0; i<dashboardData.count; i++) {
-            [self setParcelInformation:[dashboardData objectAtIndex:i] index:i];
+        if (dashboardData.count==0) {
+            self.noRecordAvailable.hidden=NO;
+            self.noRecordAvailable.text=@"No parcel available.";
+            self.firstInformationView.hidden=YES;
+            self.secondInformationView.hidden=YES;
+            self.thirdInformationView.hidden=YES;
+        }
+        else {
+            for (int i=0; i<dashboardData.count; i++) {
+                [self setParcelInformation:[dashboardData objectAtIndex:i] index:i];
+            }
         }
     }
 }

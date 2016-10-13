@@ -77,6 +77,7 @@
 		B7D06C701D8984BD00A5FA94 /* NullValueChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D06C6F1D8984BD00A5FA94 /* NullValueChecker.m */; };
 		B7D0B7FD1D893052008BC202 /* CustomAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D0B7FC1D893052008BC202 /* CustomAlert.m */; };
 		B7D0B8031D893087008BC202 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D0B8021D893087008BC202 /* CustomAlertView.m */; };
+		B7D9C3021DAFCAEE0073B4CF /* ImagePopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D9C3011DAFCAEE0073B4CF /* ImagePopUpViewController.m */; };
 		B7F7161F1D8A9C57006C8178 /* Internet.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F7161C1D8A9C57006C8178 /* Internet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B7F716201D8A9C57006C8178 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F7161E1D8A9C57006C8178 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
@@ -219,6 +220,8 @@
 		B7D0B7FC1D893052008BC202 /* CustomAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlert.m; sourceTree = "<group>"; };
 		B7D0B8011D893087008BC202 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
 		B7D0B8021D893087008BC202 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
+		B7D9C3001DAFCAEE0073B4CF /* ImagePopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePopUpViewController.h; sourceTree = "<group>"; };
+		B7D9C3011DAFCAEE0073B4CF /* ImagePopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePopUpViewController.m; sourceTree = "<group>"; };
 		B7F7161B1D8A9C57006C8178 /* Internet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Internet.h; sourceTree = "<group>"; };
 		B7F7161C1D8A9C57006C8178 /* Internet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Internet.m; sourceTree = "<group>"; };
 		B7F7161D1D8A9C57006C8178 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -284,6 +287,7 @@
 		95E74D001D91078300C5CA8B /* maintenanceModule */ = {
 			isa = PBXGroup;
 			children = (
+				B7D9C2FF1DAFCAC30073B4CF /* ImagePopUpView */,
 				95D27D281D994D1B00EBA799 /* NewJob */,
 				951EC2FC1D9299EE006C98F8 /* MaintenanceDetailView */,
 				95E74D011D9107CA00C5CA8B /* MaintenanceListView */,
@@ -884,6 +888,15 @@
 			name = CustomAlert;
 			sourceTree = "<group>";
 		};
+		B7D9C2FF1DAFCAC30073B4CF /* ImagePopUpView */ = {
+			isa = PBXGroup;
+			children = (
+				B7D9C3001DAFCAEE0073B4CF /* ImagePopUpViewController.h */,
+				B7D9C3011DAFCAEE0073B4CF /* ImagePopUpViewController.m */,
+			);
+			name = ImagePopUpView;
+			sourceTree = "<group>";
+		};
 		B7F7161A1D8A9C50006C8178 /* InternetFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -986,6 +999,7 @@
 				B75B2C791D88033A007EEE42 /* AppDelegate.m in Sources */,
 				B7465A9F1D95111C008B315A /* BookResourceViewController.m in Sources */,
 				B7CA3C801D8AC357006CD1FD /* ParcelModel.m in Sources */,
+				B7D9C3021DAFCAEE0073B4CF /* ImagePopUpViewController.m in Sources */,
 				B758D6EC1D9E432400945EE8 /* MKAnnotationView+WebCache.m in Sources */,
 				B7465AAC1D951183008B315A /* ResourceListViewController.m in Sources */,
 				B7C7A3751D8A63B400D7DF06 /* SideMenuViewController.m in Sources */,

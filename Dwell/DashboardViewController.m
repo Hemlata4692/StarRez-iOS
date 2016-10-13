@@ -47,6 +47,45 @@
     [self removeAutolayout];
     [self viewCustomization];
     
+    //Set testing purpose data
+//    dashboardDictData=[NSMutableDictionary new];
+//    dashboardDictKeys=[NSMutableArray new];
+//    NSMutableArray *ma=[NSMutableArray new];
+//    NSMutableArray *pa=[NSMutableArray new];
+//    MaintenanceModel *t=[MaintenanceModel new];
+//    t.title=@"sdf";
+//    t.reportedDate=@"13 Oct, 16";
+//    [ma addObject:t];
+//    
+//    t=[MaintenanceModel new];
+//    t.title=@"sdf";
+//    t.reportedDate=@"13 Oct, 16";
+//    [ma addObject:t];
+//    
+//    t=[MaintenanceModel new];
+//    t.title=@"sdf";
+//    t.reportedDate=@"13 Oct, 16";
+//    [ma addObject:t];
+//    
+//    ParcelModel *p=[ParcelModel new];
+//    p.parcelTitle=@"asdfdsf";
+//    [pa addObject:p];
+//    
+//    p=[ParcelModel new];
+//    p.parcelTitle=@"asdfdsf";
+//    [pa addObject:p];
+//
+//    p=[ParcelModel new];
+//    p.parcelTitle=@"asdfdsf";
+//    [pa addObject:p];
+//
+//    [dashboardDictData setValue:[ma mutableCopy] forKey:@"Maintenance"];
+//    [dashboardDictKeys addObject:@"Maintenance"];
+//    [dashboardDictKeys addObject:@"Parcel"];
+//    [dashboardDictData setValue:[pa mutableCopy] forKey:@"Parcel"];
+    //end
+    
+    [self.dashboardTableView reloadData];
      [myDelegate showIndicator:[Constants navigationColor]];
     [self performSelector:@selector(getDashboardlist) withObject:nil afterDelay:.1];
 }
@@ -107,23 +146,33 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (dashboardDictKeys.count==2) {   //If maintenance and parcel both items exist
+//    if (dashboardDictKeys.count==2) {   //If maintenance and parcel both items exist
         if (indexPath.row==0) {
-            return 60.0+([[dashboardDictData objectForKey:@"Maintenance"] count]*60.0);
+            if ([[dashboardDictData objectForKey:@"Maintenance"] count]==0) {
+                return 120.0;
+            }
+            else {
+                return 60.0+([[dashboardDictData objectForKey:@"Maintenance"] count]*60.0);
+            }
         }
         else {
-            return 60.0+([[dashboardDictData objectForKey:@"Parcel"] count]*60.0);
+            if ([[dashboardDictData objectForKey:@"Parcel"] count]==0) {
+                return 120.0;
+            }
+            else {
+                return 60.0+([[dashboardDictData objectForKey:@"Parcel"] count]*60.0);
+            }
         }
-    }
-    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Maintenance"]) {     //If maintenance items exist
-        return 60.0+([[dashboardDictData objectForKey:@"Maintenance"] count]*60.0);
-    }
-    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Parcel"]) {      //If parcel items exist
-        return 60.0+([[dashboardDictData objectForKey:@"Parcel"] count]*60.0);
-    }
-    else {
-        return 0.0;
-    }
+//    }
+//    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Maintenance"]) {     //If maintenance items exist
+//        return 60.0+([[dashboardDictData objectForKey:@"Maintenance"] count]*60.0);
+//    }
+//    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Parcel"]) {      //If parcel items exist
+//        return 60.0+([[dashboardDictData objectForKey:@"Parcel"] count]*60.0);
+//    }
+//    else {
+//        return 0.0;
+//    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -134,26 +183,26 @@
     if (cell==nil) {
         cell = [[DashboardTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-    if (dashboardDictKeys.count==2) {
+//    if (dashboardDictKeys.count==2) {
         if (indexPath.row==0) {
             [cell displayData:[dashboardDictData objectForKey:@"Maintenance"] selectedType:1];
         }
         else {
             [cell displayData:[dashboardDictData objectForKey:@"Parcel"] selectedType:2];
         }
-    }
-    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Maintenance"]) {
-        [cell displayData:[dashboardDictData objectForKey:@"Maintenance"] selectedType:1];
-    }
-    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Parcel"]) {
-        [cell displayData:[dashboardDictData objectForKey:@"Parcel"] selectedType:2];
-    }
+//    }
+//    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Maintenance"]) {
+//        [cell displayData:[dashboardDictData objectForKey:@"Maintenance"] selectedType:1];
+//    }
+//    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Parcel"]) {
+//        [cell displayData:[dashboardDictData objectForKey:@"Parcel"] selectedType:2];
+//    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (dashboardDictKeys.count==2) {   //If maintenance and parcel both items exist
+//    if (dashboardDictKeys.count==2) {   //If maintenance and parcel both items exist
         if (indexPath.row==0) {
             UIViewController *objMaintenanceView=[self.storyboard instantiateViewControllerWithIdentifier:@"MaintenanceListViewController"];
             [self.navigationController pushViewController:objMaintenanceView animated:NO];
@@ -162,15 +211,15 @@
             UIViewController *objParcelView=[self.storyboard instantiateViewControllerWithIdentifier:@"ParcelListViewController"];
             [self.navigationController pushViewController:objParcelView animated:NO];
         }
-    }
-    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Maintenance"]) {     //If maintenance items exist
-        UIViewController *objMaintenanceView=[self.storyboard instantiateViewControllerWithIdentifier:@"MaintenanceListViewController"];
-        [self.navigationController pushViewController:objMaintenanceView animated:NO];
-    }
-    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Parcel"]) {      //If parcel items exist
-        UIViewController *objParcelView=[self.storyboard instantiateViewControllerWithIdentifier:@"ParcelListViewController"];
-        [self.navigationController pushViewController:objParcelView animated:NO];
-    }
+//    }
+//    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Maintenance"]) {     //If maintenance items exist
+//        UIViewController *objMaintenanceView=[self.storyboard instantiateViewControllerWithIdentifier:@"MaintenanceListViewController"];
+//        [self.navigationController pushViewController:objMaintenanceView animated:NO];
+//    }
+//    else if([[dashboardDictKeys objectAtIndex:indexPath.row] isEqualToString:@"Parcel"]) {      //If parcel items exist
+//        UIViewController *objParcelView=[self.storyboard instantiateViewControllerWithIdentifier:@"ParcelListViewController"];
+//        [self.navigationController pushViewController:objParcelView animated:NO];
+//    }
 }
 #pragma mark - end
 
@@ -304,6 +353,8 @@
                 
                 if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
                     DLog(@"No maintenance record found.");
+                    [dashboardDictData setValue:[NSMutableArray new] forKey:@"Maintenance"];
+                    [dashboardDictKeys addObject:@"Maintenance"];
                     [self performSelector:@selector(callParcelList) withObject:nil afterDelay:0.0];
                 }
                 else {
@@ -347,13 +398,11 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [myDelegate stopIndicator];
             if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
+                
+                [dashboardDictKeys addObject:@"Parcel"];
+                [dashboardDictData setValue:[NSMutableArray new] forKey:@"Parcel"];
                 DLog(@"No record found.");
-                if (dashboardDictKeys.count==0) {
-                    self.noRecordFoundLabel.hidden=NO;
-                }
-                else {
-                    [self.dashboardTableView reloadData];
-                }
+                [self.dashboardTableView reloadData];
             }
             else {
                 [dashboardDictData removeAllObjects];

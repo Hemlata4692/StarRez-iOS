@@ -11,6 +11,10 @@
 @interface DashboardTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *cellContainerView;
 @property (strong, nonatomic) IBOutlet UIView *cellShadowBackView;
+@property (strong, nonatomic) IBOutlet UIView *firstInformationView;
+@property (strong, nonatomic) IBOutlet UIView *secondInformationView;
+@property (strong, nonatomic) IBOutlet UIView *thirdInformationView;
+@property (strong, nonatomic) IBOutlet UILabel *noRecordAvailable;
 
 @property (strong, nonatomic) IBOutlet UIImageView *titleIcon;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;

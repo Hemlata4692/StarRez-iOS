@@ -10,6 +10,7 @@
 #import "MaintenanceModel.h"
 #import "CustomAlertView.h"
 #import "UIImageView+WebCache.h"
+#import "ImagePopUpViewController.h"
 
 @interface MaintenanceDetailViewController ()<CustomAlertDelegate> {
     
@@ -366,6 +367,13 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     DLog(@"%d",(int)indexPath.row);
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ImagePopUpViewController *objImagePopUp =[storyboard instantiateViewControllerWithIdentifier:@"ImagePopUpViewController"];
+    objImagePopUp.currentSelectedImage=(int)indexPath.row;
+    objImagePopUp.imageArray=[maintenanceImageArray mutableCopy];
+    objImagePopUp.view.backgroundColor = [UIColor colorWithWhite:0 alpha:1.0f];
+    [objImagePopUp setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+    [self presentViewController:objImagePopUp animated: YES completion:nil];
 }
 #pragma mark - end
 
@@ -406,7 +414,7 @@
         [mainatenanceData cancelServiceOnSuccess:^(id userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
-               alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"This maintenance request has been closed successfully." doneButtonText:@"OK" cancelButtonText:@""];
+               alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:10 delegate:self message:@"This maintenance request has been closed successfully." doneButtonText:@"OK" cancelButtonText:@""];
                 objMainatenanceModel.status = @"Closed by student";
                 [maintenanceDetailTableView reloadData];
             });
@@ -435,6 +443,9 @@
         //Retry service call
         [myDelegate showIndicator:[Constants navigationColor]];
         [self performSelector:@selector(cancelService) withObject:nil afterDelay:.1];
+    }
+    else if(customAlert.alertTagValue==10) {
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 #pragma mark - end

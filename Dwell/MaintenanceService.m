@@ -21,10 +21,11 @@
 //Call service to cancel service
 - (void)cancelService:(void (^)(id))success onFailure:(void (^)(id))failure {
     
-    NSString *parameters = [NSString stringWithFormat:@"<RoomSpaceMaintenance><JobStatus>Closed by student</JobStatus></RoomSpaceMaintenance>"];
+    NSString *parameters = [NSString stringWithFormat:@"<RoomSpaceMaintenance><JobStatus>Closed by student</JobStatus><CompleteDate>%@</CompleteDate></RoomSpaceMaintenance>",[UserDefaultManager sytemToGMTDateTimeFormat:[NSDate date]]];
     DLog(@"request dict %@",parameters);
     [super xmlPost:[NSString stringWithFormat:@"update/RoomSpaceMaintenance/%@",[UserDefaultManager getValue:@"maintainId"]] parameters:parameters onSuccess:success onFailure:failure];
 }
+//CompleteDate
 
 //Category service
 - (void)getCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure {

@@ -16,4 +16,7 @@
 
 //Save device token
 - (void)saveDeviceToken:(LoginModel *)userData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
+
+//Logout
+- (void)logoutService:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end

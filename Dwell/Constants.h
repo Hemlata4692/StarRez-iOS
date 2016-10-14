@@ -13,11 +13,14 @@ static const float cornerRadius=15.0;
 
 + (UIColor*)dashboardColor;
 + (UIColor*)blueBackgroundColor;
-+ (UIColor*)yellowBackgroundColor:(float)alpha;
-+ (UIColor*)greenBackgroundColor:(float)alpha;
-+ (UIColor*)redBackgroundColor:(float)alpha;
++ (UIColor*)yellowBackgroundColor;
++ (UIColor*)greenBackgroundColor;
++ (UIColor*)redBackgroundColor;
 + (UIColor*)orangeBackgroundColor;
-+ (UIColor*)darkGreenBackgroundColor;
++ (UIColor*)oliveGreenBackgroundColor;
 + (UIColor*)grayBackgroundColor;
 + (UIColor*)logoutColor;
++ (UIColor*)skyBlueColor;
++ (UIColor*)cancelColor;
++ (UIColor*)navigationColor;
 @end

@@ -21,21 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[self navigationController] setNavigationBarHidden:NO animated:NO];    
-    [self setTransparentNavigtionBar];
-    [self addLeftBarButtonWithImage:[UIImage imageNamed:@"menu.png"]];
+    [[self navigationController] setNavigationBarHidden:NO animated:NO];
+    [self addLeftBarButtonWithImage:[UIImage imageNamed:@"menu.png"]];  //Set menu button in left bar button
     
    //Add pan gesture for going back to main screens by clicking on menu button.
     SWRevealViewController *revealController = [self revealViewController];
     [revealController panGestureRecognizer];
     [revealController tapGestureRecognizer];
-    revealController.panGestureRecognizer.enabled = NO;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    
-//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    revealController.panGestureRecognizer.enabled = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,8 +56,7 @@
     barButton =[[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.leftBarButtonItem = barButton;
     SWRevealViewController *revealViewController = self.revealViewController;
-    if (revealViewController)
-    {
+    if (revealViewController) {
         [button addTarget:self.revealViewController action:@selector(revealToggle:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
@@ -84,6 +76,7 @@
     [self.view insertSubview:backgroundImage atIndex:0];
 }
 
+//Check interent connectivity
 - (bool)checkInternetConnection {
     
     Internet *internet=[[Internet alloc] init];

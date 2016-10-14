@@ -32,25 +32,48 @@
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             
             NSMutableArray *dataArray = [NSMutableArray new];
-            for (int i=0; i<[[parcelData objectForKey:@"entry"] count]; i++) {
+            //If single entry then resourceData is dictionary type
+            if ([[parcelData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
                 [dateFormatter setDateFormat:@"yyyy-MM-dd"];
                 [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
                 __block ParcelModel *tempModel=[ParcelModel new];
-                tempModel.parcelTitle=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
-                tempModel.parcelType=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.parcel_type_val"];
-                NSDate *reciptDate = [dateFormatter dateFromString:[[[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ReceiptDate"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-                 NSDate *issuedDate = [dateFormatter dateFromString:[[[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.IssueDate"] componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                tempModel.parcelTitle=[parcelData valueForKeyPath:@"entry.content.Record.Description"];
+                tempModel.parcelType=[parcelData valueForKeyPath:@"entry.content.Record.parcel_type_val"];
+                NSDate *reciptDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[parcelData valueForKeyPath:@"entry.content.Record.ReceiptDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];    //ReceiptDate convert GMT+1 to system date
+                NSDate *issuedDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[parcelData valueForKeyPath:@"entry.content.Record.IssueDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //IssueDate convert GMT+1 to system date
                 [dateFormatter setDateFormat:@"dd MMM, yy"];
                 tempModel.parcelReceiptDate=[dateFormatter stringFromDate:reciptDate];
-                tempModel.parcelShippingType=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.shipping_type_val"];
+                tempModel.parcelShippingType=[parcelData valueForKeyPath:@"entry.content.Record.shipping_type_val"];
                 tempModel.parcelIssueDate=[dateFormatter stringFromDate:issuedDate];
-                tempModel.parcelStatus=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status_desc"];
-                tempModel.parcelStatusId=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ParcelStatusEnum"];
-                tempModel.parcelForwardingAddress=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.address_val"];
-                tempModel.parcelTrackingNo=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.TrackingNumber"];
-                tempModel.parcelComment=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Comments"];
-                 tempModel.parcelID=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.EntryParcelID"];
+                tempModel.parcelStatus=[parcelData valueForKeyPath:@"entry.content.Record.status_desc"];
+                tempModel.parcelStatusId=[parcelData valueForKeyPath:@"entry.content.Record.ParcelStatusEnum"];
+                tempModel.parcelForwardingAddress=[parcelData valueForKeyPath:@"entry.content.Record.address_val"];
+                tempModel.parcelTrackingNo=[parcelData valueForKeyPath:@"entry.content.Record.TrackingNumber"];
+                tempModel.parcelComment=[parcelData valueForKeyPath:@"entry.content.Record.Comments"];
+                tempModel.parcelID=[parcelData valueForKeyPath:@"entry.content.Record.EntryParcelID"];
                 [dataArray addObject:tempModel];
+            }
+            else {  //If multiple entry then resourceData is array type
+                for (int i=0; i<[[parcelData objectForKey:@"entry"] count]; i++) {
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+                    __block ParcelModel *tempModel=[ParcelModel new];
+                    tempModel.parcelTitle=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
+                    tempModel.parcelType=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.parcel_type_val"];
+                    NSDate *reciptDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ReceiptDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];    //ReciptDate convert GMT+1 to system date
+                    NSDate *issuedDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.IssueDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //IssuedDate convert GMT+1 to system date
+                    [dateFormatter setDateFormat:@"dd MMM, yy"];
+                    tempModel.parcelReceiptDate=[dateFormatter stringFromDate:reciptDate];
+                    tempModel.parcelShippingType=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.shipping_type_val"];
+                    tempModel.parcelIssueDate=[dateFormatter stringFromDate:issuedDate];
+                    tempModel.parcelStatus=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status_desc"];
+                    tempModel.parcelStatusId=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ParcelStatusEnum"];
+                    tempModel.parcelForwardingAddress=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.address_val"];
+                    tempModel.parcelTrackingNo=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.TrackingNumber"];
+                    tempModel.parcelComment=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Comments"];
+                    tempModel.parcelID=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.EntryParcelID"];
+                    [dataArray addObject:tempModel];
+                }
             }
             success(dataArray);
         }

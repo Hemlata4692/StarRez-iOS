@@ -8,12 +8,10 @@
         <mutableArray key="calibri_Bold.ttf">
             <string>Calibri-Bold</string>
             <string>Calibri-Bold</string>
+            <string>Calibri-Bold</string>
         </mutableArray>
         <mutableArray key="calibri_Normal.ttf">
             <string>Calibri</string>
-        </mutableArray>
-        <mutableArray key="handsean.ttf">
-            <string>HandOfSean</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -42,7 +40,7 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trash Bin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9d-vr-dlx">
                                     <rect key="frame" x="8" y="8" width="284" height="32"/>
-                                    <fontDescription key="fontDescription" name="HandOfSean" family="Hand Of Sean" pointSize="17"/>
+                                    <fontDescription key="fontDescription" name="Calibri-Bold" family="Calibri" pointSize="19"/>
                                     <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>

@@ -17,6 +17,7 @@
     _delegate=delegate;
     customAlertObject=[[CustomAlertView alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height) title:titleText message:messageText doneButtonText:doneButtonText cancelButtonText:cancelButtonText];
     customAlertObject.tag=tagValue;
+    customAlertObject.alertTagValue=tagValue;
     customAlertObject.mainView.backgroundColor=[UIColor clearColor];
     [customAlertObject.cancelButton addTarget:self action:@selector(cancelAction:) forControlEvents:UIControlEventTouchUpInside];
     [customAlertObject.doneButton addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];

@@ -8,11 +8,12 @@
 
 #import "GlobalBackViewController.h"
 #import "UIImage+deviceSpecificMedia.h"
+#import "Internet.h"
+
 @interface GlobalBackViewController () {
     
  UIBarButtonItem *barButton,*barButton1;
 }
-
 @end
 
 @implementation GlobalBackViewController
@@ -61,6 +62,18 @@
     backgroundImage.contentMode = UIViewContentModeScaleAspectFit;
     backgroundImage.frame = self.view.frame;
     [self.view insertSubview:backgroundImage atIndex:0];
+}
+
+//Check internet connectivity
+- (bool)checkInternetConnection {
+    
+    Internet *internet=[[Internet alloc] init];
+    if (![internet start]) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 /*
 #pragma mark - Navigation

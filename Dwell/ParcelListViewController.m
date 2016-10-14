@@ -12,7 +12,7 @@
 #import "ParcelModel.h"
 #import "CustomFilterViewController.h"
 
-@interface ParcelListViewController ()<CustomFilterDelegate> {
+@interface ParcelListViewController ()<CustomFilterDelegate,CustomAlertDelegate> {
 
     CustomAlert *alertView;
     NSMutableArray *parcelDataArray;
@@ -32,11 +32,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Parcel List";
+    //Set index to selected show in menu
+    [UserDefaultManager setValue:[NSNumber numberWithInteger:2] key:@"indexpath"];
+    self.navigationItem.title=@"Parcel List";
     self.noRecordLabel.hidden=YES;
     isSearch=false;
-    //Add background image
-    [super addBackgroungImage:@"Parcel"];
     parcelDataArray=[NSMutableArray new];
     parcelSearchDataArray=[NSMutableArray new];
     parcelStatusDict=[NSMutableDictionary new];
@@ -66,8 +66,8 @@
 //Filter button action
 - (void)filterButtonAction:(id)sender {
     
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    CustomFilterViewController *filterViewObj =[storyboard instantiateViewControllerWithIdentifier:@"CustomFilterViewController"];
+    UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CustomFilterViewController *filterViewObj=[storyboard instantiateViewControllerWithIdentifier:@"CustomFilterViewController"];
     filterViewObj.delegate=self;
     if (isSearch) {
         filterViewObj.isAllSelected=false;
@@ -111,12 +111,16 @@
                 if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
                     DLog(@"No record found.");
                     self.noRecordLabel.hidden=NO;
+                    self.noRecordLabel.text = @"No parcel available.";
                 }
                 else {
                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
                 }
             });
         }];
+    }
+    else {
+        [myDelegate stopIndicator];
     }
 }
 #pragma mark - end
@@ -178,6 +182,13 @@
         parcelSearchDataArray =[[parcelDataArray filteredArrayUsingPredicate:orPredicate] mutableCopy];
     }
     [self.parcelListTableview reloadData];
+}
+#pragma mark - end
+
+#pragma mark - Custom alert delegates
+- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
+    
+    [alertView dismissAlertView];
 }
 #pragma mark - end
 /*

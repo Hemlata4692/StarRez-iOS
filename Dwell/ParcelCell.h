@@ -11,6 +11,7 @@
 @interface ParcelCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIView *mainBackgroundView;
+@property (strong, nonatomic) IBOutlet UIView *shadowBackView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelTitle;
 @property (weak, nonatomic) IBOutlet UIView *separatorView;
 @property (weak, nonatomic) IBOutlet UILabel *parcelTypeTitle;

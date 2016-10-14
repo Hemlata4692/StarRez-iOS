@@ -111,6 +111,7 @@
                 if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
                     DLog(@"No record found.");
                     self.noRecordLabel.hidden=NO;
+                    self.noRecordLabel.text = @"No parcel available.";
                 }
                 else {
                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];

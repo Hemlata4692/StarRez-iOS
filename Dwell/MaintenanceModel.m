@@ -57,7 +57,10 @@
             tempModel.cause=[maintenanceData valueForKeyPath:@"entry.content.Record.Cause"];
             tempModel.commetns=[maintenanceData valueForKeyPath:@"entry.content.Record.comments"];
             tempModel.maintenanceId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceID"];
-            if (!tempModel.status) {
+            if (!tempModel.status && tempModel.completedDate) {
+                tempModel.status=@"Closed";
+            }
+            else if (!tempModel.status) {
                 tempModel.status=@"Job Submitted";
             }
             [dataArray addObject:tempModel];
@@ -84,7 +87,10 @@
                 tempModel.cause=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Cause"];
                 tempModel.commetns=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.comments"];
                 tempModel.maintenanceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceID"];
-                if (!tempModel.status) {
+                if (!tempModel.status && tempModel.completedDate) {
+                    tempModel.status=@"Closed";
+                }
+                else if (!tempModel.status) {
                     tempModel.status=@"Job Submitted";
                 }
                 [dataArray addObject:tempModel];

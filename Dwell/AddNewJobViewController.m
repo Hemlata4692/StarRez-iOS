@@ -111,7 +111,7 @@
     self.categorytitle.attributedText=[self setAttributrdString:self.categorytitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
     self.itemTitle.attributedText=[self setAttributrdString:self.itemTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
     self.descriptionTitle.attributedText=[self setAttributrdString:self.descriptionTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
-    self.causeTitle.attributedText=[self setAttributrdString:self.causeTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
+//    self.causeTitle.attributedText=[self setAttributrdString:self.causeTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
 }
 
 #pragma mark - Webservice
@@ -286,7 +286,7 @@
 - (BOOL)performValidationsForAddNewJob {
     
     //Apply validations for mandatory fields. Comments and tick mark are not mandatory.
-    if ([self.categoryTextField isEmpty] || [self.itemTextField isEmpty]|| [self.descriptionTextField isEmpty]|| [self.causeTextField isEmpty]) {
+    if ([self.categoryTextField isEmpty] || [self.itemTextField isEmpty]|| [self.descriptionTextField isEmpty]) {
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please fill in all the required fields." doneButtonText:@"OK" cancelButtonText:@""];
         return NO;
     }

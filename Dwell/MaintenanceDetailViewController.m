@@ -225,7 +225,7 @@
             maskLayer.path = maskPath.CGPath;
             
             closeLabel.layer.mask = maskLayer;
-            if ([objMainatenanceModel.status isEqualToString:@"Closed by student"]||[objMainatenanceModel.status isEqualToString:@"Job Completed"]) {
+            if ([objMainatenanceModel.status isEqualToString:@"Closed by student"]||[objMainatenanceModel.status isEqualToString:@"Job Completed"]||objMainatenanceModel.completedDate!=nil ) {
                 
                 cell.alpha = 0.7;
                 closeLabel.alpha = 0.7;
@@ -311,7 +311,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row==6 && !([objMainatenanceModel.status isEqualToString:@"Closed by student"])&&![objMainatenanceModel.status isEqualToString:@"Job Completed"]) {
+    if (indexPath.row==6 && !([objMainatenanceModel.status isEqualToString:@"Closed by student"])&&![objMainatenanceModel.status isEqualToString:@"Job Completed"] && objMainatenanceModel.completedDate==nil) {
         
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:3 delegate:self message:@"Are you sure to close this request?" doneButtonText:@"Yes" cancelButtonText:@"No"];
     }

@@ -87,7 +87,7 @@
     
     [self.dashboardTableView reloadData];
      [myDelegate showIndicator:[Constants navigationColor]];
-    [self performSelector:@selector(getDashboardlist) withObject:nil afterDelay:.1];
+    [self performSelector:@selector(checkRoomSpaceId) withObject:nil afterDelay:.1];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -322,11 +322,44 @@
 #pragma mark - end
 
 #pragma mark - Webservice
+//Check room space id is exist
+- (void)checkRoomSpaceId {
+
+    dashboardDictData=[NSMutableDictionary new];
+    dashboardDictKeys=[NSMutableArray new];
+    if ([super checkInternetConnection]) {
+        MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
+        [mainatenanceData checkRoomSpaceOnSuccess:^(id userData) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self performSelector:@selector(getDashboardlist) withObject:nil afterDelay:0.0];
+            });
+        } onfailure:^(id error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
+                    DLog(@"No maintenance record found.");
+                    [dashboardDictData setValue:[NSMutableArray new] forKey:@"Maintenance"];
+                    [dashboardDictKeys addObject:@"Maintenance"];
+                    [self performSelector:@selector(callParcelList) withObject:nil afterDelay:0.0];
+                }
+                else {
+                    [myDelegate stopIndicator];
+                    [dashboardDictData removeAllObjects];
+                    [dashboardDictKeys removeAllObjects];
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                }
+            });
+        }];
+    }
+    else {
+        [myDelegate stopIndicator];
+    }
+}
+
 //Get maintenance list
 - (void)getDashboardlist {
     
-    dashboardDictData=[NSMutableDictionary new];
-    dashboardDictKeys=[NSMutableArray new];
     if ([super checkInternetConnection]) {
         MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
         [mainatenanceData getMaintenanceListOnSuccess:^(id userData) {

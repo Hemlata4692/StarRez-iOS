@@ -72,6 +72,26 @@
     }] ;
 }
 
+#pragma mark - Check provided room space id is exist
+- (void)checkRoomSpaceId:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure {
+    
+    MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
+    [mainatenanceService getRoomSpaceId:^(id response) {
+        //Parse data from server response and store in datamodel
+        DLog(@"%@",[response valueForKeyPath:@"entry.content.Record.RoomSpaceID"]);
+        if (NULL!=[response objectForKey:@"entry"]&&[[response objectForKey:@"entry"] count]!=0) {
+            success(response);
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"0" forKey:@"success"];
+            failure(responseDict);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
+
 #pragma mark - Select maintenance id services
 - (void)getMaintenanceIdList:(NSString *)selectedId onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure {
     

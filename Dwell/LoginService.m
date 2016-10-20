@@ -51,7 +51,7 @@
 #pragma mark - Login user
 - (void)loginUser:(LoginModel *)userLogin onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
-    NSString *parameters = [NSString stringWithFormat:@"SELECT en.[entryid], en.[PinNumber], ed.[Email], en.[NameLast], en.[NameFirst], en.[NameTitle], bk.[RoomSpaceID] FROM [Entry] AS en LEFT JOIN [EntryAddress] AS ed ON ed.[entryid] = en.[entryid] LEFT JOIN [Booking] as bk ON bk.[entryid] = en.[entryid] WHERE ed.[Email] ='%@' AND en.[PinNumber] = '%@'",userLogin.userEmailId,userLogin.password];
+    NSString *parameters = [NSString stringWithFormat:@"SELECT en.[entryid], en.[PinNumber], ed.[Email], en.[NameLast], en.[NameFirst], en.[NameTitle], bk.[RoomSpaceID] FROM [Entry] AS en LEFT JOIN [EntryAddress] AS ed ON ed.[entryid] = en.[entryid] LEFT JOIN [Booking] as bk ON bk.[entryid] = en.[entryid] WHERE ed.[Email] ='%@' AND en.[PinNumber] = '%@' AND bk.EntryStatusEnum = '5'",userLogin.userEmailId,userLogin.password];
     DLog(@"request dict %@",parameters);
     [super post:parameters onSuccess:success onFailure:failure];
 }

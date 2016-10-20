@@ -47,6 +47,7 @@
     self.noRecordLabel.hidden=YES;
     isSearch=false;
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];   //Add filter button in right navigation item
+    filterBarButton.enabled=false;
     [myDelegate showIndicator:[Constants navigationColor]];
     [self performSelector:@selector(getResourceListService) withObject:nil afterDelay:.1];
 }
@@ -91,6 +92,7 @@
 - (void)getResourceListService {
     
     self.noRecordLabel.hidden=YES;
+    filterBarButton.enabled=false;
     resourceStatusDict=[NSMutableDictionary new];
     if ([super checkInternetConnection]) {
         ResourceModel *resourceData = [ResourceModel sharedUser];
@@ -110,6 +112,7 @@
                     }
                 }
                 //end
+                filterBarButton.enabled=true;
                 [self.resourceListTableview reloadData];
             });
         } onfailure:^(id error) {
@@ -118,9 +121,11 @@
                 if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
                     DLog(@"No record found.");
                     self.noRecordLabel.hidden=NO;
+                    filterBarButton.enabled=false;
                     self.noRecordLabel.text = @"No resource available.";
                 }
                 else {
+                    filterBarButton.enabled=false;
                     alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
                 }
             });

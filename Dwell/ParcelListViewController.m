@@ -42,6 +42,7 @@
     parcelStatusDict=[NSMutableDictionary new];
     [myDelegate showIndicator:[Constants blueBackgroundColor]];
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
+    filterBarButton.enabled=false;
     [self performSelector:@selector(getParcelListService) withObject:nil afterDelay:.1];
     // Do any additional setup after loading the view.
 }
@@ -86,6 +87,7 @@
 - (void)getParcelListService {
     
     parcelStatusDict=[NSMutableDictionary new];
+    filterBarButton.enabled=false;
     if ([super checkInternetConnection]) {
         ParcelModel *parcelData = [ParcelModel sharedUser];
         [parcelData getParcelListOnSuccess:^(id userData) {
@@ -103,6 +105,7 @@
                     }
                 }
                 //end
+                filterBarButton.enabled=true;
                 [parcelListTableview reloadData];
             });
         } onfailure:^(id error) {
@@ -111,9 +114,11 @@
                 if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
                     DLog(@"No record found.");
                     self.noRecordLabel.hidden=NO;
+                    filterBarButton.enabled=false;
                     self.noRecordLabel.text = @"No parcel available.";
                 }
                 else {
+                    filterBarButton.enabled=false;
                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
                 }
             });

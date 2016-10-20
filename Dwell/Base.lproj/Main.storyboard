@@ -137,6 +137,7 @@
             <string>Calibri</string>
             <string>Calibri</string>
             <string>Calibri</string>
+            <string>Calibri</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -1713,12 +1714,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No job available." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVW-vS-K8s">
+                                <rect key="frame" x="0.0" y="304" width="320" height="21"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="2IB-nG-KeI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="17"/>
+                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="167" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="clx-00-QBc">
                                 <rect key="frame" x="8" y="68" width="304" height="492"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MaintenanceCell" rowHeight="167" id="vwG-i7-7NH" customClass="MaintenanceCell">
-                                        <rect key="frame" x="0.0" y="65" width="304" height="167"/>
+                                        <rect key="frame" x="0.0" y="1" width="304" height="167"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vwG-i7-7NH" id="FsC-Gi-tyQ">
                                             <rect key="frame" x="0.0" y="0.0" width="304" height="167"/>
@@ -1836,8 +1847,12 @@
                         <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="AyU-dD-nKR" secondAttribute="trailing" constant="1" id="0Pz-fV-vQs"/>
+                            <constraint firstAttribute="trailing" secondItem="mVW-vS-K8s" secondAttribute="trailing" id="BH8-6r-IxB"/>
                             <constraint firstItem="clx-00-QBc" firstAttribute="top" secondItem="o8F-jb-vg9" secondAttribute="bottom" constant="4" id="D1v-Zo-EuO"/>
+                            <constraint firstItem="mVW-vS-K8s" firstAttribute="leading" secondItem="JaK-xh-n7J" secondAttribute="leading" id="Htr-wg-3bJ"/>
                             <constraint firstItem="clx-00-QBc" firstAttribute="leading" secondItem="JaK-xh-n7J" secondAttribute="leadingMargin" constant="-8" id="PVq-XW-hjz"/>
+                            <constraint firstItem="mVW-vS-K8s" firstAttribute="centerX" secondItem="JaK-xh-n7J" secondAttribute="centerX" id="V7k-xm-W3E"/>
+                            <constraint firstItem="mVW-vS-K8s" firstAttribute="centerY" secondItem="JaK-xh-n7J" secondAttribute="centerY" constant="30" id="emf-Tb-7A6"/>
                             <constraint firstItem="Omr-Ao-g2I" firstAttribute="top" secondItem="clx-00-QBc" secondAttribute="bottom" constant="8" symbolic="YES" id="fk2-Q5-Z1u"/>
                             <constraint firstItem="Omr-Ao-g2I" firstAttribute="top" secondItem="AyU-dD-nKR" secondAttribute="bottom" constant="20" id="iZA-bf-aGP"/>
                             <constraint firstItem="clx-00-QBc" firstAttribute="centerX" secondItem="JaK-xh-n7J" secondAttribute="centerX" id="m1S-6q-a5D"/>
@@ -1847,6 +1862,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="maintenanceTable" destination="clx-00-QBc" id="3R4-01-Tzm"/>
+                        <outlet property="noRecordLabel" destination="mVW-vS-K8s" id="EOI-RA-vjT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgU-IQ-o5I" userLabel="First Responder" sceneMemberID="firstResponder"/>

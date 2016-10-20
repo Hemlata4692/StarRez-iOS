@@ -25,6 +25,9 @@
 //Maintenance listing
 - (void)getMaintenanceListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
 
+//Check provided room space id is exist
+- (void)checkRoomSpaceOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
+
 //Cancel service
 - (void)cancelServiceOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
 

@@ -18,6 +18,15 @@
     [super post:parameters onSuccess:success onFailure:failure];
 }
 
+//Check room space is exist
+- (void)getRoomSpaceId:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    NSString *parameters = [NSString stringWithFormat:@"SELECT [roomspaceid] from [RoomSpaceMaintenance] where [roomspaceid] = '%@",[UserDefaultManager getValue:@"RoomSpaceID"]];
+//     NSString *parameters = [NSString stringWithFormat:@"SELECT [roomspaceid] from [RoomSpaceMaintenance] where [roomspaceid] = '%@",@"757"]; //Set for testing purpose
+    DLog(@"request dict %@",parameters);
+    [super post:parameters onSuccess:success onFailure:failure];
+}
+
 //Call service to cancel service
 - (void)cancelService:(void (^)(id))success onFailure:(void (^)(id))failure {
     

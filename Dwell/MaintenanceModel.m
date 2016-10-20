@@ -102,6 +102,18 @@
     }];
 }
 
+#pragma mark - Check provided room space id is exist
+- (void)checkRoomSpaceOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure {
+    
+    [[ConnectionManager sharedManager] checkRoomSpaceId:self onSuccess:^(id maintenanceData) {
+                
+        NSMutableArray *dataArray = [NSMutableArray new];
+        success(dataArray);
+    } onFailure:^(id error) {
+        failure(error);
+    }];
+}
+
 //Set NA value is model data is nil
 - (NSString *)setNAValue:(NSString*)modelDataString {
 

@@ -164,7 +164,7 @@
     //Set text color according to status
     if([status isEqualToString:@"Job Completed"]) {
         
-        statusLabel.textColor = [Constants greenBackgroundColor];
+        statusLabel.textColor = [Constants purpleBackgroundColor];
     }
     else if ([status isEqualToString:@"Awaiting for Contractor"]||[status isEqualToString:@"Awaiting for Parts"]) {
         statusLabel.textColor = [Constants redBackgroundColor];
@@ -180,6 +180,13 @@
     }
     else if ([status isEqualToString:@"Please contact office"]) {
         statusLabel.textColor = [Constants oliveGreenBackgroundColor];
+    }
+    else if([status isEqualToString:@"Job Submitted"]) {
+        statusLabel.textColor = [Constants greenBackgroundColor];
+    }
+    else if([status isEqualToString:@"Closed"]) {
+        
+        statusLabel.textColor = [Constants darkGrayBackgroundColor];
     }
     else {
         statusLabel.textColor = [Constants grayBackgroundColor];

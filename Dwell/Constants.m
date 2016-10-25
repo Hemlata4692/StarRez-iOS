@@ -38,6 +38,14 @@
     return [UIColor colorWithRed:154.0/255 green:154.0/255.0 blue:154.0/255.0 alpha:1.0];
 }
 
++ (UIColor*)darkGrayBackgroundColor {
+    return [UIColor colorWithRed:112.0/255 green:112.0/255.0 blue:112.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)purpleBackgroundColor {
+    return [UIColor colorWithRed:141.0/255 green:112.0/255.0 blue:223.0/255.0 alpha:1.0];
+}
+
 + (UIColor*)oliveGreenBackgroundColor {
     return [UIColor colorWithRed:147.0/255 green:171.0/255.0 blue:108.0/255.0 alpha:1.0];
 }

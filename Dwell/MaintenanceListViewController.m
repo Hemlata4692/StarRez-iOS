@@ -243,7 +243,7 @@
     else {
         isSearch=true;
         parcelStatusDict=[filteredData mutableCopy];
-        NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"status contains[cd] %@",filterString];
+        NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"status ==[c] %@",filterString];
         NSArray *subPredicates = [NSArray arrayWithObjects:pred1, nil];
         NSPredicate *orPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:subPredicates];
         maintenanceSearchDataArray =[[maintenanceArray filteredArrayUsingPredicate:orPredicate] mutableCopy];

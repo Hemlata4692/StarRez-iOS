@@ -125,7 +125,7 @@
     DLog(@"%f,%f,%f",self.view.bounds.size.height,self.menuCollectionView.frame.size.height,self.menuCollectionView.bounds.size.height);
     //Set view frames
     self.menuCollectionView.frame=CGRectMake(0,(self.view.bounds.size.height-64)-(self.menuCollectionView.frame.size.height/2), self.view.bounds.size.width, self.menuCollectionView.frame.size.height);
-    self.dashboardTableView.frame=CGRectMake(0,3, self.view.bounds.size.width,(self.view.bounds.size.height-64)-(self.menuCollectionView.frame.size.height/2)-8);
+    self.dashboardTableView.frame=CGRectMake(0,0, self.view.bounds.size.width,(self.view.bounds.size.height-64)-(self.menuCollectionView.frame.size.height/2)-8);
 }
 
 - (void)viewCustomization {
@@ -139,6 +139,26 @@
 #pragma mark - end
 
 #pragma mark - Tableview methods
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 50)];
+    headerView.backgroundColor=[UIColor whiteColor];
+    // i.e. array element
+    UILabel *userNameLabel=[[UILabel alloc] initWithFrame:CGRectMake(15, 5, [[UIScreen mainScreen] bounds].size.width-30, headerView.frame.size.height-10)] ;
+    userNameLabel.text=[UserDefaultManager getValue:@"userName"];
+    userNameLabel.textAlignment=NSTextAlignmentCenter;
+    userNameLabel.textColor=[UIColor colorWithRed:118.0/255 green:44.0/255.0 blue:134.0/255.0 alpha:1.0];
+    userNameLabel.font=[UIFont calibriNormalWithSize:16];
+     userNameLabel.numberOfLines=0;
+    [headerView addSubview:userNameLabel];
+    return headerView;   // return headerLabel;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 50.0;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return dashboardDictKeys.count;

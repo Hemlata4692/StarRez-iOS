@@ -45,7 +45,17 @@
                 tempModel.parcelReceiptDate=[dateFormatter stringFromDate:reciptDate];
                 tempModel.parcelShippingType=[parcelData valueForKeyPath:@"entry.content.Record.shipping_type_val"];
                 tempModel.parcelIssueDate=[dateFormatter stringFromDate:issuedDate];
-                tempModel.parcelStatus=[parcelData valueForKeyPath:@"entry.content.Record.status_desc"];
+                
+                if ([[parcelData valueForKeyPath:@"entry.content.Record.status_desc"] isEqualToString:@"Issued"]) {
+                    tempModel.parcelStatus=@"Collected";
+                }
+                else if ([[parcelData valueForKeyPath:@"entry.content.Record.status_desc"] isEqualToString:@"Received"]) {
+                    tempModel.parcelStatus=@"New Parcel";
+                }
+                else {
+                    tempModel.parcelStatus=[parcelData valueForKeyPath:@"entry.content.Record.status_desc"];
+                }
+                
                 tempModel.parcelStatusId=[parcelData valueForKeyPath:@"entry.content.Record.ParcelStatusEnum"];
                 tempModel.parcelForwardingAddress=[parcelData valueForKeyPath:@"entry.content.Record.address_val"];
                 tempModel.parcelTrackingNo=[parcelData valueForKeyPath:@"entry.content.Record.TrackingNumber"];
@@ -66,7 +76,16 @@
                     tempModel.parcelReceiptDate=[dateFormatter stringFromDate:reciptDate];
                     tempModel.parcelShippingType=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.shipping_type_val"];
                     tempModel.parcelIssueDate=[dateFormatter stringFromDate:issuedDate];
-                    tempModel.parcelStatus=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status_desc"];
+                    
+                    if ([[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status_desc"] isEqualToString:@"Issued"]) {
+                        tempModel.parcelStatus=@"Collected";
+                    }
+                    else if ([[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status_desc"] isEqualToString:@"Received"]) {
+                        tempModel.parcelStatus=@"New Parcel";
+                    }
+                    else {
+                        tempModel.parcelStatus=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status_desc"];
+                    }
                     tempModel.parcelStatusId=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ParcelStatusEnum"];
                     tempModel.parcelForwardingAddress=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.address_val"];
                     tempModel.parcelTrackingNo=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.TrackingNumber"];

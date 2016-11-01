@@ -313,7 +313,7 @@
     
     if (indexPath.row==6 && !([objMainatenanceModel.status isEqualToString:@"Closed by student"])&&![objMainatenanceModel.status isEqualToString:@"Job Completed"] && objMainatenanceModel.completedDate==nil) {
         
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:3 delegate:self message:@"Are you sure to close this request?" doneButtonText:@"Yes" cancelButtonText:@"No"];
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:3 delegate:self message:@"Are you sure you want to cancel your job?" doneButtonText:@"Yes" cancelButtonText:@"No"];
     }
 }
 
@@ -443,6 +443,10 @@
         //Retry service call
         [myDelegate showIndicator:[Constants navigationColor]];
         [self performSelector:@selector(cancelService) withObject:nil afterDelay:.1];
+    }
+  else if ((customAlert.alertTagValue==3)&&(option==0)) {
+        //Retry service call
+       [self.navigationController popViewControllerAnimated:YES];
     }
     else if(customAlert.alertTagValue==10) {
         [self.navigationController popViewControllerAnimated:YES];

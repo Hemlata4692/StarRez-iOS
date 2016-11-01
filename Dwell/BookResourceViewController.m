@@ -55,7 +55,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Book Resource";
+    self.navigationItem.title = @"Book a Resource";
     [self removeAutolayout];  //Remove pickerView autolayouts
     [self initializeVaribles];  //initialize variables and customize objects
     [self addToolBarItems]; //Add textfield and dateTime tool bar view

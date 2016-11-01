@@ -58,7 +58,7 @@
             tempModel.commetns=[maintenanceData valueForKeyPath:@"entry.content.Record.comments"];
             tempModel.maintenanceId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceID"];
             if (!tempModel.status && tempModel.completedDate) {
-                tempModel.status=@"Closed";
+                tempModel.status=@"Cancel";
             }
             else if (!tempModel.status) {
                 tempModel.status=@"Job Submitted";
@@ -88,7 +88,7 @@
                 tempModel.commetns=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.comments"];
                 tempModel.maintenanceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceID"];
                 if (!tempModel.status && tempModel.completedDate) {
-                    tempModel.status=@"Closed";
+                    tempModel.status=@"Cancel";
                 }
                 else if (!tempModel.status) {
                     tempModel.status=@"Job Submitted";

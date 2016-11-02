@@ -148,7 +148,7 @@
     userNameLabel.text=[UserDefaultManager getValue:@"userName"];
     userNameLabel.textAlignment=NSTextAlignmentCenter;
     userNameLabel.textColor=[UIColor colorWithRed:118.0/255 green:44.0/255.0 blue:134.0/255.0 alpha:1.0];
-    userNameLabel.font=[UIFont calibriNormalWithSize:16];
+    userNameLabel.font=[UIFont calibriNormalWithSize:15];
      userNameLabel.numberOfLines=0;
     [headerView addSubview:userNameLabel];
     return headerView;   // return headerLabel;

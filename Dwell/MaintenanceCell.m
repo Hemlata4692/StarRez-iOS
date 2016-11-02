@@ -106,6 +106,12 @@
     //Set NA if status is blank
     if (modelData.status) {
         statusLabel.text = modelData.status;
+//        if ([modelData.status isEqualToString:@"Closed by student"]) {
+//           statusLabel.text = @"Cancelled by Student";
+//        }
+//        else {
+//            statusLabel.text = modelData.status;
+//        }
     }
     else {
         statusLabel.text = @"NA";

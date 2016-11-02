@@ -63,6 +63,10 @@
             else if (!tempModel.status) {
                 tempModel.status=@"Job Submitted";
             }
+           else if ([tempModel.status isEqualToString:@"Closed by student"]) {
+                tempModel.status=  @"Cancelled by Student";
+            }
+           
             [dataArray addObject:tempModel];
         }
         else {
@@ -92,6 +96,9 @@
                 }
                 else if (!tempModel.status) {
                     tempModel.status=@"Job Submitted";
+                }
+                else if ([tempModel.status isEqualToString:@"Closed by student"]) {
+                    tempModel.status= @"Cancelled by Student";
                 }
                 [dataArray addObject:tempModel];
             }

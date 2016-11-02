@@ -414,8 +414,8 @@
         [mainatenanceData cancelServiceOnSuccess:^(id userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
-               alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:10 delegate:self message:@"This maintenance request has been closed successfully." doneButtonText:@"OK" cancelButtonText:@""];
-                objMainatenanceModel.status = @"Closed by student";
+               alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:10 delegate:self message:@"This maintenance request has been cancelled successfully." doneButtonText:@"OK" cancelButtonText:@""];
+                objMainatenanceModel.status = @"Cancelled by Student";
                 [maintenanceDetailTableView reloadData];
             });
         } onfailure:^(id error) {

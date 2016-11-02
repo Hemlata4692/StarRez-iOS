@@ -228,9 +228,10 @@
         [self.scrollView setContentOffset:CGPointMake(0, textField.frame.origin.y-110) animated:YES];
     } else if (result.height == 568) {
         [self.scrollView setContentOffset:CGPointMake(0, textField.frame.origin.y-200) animated:YES];
-    } else if (result.height > 568) {
-        [self.scrollView setContentOffset:CGPointMake(0, textField.frame.origin.y-300) animated:YES];
     }
+//    else if (result.height > 568) {
+//        [self.scrollView setContentOffset:CGPointMake(0, textField.frame.origin.y+100) animated:YES];
+//    }
     self.scrollView.scrollEnabled=NO;
 }
 

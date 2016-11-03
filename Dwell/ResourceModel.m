@@ -134,14 +134,14 @@
             if ([[resourceLocationData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
                 __block ResourceModel *tempModel=[ResourceModel new];
                 tempModel.resourceLocationDescription=[resourceLocationData valueForKeyPath:@"entry.content.Record.Description"];
-                tempModel.resourceTypeLocationId=[resourceLocationData valueForKeyPath:@"entry.content.Record.RoomLocationID"];
+                tempModel.resourceTypeLocationId=[resourceLocationData valueForKeyPath:@"entry.content.Record.ResourceID"];
                 [dataArray addObject:tempModel];
             }
             else {  //If multiple entry then resourceData is array type
                 for (int i=0; i<[[resourceLocationData objectForKey:@"entry"] count]; i++) {
                     __block ResourceModel *tempModel=[ResourceModel new];
                     tempModel.resourceLocationDescription=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
-                    tempModel.resourceTypeLocationId=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomLocationID"];
+                    tempModel.resourceTypeLocationId=[[[resourceLocationData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ResourceID"];
                     [dataArray addObject:tempModel];
                 }
             }

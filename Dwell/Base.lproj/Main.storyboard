@@ -2765,17 +2765,17 @@
                                                             <outlet property="delegate" destination="Jr3-fB-Jg7" id="YJf-BW-PWd"/>
                                                         </connections>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESOURCE NAME *" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztc-E4-OTP">
-                                                        <rect key="frame" x="15" y="140" width="111" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT RESOURCE NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztc-E4-OTP">
+                                                        <rect key="frame" x="15" y="140" width="150" height="21"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="111" id="0oC-je-Wd5"/>
+                                                            <constraint firstAttribute="width" constant="150" id="0oC-je-Wd5"/>
                                                             <constraint firstAttribute="height" constant="21" id="TtA-l0-H2r"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Calibri" family="Calibri" pointSize="13"/>
                                                         <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Resource Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="byg-9X-D2O">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please Select" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="byg-9X-D2O">
                                                         <rect key="frame" x="15" y="164" width="240" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="s5J-fb-dPq"/>
@@ -2850,7 +2850,7 @@
                                                     <constraint firstItem="9DY-fj-8EQ" firstAttribute="top" secondItem="tWM-fi-CNu" secondAttribute="bottom" constant="24" id="GJt-ib-YS2"/>
                                                     <constraint firstAttribute="trailing" secondItem="9N2-fm-IbC" secondAttribute="trailing" constant="13" id="Gkk-Ih-Yps"/>
                                                     <constraint firstItem="Tng-s2-C6n" firstAttribute="leading" secondItem="jZw-Nq-Lfv" secondAttribute="trailing" constant="4" id="Hjb-Xl-vMd"/>
-                                                    <constraint firstAttribute="trailing" secondItem="ztc-E4-OTP" secondAttribute="trailing" constant="164" id="I81-OT-xJe"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ztc-E4-OTP" secondAttribute="trailing" constant="125" id="I81-OT-xJe"/>
                                                     <constraint firstAttribute="trailing" secondItem="Dkf-fV-xIt" secondAttribute="trailing" constant="15" id="IAT-z6-8fL"/>
                                                     <constraint firstItem="jZw-Nq-Lfv" firstAttribute="top" secondItem="NEh-JQ-zo9" secondAttribute="bottom" constant="3" id="J0J-xk-jvg"/>
                                                     <constraint firstItem="jGT-oZ-u1i" firstAttribute="trailing" secondItem="iDV-oB-Gn2" secondAttribute="trailing" id="J9J-EU-AkA"/>

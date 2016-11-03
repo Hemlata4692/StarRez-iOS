@@ -33,7 +33,9 @@
 #pragma mark - Get location according to selected resource type
 - (void)getLocationList:(NSString *)locationId success:(void (^)(id))success onFailure:(void (^)(id))failure {
     
-    NSString *parameters = [NSString stringWithFormat:@"SELECT [Description], [RoomLocationID] FROM [RoomLocation] WHERE [RoomLocationAreaID] = '%@' ORDER BY [Description] ASC",locationId];
+    //SELECT [ResourceId], [Description], [ResourceTypeID] FROM [Resource] " +
+   // "WHERE [ResourceTypeID] =
+    NSString *parameters = [NSString stringWithFormat:@"SELECT [ResourceId], [Description], [ResourceTypeID] FROM [Resource] WHERE [ResourceTypeID] = '%@'",locationId];
     DLog(@"request dict %@",parameters);
     
     [super post:parameters onSuccess:success onFailure:failure];
@@ -44,7 +46,12 @@
 - (void)getBookedResourcesList:(ResourceModel *)resourceModelData success:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     NSString *parameters;
-    parameters = [NSString stringWithFormat:@"SELECT [ResourceBookingID], [ResourceId] FROM [ResourceBooking] WHERE (([DateStart] >= '%@' AND [DateStart] <= '%@') OR ([DateEnd] >= '%@' AND [DateEnd] <= '%@'))",resourceModelData.resourceFromDate,resourceModelData.resourceFromDate,resourceModelData.resourceToDate,resourceModelData.resourceToDate];
+    if (((nil==resourceModelData.resourceDescription)||[resourceModelData.resourceDescription isEqualToString:@""])) {
+        parameters = [NSString stringWithFormat:@"SELECT [ResourceBookingID], [ResourceId] FROM [ResourceBooking] WHERE (([DateStart] >= '%@' AND [DateEnd] <= '%@') OR ([DateEnd] >= '%@' AND [DateStart] <= '%@'))",resourceModelData.resourceFromDate,resourceModelData.resourceToDate,resourceModelData.resourceFromDate,resourceModelData.resourceToDate];
+    }
+    else {
+        parameters = [NSString stringWithFormat:@"SELECT [ResourceBookingID], [ResourceId] FROM [ResourceBooking] WHERE (([DateStart] >= '%@' AND [DateEnd] <= '%@') OR ([DateEnd] >= '%@' AND [DateStart] <= '%@')) AND [ResourceID] ='%@'",resourceModelData.resourceFromDate,resourceModelData.resourceToDate,resourceModelData.resourceFromDate,resourceModelData.resourceToDate,resourceModelData.resourceTypeLocationId];
+    }
     DLog(@"request dict %@",parameters);
     
     [super post:parameters onSuccess:success onFailure:failure];
@@ -57,16 +64,16 @@
     NSString *parameters;
     DLog(@"%@",bookedResourceIds);
     if (((nil==resourceModelData.resourceDescription)||[resourceModelData.resourceDescription isEqualToString:@""])&&(0==bookedResourceIds.count)) {    //If resourceDescription and bookResourceIds both do not exist
-        parameters = [NSString stringWithFormat:@"SELECT rs.[ResourceId], rs.[Description], rs.[ResourceTypeID] FROM [Resource] as rs LEFT JOIN [ResourceType] as rt ON rt.[ResourceTypeID] =  rs.[ResourceTypeID] WHERE rs.[ResourceTypeID] = '%@' AND rt.[RoomLocationID] = '%@'",resourceModelData.resourceId,resourceModelData.resourceTypeLocationId];
+        parameters = [NSString stringWithFormat:@"SELECT rs.[ResourceId], rs.[Description], rs.[ResourceTypeID] FROM [Resource] as rs LEFT JOIN [ResourceType] as rt ON rt.[ResourceTypeID] =  rs.[ResourceTypeID] WHERE rs.[ResourceTypeID] = '%@'",resourceModelData.resourceId];
     }
     else if (((nil==resourceModelData.resourceDescription)||[resourceModelData.resourceDescription isEqualToString:@""])) {     //If resourceDescription does not exist but bookResourceIds exist
-        parameters = [NSString stringWithFormat:@"SELECT rs.[ResourceId], rs.[Description], rs.[ResourceTypeID] FROM [Resource] as rs LEFT JOIN [ResourceType] as rt ON rt.[ResourceTypeID] =  rs.[ResourceTypeID] WHERE rs.[ResourceTypeID] = '%@' AND rt.[RoomLocationID] = '%@' and ResourceID NOT IN %@",resourceModelData.resourceId,resourceModelData.resourceTypeLocationId,bookedResourceIds];
+        parameters = [NSString stringWithFormat:@"SELECT rs.[ResourceId], rs.[Description], rs.[ResourceTypeID] FROM [Resource] as rs LEFT JOIN [ResourceType] as rt ON rt.[ResourceTypeID] =  rs.[ResourceTypeID] WHERE rs.[ResourceTypeID] = '%@' and ResourceID NOT IN %@",resourceModelData.resourceId,bookedResourceIds];
     }
     else if (0==bookedResourceIds.count) {  //If resourceDescription exists but bookResourceIds don't exist
-        parameters = [NSString stringWithFormat:@"SELECT rs.[ResourceId], rs.[Description], rs.[ResourceTypeID] FROM [Resource] as rs LEFT JOIN [ResourceType] as rt ON rt.[ResourceTypeID] =  rs.[ResourceTypeID] WHERE rs.[ResourceTypeID] = '%@' AND rt.[RoomLocationID] = '%@' and [Description] LIKE '%%%@%%'",resourceModelData.resourceId,resourceModelData.resourceTypeLocationId,resourceModelData.resourceDescription];
+        parameters = [NSString stringWithFormat:@"SELECT rs.[ResourceId], rs.[Description], rs.[ResourceTypeID] FROM [Resource] as rs LEFT JOIN [ResourceType] as rt ON rt.[ResourceTypeID] =  rs.[ResourceTypeID] WHERE rs.[ResourceTypeID] = '%@' AND rs.[ResourceId] = '%@'",resourceModelData.resourceId,resourceModelData.resourceTypeLocationId];
     }
     else {  //If resourceDescription and bookResourceIds both exist
-        parameters = [NSString stringWithFormat:@"SELECT rs.[ResourceId], rs.[Description], rs.[ResourceTypeID] FROM [Resource] as rs LEFT JOIN [ResourceType] as rt ON rt.[ResourceTypeID] =  rs.[ResourceTypeID] WHERE rs.[ResourceTypeID] = '%@' AND rt.[RoomLocationID] = '%@' and ResourceID NOT IN %@ and [Description] LIKE '%%%@%%'",resourceModelData.resourceId,resourceModelData.resourceTypeLocationId,bookedResourceIds,resourceModelData.resourceDescription];
+        parameters = [NSString stringWithFormat:@"SELECT rs.[ResourceId], rs.[Description], rs.[ResourceTypeID] FROM [Resource] as rs LEFT JOIN [ResourceType] as rt ON rt.[ResourceTypeID] =  rs.[ResourceTypeID] WHERE rs.[ResourceTypeID] = '%@' AND rs.[ResourceId] = '%@' and ResourceID NOT IN %@",resourceModelData.resourceId,resourceModelData.resourceTypeLocationId,bookedResourceIds];
     }
     DLog(@"request dict %@",parameters);
     

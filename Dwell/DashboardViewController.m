@@ -102,13 +102,13 @@
     self.noRecordFoundLabel.hidden=YES;
     [UserDefaultManager setValue:[NSNumber numberWithInteger:0] key:@"indexpath"];
     //Menu label at down menu
-    downMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"More",@"Events",@"Information",@"Help"];
+    downMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"More",@"Events",@"Information",@"Help",@"Logout"];
     //Menu image at down menu
-    downMenuImageArray =@[@"maintenance",@"parcel",@"resources",@"more",@"events",@"information",@"help"];
+    downMenuImageArray =@[@"maintenance",@"parcel",@"resources",@"more",@"events",@"information",@"help",@"logoutDashboard"];
     //Menu label at up menu
-    upMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"Less",@"Events",@"Information",@"Help"];
+    upMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"Less",@"Events",@"Information",@"Help",@"Logout"];
     //Menu image at up menu
-    upMenuImageArray =@[@"maintenance",@"parcel",@"resources",@"downMenu",@"events",@"information",@"help"];
+    upMenuImageArray =@[@"maintenance",@"parcel",@"resources",@"downMenu",@"events",@"information",@"help",@"logoutDashboard"];
     
     menuArray=[downMenuArray copy];
     menuImageArray =[downMenuImageArray copy];
@@ -246,7 +246,7 @@
 #pragma mark - Collection view methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return 7;
+    return menuArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -309,6 +309,10 @@
             [UserDefaultManager setValue:@"Help" key:@"ScreenName"];
             UIViewController *objResourceView=[self.storyboard instantiateViewControllerWithIdentifier:@"InformationViewController"];
             [self.navigationController pushViewController:objResourceView animated:NO];
+        }
+            break;
+        case 7: {   //Clicked on logout menu
+            alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Are you sure you want to logout?" doneButtonText:@"Yes" cancelButtonText:@"No"];
         }
             break;
         default:
@@ -468,8 +472,18 @@
 #pragma mark - end
 
 #pragma mark - Custom alert delegates
-- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
-    
+- (void)customAlertDelegateAction:(CustomAlertView *)customAlert option:(int)option{
+    if (option!=0 && customAlert.tag==2) {
+        //Nil all userdefaultData and navigate to login screen
+        [UserDefaultManager setValue:nil key:@"indexpath"];
+        [UserDefaultManager setValue:nil key:@"userEmailId"];
+        [UserDefaultManager setValue:nil key:@"entryId"];
+        [myDelegate unrigisterForNotification];
+        
+        UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
+        myDelegate.window.rootViewController = navigation;
+    }
     [alertView dismissAlertView];
 }
 #pragma mark - end

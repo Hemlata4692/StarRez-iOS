@@ -41,6 +41,7 @@
 		B758D6FA1D9E432400945EE8 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B758D6E91D9E432400945EE8 /* UIImageView+WebCache.m */; };
 		B758D6FB1D9E432400945EE8 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B758D6EB1D9E432400945EE8 /* UIView+WebCacheOperation.m */; };
 		B758D6FD1D9E6AEC00945EE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B758D6FC1D9E6AEC00945EE8 /* Assets.xcassets */; };
+		B759460F1DE440AF004165FF /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B759460E1DE440AF004165FF /* UserNotifications.framework */; };
 		B75B2C761D88033A007EEE42 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C751D88033A007EEE42 /* main.m */; };
 		B75B2C791D88033A007EEE42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C781D88033A007EEE42 /* AppDelegate.m */; };
 		B75B2C7C1D88033A007EEE42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2C7B1D88033A007EEE42 /* LoginViewController.m */; };
@@ -151,6 +152,8 @@
 		B758D6EA1D9E432400945EE8 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		B758D6EB1D9E432400945EE8 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		B758D6FC1D9E6AEC00945EE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B759460C1DE4406A004165FF /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		B759460E1DE440AF004165FF /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		B75B2C711D88033A007EEE42 /* Centurion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Centurion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75B2C751D88033A007EEE42 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B75B2C771D88033A007EEE42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -222,6 +225,7 @@
 		B7D0B8021D893087008BC202 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
 		B7D9C3001DAFCAEE0073B4CF /* ImagePopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePopUpViewController.h; sourceTree = "<group>"; };
 		B7D9C3011DAFCAEE0073B4CF /* ImagePopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePopUpViewController.m; sourceTree = "<group>"; };
+		B7ED533A1DE54F5500262312 /* Centurion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Centurion.entitlements; sourceTree = "<group>"; };
 		B7F7161B1D8A9C57006C8178 /* Internet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Internet.h; sourceTree = "<group>"; };
 		B7F7161C1D8A9C57006C8178 /* Internet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Internet.m; sourceTree = "<group>"; };
 		B7F7161D1D8A9C57006C8178 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B759460F1DE440AF004165FF /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,11 +478,21 @@
 			name = SDWebImage;
 			sourceTree = "<group>";
 		};
+		B759460B1DE4406A004165FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B759460E1DE440AF004165FF /* UserNotifications.framework */,
+				B759460C1DE4406A004165FF /* UserNotificationsUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B75B2C681D88033A007EEE42 = {
 			isa = PBXGroup;
 			children = (
 				B75B2C731D88033A007EEE42 /* Dwell */,
 				B75B2C721D88033A007EEE42 /* Products */,
+				B759460B1DE4406A004165FF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -492,6 +507,7 @@
 		B75B2C731D88033A007EEE42 /* Dwell */ = {
 			isa = PBXGroup;
 			children = (
+				B7ED533A1DE54F5500262312 /* Centurion.entitlements */,
 				B75B2C8B1D8803B8007EEE42 /* AppDelegate */,
 				B7D06C5B1D897BAD00A5FA94 /* ServerCommunication */,
 				B75B2C8C1D8803C6007EEE42 /* ViewControllers */,
@@ -940,6 +956,11 @@
 					B75B2C701D88033A007EEE42 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = M8A7BYS443;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1088,6 +1109,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ranosys Technologies Pte Ltd";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = M8A7BYS443;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1138,6 +1160,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ranosys Technologies Pte Ltd";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = M8A7BYS443;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1165,6 +1188,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_ENTITLEMENTS = Dwell/Centurion.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Ranosys Technologies Pte Ltd";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = Dwell/PrefixHeader.pch;
@@ -1174,6 +1198,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.dwell;
 				PRODUCT_NAME = Centurion;
 				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
+				PROVISIONING_PROFILE_SPECIFIER = Dwell_15_09_2016;
 			};
 			name = Debug;
 		};
@@ -1182,6 +1207,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_ENTITLEMENTS = Dwell/Centurion.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Ranosys Technologies Pte Ltd";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = Dwell/PrefixHeader.pch;
@@ -1191,6 +1217,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.dwell;
 				PRODUCT_NAME = Centurion;
 				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
+				PROVISIONING_PROFILE_SPECIFIER = Dwell_15_09_2016;
 			};
 			name = Release;
 		};

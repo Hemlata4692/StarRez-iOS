@@ -63,6 +63,10 @@
             else if (!tempModel.status) {
                 tempModel.status=@"Job Submitted";
             }
+           else if ([tempModel.status isEqualToString:@"Closed by student"]) {
+                tempModel.status=  @"Cancelled by Student";
+            }
+           
             [dataArray addObject:tempModel];
         }
         else {
@@ -93,9 +97,24 @@
                 else if (!tempModel.status) {
                     tempModel.status=@"Job Submitted";
                 }
+                else if ([tempModel.status isEqualToString:@"Closed by student"]) {
+                    tempModel.status= @"Cancelled by Student";
+                }
                 [dataArray addObject:tempModel];
             }
         }
+        success(dataArray);
+    } onFailure:^(id error) {
+        failure(error);
+    }];
+}
+
+#pragma mark - Check provided room space id is exist
+- (void)checkRoomSpaceOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure {
+    
+    [[ConnectionManager sharedManager] checkRoomSpaceId:self onSuccess:^(id maintenanceData) {
+                
+        NSMutableArray *dataArray = [NSMutableArray new];
         success(dataArray);
     } onFailure:^(id error) {
         failure(error);

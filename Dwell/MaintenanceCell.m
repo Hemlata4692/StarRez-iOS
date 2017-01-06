@@ -106,6 +106,12 @@
     //Set NA if status is blank
     if (modelData.status) {
         statusLabel.text = modelData.status;
+//        if ([modelData.status isEqualToString:@"Closed by student"]) {
+//           statusLabel.text = @"Cancelled by Student";
+//        }
+//        else {
+//            statusLabel.text = modelData.status;
+//        }
     }
     else {
         statusLabel.text = @"NA";
@@ -114,7 +120,7 @@
     //Set background color according to status
     if([modelData.status isEqualToString:@"Job Completed"]) {
         
-        statusBackgroundVIew.backgroundColor = [Constants greenBackgroundColor];
+        statusBackgroundVIew.backgroundColor = [Constants purpleBackgroundColor];
     }
     else if ([modelData.status isEqualToString:@"Awaiting for Contractor"]||[modelData.status isEqualToString:@"Awaiting for Parts"]) {
         statusBackgroundVIew.backgroundColor = [Constants redBackgroundColor];
@@ -130,6 +136,12 @@
     }
     else if ([modelData.status isEqualToString:@"Please contact office"]) {
         statusBackgroundVIew.backgroundColor = [Constants oliveGreenBackgroundColor];
+    }
+    else if ([modelData.status isEqualToString:@"Job Submitted"]) {
+        statusBackgroundVIew.backgroundColor = [Constants greenBackgroundColor];
+    }
+    else if ([modelData.status isEqualToString:@"Closed"]) {
+        statusBackgroundVIew.backgroundColor = [Constants darkGrayBackgroundColor];
     }
     else {
         statusBackgroundVIew.backgroundColor = [Constants grayBackgroundColor];

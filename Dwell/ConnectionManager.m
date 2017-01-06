@@ -72,6 +72,26 @@
     }] ;
 }
 
+#pragma mark - Check provided room space id is exist
+- (void)checkRoomSpaceId:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure {
+    
+    MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
+    [mainatenanceService getRoomSpaceId:^(id response) {
+        //Parse data from server response and store in datamodel
+        DLog(@"%@",[response valueForKeyPath:@"entry.content.Record.RoomSpaceID"]);
+        if (NULL!=[response objectForKey:@"entry"]&&[[response objectForKey:@"entry"] count]!=0) {
+            success(response);
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"0" forKey:@"success"];
+            failure(responseDict);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
+
 #pragma mark - Select maintenance id services
 - (void)getMaintenanceIdList:(NSString *)selectedId onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure {
     
@@ -175,7 +195,9 @@
         if (NULL!=[response valueForKeyPath:@"entry.content.Record.EntryID"]) {
             userData.entryId=[response valueForKeyPath:@"entry.content.Record.EntryID"];
             userData.userName=[NSString stringWithFormat:@"%@ %@",[response valueForKeyPath:@"entry.content.Record.NameFirst"],[response valueForKeyPath:@"entry.content.Record.NameLast"]];
-            [UserDefaultManager setValue:[NSString stringWithFormat:@"%@ %@ %@",[response valueForKeyPath:@"entry.content.Record.NameTitle"],[response valueForKeyPath:@"entry.content.Record.NameFirst"],[response valueForKeyPath:@"entry.content.Record.NameLast"]] key:@"userName"];
+//            [UserDefaultManager setValue:[NSString stringWithFormat:@"%@ %@ %@",[response valueForKeyPath:@"entry.content.Record.NameTitle"],[response valueForKeyPath:@"entry.content.Record.NameFirst"],[response valueForKeyPath:@"entry.content.Record.NameLast"]] key:@"userName"];
+            [UserDefaultManager setValue:[NSString stringWithFormat:@"Hello %@ %@",[response valueForKeyPath:@"entry.content.Record.NameFirst"],[response valueForKeyPath:@"entry.content.Record.NameLast"]] key:@"userName"];
+            [UserDefaultManager setValue:[response valueForKeyPath:@"entry.content.Record.RoomLocationID"] key:@"RoomLocationID"];
             [UserDefaultManager setValue:[response valueForKeyPath:@"entry.content.Record.RoomSpaceID"] key:@"RoomSpaceID"];
             success(userData);
         }
@@ -262,7 +284,7 @@
 - (void)getLocationList:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
     ResourceService *resourceService = [[ResourceService alloc] init];
-    [resourceService getLocationList:resourceData.resourceTypeLocationId success:^(id response) {
+    [resourceService getLocationList:resourceData.resourceId success:^(id response) {
         //Resource data from server response and store in data model
         if (NULL!=[response objectForKey:@"entry"]&&[[response objectForKey:@"entry"] count]!=0) {
             success(response);

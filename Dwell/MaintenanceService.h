@@ -13,6 +13,9 @@
 //Get maintenance list data
 - (void)getMaintenanceList:(void (^)(id))success onFailure:(void (^)(id))failure;
 
+//Get room space id
+- (void)getRoomSpaceId:(void (^)(id))success onFailure:(void (^)(id))failure;
+
 //Cancel service
 - (void)cancelService:(void (^)(id))success onFailure:(void (^)(id))failure;
 

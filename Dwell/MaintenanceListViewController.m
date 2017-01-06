@@ -24,6 +24,7 @@
 }
 @property (weak, nonatomic) IBOutlet UITableView *maintenanceTable;
 @property (nonatomic,retain) NSMutableArray * maintenanceArray;
+@property (strong, nonatomic) IBOutlet UILabel *noRecordLabel;
 @end
 
 @implementation MaintenanceListViewController
@@ -43,10 +44,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    self.noRecordLabel.hidden=YES;
+    filterBarButton.enabled=false;
     //Set index to selected show in menu
     [UserDefaultManager setValue:[NSNumber numberWithInteger:1] key:@"indexpath"];
     [myDelegate showIndicator:[Constants orangeBackgroundColor]];
-    [self performSelector:@selector(getMaintenanceListService) withObject:nil afterDelay:.1];
+    [self performSelector:@selector(checkRoomSpaceId) withObject:nil afterDelay:.1];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,10 +93,49 @@
 #pragma mark - end
 
 #pragma mark - Webservice
+//Check room space id is exist
+- (void)checkRoomSpaceId {
+    
+    self.noRecordLabel.hidden=YES;
+    filterBarButton.enabled=false;
+    if ([super checkInternetConnection]) {
+        MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
+        [mainatenanceData checkRoomSpaceOnSuccess:^(id userData) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self performSelector:@selector(getMaintenanceListService) withObject:nil afterDelay:0.0];
+            });
+        } onfailure:^(id error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [myDelegate stopIndicator];
+                if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
+                    
+                    DLog(@"No maintenance record found.");
+                    self.noRecordLabel.hidden=NO;
+                    filterBarButton.enabled=false;
+                    maintenanceArray = [NSMutableArray new];
+                    [maintenanceTable reloadData];
+                }
+                else {
+                    [myDelegate stopIndicator];
+                    filterBarButton.enabled=false;
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                }
+            });
+        }];
+    }
+    else {
+        [myDelegate stopIndicator];
+    }
+}
+
 //Get maintenance list webservice
 - (void)getMaintenanceListService {
     
     isSearch = false;
+    self.noRecordLabel.hidden=YES;
+    filterBarButton.enabled=false;
     parcelStatusDict=[NSMutableDictionary new];
     if ([super checkInternetConnection]) {
         MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
@@ -111,6 +153,7 @@
                     }
                 }
                 //end
+                filterBarButton.enabled=true;
                 [maintenanceTable reloadData];
             });
         } onfailure:^(id error) {
@@ -118,9 +161,11 @@
                 [myDelegate stopIndicator];
                 if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
                     DLog(@"No record found.");
-                    
+                    filterBarButton.enabled=false;
+                    self.noRecordLabel.hidden=NO;
                 }
                 else {
+                    filterBarButton.enabled=false;
                     alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
                 }
             });
@@ -198,7 +243,7 @@
     else {
         isSearch=true;
         parcelStatusDict=[filteredData mutableCopy];
-        NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"status contains[cd] %@",filterString];
+        NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"status ==[c] %@",filterString];
         NSArray *subPredicates = [NSArray arrayWithObjects:pred1, nil];
         NSPredicate *orPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:subPredicates];
         maintenanceSearchDataArray =[[maintenanceArray filteredArrayUsingPredicate:orPredicate] mutableCopy];

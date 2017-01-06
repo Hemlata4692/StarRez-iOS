@@ -37,7 +37,7 @@
     if ([[myDelegate.notificationDict objectForKey:@"isNotification"] isEqualToString:@"Yes"]) {
         [myDelegate.notificationDict setObject:@"No" forKey:@"isNotification"];
         UIViewController *profileView=[self.storyboard instantiateViewControllerWithIdentifier:[myDelegate.notificationDict objectForKey:@"toScreen"]];
-        [self.navigationController pushViewController:profileView animated:NO];
+        [self.navigationController pushViewController:profileView animated:YES];
         return;
     }
     self.navigationItem.title=@"Dashboard";
@@ -87,7 +87,7 @@
     
     [self.dashboardTableView reloadData];
      [myDelegate showIndicator:[Constants navigationColor]];
-    [self performSelector:@selector(getDashboardlist) withObject:nil afterDelay:.1];
+    [self performSelector:@selector(checkRoomSpaceId) withObject:nil afterDelay:.1];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,13 +102,13 @@
     self.noRecordFoundLabel.hidden=YES;
     [UserDefaultManager setValue:[NSNumber numberWithInteger:0] key:@"indexpath"];
     //Menu label at down menu
-    downMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"More",@"Events",@"Information",@"Help"];
+    downMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"More",@"Events",@"Information",@"Help",@"Logout"];
     //Menu image at down menu
-    downMenuImageArray =@[@"maintenance",@"parcel",@"resources",@"more",@"events",@"information",@"help"];
+    downMenuImageArray =@[@"maintenance",@"parcel",@"resources",@"more",@"events",@"information",@"help",@"logoutDashboard"];
     //Menu label at up menu
-    upMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"Less",@"Events",@"Information",@"Help"];
+    upMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"Less",@"Events",@"Information",@"Help",@"Logout"];
     //Menu image at up menu
-    upMenuImageArray =@[@"maintenance",@"parcel",@"resources",@"downMenu",@"events",@"information",@"help"];
+    upMenuImageArray =@[@"maintenance",@"parcel",@"resources",@"downMenu",@"events",@"information",@"help",@"logoutDashboard"];
     
     menuArray=[downMenuArray copy];
     menuImageArray =[downMenuImageArray copy];
@@ -125,7 +125,7 @@
     DLog(@"%f,%f,%f",self.view.bounds.size.height,self.menuCollectionView.frame.size.height,self.menuCollectionView.bounds.size.height);
     //Set view frames
     self.menuCollectionView.frame=CGRectMake(0,(self.view.bounds.size.height-64)-(self.menuCollectionView.frame.size.height/2), self.view.bounds.size.width, self.menuCollectionView.frame.size.height);
-    self.dashboardTableView.frame=CGRectMake(0,3, self.view.bounds.size.width,(self.view.bounds.size.height-64)-(self.menuCollectionView.frame.size.height/2)-8);
+    self.dashboardTableView.frame=CGRectMake(0,0, self.view.bounds.size.width,(self.view.bounds.size.height-64)-(self.menuCollectionView.frame.size.height/2)-8);
 }
 
 - (void)viewCustomization {
@@ -139,6 +139,26 @@
 #pragma mark - end
 
 #pragma mark - Tableview methods
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 50)];
+    headerView.backgroundColor=[UIColor whiteColor];
+    // i.e. array element
+    UILabel *userNameLabel=[[UILabel alloc] initWithFrame:CGRectMake(15, 5, [[UIScreen mainScreen] bounds].size.width-30, headerView.frame.size.height-10)] ;
+    userNameLabel.text=[UserDefaultManager getValue:@"userName"];
+    userNameLabel.textAlignment=NSTextAlignmentCenter;
+    userNameLabel.textColor=[UIColor colorWithRed:118.0/255 green:44.0/255.0 blue:134.0/255.0 alpha:1.0];
+    userNameLabel.font=[UIFont calibriNormalWithSize:15];
+     userNameLabel.numberOfLines=0;
+    [headerView addSubview:userNameLabel];
+    return headerView;   // return headerLabel;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 50.0;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return dashboardDictKeys.count;
@@ -226,7 +246,7 @@
 #pragma mark - Collection view methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return 7;
+    return menuArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -291,6 +311,10 @@
             [self.navigationController pushViewController:objResourceView animated:NO];
         }
             break;
+        case 7: {   //Clicked on logout menu
+            alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Are you sure you want to logout?" doneButtonText:@"Yes" cancelButtonText:@"No"];
+        }
+            break;
         default:
             break;
     }
@@ -322,11 +346,44 @@
 #pragma mark - end
 
 #pragma mark - Webservice
+//Check room space id is exist
+- (void)checkRoomSpaceId {
+
+    dashboardDictData=[NSMutableDictionary new];
+    dashboardDictKeys=[NSMutableArray new];
+    if ([super checkInternetConnection]) {
+        MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
+        [mainatenanceData checkRoomSpaceOnSuccess:^(id userData) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self performSelector:@selector(getDashboardlist) withObject:nil afterDelay:0.0];
+            });
+        } onfailure:^(id error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
+                    DLog(@"No maintenance record found.");
+                    [dashboardDictData setValue:[NSMutableArray new] forKey:@"Maintenance"];
+                    [dashboardDictKeys addObject:@"Maintenance"];
+                    [self performSelector:@selector(callParcelList) withObject:nil afterDelay:0.0];
+                }
+                else {
+                    [myDelegate stopIndicator];
+                    [dashboardDictData removeAllObjects];
+                    [dashboardDictKeys removeAllObjects];
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                }
+            });
+        }];
+    }
+    else {
+        [myDelegate stopIndicator];
+    }
+}
+
 //Get maintenance list
 - (void)getDashboardlist {
     
-    dashboardDictData=[NSMutableDictionary new];
-    dashboardDictKeys=[NSMutableArray new];
     if ([super checkInternetConnection]) {
         MaintenanceModel *mainatenanceData = [MaintenanceModel sharedUser];
         [mainatenanceData getMaintenanceListOnSuccess:^(id userData) {
@@ -415,8 +472,18 @@
 #pragma mark - end
 
 #pragma mark - Custom alert delegates
-- (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
-    
+- (void)customAlertDelegateAction:(CustomAlertView *)customAlert option:(int)option{
+    if (option!=0 && customAlert.tag==2) {
+        //Nil all userdefaultData and navigate to login screen
+        [UserDefaultManager setValue:nil key:@"indexpath"];
+        [UserDefaultManager setValue:nil key:@"userEmailId"];
+        [UserDefaultManager setValue:nil key:@"entryId"];
+        [myDelegate unrigisterForNotification];
+        
+        UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
+        myDelegate.window.rootViewController = navigation;
+    }
     [alertView dismissAlertView];
 }
 #pragma mark - end

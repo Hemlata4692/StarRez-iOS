@@ -35,7 +35,7 @@
     
     self.navigationItem.title=@"Resource Detail";
     [self layoutViewObjects];
-    //Show resource data using resource model
+    //Show  resource data using resource model
     [self showResourceDetailData];
     // Do any additional setup after loading the view.
 }

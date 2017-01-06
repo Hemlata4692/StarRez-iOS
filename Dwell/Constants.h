@@ -23,4 +23,6 @@ static const float cornerRadius=15.0;
 + (UIColor*)skyBlueColor;
 + (UIColor*)cancelColor;
 + (UIColor*)navigationColor;
++ (UIColor*)darkGrayBackgroundColor;
++ (UIColor*)purpleBackgroundColor;
 @end

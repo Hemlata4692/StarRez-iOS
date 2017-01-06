@@ -55,7 +55,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Book Resource";
+    self.navigationItem.title = @"Book a Resource";
     [self removeAutolayout];  //Remove pickerView autolayouts
     [self initializeVaribles];  //initialize variables and customize objects
     [self addToolBarItems]; //Add textfield and dateTime tool bar view
@@ -109,7 +109,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     
     //Set red star(mandatory fields)
     self.resourceTypeTitle.attributedText=[self setAttributrdString:self.resourceTypeTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
-    self.locationTitle.attributedText=[self setAttributrdString:self.locationTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
+//    self.locationTitle.attributedText=[self setAttributrdString:self.locationTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
     self.fromTitle.attributedText=[self setAttributrdString:self.fromTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
     self.toTitle.attributedText=[self setAttributrdString:self.toTitle.text selectedString:@"*" selectedColor:[UIColor redColor]];
     
@@ -311,7 +311,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     bookResourceLocationArray=[NSMutableArray new];
     if ([super checkInternetConnection]) {
         ResourceModel *resourceData=[ResourceModel sharedUser];
-        resourceData.resourceTypeLocationId=[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceTypeLocationId];
+        resourceData.resourceId=[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceId];
         [resourceData getLocationListOnSuccess:^(id locationData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
@@ -343,8 +343,13 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     resourceData.resourceFromDate=[UserDefaultManager sytemToGMTDateTimeFormat:fromDateTimeTemp];   //Change system to GMT+1 format
     resourceData.resourceToDate=[UserDefaultManager sytemToGMTDateTimeFormat:toDateTimeTemp];   //Change system to GMT+1 format
     resourceData.resourceId=[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceId];
-    resourceData.resourceDescription=self.sourceNameField.text;
+    resourceData.resourceDescription=self.locationField.text;
+    if ([self.locationField isEmpty]) {
+        resourceData.resourceTypeLocationId=@"";
+    }
+    else {
     resourceData.resourceTypeLocationId=[[bookResourceLocationArray objectAtIndex:lastSelectedResourceLocation] resourceTypeLocationId];
+    }
     [resourceData getBookedResourcesOnSuccess:^(id availableResourceData) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [myDelegate stopIndicator];
@@ -587,7 +592,6 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     }
     else if (currentFieldIndex==3) {    //Select fromDate field
         [self hideDatePickerView];
-        
         NSDate *date = self.datePickerView.date;
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"dd-MM-yyyy"];
@@ -604,7 +608,6 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     }
     else if (currentFieldIndex==5) {    //Select toDate field
         [self hideDatePickerView];
-        
         NSDate *date = self.datePickerView.date;
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"dd-MM-yyyy"];
@@ -684,7 +687,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     float timeDifferenceInSecond=[[self timeLeftSinceDate:[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,self.fromTimeField.text]] toDateTime:[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,self.toTimeField.text]]] floatValue];
     DLog(@"%f",timeDifferenceInSecond/3600.0);
     
-    if ([self.sourceTypeField isEmpty]||[self.locationField isEmpty]||[self.fromDateField isEmpty]||[self.fromTimeField isEmpty]||[self.toTimeField isEmpty]||[self.toDateField isEmpty]) { //If fields are empty and source name field is optional
+    if ([self.sourceTypeField isEmpty]||[self.fromDateField isEmpty]||[self.fromTimeField isEmpty]||[self.toTimeField isEmpty]||[self.toDateField isEmpty]) { //If fields are empty and source name field is optional
          alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please fill in all the required fields." doneButtonText:@"OK" cancelButtonText:@""];
         return false;
     }

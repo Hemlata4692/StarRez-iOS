@@ -42,6 +42,8 @@
     self.firstInformationStatusLabel.textColor=[UIColor darkGrayColor];     //Set byDefault color is [UIColor darkGrayColor]
     self.secondInformationStatusLabel.textColor=[UIColor darkGrayColor];    //Set byDefault color is [UIColor darkGrayColor]
     self.thirdInformationStatusLabel.textColor=[UIColor darkGrayColor];     //Set byDefault color is [UIColor darkGrayColor]
+    
+    self.titleLabel.textColor=[UIColor colorWithRed:67/255.0 green:67/255.0 blue:67/255.0 alpha:1.0];
     if (selectedType==1) {
         self.titleLabel.text=@"Maintenance";
         self.titleIcon.image=[UIImage imageNamed:@"maintenanceUnselected"];
@@ -60,7 +62,9 @@
     }
     else {
         self.titleLabel.text=@"Parcel";
-        self.titleIcon.image=[UIImage imageNamed:@"parcelUnselected"];
+        self.titleIcon.image=[UIImage imageNamed:@"dashboardParcel"];
+        self.titleLabel.textColor=[UIColor colorWithRed:0/255.0 green:116/255.0 blue:189/255.0 alpha:1.0];
+        
         if (dashboardData.count==0) {
             self.noRecordAvailable.hidden=NO;
             self.noRecordAvailable.text=@"No parcel available.";
@@ -164,7 +168,7 @@
     //Set text color according to status
     if([status isEqualToString:@"Job Completed"]) {
         
-        statusLabel.textColor = [Constants greenBackgroundColor];
+        statusLabel.textColor = [Constants purpleBackgroundColor];
     }
     else if ([status isEqualToString:@"Awaiting for Contractor"]||[status isEqualToString:@"Awaiting for Parts"]) {
         statusLabel.textColor = [Constants redBackgroundColor];
@@ -180,6 +184,13 @@
     }
     else if ([status isEqualToString:@"Please contact office"]) {
         statusLabel.textColor = [Constants oliveGreenBackgroundColor];
+    }
+    else if([status isEqualToString:@"Job Submitted"]) {
+        statusLabel.textColor = [Constants greenBackgroundColor];
+    }
+    else if([status isEqualToString:@"Closed"]) {
+        
+        statusLabel.textColor = [Constants darkGrayBackgroundColor];
     }
     else {
         statusLabel.textColor = [Constants grayBackgroundColor];

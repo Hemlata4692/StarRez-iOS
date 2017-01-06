@@ -11,8 +11,8 @@
 #import "NullValueChecker.h"
 
 NSString* const baseUrl=@"https://starrez.centurionstudents.co.uk/StarRezREST/services/query";
-//NSString* const setDeviceTokenUrl=@"https://starrez.centurionstudents.co.uk/StarrezNotification/api/GetParcel/";  //Live url
-NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/";  //Beta url
+NSString* const setDeviceTokenUrl=@"https://starrez.centurionstudents.co.uk/StarrezNotification/api/";  //Live url
+//NSString* const setDeviceTokenUrl=@"http://ranosys.info/StarrezNotification/api/";  //Beta url
 NSString* const starRezUsername=@"starrez.temp2";
 NSString* const starRezPassword=@"9591404d-1069-4290-b121-63b1a7e9e932";
 

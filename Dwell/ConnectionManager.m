@@ -197,6 +197,7 @@
             userData.userName=[NSString stringWithFormat:@"%@ %@",[response valueForKeyPath:@"entry.content.Record.NameFirst"],[response valueForKeyPath:@"entry.content.Record.NameLast"]];
 //            [UserDefaultManager setValue:[NSString stringWithFormat:@"%@ %@ %@",[response valueForKeyPath:@"entry.content.Record.NameTitle"],[response valueForKeyPath:@"entry.content.Record.NameFirst"],[response valueForKeyPath:@"entry.content.Record.NameLast"]] key:@"userName"];
             [UserDefaultManager setValue:[NSString stringWithFormat:@"Hello %@ %@",[response valueForKeyPath:@"entry.content.Record.NameFirst"],[response valueForKeyPath:@"entry.content.Record.NameLast"]] key:@"userName"];
+            [UserDefaultManager setValue:[response valueForKeyPath:@"entry.content.Record.RoomLocationID"] key:@"RoomLocationID"];
             [UserDefaultManager setValue:[response valueForKeyPath:@"entry.content.Record.RoomSpaceID"] key:@"RoomSpaceID"];
             success(userData);
         }

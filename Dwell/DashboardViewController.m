@@ -37,7 +37,7 @@
     if ([[myDelegate.notificationDict objectForKey:@"isNotification"] isEqualToString:@"Yes"]) {
         [myDelegate.notificationDict setObject:@"No" forKey:@"isNotification"];
         UIViewController *profileView=[self.storyboard instantiateViewControllerWithIdentifier:[myDelegate.notificationDict objectForKey:@"toScreen"]];
-        [self.navigationController pushViewController:profileView animated:NO];
+        [self.navigationController pushViewController:profileView animated:YES];
         return;
     }
     self.navigationItem.title=@"Dashboard";

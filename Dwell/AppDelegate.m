@@ -11,6 +11,8 @@
 #import "UncaughtExceptionHandler.h"
 #import "LoginViewController.h"
 
+#define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
 @interface AppDelegate ()<CustomAlertDelegate> {
     
     UIView *loaderView;
@@ -135,9 +137,15 @@
 #pragma mark - Push notification methods
 //Get permission for iphone and ipad devices to receive push notifications
 - (void)registerDeviceForNotification {
-    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
+
+    if(SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(@"10.0")) {
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        center.delegate = self;
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error){
+            if( !error ){
+                [[UIApplication sharedApplication] registerForRemoteNotifications];
+            }
+        }];
     }
     else {
         [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
@@ -156,7 +164,8 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
-    DLog(@"push notification response.............%@",userInfo);
+    DLog(@"1.push notification response.............%@",userInfo);
+    printf("1.push notification response.............################");
     //If app is active then show alert other wise(app is terminated) navigate to ParcelListViewController through Dashboard
     if ((application.applicationState == UIApplicationStateActive) || (application.applicationState == UIApplicationStateBackground)) {
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] doneButtonText:@"OK" cancelButtonText:@""];
@@ -177,6 +186,29 @@
     DLog(@"did failtoRegister and testing : %@",[NSString stringWithFormat: @"Error: %@", err]);
 }
 
+#pragma mark - UNUserNotificationCenter Delegate // >= iOS 10
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
+    
+    DLog(@"2.push notification response.............%@",notification.request.content.userInfo);
+
+    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[[notification.request.content.userInfo objectForKey:@"aps"] objectForKey:@"alert"] doneButtonText:@"OK" cancelButtonText:@""];
+    completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound);
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler{
+    
+    DLog(@"3.push notification response.............%@",response.notification.request.content.userInfo);
+    //Set notificationDict to navigation
+    [notificationDict setObject:@"Yes" forKey:@"isNotification"];
+    [notificationDict setObject:@"ParcelListViewController" forKey:@"toScreen"];
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
+    [self.navigationController setViewControllers: [NSArray arrayWithObject: objReveal]
+                                         animated: NO];
+    completionHandler();
+}
+#pragma mark - End
+
 //Unregister push notification
 - (void)unrigisterForNotification {
     
@@ -188,11 +220,19 @@
 - (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
     
     [alertView dismissAlertView];
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    
+//    UIViewController * carListView = [storyboard instantiateViewControllerWithIdentifier:@"ParcelListViewController"];
+//    [currentNavigationController setViewControllers: [NSArray arrayWithObject: carListView]
+//                                           animated: YES];
     
-    UIViewController * carListView = [storyboard instantiateViewControllerWithIdentifier:@"ParcelListViewController"];
-    [currentNavigationController setViewControllers: [NSArray arrayWithObject: carListView]
-                                           animated: YES];
+    //Set notificationDict to navigation
+        [notificationDict setObject:@"Yes" forKey:@"isNotification"];
+        [notificationDict setObject:@"ParcelListViewController" forKey:@"toScreen"];
+        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController * objReveal = [storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
+        [self.navigationController setViewControllers: [NSArray arrayWithObject: objReveal]
+                                             animated: NO];
 }
 #pragma mark - end
 @end

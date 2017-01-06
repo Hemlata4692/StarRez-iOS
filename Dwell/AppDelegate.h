@@ -6,7 +6,10 @@
 //  Copyright © 2016 Ranosys. All rights reserved.
 //
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+#import <UserNotifications/UserNotifications.h>
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UNUserNotificationCenterDelegate>
 //Variable declaration
 @property (strong, nonatomic) UIWindow *window;
 @property (retain, nonatomic) UINavigationController *navigationController;

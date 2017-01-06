@@ -23,7 +23,7 @@
 #pragma mark - Get resource type list
 - (void)getResourceType:(void (^)(id))success onFailure:(void (^)(id))failure {
     
-    NSString *parameters = [NSString stringWithFormat:@"SELECT rt.[Description], rt.[ResourceTypeID], rt.[MinBookingHours], rt.[MaxBookingHours], rl.[RoomLocationAreaID] FROM [Booking] as bk LEFT JOIN ResourceType as rt ON rt.RoomLocationID = bk.RoomLocationID LEFT JOIN [RoomLocation] as rl ON rl.[RoomLocationID] = bk.[RoomLocationID]  WHERE bk.[EntryID] = '%@' ORDER BY rt.[Description] ASC",[UserDefaultManager getValue:@"entryId"]];
+    NSString *parameters = [NSString stringWithFormat:@"SELECT rt.[Description], rt.[ResourceTypeID], rt.[MinBookingHours], rt.[MaxBookingHours], rl.[RoomLocationAreaID] FROM [Booking] as bk LEFT JOIN ResourceType as rt ON rt.RoomLocationID = bk.RoomLocationID LEFT JOIN [RoomLocation] as rl ON rl.[RoomLocationID] = bk.[RoomLocationID] WHERE bk.[EntryID] = '%@' AND bk.[RoomLocationID] = '%@' ORDER BY rt.[Description] ASC",[UserDefaultManager getValue:@"entryId"],[UserDefaultManager getValue:@"RoomLocationID"]];
     DLog(@"request dict %@",parameters);
     
     [super post:parameters onSuccess:success onFailure:failure];

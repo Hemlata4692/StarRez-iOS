@@ -19,9 +19,13 @@
 #define NSLog(...)
 #endif
 
+#import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "UserDefaultManager.h"
-
+#import "UIFont+CustomFont.h"
+#import "CustomAlert.h"
+#import "SideMenuViewController.h"
+#import "GlobalBackViewController.h"
 #define myDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 #endif /* PrefixHeader_pch */

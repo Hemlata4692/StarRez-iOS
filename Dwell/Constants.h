@@ -7,8 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+static const float cornerRadius=15.0;
 
 @interface Constants : NSObject
 
++ (UIColor*)dashboardColor;
++ (UIColor*)blueBackgroundColor;
++ (UIColor*)yellowBackgroundColor;
++ (UIColor*)greenBackgroundColor;
++ (UIColor*)redBackgroundColor;
++ (UIColor*)orangeBackgroundColor;
++ (UIColor*)oliveGreenBackgroundColor;
++ (UIColor*)grayBackgroundColor;
++ (UIColor*)logoutColor;
++ (UIColor*)skyBlueColor;
++ (UIColor*)cancelColor;
++ (UIColor*)navigationColor;
++ (UIColor*)darkGrayBackgroundColor;
++ (UIColor*)purpleBackgroundColor;
 @end

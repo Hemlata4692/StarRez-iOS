@@ -90,14 +90,9 @@
 //Add corner radius to objects
 - (void)addBorderCornerRadius {
     
-    [self.emailIdTextfield setCornerRadius:29];
-    [self.passwordTextfield setCornerRadius:29];
-    [self.loginButton setCornerRadius:25];
-    [self.emailIdTextfield setTextBorder:self.emailIdTextfield color:[UIColor colorWithRed:212.0/255.0 green:185.0/255.0 blue:219.0/255.0 alpha:1.0]];
-    [self.passwordTextfield setTextBorder:self.passwordTextfield color:[UIColor colorWithRed:212.0/255.0 green:185.0/255.0 blue:219.0/255.0 alpha:1.0]];
-    
-    [self.emailIdTextfield addTextFieldPadding:self.emailIdTextfield];
-    [self.passwordTextfield addTextFieldPadding:self.passwordTextfield];
+    [self.emailIdTextfield setCornerRadius:cornerRadius];
+    [self.passwordTextfield setCornerRadius:cornerRadius];
+    [self.loginButton setCornerRadius:cornerRadius];
 }
 #pragma mark - end
 
@@ -204,7 +199,7 @@
     //Perform login validations
     if([self performValidationsForLogin]) {
         if (![internet start]) {
-            [myDelegate showIndicator:[Constants dashboardColor]];
+            [myDelegate showIndicator:[Constants oldDashboardColor]];
             [self performSelector:@selector(userLogin) withObject:nil afterDelay:.1];
         }
     }

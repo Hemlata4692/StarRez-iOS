@@ -18,6 +18,10 @@
 		B70EB1001D9D3E7C00215D4F /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B70EB0FF1D9D3E7C00215D4F /* InformationViewController.m */; };
 		B719DAC41D9A8489000A5D0D /* AvailableResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B719DAC31D9A8489000A5D0D /* AvailableResourceViewController.m */; };
 		B719DAC81D9A9711000A5D0D /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = B719DAC71D9A9711000A5D0D /* UIView+Toast.m */; };
+		B745F86F1E23682D001119BD /* login-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B745F86B1E23682D001119BD /* login-568h@2x.png */; };
+		B745F8701E23682D001119BD /* login-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B745F86C1E23682D001119BD /* login-667h@2x.png */; };
+		B745F8711E23682D001119BD /* login-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B745F86D1E23682D001119BD /* login-736h@3x.png */; };
+		B745F8721E23682D001119BD /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = B745F86E1E23682D001119BD /* login.png */; };
 		B7465A941D950C28008B315A /* ResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465A931D950C28008B315A /* ResourceService.m */; };
 		B7465A9F1D95111C008B315A /* BookResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465A9E1D95111C008B315A /* BookResourceViewController.m */; };
 		B7465AA61D951176008B315A /* ResourceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7465AA51D951176008B315A /* ResourceDetailViewController.m */; };
@@ -55,6 +59,10 @@
 		B75B2CBC1D880958007EEE42 /* MMMaterialDesignSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2CBB1D880958007EEE42 /* MMMaterialDesignSpinner.m */; };
 		B75B2CC51D880CFD007EEE42 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = B75B2CC41D880CFD007EEE42 /* Constants.m */; };
 		B76432911D9B7BF10000A35A /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B76432901D9B7BF10000A35A /* DashboardTableViewCell.m */; };
+		B76855BB1E24A2A8004C5881 /* Resource-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B76855B71E24A2A8004C5881 /* Resource-568h@2x.png */; };
+		B76855BC1E24A2A8004C5881 /* Resource-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B76855B81E24A2A8004C5881 /* Resource-667h@2x.png */; };
+		B76855BD1E24A2A8004C5881 /* Resource-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B76855B91E24A2A8004C5881 /* Resource-736h@3x.png */; };
+		B76855BE1E24A2A8004C5881 /* Resource.png in Resources */ = {isa = PBXBuildFile; fileRef = B76855BA1E24A2A8004C5881 /* Resource.png */; };
 		B79CC65D1D8BD5B300FBD7C3 /* CustomFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B79CC65C1D8BD5B300FBD7C3 /* CustomFilterViewController.m */; };
 		B7ACD26D1D890FE7005CD42D /* calibri_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7ACD26A1D890FE7005CD42D /* calibri_Bold.ttf */; };
 		B7ACD26E1D890FE7005CD42D /* calibri_Normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7ACD26B1D890FE7005CD42D /* calibri_Normal.ttf */; };
@@ -106,6 +114,10 @@
 		B719DAC31D9A8489000A5D0D /* AvailableResourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvailableResourceViewController.m; sourceTree = "<group>"; };
 		B719DAC61D9A9711000A5D0D /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		B719DAC71D9A9711000A5D0D /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		B745F86B1E23682D001119BD /* login-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-568h@2x.png"; sourceTree = "<group>"; };
+		B745F86C1E23682D001119BD /* login-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-667h@2x.png"; sourceTree = "<group>"; };
+		B745F86D1E23682D001119BD /* login-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-736h@3x.png"; sourceTree = "<group>"; };
+		B745F86E1E23682D001119BD /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		B7465A921D950C28008B315A /* ResourceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceService.h; sourceTree = "<group>"; };
 		B7465A931D950C28008B315A /* ResourceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceService.m; sourceTree = "<group>"; };
 		B7465A9D1D95111C008B315A /* BookResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookResourceViewController.h; sourceTree = "<group>"; };
@@ -181,6 +193,10 @@
 		B75B2CC41D880CFD007EEE42 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		B764328F1D9B7BF10000A35A /* DashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardTableViewCell.h; sourceTree = "<group>"; };
 		B76432901D9B7BF10000A35A /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardTableViewCell.m; sourceTree = "<group>"; };
+		B76855B71E24A2A8004C5881 /* Resource-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Resource-568h@2x.png"; sourceTree = "<group>"; };
+		B76855B81E24A2A8004C5881 /* Resource-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Resource-667h@2x.png"; sourceTree = "<group>"; };
+		B76855B91E24A2A8004C5881 /* Resource-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Resource-736h@3x.png"; sourceTree = "<group>"; };
+		B76855BA1E24A2A8004C5881 /* Resource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resource.png; sourceTree = "<group>"; };
 		B79CC65B1D8BD5B300FBD7C3 /* CustomFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFilterViewController.h; sourceTree = "<group>"; };
 		B79CC65C1D8BD5B300FBD7C3 /* CustomFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomFilterViewController.m; sourceTree = "<group>"; };
 		B7ACD26A1D890FE7005CD42D /* calibri_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = calibri_Bold.ttf; sourceTree = "<group>"; };
@@ -354,6 +370,17 @@
 				B719DAC71D9A9711000A5D0D /* UIView+Toast.m */,
 			);
 			name = ToastFile;
+			sourceTree = "<group>";
+		};
+		B745F86A1E236823001119BD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B745F86B1E23682D001119BD /* login-568h@2x.png */,
+				B745F86C1E23682D001119BD /* login-667h@2x.png */,
+				B745F86D1E23682D001119BD /* login-736h@3x.png */,
+				B745F86E1E23682D001119BD /* login.png */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		B7465A911D950C21008B315A /* ResourceService */ = {
@@ -631,6 +658,8 @@
 		B75B2C931D88047D007EEE42 /* BackgroundImages */ = {
 			isa = PBXGroup;
 			children = (
+				B76855B61E24A29C004C5881 /* Resource */,
+				B745F86A1E236823001119BD /* Login */,
 			);
 			name = BackgroundImages;
 			sourceTree = "<group>";
@@ -731,6 +760,17 @@
 				B76432901D9B7BF10000A35A /* DashboardTableViewCell.m */,
 			);
 			name = DashboardCell;
+			sourceTree = "<group>";
+		};
+		B76855B61E24A29C004C5881 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				B76855B71E24A2A8004C5881 /* Resource-568h@2x.png */,
+				B76855B81E24A2A8004C5881 /* Resource-667h@2x.png */,
+				B76855B91E24A2A8004C5881 /* Resource-736h@3x.png */,
+				B76855BA1E24A2A8004C5881 /* Resource.png */,
+			);
+			name = Resource;
 			sourceTree = "<group>";
 		};
 		B79CC6551D8BD3B400FBD7C3 /* CustomFilter */ = {
@@ -988,11 +1028,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7ACD26E1D890FE7005CD42D /* calibri_Normal.ttf in Resources */,
+				B76855BC1E24A2A8004C5881 /* Resource-667h@2x.png in Resources */,
+				B745F8721E23682D001119BD /* login.png in Resources */,
+				B76855BD1E24A2A8004C5881 /* Resource-736h@3x.png in Resources */,
+				B76855BB1E24A2A8004C5881 /* Resource-568h@2x.png in Resources */,
+				B76855BE1E24A2A8004C5881 /* Resource.png in Resources */,
 				B7D06C541D895CA300A5FA94 /* CustomAlert.xib in Resources */,
 				B758D6FD1D9E6AEC00945EE8 /* Assets.xcassets in Resources */,
+				B745F8711E23682D001119BD /* login-736h@3x.png in Resources */,
 				B75B2C7F1D88033A007EEE42 /* Main.storyboard in Resources */,
+				B745F86F1E23682D001119BD /* login-568h@2x.png in Resources */,
 				B7ACD26D1D890FE7005CD42D /* calibri_Bold.ttf in Resources */,
 				B7ACD26F1D890FE7005CD42D /* handsean.ttf in Resources */,
+				B745F8701E23682D001119BD /* login-667h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1105,8 +1153,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ranosys Technologies Pte Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ranosys Technologies Pte Ltd";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = M8A7BYS443;
@@ -1133,7 +1181,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Centurion;
-				PROVISIONING_PROFILE = "4414b8ef-155f-4472-aa25-9c5e9ffeed86";
+				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1156,8 +1204,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ranosys Technologies Pte Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ranosys Technologies Pte Ltd";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = M8A7BYS443;
@@ -1177,7 +1225,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = Centurion;
-				PROVISIONING_PROFILE = "4414b8ef-155f-4472-aa25-9c5e9ffeed86";
+				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1189,16 +1237,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_ENTITLEMENTS = Dwell/Centurion.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ranosys Technologies Pte Ltd";
+				DEVELOPMENT_TEAM = M8A7BYS443;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = Dwell/PrefixHeader.pch;
 				INFOPLIST_FILE = Dwell/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.centurion.student;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.dwell;
 				PRODUCT_NAME = Centurion;
-				PROVISIONING_PROFILE = "4414b8ef-155f-4472-aa25-9c5e9ffeed86";
-				PROVISIONING_PROFILE_SPECIFIER = CenturionStudentAppStore05Jan2017;
+				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
+				PROVISIONING_PROFILE_SPECIFIER = DwellProfile_15_09_2016;
 			};
 			name = Debug;
 		};
@@ -1208,16 +1257,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_ENTITLEMENTS = Dwell/Centurion.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ranosys Technologies Pte Ltd";
+				DEVELOPMENT_TEAM = M8A7BYS443;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = Dwell/PrefixHeader.pch;
 				INFOPLIST_FILE = Dwell/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.centurion.student;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.dwell;
 				PRODUCT_NAME = Centurion;
-				PROVISIONING_PROFILE = "4414b8ef-155f-4472-aa25-9c5e9ffeed86";
-				PROVISIONING_PROFILE_SPECIFIER = CenturionStudentAppStore05Jan2017;
+				PROVISIONING_PROFILE = "d768108c-0f14-445a-bb7a-f4f3fe000465";
+				PROVISIONING_PROFILE_SPECIFIER = DwellProfile_15_09_2016;
 			};
 			name = Release;
 		};

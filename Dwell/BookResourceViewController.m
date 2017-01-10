@@ -41,6 +41,13 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePickerView;
 @property (strong, nonatomic) IBOutlet UIPickerView *resourcePickerView;
 
+//Field background transparent label
+@property (strong, nonatomic) IBOutlet UILabel *resourceTypeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *fromDateLabel;
+@property (strong, nonatomic) IBOutlet UILabel *toDateLabel;
+
+
 //Field titles
 @property (strong, nonatomic) IBOutlet UILabel *resourceTypeTitle;
 @property (strong, nonatomic) IBOutlet UILabel *locationTitle;
@@ -56,12 +63,23 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     [super viewDidLoad];
     
     self.navigationItem.title = @"Book a Resource";
+    [super addBackgroungImage:@"Resource"];
+    
+    self.resourceTypeLabel.layer.cornerRadius=cornerRadius;
+    self.resourceTypeLabel.layer.masksToBounds=YES;
+    self.nameLabel.layer.cornerRadius=cornerRadius;
+    self.nameLabel.layer.masksToBounds=YES;
+    self.fromDateLabel.layer.cornerRadius=cornerRadius;
+    self.fromDateLabel.layer.masksToBounds=YES;
+    self.toDateLabel.layer.cornerRadius=cornerRadius;
+    self.toDateLabel.layer.masksToBounds=YES;
+    
     [self removeAutolayout];  //Remove pickerView autolayouts
     [self initializeVaribles];  //initialize variables and customize objects
     [self addToolBarItems]; //Add textfield and dateTime tool bar view
-    [self.bookResourceContainerView addShadowWithCornerRadius:self.bookResourceContainerView color:[UIColor lightGrayColor] borderColor:[UIColor whiteColor] radius:5.0f];  //Add corner radius and shadow
+//    [self.bookResourceContainerView addShadowWithCornerRadius:self.bookResourceContainerView color:[UIColor lightGrayColor] borderColor:[UIColor whiteColor] radius:5.0f];  //Add corner radius and shadow
     //Call resource type service
-    [myDelegate showIndicator:[Constants navigationColor]];
+    [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
     [self performSelector:@selector(getResourcesTypeList) withObject:nil afterDelay:.1];
     // Do any additional setup after loading the view.
 }
@@ -185,7 +203,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
-    self.datePickerView.frame = CGRectMake(self.datePickerView.frame.origin.x, [[UIScreen mainScreen] bounds].size.height - self.datePickerView.frame.size.height-64, [[UIScreen mainScreen] bounds].size.width, self.datePickerView.frame.size.height);
+    self.datePickerView.frame = CGRectMake(self.datePickerView.frame.origin.x, [[UIScreen mainScreen] bounds].size.height - self.datePickerView.frame.size.height, [[UIScreen mainScreen] bounds].size.width, self.datePickerView.frame.size.height);
     dateTimeToolbar.frame = CGRectMake(0, self.datePickerView.frame.origin.y-44, [[UIScreen mainScreen] bounds].size.width, dateTimeToolbar.frame.size.height);
     [UIView commitAnimations];
 }
@@ -206,7 +224,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     [self.resourcePickerView selectRow:selectedIndex inComponent:0 animated:YES];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
-    self.resourcePickerView.frame=CGRectMake(self.resourcePickerView.frame.origin.x, [[UIScreen mainScreen] bounds].size.height - self.resourcePickerView.frame.size.height-64, [[UIScreen mainScreen] bounds].size.width, self.resourcePickerView.frame.size.height);
+    self.resourcePickerView.frame=CGRectMake(self.resourcePickerView.frame.origin.x, [[UIScreen mainScreen] bounds].size.height - self.resourcePickerView.frame.size.height, [[UIScreen mainScreen] bounds].size.width, self.resourcePickerView.frame.size.height);
     self.toolBarView.frame=CGRectMake(0, self.resourcePickerView.frame.origin.y-44, [[UIScreen mainScreen] bounds].size.width, self.toolBarView.frame.size.height);
     [UIView commitAnimations];
     [self.resourcePickerView reloadAllComponents];
@@ -576,7 +594,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
         self.sourceTypeField.text=str;
         if (lastSelectedResourceType!=(int)index) {
             lastSelectedResourceType=(int)index;
-            [myDelegate showIndicator:[Constants navigationColor]];
+            [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
             [self performSelector:@selector(getLocationList) withObject:nil afterDelay:.1];
         }
     }
@@ -664,7 +682,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     //Perform login validations
     if([self performValidationsForSearch]) {
         if ([super checkInternetConnection]) {
-            [myDelegate showIndicator:[Constants navigationColor]];
+            [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
             [self performSelector:@selector(searchService) withObject:nil afterDelay:.1];
         }
     }
@@ -743,7 +761,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     [alertView dismissAlertView];
     if (customAlert.alertTagValue==5) {
         //Call resource type service
-        [myDelegate showIndicator:[Constants navigationColor]];
+        [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
         [self performSelector:@selector(getResourcesTypeList) withObject:nil afterDelay:.1];
     }
 }

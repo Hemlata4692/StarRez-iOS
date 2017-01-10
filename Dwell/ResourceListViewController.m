@@ -36,6 +36,7 @@
     resourceDataArray=[NSMutableArray new];
     resourceSearchDataArray=[NSMutableArray new];
     resourceStatusDict=[NSMutableDictionary new];
+    [super addBackgroungImage:@"Resource"];
     // Do any additional setup after loading the view.
 }
 
@@ -48,7 +49,7 @@
     isSearch=false;
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];   //Add filter button in right navigation item
     filterBarButton.enabled=false;
-    [myDelegate showIndicator:[Constants navigationColor]];
+    [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
     [self performSelector:@selector(getResourceListService) withObject:nil afterDelay:.1];
 }
 

@@ -35,8 +35,31 @@
     self.backgroundColor=[UIColor clearColor];
     self.contentView.backgroundColor=[UIColor clearColor];
     //Set corner radius to main background view
-    [self.mainBackgroundView setCornerRadius:5.0f];
-    [backShadowView addShadowWithCornerRadius:backShadowView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];  //Add corner radius and shadow
+    [self.mainBackgroundView setCornerRadius:10.0f];
+//    [backShadowView addShadowWithCornerRadius:backShadowView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];  //Add corner radius and shadow
+    //Round status view from bottom sides
+    resourceStatusBackGroundView.translatesAutoresizingMaskIntoConstraints=YES;
+    resourceStatusBackGroundView.frame=CGRectMake(resourceStatusBackGroundView.frame.origin.x, resourceStatusBackGroundView.frame.origin.y, frame.size.width-30, resourceStatusBackGroundView.frame.size.height);
+    UIBezierPath *maskPath=[UIBezierPath bezierPathWithRoundedRect:resourceStatusBackGroundView.bounds byRoundingCorners:( UIRectCornerBottomLeft | UIRectCornerBottomRight) cornerRadii:CGSizeMake(3.0, 3.0)];
+    
+    //Make dots below title label
+    CAShapeLayer *maskLayer=[[CAShapeLayer alloc] init];
+    maskLayer.frame=frame;
+    maskLayer.path=maskPath.CGPath;
+    resourceStatusBackGroundView.layer.mask = maskLayer;
+    CAShapeLayer *shapelayer=[CAShapeLayer layer];
+    UIBezierPath *path=[UIBezierPath bezierPath];
+    //Draw a line
+    [path moveToPoint:CGPointMake(0.0, resourceTitle.frame.size.height)]; //Add yourStartPoint here
+    [path addLineToPoint:CGPointMake(frame.size.width-40, resourceTitle.frame.size.height)];//Add yourEndPoint here
+    UIColor *fill=[UIColor colorWithRed:72.0/255.0 green:73.0/255.0 blue:73.0/255.0 alpha:1.0];
+    shapelayer.strokeStart=0.0;
+    shapelayer.strokeColor=fill.CGColor;
+    shapelayer.lineWidth=1.0f;
+    shapelayer.lineJoin=kCALineJoinRound;
+    shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
+    shapelayer.path=path.CGPath;
+    [resourceTitle.layer addSublayer:shapelayer];
 }
 
 - (void)displayData:(ResourceModel *)modelData frame:(CGRect)frame{

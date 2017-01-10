@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-static const float cornerRadius=15.0;
+static const float cornerRadius=10.0;
 
 @interface Constants : NSObject
 
@@ -25,4 +25,14 @@ static const float cornerRadius=15.0;
 + (UIColor*)navigationColor;
 + (UIColor*)darkGrayBackgroundColor;
 + (UIColor*)purpleBackgroundColor;
+
+//Use for side bar
++ (UIColor*)oldDashboardColor;
++ (UIColor*)oldBlueBackgroundColor:(float)alpha;
++ (UIColor*)oldYellowBackgroundColor:(float)alpha;
++ (UIColor*)oldGreenBackgroundColor:(float)alpha;
++ (UIColor*)oldOrangeBackgroundColor;
++ (UIColor*)oldDarkGreenBackgroundColor;
++ (UIColor*)oldGrayBackgroundColor;
++ (UIColor*)oldLogoutColor;
 @end

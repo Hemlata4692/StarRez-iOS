@@ -206,6 +206,7 @@
             NSMutableArray *dataArray = [NSMutableArray new];
              //If single entry then resourceData is dictionary type
             if ([[resourceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
+                
                 __block ResourceModel *tempModel=[ResourceModel new];
                 tempModel.resourceId=[resourceData valueForKeyPath:@"entry.content.Record.ResourceID"];
                 tempModel.resourceDescription=[resourceData valueForKeyPath:@"entry.content.Record.Description"];

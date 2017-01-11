@@ -41,7 +41,7 @@
         Internet *internet=[[Internet alloc] init];
         if (![internet start]) {
             isLoaderShow=true;
-            [myDelegate showIndicator:[Constants navigationColor]];
+            [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
             [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/event/"]]];
         }
     }
@@ -52,7 +52,7 @@
         Internet *internet=[[Internet alloc] init];
         if (![internet start]) {
             isLoaderShow=true;
-            [myDelegate showIndicator:[Constants navigationColor]];
+            [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
             [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/information/"]]];
         }
     }
@@ -63,7 +63,7 @@
         Internet *internet=[[Internet alloc] init];
         if (![internet start]) {
             isLoaderShow=true;
-            [myDelegate showIndicator:[Constants navigationColor]];
+            [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
             [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/help/"]]];
         }
     }
@@ -110,14 +110,14 @@
         //Information view has list to navigte other webpage
         if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/information/"]) {
             if (!isLoaderShow) {
-                [myDelegate showIndicator:[Constants navigationColor]];
+                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
                  isLoaderShow=true;
                 [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
             }
         }
         else {
             if (!isLoaderShow) {
-                [myDelegate showIndicator:[Constants navigationColor]];
+                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
                 isLoaderShow=true;
             }
         }

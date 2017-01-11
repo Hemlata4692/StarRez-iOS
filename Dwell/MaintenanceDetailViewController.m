@@ -31,10 +31,9 @@
     [super viewDidLoad];
     
     self.navigationItem.title=@"Maintenance Detail";
-    [super addBackgroungImage:@""];
-    self.maintenanceDetailTableView.layer.cornerRadius=3;
+    [super addBackgroungImage:@"Maintenance"];
     //Fetch image ids
-    [myDelegate showIndicator:[Constants navigationColor]];
+    [myDelegate showIndicator:[Constants oldOrangeBackgroundColor]];
     [self performSelector:@selector(getMaintenanceListService) withObject:nil afterDelay:.1];
 }
 
@@ -102,12 +101,27 @@
             UIBezierPath *maskPath = [UIBezierPath
                                       bezierPathWithRoundedRect:labelFrame
                                       byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight)
-                                      cornerRadii:CGSizeMake(5, 5)
+                                      cornerRadii:CGSizeMake(cornerRadius, cornerRadius)
                                       ];
             CAShapeLayer *maskLayer = [CAShapeLayer layer];
             maskLayer.frame = labelFrame;
             maskLayer.path = maskPath.CGPath;
             bgView.layer.mask = maskLayer;
+            cell.layer.mask=maskLayer;
+            CAShapeLayer *shapelayer=[CAShapeLayer layer];
+                    UIBezierPath *path=[UIBezierPath bezierPath];
+                    //Draw a line
+                    [path moveToPoint:CGPointMake(0.0, titleHeight+20)]; //Add yourStartPoint here
+                    [path addLineToPoint:CGPointMake(([UIScreen mainScreen].bounds.size.width-30), titleHeight+15)];//Add yourEndPoint here
+                    UIColor *fill=[UIColor colorWithRed:72.0/255.0 green:73.0/255.0 blue:73.0/255.0 alpha:1.0];
+                    shapelayer.strokeStart=0.0;
+                    shapelayer.strokeColor=fill.CGColor;
+                    shapelayer.lineWidth=1.0f;
+                    shapelayer.lineJoin=kCALineJoinRound;
+                    shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
+                    shapelayer.path=path.CGPath;
+            
+                    [bgView.layer addSublayer:shapelayer];
             return cell;
             break;
         }
@@ -216,7 +230,7 @@
             UIBezierPath *maskPath = [UIBezierPath
                                       bezierPathWithRoundedRect:labelFrame
                                       byRoundingCorners:(UIRectCornerBottomLeft | UIRectCornerBottomRight)
-                                      cornerRadii:CGSizeMake(5, 5)
+                                      cornerRadii:CGSizeMake(cornerRadius, cornerRadius)
                                       ];
             
             CAShapeLayer *maskLayer = [CAShapeLayer layer];
@@ -225,6 +239,7 @@
             maskLayer.path = maskPath.CGPath;
             
             closeLabel.layer.mask = maskLayer;
+            cell.layer.mask=maskLayer;
             if ([objMainatenanceModel.status isEqualToString:@"Closed by student"]||[objMainatenanceModel.status isEqualToString:@"Job Completed"]||objMainatenanceModel.completedDate!=nil ) {
                 
                 cell.alpha = 0.7;
@@ -323,7 +338,7 @@
     if (indexCount<7) {
         rowHeight = rowHeight+cellSize.size.height;
         indexCount++;
-        [self addShadowToTableview];//Set table view shadow
+        //[self addShadowToTableview];//Set table view shadow
     }
     DLog(@"cellSize is %f and index: %ld",cellSize.size.height,(long)indexPath.row);
 }
@@ -441,7 +456,7 @@
     [alertView dismissAlertView];
     if ((customAlert.alertTagValue==3)&&(option==1)) {
         //Retry service call
-        [myDelegate showIndicator:[Constants navigationColor]];
+        [myDelegate showIndicator:[Constants oldOrangeBackgroundColor]];
         [self performSelector:@selector(cancelService) withObject:nil afterDelay:.1];
     }
   else if ((customAlert.alertTagValue==3)&&(option==0)) {

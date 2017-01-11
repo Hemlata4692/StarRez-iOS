@@ -35,7 +35,7 @@
     [super viewDidLoad];
     self.navigationItem.title=@"Maintenance";
     //Add background image
-    [super addBackgroungImage:@""];
+    [super addBackgroungImage:@"Maintenance"];
     maintenanceArray = [[NSMutableArray alloc]init];
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
     // Do any additional setup after loading the view.
@@ -48,7 +48,7 @@
     filterBarButton.enabled=false;
     //Set index to selected show in menu
     [UserDefaultManager setValue:[NSNumber numberWithInteger:1] key:@"indexpath"];
-    [myDelegate showIndicator:[Constants orangeBackgroundColor]];
+    [myDelegate showIndicator:[Constants oldOrangeBackgroundColor]];
     [self performSelector:@selector(checkRoomSpaceId) withObject:nil afterDelay:.1];
 }
 
@@ -215,7 +215,7 @@
     objModel= [maintenanceArray objectAtIndex:indexPath.row];
     }
     
-    float titleHeight=[UserDefaultManager getDynamicLabelHeight:[objModel title] font:[UIFont calibriNormalWithSize:20] widthValue:([UIScreen mainScreen].bounds.size.width-20)-125];
+    float titleHeight=[UserDefaultManager getDynamicLabelHeight:[objModel title] font:[UIFont handseanWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-125];
     float forwardAddressHeight=[UserDefaultManager getDynamicLabelHeight:[objModel detail] font:[UIFont calibriNormalWithSize:19] widthValue:([UIScreen mainScreen].bounds.size.width-20)-26];
     return forwardAddressHeight+titleHeight+112.0;
 }

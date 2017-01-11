@@ -53,6 +53,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *descriptionTitle;
 @property (strong, nonatomic) IBOutlet UILabel *causeTitle;
 
+//Set field background label
+@property (strong, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (strong, nonatomic) IBOutlet UILabel *itemLabel;
+@property (strong, nonatomic) IBOutlet UILabel *commentLabel;
+
 @end
 
 @implementation AddNewJobViewController
@@ -66,9 +71,10 @@
     [self setKeyboardControls:[[BSKeyboardControls alloc] initWithFields:addNewJobTextFieldArray]];
     [self.keyboardControls setDelegate:self];
     
+    [self addBackgroungImage:@"AddJob"];
     //Add corner radius
     [self addCornerRadius];
-    [myDelegate showIndicator:[Constants orangeBackgroundColor]];
+    [myDelegate showIndicator:[Constants oldYellowBackgroundColor:1.0]];
 //    if (self.view.bounds.size.height>568) {
 //        self.addJobContainerView.translatesAutoresizingMaskIntoConstraints = YES;
 //        self.addJobContainerView.frame = CGRectMake(self.addJobContainerView.frame.origin.x, self.addJobContainerView.frame.origin.y, self.view.bounds.size.width-30, self.view.bounds.size.height-95);
@@ -95,8 +101,15 @@
 
 - (void)addCornerRadius {
     
-    [self.saveButton.layer setCornerRadius:22];
-    [self.addJobContainerView addShadowWithCornerRadius:self.addJobContainerView color:[UIColor lightGrayColor] borderColor:[UIColor whiteColor] radius:5.0f];  //Add corner radius and shadow
+    self.itemLabel.layer.cornerRadius=cornerRadius;
+    self.commentLabel.layer.cornerRadius=cornerRadius;
+    self.categoryLabel.layer.cornerRadius=cornerRadius;
+    self.itemLabel.layer.masksToBounds=YES;
+    self.commentLabel.layer.masksToBounds=YES;
+    self.categoryLabel.layer.masksToBounds=YES;
+
+    [self.saveButton.layer setCornerRadius:25];
+//    [self.addJobContainerView addShadowWithCornerRadius:self.addJobContainerView color:[UIColor lightGrayColor] borderColor:[UIColor whiteColor] radius:5.0f];  //Add corner radius and shadow
 }
 
 - (void)didReceiveMemoryWarning {
@@ -487,7 +500,7 @@
     
     [alertView dismissAlertView];
     if (customAlert.alertTagValue==5) {
-        [myDelegate showIndicator:[Constants navigationColor]];
+        [myDelegate showIndicator:[Constants oldYellowBackgroundColor:1.0]];
         //Retry to get category list from server.
         [self performSelector:@selector(categoryService) withObject:nil afterDelay:.1];
     }

@@ -37,7 +37,7 @@
     else{
         width = frame.size.width-40;
     }
-    float titleHeight=[UserDefaultManager getDynamicLabelHeight:titleLabel.text font:[UIFont calibriNormalWithSize:20] widthValue:([UIScreen mainScreen].bounds.size.width-20)-125];
+    float titleHeight=[UserDefaultManager getDynamicLabelHeight:titleLabel.text font:[UIFont handseanWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-20)-125];
     titleLabel.frame = CGRectMake(titleLabel.frame.origin.x, titleLabel.frame.origin.y, ([UIScreen mainScreen].bounds.size.width-20)-125, titleHeight+25);
     titleBgVIew.frame = CGRectMake(titleBgVIew.frame.origin.x, titleBgVIew.frame.origin.y, width, titleLabel.frame.size.height);
     //Set dynamic height of description label.
@@ -45,14 +45,16 @@
     float descriptionFieldHeight=[UserDefaultManager getDynamicLabelHeight:descriptionField.text font:[UIFont calibriNormalWithSize:19] widthValue:([UIScreen mainScreen].bounds.size.width-20)-26];
     descriptionField.frame = CGRectMake(descriptionField.frame.origin.x, titleLabel.frame.origin.y+titleLabel.frame.size.height+20, ([UIScreen mainScreen].bounds.size.width-20)-25, descriptionFieldHeight);
     //Set corner radius to main background view
-    [self.mainBackgroundView addShadowWithCornerRadius:self.mainBackgroundView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];
+    mainBackgroundView.layer.cornerRadius=cornerRadius;
+    mainBackgroundView.layer.masksToBounds=YES;
+    // [self.mainBackgroundView addShadowWithCornerRadius:self.mainBackgroundView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];
     statusBackgroundVIew.translatesAutoresizingMaskIntoConstraints=YES;
     statusBackgroundVIew.frame=CGRectMake(statusBackgroundVIew.frame.origin.x, descriptionField.frame.origin.y+descriptionField.frame.size.height+20, width, statusBackgroundVIew.frame.size.height);
     
     //Round bottom of status background
     UIBezierPath *statusMaskPath = [UIBezierPath bezierPathWithRoundedRect:statusBackgroundVIew.bounds
-                                                   byRoundingCorners:UIRectCornerBottomLeft| UIRectCornerBottomRight
-                                                         cornerRadii:CGSizeMake(5.0, 5.0)];
+                                                         byRoundingCorners:UIRectCornerBottomLeft| UIRectCornerBottomRight
+                                                               cornerRadii:CGSizeMake(5.0, 5.0)];
     //Create the shape layer and set its path
     CAShapeLayer *statusMaskLayer = [CAShapeLayer layer];
     statusMaskLayer.frame = statusBackgroundVIew.bounds;
@@ -60,17 +62,23 @@
     //Set the newly created shape layer as the mask for the image view's layer
     statusBackgroundVIew.layer.mask = statusMaskLayer;
     
-    //Round top of the title background
-    UIBezierPath *titleMaskPath = [UIBezierPath bezierPathWithRoundedRect:titleBgVIew.bounds
-                                                         byRoundingCorners:UIRectCornerTopLeft| UIRectCornerTopRight
-                                                               cornerRadii:CGSizeMake(5.0, 5.0)];
     //Create the shape layer and set its path
-    CAShapeLayer *titleMaskLayer = [CAShapeLayer layer];
-    titleMaskLayer.frame = titleBgVIew.bounds;
-    titleMaskLayer.path = titleMaskPath.CGPath;
-    //Set the newly created shape layer as the mask for the image view's layer
-    titleBgVIew.layer.mask = titleMaskLayer;
-
+    if (self.shapeLayer)
+        [self.shapeLayer removeFromSuperlayer];
+    
+    UIBezierPath *path=[UIBezierPath bezierPath];
+    //Draw a line
+    [path moveToPoint:CGPointMake(10.0, titleHeight+25)]; //Add yourStartPoint here
+    [path addLineToPoint:CGPointMake(frame.size.width-20, titleHeight+25)];//Add yourEndPoint here
+    UIColor *fill=[UIColor colorWithRed:72.0/255.0 green:73.0/255.0 blue:73.0/255.0 alpha:1.0];
+    self.shapeLayer = [CAShapeLayer layer];
+    self.shapeLayer.strokeStart=0.0;
+    self.shapeLayer.strokeColor=fill.CGColor;
+    self.shapeLayer.lineWidth=1.0f;
+    self.shapeLayer.lineJoin=kCALineJoinRound;
+    self.shapeLayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
+    self.shapeLayer.path=path.CGPath;
+    [self.layer addSublayer:self.shapeLayer];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

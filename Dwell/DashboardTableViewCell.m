@@ -17,7 +17,7 @@
     [super awakeFromNib];
     
     // Initialization code
-    [self layoutCellObject];
+//    [self layoutCellObject];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -25,15 +25,43 @@
     // Configure the view for the selected state
 }
 
-- (void)layoutCellObject {
+- (void)layoutCellObject:(int)selectedType {
     
-    self.cellContainerView.layer.cornerRadius=5.0f;
+    self.cellContainerView.layer.cornerRadius=cornerRadius;
     self.cellContainerView.layer.masksToBounds=YES;
-    [self.cellShadowBackView addShadowWithCornerRadius:self.cellShadowBackView color:[UIColor lightGrayColor] borderColor:[UIColor colorWithRed:241/255.0 green:241/255.0 blue:241/255.0 alpha:1.0] radius:5.0f];  //Add corner radius and shadow
+    
+    //Make dots below title label
+//     UIBezierPath *maskPath=[UIBezierPath bezierPathWithRoundedRect:resourceStatusBackGroundView.bounds byRoundingCorners:( UIRectCornerBottomLeft | UIRectCornerBottomRight) cornerRadii:CGSizeMake(3.0, 3.0)];
+//    CAShapeLayer *maskLayer=[[CAShapeLayer alloc] init];
+//    maskLayer.frame=frame;
+//    maskLayer.path=maskPath.CGPath;
+//    resourceStatusBackGroundView.layer.mask = maskLayer;
+    CAShapeLayer *shapelayer=[CAShapeLayer layer];
+    UIBezierPath *path=[UIBezierPath bezierPath];
+    //Draw a line
+    [path moveToPoint:CGPointMake(0.0, 44.0)]; //Add yourStartPoint here
+    [path addLineToPoint:CGPointMake([[UIScreen mainScreen] bounds].size.width-30, 44.0)];//Add yourEndPoint here
+    
+    UIColor *fill;
+    if (selectedType==1) {
+        fill=[Constants oldOrangeBackgroundColor];
+    }
+    else {
+        fill=[Constants oldBlueBackgroundColor:1.0];
+    }
+    shapelayer.strokeStart=0.0;
+    shapelayer.strokeColor=fill.CGColor;
+    shapelayer.lineWidth=1.0f;
+    shapelayer.lineJoin=kCALineJoinRound;
+    shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
+    shapelayer.path=path.CGPath;
+    [self.cellContainerView.layer addSublayer:shapelayer];
+    //[self.cellShadowBackView addShadowWithCornerRadius:self.cellShadowBackView color:[UIColor lightGrayColor] borderColor:[UIColor colorWithRed:241/255.0 green:241/255.0 blue:241/255.0 alpha:1.0] radius:5.0f];  //Add corner radius and shadow
 }
 
 - (void)displayData:(NSMutableArray*)dashboardData selectedType:(int)selectedType {    //Here selected type is maintenance type(1) or parcel type(2)
     
+    [self layoutCellObject:selectedType];
     self.firstInformationView.hidden=NO;
     self.secondInformationView.hidden=NO;
     self.thirdInformationView.hidden=NO;
@@ -43,10 +71,10 @@
     self.secondInformationStatusLabel.textColor=[UIColor darkGrayColor];    //Set byDefault color is [UIColor darkGrayColor]
     self.thirdInformationStatusLabel.textColor=[UIColor darkGrayColor];     //Set byDefault color is [UIColor darkGrayColor]
     
-    self.titleLabel.textColor=[UIColor colorWithRed:67/255.0 green:67/255.0 blue:67/255.0 alpha:1.0];
     if (selectedType==1) {
+        self.titleLabel.textColor=[Constants oldOrangeBackgroundColor];
         self.titleLabel.text=@"Maintenance";
-        self.titleIcon.image=[UIImage imageNamed:@"maintenanceUnselected"];
+        self.titleIcon.image=[UIImage imageNamed:@"maintenanceSideBar"];
         if (dashboardData.count==0) {
             self.noRecordAvailable.hidden=NO;
             self.noRecordAvailable.text=@"No job available.";
@@ -62,8 +90,8 @@
     }
     else {
         self.titleLabel.text=@"Parcel";
-        self.titleIcon.image=[UIImage imageNamed:@"dashboardParcel"];
-        self.titleLabel.textColor=[UIColor colorWithRed:0/255.0 green:116/255.0 blue:189/255.0 alpha:1.0];
+        self.titleIcon.image=[UIImage imageNamed:@"parcelSideBar"];
+        self.titleLabel.textColor=[Constants oldBlueBackgroundColor:1.0];
         
         if (dashboardData.count==0) {
             self.noRecordAvailable.hidden=NO;

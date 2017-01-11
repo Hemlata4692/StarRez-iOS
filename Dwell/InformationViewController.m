@@ -9,6 +9,7 @@
 #import "InformationViewController.h"
 #import "SWRevealViewController.h"
 #import "Internet.h"
+#import "UIImage+deviceSpecificMedia.h"
 
 @interface InformationViewController (){
     
@@ -26,7 +27,12 @@
     [super viewDidLoad];
     
     isLoaderShow=false;
+    self.webView.backgroundColor = [UIColor clearColor];
+    self.webView.opaque=NO;
+    
     //Add menu bar button initially
+    [self addBackgroungImage:@"Resource"];
+    [self setTransparentNavigtionBar];
     [self addLeftBarButtonWithImage:[UIImage imageNamed:@"menu.png"]];
     if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Event"]) {   //If event tab click
         [UserDefaultManager setValue:[NSNumber numberWithInteger:4] key:@"indexpath"];
@@ -69,6 +75,31 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - end
+
+//Make the navigation bar transparent and show only bar items.
+- (void)setTransparentNavigtionBar {
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+}
+
+//Add different background image for all sub classes at run time.
+- (void)addBackgroungImage:(NSString *)imageName {
+    
+    //Set background image on uiview
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:imageName] drawInRect:self.view.bounds];
+    UIImage * image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[image imageForDeviceWithName:imageName]]];
+    backgroundImage.contentMode = UIViewContentModeScaleAspectFit;
+    backgroundImage.frame = self.view.frame;
+    [self.view insertSubview:backgroundImage atIndex:0];
+}
 
 #pragma mark - Webview delegates
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

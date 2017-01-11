@@ -47,46 +47,8 @@
     [self removeAutolayout];
     [self viewCustomization];
     
-    //Set testing purpose data
-//    dashboardDictData=[NSMutableDictionary new];
-//    dashboardDictKeys=[NSMutableArray new];
-//    NSMutableArray *ma=[NSMutableArray new];
-//    NSMutableArray *pa=[NSMutableArray new];
-//    MaintenanceModel *t=[MaintenanceModel new];
-//    t.title=@"sdf";
-//    t.reportedDate=@"13 Oct, 16";
-//    [ma addObject:t];
-//    
-//    t=[MaintenanceModel new];
-//    t.title=@"sdf";
-//    t.reportedDate=@"13 Oct, 16";
-//    [ma addObject:t];
-//    
-//    t=[MaintenanceModel new];
-//    t.title=@"sdf";
-//    t.reportedDate=@"13 Oct, 16";
-//    [ma addObject:t];
-//    
-//    ParcelModel *p=[ParcelModel new];
-//    p.parcelTitle=@"asdfdsf";
-//    [pa addObject:p];
-//    
-//    p=[ParcelModel new];
-//    p.parcelTitle=@"asdfdsf";
-//    [pa addObject:p];
-//
-//    p=[ParcelModel new];
-//    p.parcelTitle=@"asdfdsf";
-//    [pa addObject:p];
-//
-//    [dashboardDictData setValue:[ma mutableCopy] forKey:@"Maintenance"];
-//    [dashboardDictKeys addObject:@"Maintenance"];
-//    [dashboardDictKeys addObject:@"Parcel"];
-//    [dashboardDictData setValue:[pa mutableCopy] forKey:@"Parcel"];
-    //end
-    
     [self.dashboardTableView reloadData];
-     [myDelegate showIndicator:[Constants navigationColor]];
+     [myDelegate showIndicator:[Constants oldOrangeBackgroundColor]];
     [self performSelector:@selector(checkRoomSpaceId) withObject:nil afterDelay:.1];
 }
 
@@ -100,6 +62,7 @@
 - (void)intiallizeValue {
 
     self.noRecordFoundLabel.hidden=YES;
+    [super addBackgroungImage:@"Dashboard"];
     [UserDefaultManager setValue:[NSNumber numberWithInteger:0] key:@"indexpath"];
     //Menu label at down menu
     downMenuArray=@[@"Maintenance",@"Parcel",@"Resources",@"More",@"Events",@"Information",@"Help",@"Logout"];
@@ -124,8 +87,8 @@
     self.dashboardTableView.translatesAutoresizingMaskIntoConstraints=YES;
     DLog(@"%f,%f,%f",self.view.bounds.size.height,self.menuCollectionView.frame.size.height,self.menuCollectionView.bounds.size.height);
     //Set view frames
-    self.menuCollectionView.frame=CGRectMake(0,(self.view.bounds.size.height-64)-(self.menuCollectionView.frame.size.height/2), self.view.bounds.size.width, self.menuCollectionView.frame.size.height);
-    self.dashboardTableView.frame=CGRectMake(0,0, self.view.bounds.size.width,(self.view.bounds.size.height-64)-(self.menuCollectionView.frame.size.height/2)-8);
+    self.menuCollectionView.frame=CGRectMake(0,(self.view.bounds.size.height)-(self.menuCollectionView.frame.size.height/2), self.view.bounds.size.width, self.menuCollectionView.frame.size.height);
+    self.dashboardTableView.frame=CGRectMake(0,64, self.view.bounds.size.width,(self.view.bounds.size.height)-(self.menuCollectionView.frame.size.height/2)-72);//here 64(navigation height)+8(space b/w table view and collection view)=72
 }
 
 - (void)viewCustomization {
@@ -142,13 +105,14 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 50)];
-    headerView.backgroundColor=[UIColor whiteColor];
+    headerView.backgroundColor=[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.7];
     // i.e. array element
     UILabel *userNameLabel=[[UILabel alloc] initWithFrame:CGRectMake(15, 5, [[UIScreen mainScreen] bounds].size.width-30, headerView.frame.size.height-10)] ;
     userNameLabel.text=[UserDefaultManager getValue:@"userName"];
+//    userNameLabel.text=@"Hello rohit kumar modi and sunny and raja ram rohit kumar modi and sunny and raja ram";
     userNameLabel.textAlignment=NSTextAlignmentCenter;
-    userNameLabel.textColor=[UIColor colorWithRed:118.0/255 green:44.0/255.0 blue:134.0/255.0 alpha:1.0];
-    userNameLabel.font=[UIFont calibriNormalWithSize:15];
+    userNameLabel.textColor=[UIColor colorWithRed:68.0/255 green:68.0/255.0 blue:68.0/255.0 alpha:1.0];
+    userNameLabel.font=[UIFont calibriNormalWithSize:14];
      userNameLabel.numberOfLines=0;
     [headerView addSubview:userNameLabel];
     return headerView;   // return headerLabel;
@@ -329,7 +293,7 @@
     [UIView beginAnimations:@"animationOff" context:NULL];
     [UIView setAnimationDuration:0.5f];
     self.menuCollectionView.frame=CGRectMake(0,self.view.bounds.size.height-(self.menuCollectionView.frame.size.height/2), self.view.bounds.size.width, self.menuCollectionView.frame.size.height);
-    self.dashboardTableView.frame=CGRectMake(0,3, self.view.bounds.size.width,self.view.bounds.size.height-(self.menuCollectionView.bounds.size.height/2)-8);
+    self.dashboardTableView.frame=CGRectMake(0,64, self.view.bounds.size.width,self.view.bounds.size.height-(self.menuCollectionView.bounds.size.height/2)-72);//here 64(navigation height)+8(space b/w table view and collection view)=72
     [UIView commitAnimations];
 }
 
@@ -340,7 +304,7 @@
     [UIView beginAnimations:@"animationOff" context:NULL];
     [UIView setAnimationDuration:0.5f];
     self.menuCollectionView.frame=CGRectMake(0,self.view.bounds.size.height-self.menuCollectionView.frame.size.height, self.view.bounds.size.width, self.menuCollectionView.frame.size.height);
-    self.dashboardTableView.frame=CGRectMake(0,3, self.view.bounds.size.width,self.view.bounds.size.height-self.menuCollectionView.frame.size.height-8);
+    self.dashboardTableView.frame=CGRectMake(0,64, self.view.bounds.size.width,self.view.bounds.size.height-self.menuCollectionView.frame.size.height-72);//here 64(navigation height)+8(space b/w table view and collection view)=72
     [UIView commitAnimations];
 }
 #pragma mark - end

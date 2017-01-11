@@ -18,6 +18,12 @@
 		B70EB1001D9D3E7C00215D4F /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B70EB0FF1D9D3E7C00215D4F /* InformationViewController.m */; };
 		B719DAC41D9A8489000A5D0D /* AvailableResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B719DAC31D9A8489000A5D0D /* AvailableResourceViewController.m */; };
 		B719DAC81D9A9711000A5D0D /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = B719DAC71D9A9711000A5D0D /* UIView+Toast.m */; };
+		B730F6001E25F3A200C468A2 /* Dashboard-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B730F5FD1E25F3A200C468A2 /* Dashboard-568h@2x.png */; };
+		B730F6011E25F3A200C468A2 /* Dashboard-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B730F5FE1E25F3A200C468A2 /* Dashboard-667h@2x.png */; };
+		B730F6021E25F3A200C468A2 /* Dashboard-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B730F5FF1E25F3A200C468A2 /* Dashboard-736h@3x.png */; };
+		B730F6071E26000300C468A2 /* Parcel-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B730F6041E26000300C468A2 /* Parcel-568h@2x.png */; };
+		B730F6081E26000300C468A2 /* Parcel-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B730F6051E26000300C468A2 /* Parcel-667h@2x.png */; };
+		B730F6091E26000300C468A2 /* Parcel-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B730F6061E26000300C468A2 /* Parcel-736h@3x.png */; };
 		B745F86F1E23682D001119BD /* login-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B745F86B1E23682D001119BD /* login-568h@2x.png */; };
 		B745F8701E23682D001119BD /* login-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B745F86C1E23682D001119BD /* login-667h@2x.png */; };
 		B745F8711E23682D001119BD /* login-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B745F86D1E23682D001119BD /* login-736h@3x.png */; };
@@ -114,6 +120,12 @@
 		B719DAC31D9A8489000A5D0D /* AvailableResourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvailableResourceViewController.m; sourceTree = "<group>"; };
 		B719DAC61D9A9711000A5D0D /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		B719DAC71D9A9711000A5D0D /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		B730F5FD1E25F3A200C468A2 /* Dashboard-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard-568h@2x.png"; sourceTree = "<group>"; };
+		B730F5FE1E25F3A200C468A2 /* Dashboard-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard-667h@2x.png"; sourceTree = "<group>"; };
+		B730F5FF1E25F3A200C468A2 /* Dashboard-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard-736h@3x.png"; sourceTree = "<group>"; };
+		B730F6041E26000300C468A2 /* Parcel-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Parcel-568h@2x.png"; sourceTree = "<group>"; };
+		B730F6051E26000300C468A2 /* Parcel-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Parcel-667h@2x.png"; sourceTree = "<group>"; };
+		B730F6061E26000300C468A2 /* Parcel-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Parcel-736h@3x.png"; sourceTree = "<group>"; };
 		B745F86B1E23682D001119BD /* login-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-568h@2x.png"; sourceTree = "<group>"; };
 		B745F86C1E23682D001119BD /* login-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-667h@2x.png"; sourceTree = "<group>"; };
 		B745F86D1E23682D001119BD /* login-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-736h@3x.png"; sourceTree = "<group>"; };
@@ -370,6 +382,26 @@
 				B719DAC71D9A9711000A5D0D /* UIView+Toast.m */,
 			);
 			name = ToastFile;
+			sourceTree = "<group>";
+		};
+		B730F5FC1E25F39900C468A2 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				B730F5FD1E25F3A200C468A2 /* Dashboard-568h@2x.png */,
+				B730F5FE1E25F3A200C468A2 /* Dashboard-667h@2x.png */,
+				B730F5FF1E25F3A200C468A2 /* Dashboard-736h@3x.png */,
+			);
+			name = Dashboard;
+			sourceTree = "<group>";
+		};
+		B730F6031E25FEF200C468A2 /* Parcel */ = {
+			isa = PBXGroup;
+			children = (
+				B730F6041E26000300C468A2 /* Parcel-568h@2x.png */,
+				B730F6051E26000300C468A2 /* Parcel-667h@2x.png */,
+				B730F6061E26000300C468A2 /* Parcel-736h@3x.png */,
+			);
+			name = Parcel;
 			sourceTree = "<group>";
 		};
 		B745F86A1E236823001119BD /* Login */ = {
@@ -658,6 +690,8 @@
 		B75B2C931D88047D007EEE42 /* BackgroundImages */ = {
 			isa = PBXGroup;
 			children = (
+				B730F6031E25FEF200C468A2 /* Parcel */,
+				B730F5FC1E25F39900C468A2 /* Dashboard */,
 				B76855B61E24A29C004C5881 /* Resource */,
 				B745F86A1E236823001119BD /* Login */,
 			);
@@ -1027,14 +1061,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B730F6071E26000300C468A2 /* Parcel-568h@2x.png in Resources */,
 				B7ACD26E1D890FE7005CD42D /* calibri_Normal.ttf in Resources */,
+				B730F6081E26000300C468A2 /* Parcel-667h@2x.png in Resources */,
 				B76855BC1E24A2A8004C5881 /* Resource-667h@2x.png in Resources */,
+				B730F6011E25F3A200C468A2 /* Dashboard-667h@2x.png in Resources */,
 				B745F8721E23682D001119BD /* login.png in Resources */,
+				B730F6021E25F3A200C468A2 /* Dashboard-736h@3x.png in Resources */,
 				B76855BD1E24A2A8004C5881 /* Resource-736h@3x.png in Resources */,
 				B76855BB1E24A2A8004C5881 /* Resource-568h@2x.png in Resources */,
 				B76855BE1E24A2A8004C5881 /* Resource.png in Resources */,
 				B7D06C541D895CA300A5FA94 /* CustomAlert.xib in Resources */,
 				B758D6FD1D9E6AEC00945EE8 /* Assets.xcassets in Resources */,
+				B730F6091E26000300C468A2 /* Parcel-736h@3x.png in Resources */,
+				B730F6001E25F3A200C468A2 /* Dashboard-568h@2x.png in Resources */,
 				B745F8711E23682D001119BD /* login-736h@3x.png in Resources */,
 				B75B2C7F1D88033A007EEE42 /* Main.storyboard in Resources */,
 				B745F86F1E23682D001119BD /* login-568h@2x.png in Resources */,

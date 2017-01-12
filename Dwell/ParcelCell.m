@@ -115,7 +115,8 @@
         parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
     }
     else if ([modelData.parcelStatusId isEqualToString:@"3"]) {
-        parcelStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor];
+//        parcelStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor];
+        parcelStatusBackGroundView.backgroundColor=[Constants redBackgroundColor];//Change color
     }
     else {
         parcelStatusBackGroundView.backgroundColor=[Constants grayBackgroundColor];

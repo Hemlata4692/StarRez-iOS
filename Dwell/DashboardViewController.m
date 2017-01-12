@@ -105,7 +105,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 50)];
-    headerView.backgroundColor=[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.7];
+    headerView.backgroundColor=[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.8];
     // i.e. array element
     UILabel *userNameLabel=[[UILabel alloc] initWithFrame:CGRectMake(15, 5, [[UIScreen mainScreen] bounds].size.width-30, headerView.frame.size.height-10)] ;
     userNameLabel.text=[UserDefaultManager getValue:@"userName"];

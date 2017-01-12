@@ -137,7 +137,8 @@
         statusBackgroundVIew.backgroundColor = [Constants yellowBackgroundColor];
     }
     else if ([modelData.status isEqualToString:@"Job Received"]) {
-        statusBackgroundVIew.backgroundColor = [Constants orangeBackgroundColor];
+//        statusBackgroundVIew.backgroundColor = [Constants orangeBackgroundColor];//Change color
+        statusBackgroundVIew.backgroundColor = [Constants skyBlueColor];
     }
     else if ([modelData.status isEqualToString:@"Job Scheduled"]) {
         statusBackgroundVIew.backgroundColor = [Constants blueBackgroundColor];

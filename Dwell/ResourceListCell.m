@@ -103,7 +103,8 @@
     
     //Set status back color according to fetch status
     if ([modelData.resourceStatusId isEqualToString:@"0"]) {
-        resourceStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor];
+//        resourceStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor];Change color
+        resourceStatusBackGroundView.backgroundColor=[Constants purpleBackgroundColor];
     }
     else if ([modelData.resourceStatusId isEqualToString:@"1"]) {
         resourceStatusBackGroundView.backgroundColor=[Constants orangeBackgroundColor];

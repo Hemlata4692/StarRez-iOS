@@ -144,14 +144,15 @@
         self.fromDate.text=@"NA";
     }
     else {
-        self.fromDate.text=resourceDetailData.resourceFromDate;
+        
+        self.fromDate.text=[NSString stringWithFormat:@"%@ %@",resourceDetailData.resourceFromDate,resourceDetailData.resourceFromTime];
     }
     //Check toDate is nil
     if ((nil==resourceDetailData.resourceToDate)||[resourceDetailData.resourceToDate isEqualToString:@""]) {
         self.toDate.text=@"NA";
     }
     else {
-        self.toDate.text=resourceDetailData.resourceToDate;
+        self.toDate.text=[NSString stringWithFormat:@"%@ %@",resourceDetailData.resourceToDate,resourceDetailData.resourceToTime];
     }
     //Check resource status is nil
     if ((nil==resourceDetailData.resourceStatus)||[resourceDetailData.resourceStatus isEqualToString:@""]) {
@@ -176,7 +177,8 @@
     }
     //Set status back color according to fetch status
     if ([resourceDetailData.resourceStatusId isEqualToString:@"0"]) {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor];
+//        self.resourceStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor];//Change color
+        self.resourceStatusBackGroundView.backgroundColor=[Constants purpleBackgroundColor];
     }
     else if ([resourceDetailData.resourceStatusId isEqualToString:@"1"]) {
         self.resourceStatusBackGroundView.backgroundColor=[Constants orangeBackgroundColor];

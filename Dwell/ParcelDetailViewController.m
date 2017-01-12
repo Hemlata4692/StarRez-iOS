@@ -156,14 +156,14 @@
         self.receiptDate.text=@"NA";
     }
     else {
-        self.receiptDate.text=parcelDetailData.parcelReceiptDate;
+        self.receiptDate.text=[NSString stringWithFormat:@"%@ %@",parcelDetailData.parcelReceiptDate,parcelDetailData.parcelReceiptTime];
     }
     //Check issued date is nil
     if ((nil==parcelDetailData.parcelIssueDate)||[parcelDetailData.parcelIssueDate isEqualToString:@""]) {
         self.issueDate.text=@"NA";
     }
     else {
-        self.issueDate.text=parcelDetailData.parcelIssueDate;
+        self.issueDate.text=[NSString stringWithFormat:@"%@ %@",parcelDetailData.parcelIssueDate,parcelDetailData.parcelIssueTime];
     }
     //Check parcel status is nil
     if ((nil==parcelDetailData.parcelStatus)||[parcelDetailData.parcelStatus isEqualToString:@""]) {
@@ -204,7 +204,8 @@
         self.parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
     }
     else if ([parcelDetailData.parcelStatusId isEqualToString:@"3"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor];
+//        self.parcelStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants redBackgroundColor];//Change color
     }
     else {
         self.parcelStatusBackGroundView.backgroundColor=[Constants grayBackgroundColor];

@@ -133,13 +133,13 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"InfoCell"];
             }
             UILabel * reportedDate = (UILabel *)[cell.contentView viewWithTag:2];
-            reportedDate.text = objMainatenanceModel.reportedDate;
+            reportedDate.text = [NSString stringWithFormat:@"%@ %@",objMainatenanceModel.reportedDate,objMainatenanceModel.reportedTime];
             UILabel * closedDate = (UILabel *)[cell.contentView viewWithTag:3];
             if (objMainatenanceModel.completedDate==nil) {
                 closedDate.text=@"NA";
             }
             else {
-                closedDate.text = objMainatenanceModel.completedDate;
+                closedDate.text = [NSString stringWithFormat:@"%@ %@",objMainatenanceModel.completedDate,objMainatenanceModel.completedTime];
             }
             UILabel * status = (UILabel *)[cell.contentView viewWithTag:4];
             status.text = objMainatenanceModel.status;

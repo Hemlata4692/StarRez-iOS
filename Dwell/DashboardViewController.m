@@ -48,7 +48,8 @@
     [self viewCustomization];
     
     [self.dashboardTableView reloadData];
-     [myDelegate showIndicator:[Constants oldDashboardColor]];
+//     [myDelegate showIndicator:[Constants oldDashboardColor]];
+    [myDelegate showIndicator:[Constants navigationColor]];
     [self performSelector:@selector(checkRoomSpaceId) withObject:nil afterDelay:.1];
 }
 

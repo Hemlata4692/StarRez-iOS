@@ -74,7 +74,8 @@
     [self addBackgroungImage:@"AddJob"];
     //Add corner radius
     [self addCornerRadius];
-    [myDelegate showIndicator:[Constants oldYellowBackgroundColor:1.0]];
+//    [myDelegate showIndicator:[Constants oldYellowBackgroundColor:1.0]];
+    [myDelegate showIndicator:[Constants navigationColor]];
 //    if (self.view.bounds.size.height>568) {
 //        self.addJobContainerView.translatesAutoresizingMaskIntoConstraints = YES;
 //        self.addJobContainerView.frame = CGRectMake(self.addJobContainerView.frame.origin.x, self.addJobContainerView.frame.origin.y, self.view.bounds.size.width-30, self.view.bounds.size.height-95);
@@ -500,7 +501,8 @@
     
     [alertView dismissAlertView];
     if (customAlert.alertTagValue==5) {
-        [myDelegate showIndicator:[Constants oldYellowBackgroundColor:1.0]];
+//        [myDelegate showIndicator:[Constants oldYellowBackgroundColor:1.0]];
+        [myDelegate showIndicator:[Constants navigationColor]];
         //Retry to get category list from server.
         [self performSelector:@selector(categoryService) withObject:nil afterDelay:.1];
     }

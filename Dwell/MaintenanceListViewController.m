@@ -48,7 +48,8 @@
     filterBarButton.enabled=false;
     //Set index to selected show in menu
     [UserDefaultManager setValue:[NSNumber numberWithInteger:1] key:@"indexpath"];
-    [myDelegate showIndicator:[Constants oldOrangeBackgroundColor]];
+//    [myDelegate showIndicator:[Constants oldOrangeBackgroundColor]];
+    [myDelegate showIndicator:[Constants navigationColor]];
     [self performSelector:@selector(checkRoomSpaceId) withObject:nil afterDelay:.1];
 }
 

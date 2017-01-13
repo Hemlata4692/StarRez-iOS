@@ -33,7 +33,8 @@
     self.navigationItem.title=@"Maintenance Detail";
     [super addBackgroungImage:@"Maintenance"];
     //Fetch image ids
-    [myDelegate showIndicator:[Constants oldOrangeBackgroundColor]];
+//    [myDelegate showIndicator:[Constants oldOrangeBackgroundColor]];
+    [myDelegate showIndicator:[Constants navigationColor]];
     [self performSelector:@selector(getMaintenanceListService) withObject:nil afterDelay:.1];
 }
 
@@ -242,9 +243,11 @@
             cell.layer.mask=maskLayer;
             if ([objMainatenanceModel.status isEqualToString:@"Closed by student"]||[objMainatenanceModel.status isEqualToString:@"Job Completed"]||objMainatenanceModel.completedDate!=nil ) {
                 
+                closeLabel.text=@"Closed";
                 cell.alpha = 0.7;
                 closeLabel.alpha = 0.7;
             }else{
+                closeLabel.text=@"Cancel";
                 cell.alpha = 1.0;
                 closeLabel.alpha = 1.0;
             }
@@ -456,7 +459,8 @@
     [alertView dismissAlertView];
     if ((customAlert.alertTagValue==3)&&(option==1)) {
         //Retry service call
-        [myDelegate showIndicator:[Constants oldOrangeBackgroundColor]];
+//        [myDelegate showIndicator:[Constants oldOrangeBackgroundColor]];
+        [myDelegate showIndicator:[Constants navigationColor]];
         [self performSelector:@selector(cancelService) withObject:nil afterDelay:.1];
     }
   else if ((customAlert.alertTagValue==3)&&(option==0)) {

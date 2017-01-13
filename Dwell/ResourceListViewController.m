@@ -49,7 +49,8 @@
     isSearch=false;
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];   //Add filter button in right navigation item
     filterBarButton.enabled=false;
-    [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
+//    [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
+    [myDelegate showIndicator:[Constants navigationColor]];
     [self performSelector:@selector(getResourceListService) withObject:nil afterDelay:.1];
 }
 

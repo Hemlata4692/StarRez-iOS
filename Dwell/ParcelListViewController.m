@@ -42,7 +42,8 @@
     parcelDataArray=[NSMutableArray new];
     parcelSearchDataArray=[NSMutableArray new];
     parcelStatusDict=[NSMutableDictionary new];
-    [myDelegate showIndicator:[Constants oldBlueBackgroundColor:1.0]];
+//    [myDelegate showIndicator:[Constants oldBlueBackgroundColor:1.0]];
+    [myDelegate showIndicator:[Constants navigationColor]];
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
     filterBarButton.enabled=false;
     [self performSelector:@selector(getParcelListService) withObject:nil afterDelay:.1];

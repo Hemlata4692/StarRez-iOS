@@ -199,7 +199,8 @@
     //Perform login validations
     if([self performValidationsForLogin]) {
         if (![internet start]) {
-            [myDelegate showIndicator:[Constants oldDashboardColor]];
+//            [myDelegate showIndicator:[Constants oldDashboardColor]];
+            [myDelegate showIndicator:[Constants navigationColor]];
             [self performSelector:@selector(userLogin) withObject:nil afterDelay:.1];
         }
     }

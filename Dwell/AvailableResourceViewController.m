@@ -137,7 +137,8 @@
     
     [alertView dismissAlertView];
     if ((customAlert.alertTagValue==3)&&(option==1)) {
-        [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
+//        [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
+        [myDelegate showIndicator:[Constants navigationColor]];
         [self performSelector:@selector(setRequestResourceService) withObject:nil afterDelay:.1];
     }
     else if (customAlert.alertTagValue==10) {

@@ -12,7 +12,7 @@
 
 @interface GlobalBackViewController () {
     
- UIBarButtonItem *barButton,*barButton1;
+    UIBarButtonItem *barButton,*barButton1;
 }
 @end
 

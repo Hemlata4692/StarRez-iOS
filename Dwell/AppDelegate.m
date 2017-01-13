@@ -165,7 +165,6 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     DLog(@"1.push notification response.............%@",userInfo);
-    printf("1.push notification response.............################");
     //If app is active then show alert other wise(app is terminated) navigate to ParcelListViewController through Dashboard
     if ((application.applicationState == UIApplicationStateActive) || (application.applicationState == UIApplicationStateBackground)) {
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] doneButtonText:@"OK" cancelButtonText:@""];
@@ -219,13 +218,7 @@
 #pragma mark - Custom alert delegates
 - (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
     
-    [alertView dismissAlertView];
-//    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    
-//    UIViewController * carListView = [storyboard instantiateViewControllerWithIdentifier:@"ParcelListViewController"];
-//    [currentNavigationController setViewControllers: [NSArray arrayWithObject: carListView]
-//                                           animated: YES];
-    
+    [alertView dismissAlertView];    
     //Set notificationDict to navigation
         [notificationDict setObject:@"Yes" forKey:@"isNotification"];
         [notificationDict setObject:@"ParcelListViewController" forKey:@"toScreen"];

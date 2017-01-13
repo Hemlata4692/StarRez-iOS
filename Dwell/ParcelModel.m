@@ -60,16 +60,7 @@
                 tempModel.parcelReceiptTime=[dateFormatter stringFromDate:timeReceipt];
                 tempModel.parcelIssueTime=[dateFormatter stringFromDate:timeIssue];
                 
-                
-                
-                
-//                NSDate *reciptDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[parcelData valueForKeyPath:@"entry.content.Record.ReceiptDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];    //ReceiptDate convert GMT+1 to system date
-//                NSDate *issuedDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[parcelData valueForKeyPath:@"entry.content.Record.IssueDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //IssueDate convert GMT+1 to system date
-//                [dateFormatter setDateFormat:@"dd MMM, yy"];
-//                tempModel.parcelReceiptDate=[dateFormatter stringFromDate:reciptDate];
                 tempModel.parcelShippingType=[parcelData valueForKeyPath:@"entry.content.Record.shipping_type_val"];
-//                tempModel.parcelIssueDate=[dateFormatter stringFromDate:issuedDate];
-                
                 if ([[parcelData valueForKeyPath:@"entry.content.Record.status_desc"] isEqualToString:@"Issued"]) {
                     tempModel.parcelStatus=@"Collected";
                 }
@@ -115,18 +106,7 @@
                     tempModel.parcelReceiptTime=[dateFormatter stringFromDate:timeReceipt];
                     tempModel.parcelIssueTime=[dateFormatter stringFromDate:timeIssue];
                     
-                    
-                    
-                    
-                    
-                    
-//                    NSDate *reciptDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ReceiptDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];    //ReciptDate convert GMT+1 to system date
-//                    NSDate *issuedDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.IssueDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //IssuedDate convert GMT+1 to system date
-//                    [dateFormatter setDateFormat:@"dd MMM, yy"];
-//                    tempModel.parcelReceiptDate=[dateFormatter stringFromDate:reciptDate];
-                    tempModel.parcelShippingType=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.shipping_type_val"];
-//                    tempModel.parcelIssueDate=[dateFormatter stringFromDate:issuedDate];
-                    
+                    tempModel.parcelShippingType=[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.shipping_type_val"];                    
                     if ([[[[parcelData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status_desc"] isEqualToString:@"Issued"]) {
                         tempModel.parcelStatus=@"Collected";
                     }

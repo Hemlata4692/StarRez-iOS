@@ -704,7 +704,6 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     DLog(@"%@",[NSDate dateWithTimeIntervalSinceReferenceDate:time]);
     //Get time differece between from and to date time
     [dateFormat setDateFormat:@"dd-MM-yyyy hh:mm a"];
-//    float timeDifferenceInSecond=[[self timeLeftSinceDate:[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,[[self.fromTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]] toDateTime:[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,[[self.toTimeField.text componentsSeparatedByString:@" "] objectAtIndex:0]]]] floatValue];
     float timeDifferenceInSecond=[[self timeLeftSinceDate:[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.fromDateField.text,self.fromTimeField.text]] toDateTime:[dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@",self.toDateField.text,self.toTimeField.text]]] floatValue];
     DLog(@"%f",timeDifferenceInSecond/3600.0);
     

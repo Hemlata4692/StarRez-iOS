@@ -60,12 +60,6 @@
                 tempModel.resourceFromTime=[dateFormatter stringFromDate:fromTime];
                 tempModel.resourceToTime=[dateFormatter stringFromDate:totime];
                 
-                
-//                NSDate *fromDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[resourceData valueForKeyPath:@"entry.content.Record.DateStart"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //DateStart convert GMT+1 to system date
-//                NSDate *toDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[resourceData valueForKeyPath:@"entry.content.Record.DateEnd"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //DateEnd convert GMT+1 to system date
-//                [dateFormatter setDateFormat:@"dd MMM, yy"];
-//                tempModel.resourceFromDate=[dateFormatter stringFromDate:fromDate];
-//                tempModel.resourceToDate=[dateFormatter stringFromDate:toDate];
                 tempModel.resourceStatus=[resourceData valueForKeyPath:@"entry.content.Record.status"];
                 tempModel.resourceStatusId=[resourceData valueForKeyPath:@"entry.content.Record.ResourceBookingStatusEnum"];
                 tempModel.resourceDescription=[resourceData valueForKeyPath:@"entry.content.Record.Description"];
@@ -79,10 +73,6 @@
                     __block ResourceModel *tempModel=[ResourceModel new];
                     tempModel.resourceTitle=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.resource"];
                     tempModel.resourceType=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.resource_type"];
-                    
-                    
-                    
-                    
                     //Convert date/time in system date/time
                     NSString *dateFromTempString=[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateStart"]];
                     NSString *dateToTempString=[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateEnd"]];
@@ -102,15 +92,6 @@
                     tempModel.resourceFromTime=[dateFormatter stringFromDate:fromTime];
                     tempModel.resourceToTime=[dateFormatter stringFromDate:totime];
                     
-                    
-                    
-                    
-                    
-//                    NSDate *fromDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateStart"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //DateStart convert GMT+1 to system date
-//                    NSDate *toDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateEnd"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //DateEnd convert GMT+1 to system date
-//                    [dateFormatter setDateFormat:@"dd MMM, yy"];
-//                    tempModel.resourceFromDate=[dateFormatter stringFromDate:fromDate];
-//                    tempModel.resourceToDate=[dateFormatter stringFromDate:toDate];
                     tempModel.resourceStatus=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status"];
                     tempModel.resourceStatusId=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ResourceBookingStatusEnum"];
                     tempModel.resourceDescription=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];

@@ -58,7 +58,7 @@
 - (void)layoutViewObjects {
     
     //Set corner radius to main background view
-    self.mainBackgroundView.layer.cornerRadius=5.0;
+    self.mainBackgroundView.layer.cornerRadius=cornerRadius;
     self.mainBackgroundView.layer.masksToBounds=YES;
     CAShapeLayer *shapelayer=[CAShapeLayer layer];
     UIBezierPath *path=[UIBezierPath bezierPath];

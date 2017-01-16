@@ -65,6 +65,8 @@
     self.firstInformationView.hidden=NO;
     self.secondInformationView.hidden=NO;
     self.thirdInformationView.hidden=NO;
+    self.firstInfromationSeparatorLabel.hidden=NO;
+    self.secondInfromationSeparatorLabel.hidden=NO;
     self.noRecordAvailable.hidden=YES;
     
     self.firstInformationStatusLabel.textColor=[UIColor darkGrayColor];     //Set byDefault color is [UIColor darkGrayColor]
@@ -81,6 +83,8 @@
             self.firstInformationView.hidden=YES;
             self.secondInformationView.hidden=YES;
             self.thirdInformationView.hidden=YES;
+            self.firstInfromationSeparatorLabel.hidden=YES;
+            self.secondInfromationSeparatorLabel.hidden=YES;
         }
         else {
             for (int i=0; i<dashboardData.count; i++) {
@@ -99,6 +103,8 @@
             self.firstInformationView.hidden=YES;
             self.secondInformationView.hidden=YES;
             self.thirdInformationView.hidden=YES;
+            self.firstInfromationSeparatorLabel.hidden=YES;
+            self.secondInfromationSeparatorLabel.hidden=YES;
         }
         else {
             for (int i=0; i<dashboardData.count; i++) {

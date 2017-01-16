@@ -17,7 +17,7 @@
     
    UIBarButtonItem *filterBarButton;
     CustomAlert *alertView;
-    //Data structures for filter feature.
+    //Data  structures for filter feature.
     NSMutableDictionary *parcelStatusDict;
     BOOL isSearch;
     NSMutableArray *maintenanceSearchDataArray;

@@ -84,14 +84,16 @@
         fromDate.text=@"NA";
     }
     else {
-        fromDate.text=modelData.resourceFromDate;
+//        fromDate.text=modelData.resourceFromDate;
+        fromDate.text=[NSString stringWithFormat:@"%@ %@",modelData.resourceFromDate,modelData.resourceFromTime];
     }
     //Check toDate is nil
     if ((nil==modelData.resourceToDate)||[modelData.resourceToDate isEqualToString:@""]) {
         toDate.text=@"NA";
     }
     else {
-        toDate.text=modelData.resourceToDate;
+        toDate.text=[NSString stringWithFormat:@"%@ %@",modelData.resourceToDate,modelData.resourceToTime];
+//        toDate.text=modelData.resourceToDate;
     }
     //Check resource status is nil
     if ((nil==modelData.resourceStatus)||[modelData.resourceStatus isEqualToString:@""]) {

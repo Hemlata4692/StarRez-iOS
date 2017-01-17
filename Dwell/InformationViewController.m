@@ -14,7 +14,7 @@
 @interface InformationViewController (){
     
     UIBarButtonItem *barButton;
-    NSString *webViewUrl;
+    NSString *webViewUrl, *lastWebUrl;
     BOOL isLoaderShow;
 }
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
@@ -70,6 +70,7 @@
             [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/help/"]]];
         }
     }
+    lastWebUrl=webViewUrl;
     // Do any additional setup after loading the view.
 }
 
@@ -127,6 +128,42 @@
             }
         }
     }
+    else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Event"]) {
+        //Information view has list to navigte other webpage
+        if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/event/"]) {
+            if (!isLoaderShow) {
+                //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
+                [myDelegate showIndicator:[Constants navigationColor]];
+                isLoaderShow=true;
+                [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
+            }
+        }
+        else {
+            if (!isLoaderShow) {
+                //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
+                [myDelegate showIndicator:[Constants navigationColor]];
+                isLoaderShow=true;
+            }
+        }
+    }
+    else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Help"]) {
+        //Information view has list to navigte other webpage
+        if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/help/"]) {
+            if (!isLoaderShow) {
+                //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
+                [myDelegate showIndicator:[Constants navigationColor]];
+                isLoaderShow=true;
+                [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
+            }
+        }
+        else {
+            if (!isLoaderShow) {
+                //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
+                [myDelegate showIndicator:[Constants navigationColor]];
+                isLoaderShow=true;
+            }
+        }
+    }
     return YES;
 }
 
@@ -136,6 +173,22 @@
     isLoaderShow=false;
     if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Information"]) {
         if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/information/"]) {
+            [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
+        }
+        else {
+            [self addLeftBarButtonWithImage:[UIImage imageNamed:@"menu.png"]];
+        }
+    }
+    else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Event"]) {
+        if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/event/"]) {
+            [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
+        }
+        else {
+            [self addLeftBarButtonWithImage:[UIImage imageNamed:@"menu.png"]];
+        }
+    }
+    else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Help"]) {
+        if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/help/"]) {
             [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
         }
         else {
@@ -190,6 +243,12 @@
 - (void)backButtonAction :(id)sender {
     if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Information"]) {
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/information/"]]];
+    }
+    else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Event"]) {
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/event/"]]];
+    }
+    else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Help"]) {
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/help/"]]];
     }
 }
 #pragma mark - end

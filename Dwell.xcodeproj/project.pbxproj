@@ -30,6 +30,10 @@
 		B730F6151E264EBC00C468A2 /* AddJob-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B730F6121E264EBC00C468A2 /* AddJob-568h@2x.png */; };
 		B730F6161E264EBC00C468A2 /* AddJob-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B730F6131E264EBC00C468A2 /* AddJob-667h@2x.png */; };
 		B730F6171E264EBC00C468A2 /* AddJob-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B730F6141E264EBC00C468A2 /* AddJob-736h@3x.png */; };
+		B741C6381E3751A5009CA8F9 /* ResourceTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B741C6371E3751A5009CA8F9 /* ResourceTypeViewController.m */; };
+		B741C63B1E3751BC009CA8F9 /* ResourceTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B741C63A1E3751BC009CA8F9 /* ResourceTypeCell.m */; };
+		B741C63F1E3751EB009CA8F9 /* SelectedResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B741C63E1E3751EB009CA8F9 /* SelectedResourceViewController.m */; };
+		B741C6421E37522B009CA8F9 /* SelectedResourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B741C6411E37522B009CA8F9 /* SelectedResourceCell.m */; };
 		B745F86F1E23682D001119BD /* login-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B745F86B1E23682D001119BD /* login-568h@2x.png */; };
 		B745F8701E23682D001119BD /* login-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B745F86C1E23682D001119BD /* login-667h@2x.png */; };
 		B745F8711E23682D001119BD /* login-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B745F86D1E23682D001119BD /* login-736h@3x.png */; };
@@ -138,6 +142,14 @@
 		B730F6121E264EBC00C468A2 /* AddJob-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddJob-568h@2x.png"; sourceTree = "<group>"; };
 		B730F6131E264EBC00C468A2 /* AddJob-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddJob-667h@2x.png"; sourceTree = "<group>"; };
 		B730F6141E264EBC00C468A2 /* AddJob-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddJob-736h@3x.png"; sourceTree = "<group>"; };
+		B741C6361E3751A5009CA8F9 /* ResourceTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceTypeViewController.h; sourceTree = "<group>"; };
+		B741C6371E3751A5009CA8F9 /* ResourceTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceTypeViewController.m; sourceTree = "<group>"; };
+		B741C6391E3751BC009CA8F9 /* ResourceTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceTypeCell.h; sourceTree = "<group>"; };
+		B741C63A1E3751BC009CA8F9 /* ResourceTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceTypeCell.m; sourceTree = "<group>"; };
+		B741C63D1E3751EB009CA8F9 /* SelectedResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedResourceViewController.h; sourceTree = "<group>"; };
+		B741C63E1E3751EB009CA8F9 /* SelectedResourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedResourceViewController.m; sourceTree = "<group>"; };
+		B741C6401E37522B009CA8F9 /* SelectedResourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedResourceCell.h; sourceTree = "<group>"; };
+		B741C6411E37522B009CA8F9 /* SelectedResourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedResourceCell.m; sourceTree = "<group>"; };
 		B745F86B1E23682D001119BD /* login-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-568h@2x.png"; sourceTree = "<group>"; };
 		B745F86C1E23682D001119BD /* login-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-667h@2x.png"; sourceTree = "<group>"; };
 		B745F86D1E23682D001119BD /* login-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-736h@3x.png"; sourceTree = "<group>"; };
@@ -436,6 +448,60 @@
 			name = AddJob;
 			sourceTree = "<group>";
 		};
+		B741C6301E375134009CA8F9 /* ResourceTypeView */ = {
+			isa = PBXGroup;
+			children = (
+				B741C6351E375185009CA8F9 /* View */,
+				B741C6341E37517A009CA8F9 /* TableViewCell */,
+			);
+			name = ResourceTypeView;
+			sourceTree = "<group>";
+		};
+		B741C6311E375144009CA8F9 /* SelectedResourceView */ = {
+			isa = PBXGroup;
+			children = (
+				B741C6321E37515A009CA8F9 /* View */,
+				B741C6331E37516B009CA8F9 /* TableViewCell */,
+			);
+			name = SelectedResourceView;
+			sourceTree = "<group>";
+		};
+		B741C6321E37515A009CA8F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B741C63D1E3751EB009CA8F9 /* SelectedResourceViewController.h */,
+				B741C63E1E3751EB009CA8F9 /* SelectedResourceViewController.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B741C6331E37516B009CA8F9 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B741C6401E37522B009CA8F9 /* SelectedResourceCell.h */,
+				B741C6411E37522B009CA8F9 /* SelectedResourceCell.m */,
+			);
+			name = TableViewCell;
+			sourceTree = "<group>";
+		};
+		B741C6341E37517A009CA8F9 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B741C6391E3751BC009CA8F9 /* ResourceTypeCell.h */,
+				B741C63A1E3751BC009CA8F9 /* ResourceTypeCell.m */,
+			);
+			name = TableViewCell;
+			sourceTree = "<group>";
+		};
+		B741C6351E375185009CA8F9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B741C6361E3751A5009CA8F9 /* ResourceTypeViewController.h */,
+				B741C6371E3751A5009CA8F9 /* ResourceTypeViewController.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		B745F86A1E236823001119BD /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,8 +525,8 @@
 		B7465A951D9510BA008B315A /* ResourceModule */ = {
 			isa = PBXGroup;
 			children = (
-				B7465AA31D95116B008B315A /* ResourceDetail */,
 				B7465AA01D951149008B315A /* ResourceList */,
+				B7465AA31D95116B008B315A /* ResourceDetail */,
 				B7465A961D9510D9008B315A /* BookResource */,
 			);
 			name = ResourceModule;
@@ -469,8 +535,10 @@
 		B7465A961D9510D9008B315A /* BookResource */ = {
 			isa = PBXGroup;
 			children = (
-				B719DABE1D9A8464000A5D0D /* AvailableResourceViewController */,
 				B7465A991D9510F4008B315A /* BookResourceView */,
+				B719DABE1D9A8464000A5D0D /* AvailableResourceViewController */,
+				B741C6301E375134009CA8F9 /* ResourceTypeView */,
+				B741C6311E375144009CA8F9 /* SelectedResourceView */,
 			);
 			name = BookResource;
 			sourceTree = "<group>";
@@ -1135,11 +1203,13 @@
 				B75B2CBC1D880958007EEE42 /* MMMaterialDesignSpinner.m in Sources */,
 				B758D6F91D9E432400945EE8 /* UIImageView+HighlightedWebCache.m in Sources */,
 				B7D06C701D8984BD00A5FA94 /* NullValueChecker.m in Sources */,
+				B741C6381E3751A5009CA8F9 /* ResourceTypeViewController.m in Sources */,
 				B758D6FB1D9E432400945EE8 /* UIView+WebCacheOperation.m in Sources */,
 				B758D6F21D9E432400945EE8 /* SDWebImageDownloaderOperation.m in Sources */,
 				95D27D2B1D994D7B00EBA799 /* AddNewJobViewController.m in Sources */,
 				B7C7A36D1D8A639800D7DF06 /* SWRevealViewController.m in Sources */,
 				4A412A471D8AC64E00E70791 /* ParcelDetailViewController.m in Sources */,
+				B741C63F1E3751EB009CA8F9 /* SelectedResourceViewController.m in Sources */,
 				B7D06C681D897C7600A5FA94 /* BaseService.m in Sources */,
 				B75B2C7C1D88033A007EEE42 /* LoginViewController.m in Sources */,
 				B7C7A3661D8A506A00D7DF06 /* UncaughtExceptionHandler.m in Sources */,
@@ -1155,6 +1225,7 @@
 				B75B2C761D88033A007EEE42 /* main.m in Sources */,
 				B75B2CB01D8806C1007EEE42 /* UITextField+Padding.m in Sources */,
 				B7465AA91D95117E008B315A /* ResourceListCell.m in Sources */,
+				B741C6421E37522B009CA8F9 /* SelectedResourceCell.m in Sources */,
 				B758D6F31D9E432400945EE8 /* SDWebImageManager.m in Sources */,
 				B7D06C651D897C5F00A5FA94 /* LoginService.m in Sources */,
 				B7D0B7FD1D893052008BC202 /* CustomAlert.m in Sources */,
@@ -1193,6 +1264,7 @@
 				951EC2FF1D929A0A006C98F8 /* MaintenanceDetailViewController.m in Sources */,
 				B75B2CB41D8806D2007EEE42 /* UIView+RoundedCorner.m in Sources */,
 				B719DAC41D9A8489000A5D0D /* AvailableResourceViewController.m in Sources */,
+				B741C63B1E3751BC009CA8F9 /* ResourceTypeCell.m in Sources */,
 				B7D06C571D8974EC00A5FA94 /* LoginModel.m in Sources */,
 				B7C7A36C1D8A639800D7DF06 /* SidebarViewController.m in Sources */,
 				B7465A941D950C28008B315A /* ResourceService.m in Sources */,

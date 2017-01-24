@@ -30,6 +30,16 @@
 }
 #pragma mark - end
 
+#pragma mark - Get selected resource detail
+- (void)getSelectedResourceDetail:(NSString *)locationId success:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    NSString *parameters = [NSString stringWithFormat:@"SELECT [ResourceBookingID],[ResourceID],[ResourceBookingStatusEnum],[ResourceBooking].[Description],[DateCreated],[DateModified],[DateStart],[DateEnd],[Resource].[Description] FROM [ResourceBooking] LEFT JOIN [Resource] ON [Resource].[ResourceID]=[ResourceBooking].[ResourceID] WHERE [ResourceBooking].[ResourceID] = '%@'",locationId];
+    DLog(@"request dict %@",parameters);
+    
+    [super post:parameters onSuccess:success onFailure:failure];
+}
+#pragma mark - end
+
 #pragma mark - Get location according to selected resource type
 - (void)getLocationList:(NSString *)locationId success:(void (^)(id))success onFailure:(void (^)(id))failure {
     

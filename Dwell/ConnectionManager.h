@@ -60,4 +60,7 @@
 
 //Logout service
 - (void)logoutService:(void (^)(LoginModel *userData))success onFailure:(void (^)(id))failure;
+
+//Get selected resource detail
+- (void)getSelectedResourceDetail:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end

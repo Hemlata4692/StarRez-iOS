@@ -9,10 +9,11 @@
 #import "BookResourceViewController.h"
 #import "ParcelModel.h"
 #import "ResourceModel.h"
-#import "UIView+RoundedCorner.h"
+#import "ResourceModel.h"
 #import "UITextField+Validations.h"
 #import "AvailableResourceViewController.h"
 #import "UIView+Toast.h"
+#import "ResourceTypeViewController.h"
 
 float const pickerViewHeight=260.0; //Set picker view height with toolbar height
 
@@ -372,16 +373,19 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
     [resourceData getBookedResourcesOnSuccess:^(id availableResourceData) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [myDelegate stopIndicator];
-            if ([availableResourceData count]!=0) {
-                AvailableResourceViewController *objAvailableResource = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AvailableResourceViewController"];
-                objAvailableResource.availableResourceData=[availableResourceData mutableCopy];
-                objAvailableResource.selectedFromDataTime=resourceData.resourceFromDate;
-                objAvailableResource.selectedToDataTime=resourceData.resourceToDate;
-                [self.navigationController pushViewController:objAvailableResource animated:YES];
-            }
-            else {
-                alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"This resource cannot be allotted to you." doneButtonText:@"OK" cancelButtonText:@""];
-            }
+//            if ([availableResourceData count]!=0) {
+//                AvailableResourceViewController *objAvailableResource = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AvailableResourceViewController"];
+//                objAvailableResource.availableResourceData=[availableResourceData mutableCopy];
+//                objAvailableResource.selectedFromDataTime=resourceData.resourceFromDate;
+//                objAvailableResource.selectedToDataTime=resourceData.resourceToDate;
+//                [self.navigationController pushViewController:objAvailableResource animated:YES];
+//            }
+//            else {
+                ResourceTypeViewController *objResourceName = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ResourceTypeViewController"];
+                objResourceName.resourceNameListArray=[bookResourceLocationArray mutableCopy];
+                [self.navigationController pushViewController:objResourceName animated:YES];
+//                alertView=[[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"This resource cannot be allotted to you." doneButtonText:@"OK" cancelButtonText:@""];
+//            }
         });
     } onfailure:^(id error) {
         dispatch_async(dispatch_get_main_queue(), ^{

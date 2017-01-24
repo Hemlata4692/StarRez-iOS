@@ -42,4 +42,6 @@
 - (void)getAllResourcesOnSuccess:(NSMutableArray *)allResourceIds onSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
 //Resources request service
 - (void)setRequestResourceOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
+//Get selected resource detail
+- (void)getSelectedResourceDetailOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
 @end

@@ -732,7 +732,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
             alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[NSString stringWithFormat:@"You have to book a resource for atleast 1 hour"] doneButtonText:@"OK" cancelButtonText:@""];
         }
         else {
-            alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[NSString stringWithFormat:@"You have to book a resource for atleast %@ hours",[[bookResourceTypeArray objectAtIndex:lastSelectedResourceLocation] resourceTypeMinHour]] doneButtonText:@"OK" cancelButtonText:@""];
+            alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[NSString stringWithFormat:@"You have to book a resource for atleast %@ hours",[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceTypeMinHour]] doneButtonText:@"OK" cancelButtonText:@""];
         }
         return false;
     }
@@ -741,7 +741,7 @@ float const pickerViewHeight=260.0; //Set picker view height with toolbar height
             alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[NSString stringWithFormat:@"You cannot book this resource for more than 1 hour"] doneButtonText:@"OK" cancelButtonText:@""];
         }
         else {
-            alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[NSString stringWithFormat:@"You cannot book this resource for more than %@ hours",[[bookResourceTypeArray objectAtIndex:lastSelectedResourceLocation] resourceTypeMaxHour]] doneButtonText:@"OK" cancelButtonText:@""];
+            alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[NSString stringWithFormat:@"You cannot book this resource for more than %@ hours",[[bookResourceTypeArray objectAtIndex:lastSelectedResourceType] resourceTypeMaxHour]] doneButtonText:@"OK" cancelButtonText:@""];
         }
         return false;
     }

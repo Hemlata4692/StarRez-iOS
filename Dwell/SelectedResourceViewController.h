@@ -12,5 +12,6 @@
 
 @property(nonatomic,strong)NSString *selectedResourceNameId;
 @property(nonatomic,strong)NSString *selectedResourceName;
-
+@property(nonatomic,strong)NSString *resourceNameFromDate;
+@property(nonatomic,strong)NSString *resourceNameToDate;
 @end

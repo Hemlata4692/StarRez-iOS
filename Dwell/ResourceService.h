@@ -25,5 +25,5 @@
 //Resources request service
 - (void)setRequestResourceService:(ResourceModel *)resourceModelData success:(void (^)(id))success onFailure:(void (^)(id))failure;
 //Get selected resource detail
-- (void)getSelectedResourceDetail:(NSString *)locationId success:(void (^)(id))success onFailure:(void (^)(id))failure;
+- (void)getSelectedResourceDetail:(ResourceModel *)resourceData success:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end

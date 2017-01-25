@@ -21,6 +21,8 @@
 
 @implementation ResourceTypeViewController
 @synthesize resourceNameListArray;
+@synthesize resourceNameFromDate;
+@synthesize resourceNameToDate;
 
 #pragma mark - View life cycle
 - (void)viewDidLoad {
@@ -91,7 +93,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 60.0;
+    return 70.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -110,6 +112,8 @@
     SelectedResourceViewController *objResourceName = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SelectedResourceViewController"];
     objResourceName.selectedResourceNameId=[[resourceNameListArray objectAtIndex:indexPath.row] resourceTypeLocationId];
     objResourceName.selectedResourceName=[[resourceNameListArray objectAtIndex:indexPath.row] resourceLocationDescription];
+    objResourceName.resourceNameFromDate=resourceNameFromDate;
+    objResourceName.resourceNameToDate=resourceNameToDate;
     [self.navigationController pushViewController:objResourceName animated:YES];
 }
 #pragma mark - end

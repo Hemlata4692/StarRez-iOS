@@ -17,11 +17,15 @@
     CustomAlert *alertView;
     NSMutableArray *selectedResourcePeriodArray;
 }
+@property (strong, nonatomic) IBOutlet UIView *headerView;
+@property (strong, nonatomic) IBOutlet UILabel *headerTitleLabel;
 @property (strong, nonatomic) IBOutlet UITableView *selectedResourceNamePeriodTableView;
 @end
 
 @implementation SelectedResourceViewController
 @synthesize selectedResourceNameId, selectedResourceName;
+@synthesize resourceNameFromDate;
+@synthesize resourceNameToDate;
 
 #pragma mark - View life cycle
 - (void)viewDidLoad {
@@ -30,7 +34,9 @@
     self.navigationItem.title = @"Booked Details";
     [super addBackgroungImage:@"Resource"];
     
-     selectedResourcePeriodArray=[NSMutableArray new];
+    self.headerView.hidden=YES;
+    self.headerTitleLabel.text=selectedResourceName;
+    selectedResourcePeriodArray=[NSMutableArray new];
     [self.selectedResourceNamePeriodTableView reloadData];
     
     [myDelegate showIndicator:[Constants navigationColor]];
@@ -38,9 +44,50 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
+    [self viewCustomization];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+#pragma mark - end
+
+#pragma mark - View customization
+- (void)viewCustomization {
+
+    //Add top rounded corner
+    CGRect labelFrame = CGRectMake(0, 0, self.view.bounds.size.width-24, 60);
+    UIBezierPath *maskPath = [UIBezierPath
+                              bezierPathWithRoundedRect:labelFrame
+                              byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight)
+                              cornerRadii:CGSizeMake(cornerRadius, cornerRadius)
+                              ];
+    
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = labelFrame;
+    maskLayer.path = maskPath.CGPath;
+    self.headerView.layer.mask = maskLayer;
+    //end
+    
+    //Draw doted line
+    CAShapeLayer *shapelayer=[CAShapeLayer layer];
+    UIBezierPath *path=[UIBezierPath bezierPath];
+    //Draw a line
+    [path moveToPoint:CGPointMake(0.0, labelFrame.size.height-5)]; //Add yourStartPoint here
+    [path addLineToPoint:CGPointMake(labelFrame.size.width, labelFrame.size.height-5)];//Add yourEndPoint here
+    UIColor *fill=[UIColor colorWithRed:72.0/255.0 green:73.0/255.0 blue:73.0/255.0 alpha:1.0];
+    shapelayer.strokeStart=0.0;
+    shapelayer.strokeColor=fill.CGColor;
+    shapelayer.lineWidth=1.0f;
+    shapelayer.lineJoin=kCALineJoinRound;
+    shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
+    shapelayer.path=path.CGPath;
+    [self.headerView.layer addSublayer:shapelayer];
+    //end
 }
 #pragma mark - end
 
@@ -51,10 +98,13 @@
 //    bookResourceLocationArray=[NSMutableArray new];
     if ([super checkInternetConnection]) {
         ResourceModel *resourceData=[ResourceModel sharedUser];
+        resourceData.resourceFromDate=resourceNameFromDate;
+        resourceData.resourceToDate=resourceNameToDate;
         resourceData.resourceTypeLocationId=selectedResourceNameId;
         [resourceData getSelectedResourceDetailOnSuccess:^(id resourceData) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [myDelegate stopIndicator];
+                self.headerView.hidden=NO;
                 selectedResourcePeriodArray=[resourceData mutableCopy];
                 [self.selectedResourceNamePeriodTableView reloadData];
             });
@@ -77,55 +127,9 @@
 #pragma mark - end
 
 #pragma mark - Tableview methods
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 60)];
-    headerView.backgroundColor=[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.8];
-    // i.e. array element
-    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(8, 5, headerView.frame.size.width-16, headerView.frame.size.height)] ;
-    titleLabel.text=selectedResourceName;
-    titleLabel.textAlignment=NSTextAlignmentLeft;
-    titleLabel.textColor=[UIColor colorWithRed:68.0/255 green:68.0/255.0 blue:68.0/255.0 alpha:1.0];
-    titleLabel.font=[UIFont handseanWithSize:16];
-    titleLabel.numberOfLines=0;
-    
-    //Add top rounded corner
-    CGRect labelFrame = CGRectMake(0, 0, self.view.frame.size.width-24, headerView.frame.size.height);
-    UIBezierPath *maskPath = [UIBezierPath
-                              bezierPathWithRoundedRect:labelFrame
-                              byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight)
-                              cornerRadii:CGSizeMake(cornerRadius, cornerRadius)
-                              ];
-    
-    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.frame = labelFrame;
-    maskLayer.path = maskPath.CGPath;
-    headerView.layer.mask = maskLayer;
-    //end
-    
-    //Draw doted line
-    CAShapeLayer *shapelayer=[CAShapeLayer layer];
-    UIBezierPath *path=[UIBezierPath bezierPath];
-    //Draw a line
-    [path moveToPoint:CGPointMake(0.0, headerView.frame.size.height)]; //Add yourStartPoint here
-    [path addLineToPoint:CGPointMake(headerView.frame.size.width, headerView.frame.size.height)];//Add yourEndPoint here
-    UIColor *fill=[UIColor colorWithRed:72.0/255.0 green:73.0/255.0 blue:73.0/255.0 alpha:1.0];
-    shapelayer.strokeStart=0.0;
-    shapelayer.strokeColor=fill.CGColor;
-    shapelayer.lineWidth=1.0f;
-    shapelayer.lineJoin=kCALineJoinRound;
-    shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
-    shapelayer.path=path.CGPath;
-    [headerView.layer addSublayer:shapelayer];
-    //end
-    
-    [headerView addSubview:titleLabel];
-    return headerView;   // return headerLabel;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    return 60.0;
+    return 0.01;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

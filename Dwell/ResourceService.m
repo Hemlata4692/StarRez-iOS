@@ -31,9 +31,9 @@
 #pragma mark - end
 
 #pragma mark - Get selected resource detail
-- (void)getSelectedResourceDetail:(NSString *)locationId success:(void (^)(id))success onFailure:(void (^)(id))failure {
+- (void)getSelectedResourceDetail:(ResourceModel *)resourceData success:(void (^)(id))success onFailure:(void (^)(id))failure {
     
-    NSString *parameters = [NSString stringWithFormat:@"SELECT [ResourceBookingID],[ResourceID],[ResourceBookingStatusEnum],[ResourceBooking].[Description],[DateCreated],[DateModified],[DateStart],[DateEnd],[Resource].[Description] FROM [ResourceBooking] LEFT JOIN [Resource] ON [Resource].[ResourceID]=[ResourceBooking].[ResourceID] WHERE [ResourceBooking].[ResourceID] = '%@'",locationId];
+    NSString *parameters = [NSString stringWithFormat:@"SELECT [ResourceBookingID],[ResourceID],[ResourceBookingStatusEnum],[ResourceBooking].[Description],[DateCreated],[DateModified],[DateStart],[DateEnd],[Resource].[Description] FROM [ResourceBooking] LEFT JOIN [Resource] ON [Resource].[ResourceID]=[ResourceBooking].[ResourceID] WHERE [ResourceBooking].[ResourceID] = '%@' AND (([DateStart] >= '%@' AND [DateEnd] <= '%@') OR ([DateEnd] >= '%@' AND [DateStart] <= '%@'))",resourceData.resourceTypeLocationId,resourceData.resourceFromDate,resourceData.resourceToDate,resourceData.resourceFromDate,resourceData.resourceToDate];
     DLog(@"request dict %@",parameters);
     
     [super post:parameters onSuccess:success onFailure:failure];

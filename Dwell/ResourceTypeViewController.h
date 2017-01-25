@@ -11,4 +11,6 @@
 @interface ResourceTypeViewController : GlobalBackViewController
 
 @property(nonatomic,strong)NSMutableArray *resourceNameListArray;
+@property(nonatomic,strong)NSString *resourceNameFromDate;
+@property(nonatomic,strong)NSString *resourceNameToDate;
 @end

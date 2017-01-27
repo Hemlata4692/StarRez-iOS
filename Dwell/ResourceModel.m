@@ -62,6 +62,9 @@
                 
                 tempModel.resourceStatus=[resourceData valueForKeyPath:@"entry.content.Record.status"];
                 tempModel.resourceStatusId=[resourceData valueForKeyPath:@"entry.content.Record.ResourceBookingStatusEnum"];
+                if ([tempModel.resourceStatusId isEqualToString:@"1"]) {
+                    tempModel.resourceStatus=@"Collected";
+                }
                 tempModel.resourceDescription=[resourceData valueForKeyPath:@"entry.content.Record.Description"];
                 tempModel.resourceComment=[resourceData valueForKeyPath:@"entry.content.Record.Comments"];
                 [dataArray addObject:tempModel];
@@ -93,7 +96,11 @@
                     tempModel.resourceToTime=[dateFormatter stringFromDate:totime];
                     
                     tempModel.resourceStatus=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status"];
+                    
                     tempModel.resourceStatusId=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ResourceBookingStatusEnum"];
+                    if ([tempModel.resourceStatusId isEqualToString:@"1"]) {
+                        tempModel.resourceStatus=@"Collected";
+                    }
                     tempModel.resourceDescription=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
                     tempModel.resourceComment=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Comments"];
                     [dataArray addObject:tempModel];

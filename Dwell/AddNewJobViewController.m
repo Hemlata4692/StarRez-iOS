@@ -300,13 +300,18 @@
 #pragma mark - Add new job validation
 - (BOOL)performValidationsForAddNewJob {
     
+    
     //Apply validations for mandatory fields. Comments and tick mark are not mandatory.
     if ([self.categoryTextField isEmpty] || [self.itemTextField isEmpty]|| [self.descriptionTextField isEmpty]) {
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please fill in all the required fields." doneButtonText:@"OK" cancelButtonText:@""];
         return NO;
     }
-    else if (![self.descriptionTextField validateSpecialCharactor:self.descriptionTextField.text]||![self.causeTextField validateSpecialCharactor:self.causeTextField.text]||![self.commentsTextField validateSpecialCharactor:self.commentsTextField.text]){
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Special characters are not allowed." doneButtonText:@"OK" cancelButtonText:@""];
+//    else if (![self.descriptionTextField validateSpecialCharactor:self.descriptionTextField.text]||![self.causeTextField validateSpecialCharactor:self.causeTextField.text]||![self.commentsTextField validateSpecialCharactor:self.commentsTextField.text]){
+//        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Special characters are not allowed." doneButtonText:@"OK" cancelButtonText:@""];
+//        return NO;
+//    }
+    else if ([self.descriptionTextField.text containsString:@"&"]||[self.descriptionTextField.text containsString:@"<"]){
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Special characters are not allowed. Special characters are &,<" doneButtonText:@"OK" cancelButtonText:@""];
         return NO;
     }
     else {

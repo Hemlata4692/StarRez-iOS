@@ -1132,6 +1132,7 @@
 					B75B2C701D88033A007EEE42 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 2GSJHQPNP4;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1390,6 +1391,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_ENTITLEMENTS = Dwell/Centurion.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
 				DEVELOPMENT_TEAM = 2GSJHQPNP4;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = Dwell/PrefixHeader.pch;
@@ -1411,6 +1413,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_ENTITLEMENTS = Dwell/Centurion.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
 				DEVELOPMENT_TEAM = 2GSJHQPNP4;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = Dwell/PrefixHeader.pch;

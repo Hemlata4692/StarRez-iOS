@@ -180,7 +180,7 @@
             tempModel.title=[maintenanceData valueForKeyPath:@"entry.content.Record.Description"];
             tempModel.maintenanceId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceCategoryID"];
             
-            if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
+            if (![[tempModel.title capitalizedString] containsString:[@"Category" capitalizedString]]) {
                 
                 [dataArray addObject:tempModel];
             }
@@ -192,7 +192,7 @@
                 tempModel.title=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
                 tempModel.maintenanceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceCategoryID"];
                 
-                if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
+                if (![[tempModel.title capitalizedString] containsString:[@"Category" capitalizedString]]) {
                     
                     [dataArray addObject:tempModel];
                 }
@@ -215,7 +215,7 @@
             tempModel.subcategory=[maintenanceData valueForKeyPath:@"entry.content.Record.Description"];
             tempModel.subcategoryId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceItemID"];
             
-            if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
+            if (![[tempModel.title capitalizedString] containsString:[@"Category" capitalizedString]]) {
                 
                 [dataArray addObject:tempModel];
             }
@@ -227,7 +227,7 @@
                 tempModel.subcategory=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
                 tempModel.subcategoryId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceItemID"];
                 
-                if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
+                if (![[tempModel.title capitalizedString] containsString:[@"Category" capitalizedString]]) {
                     
                     [dataArray addObject:tempModel];
                 }

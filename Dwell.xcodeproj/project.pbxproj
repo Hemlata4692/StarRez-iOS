@@ -1131,7 +1131,7 @@
 				TargetAttributes = {
 					B75B2C701D88033A007EEE42 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 2GSJHQPNP4;
+						DevelopmentTeam = M8A7BYS443;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -1306,11 +1306,11 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ranosys Technologies Pte Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ranosys Technologies Pte Ltd";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 2GSJHQPNP4;
+				DEVELOPMENT_TEAM = T7GN63HCDX;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1334,7 +1334,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Centurion;
-				PROVISIONING_PROFILE = "4414b8ef-155f-4472-aa25-9c5e9ffeed86";
+				PROVISIONING_PROFILE = "1305755c-c0f5-44d4-a05d-2609339e52f1";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1357,11 +1357,11 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ranosys Technologies Pte Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ranosys Technologies Pte Ltd";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 2GSJHQPNP4;
+				DEVELOPMENT_TEAM = T7GN63HCDX;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1378,7 +1378,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = Centurion;
-				PROVISIONING_PROFILE = "4414b8ef-155f-4472-aa25-9c5e9ffeed86";
+				PROVISIONING_PROFILE = "1305755c-c0f5-44d4-a05d-2609339e52f1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1390,18 +1390,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_ENTITLEMENTS = Dwell/Centurion.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
-				DEVELOPMENT_TEAM = 2GSJHQPNP4;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ranosys Technologies Pte Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ranosys Technologies Pte Ltd";
+				DEVELOPMENT_TEAM = M8A7BYS443;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = Dwell/PrefixHeader.pch;
 				INFOPLIST_FILE = Dwell/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.centurion.student;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.dwell;
 				PRODUCT_NAME = Centurion;
-				PROVISIONING_PROFILE = "4414b8ef-155f-4472-aa25-9c5e9ffeed86";
-				PROVISIONING_PROFILE_SPECIFIER = CenturionStudentAppStore05Jan2017;
+				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
+				PROVISIONING_PROFILE_SPECIFIER = DwellProfile_15_09_2016;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1412,18 +1412,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_ENTITLEMENTS = Dwell/Centurion.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Centurion Student Services (UK) Ltd (2GSJHQPNP4)";
-				DEVELOPMENT_TEAM = 2GSJHQPNP4;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ranosys Technologies Pte Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ranosys Technologies Pte Ltd";
+				DEVELOPMENT_TEAM = M8A7BYS443;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = Dwell/PrefixHeader.pch;
 				INFOPLIST_FILE = Dwell/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.centurion.student;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.dwell;
 				PRODUCT_NAME = Centurion;
-				PROVISIONING_PROFILE = "4414b8ef-155f-4472-aa25-9c5e9ffeed86";
-				PROVISIONING_PROFILE_SPECIFIER = CenturionStudentAppStore05Jan2017;
+				PROVISIONING_PROFILE = "562157da-f45c-43e0-b5b9-591bd5df1653";
+				PROVISIONING_PROFILE_SPECIFIER = DwellProfile_15_09_2016;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

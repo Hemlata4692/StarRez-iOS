@@ -111,24 +111,27 @@
     DLog(@"start value: %@",request.URL);
     webViewUrl=[request.URL absoluteString];
     if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Information"]) {
-        //Information view has list to navigte other webpage
-        if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/information/"]) {
-            if (!isLoaderShow) {
-//                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
-                [myDelegate showIndicator:[Constants navigationColor]];
-                 isLoaderShow=true;
-                [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
+        if ([self isValidURL:[webViewUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]]) {
+            //Information view has list to navigte other webpage
+            if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/information/"]) {
+                if (!isLoaderShow) {
+                    //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
+                    [myDelegate showIndicator:[Constants navigationColor]];
+                    isLoaderShow=true;
+                    [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
+                }
             }
-        }
-        else {
-            if (!isLoaderShow) {
-//                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
-                [myDelegate showIndicator:[Constants navigationColor]];
-                isLoaderShow=true;
+            else {
+                if (!isLoaderShow) {
+                    //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
+                    [myDelegate showIndicator:[Constants navigationColor]];
+                    isLoaderShow=true;
+                }
             }
         }
     }
     else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Event"]) {
+        if ([self isValidURL:[webViewUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]]) {
         //Information view has list to navigte other webpage
         if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/event/"]) {
             if (!isLoaderShow) {
@@ -145,8 +148,10 @@
                 isLoaderShow=true;
             }
         }
+        }
     }
     else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Help"]) {
+        if ([self isValidURL:[webViewUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]]) {
         //Information view has list to navigte other webpage
         if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/help/"]) {
             if (!isLoaderShow) {
@@ -162,6 +167,7 @@
                 [myDelegate showIndicator:[Constants navigationColor]];
                 isLoaderShow=true;
             }
+        }
         }
     }
     return YES;
@@ -253,6 +259,14 @@
 }
 #pragma mark - end
 
+#pragma mark - Link validation
+- (BOOL)isValidURL:(NSString *)urlString {
+    if ([urlString containsString:@"http:"]||[urlString containsString:@"https:"]) {
+        return YES;
+    }
+    return NO;
+}
+#pragma mark - end
 /*
 #pragma mark - Navigation
 

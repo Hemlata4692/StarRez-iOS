@@ -11,6 +11,10 @@
 #import "Internet.h"
 #import "UIImage+deviceSpecificMedia.h"
 
+#define informationWebUrl @"http://www.dwellstudent.co.uk/en/information/"
+#define eventWebUrl @"http://www.dwellstudent.co.uk/en/event/"
+#define helpWebUrl @"http://www.dwellstudent.co.uk/en/help/"
+
 @interface InformationViewController (){
     
     UIBarButtonItem *barButton;
@@ -37,37 +41,37 @@
     if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Event"]) {   //If event tab click
         [UserDefaultManager setValue:[NSNumber numberWithInteger:4] key:@"indexpath"];
         self.navigationItem.title=@"Event";
-        webViewUrl=@"http://www.centurionstudents.co.uk/en/event/";
+        webViewUrl=eventWebUrl;
         Internet *internet=[[Internet alloc] init];
         if (![internet start]) {
             isLoaderShow=true;
 //            [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
             [myDelegate showIndicator:[Constants navigationColor]];
-            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/event/"]]];
+            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:eventWebUrl]]];
         }
     }
     else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Information"]) {   //If information tab click
         [UserDefaultManager setValue:[NSNumber numberWithInteger:5] key:@"indexpath"];
         self.navigationItem.title=@"Information";
-        webViewUrl=@"http://www.centurionstudents.co.uk/en/information/";
+        webViewUrl=informationWebUrl;
         Internet *internet=[[Internet alloc] init];
         if (![internet start]) {
             isLoaderShow=true;
 //            [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
             [myDelegate showIndicator:[Constants navigationColor]];
-            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/information/"]]];
+            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:informationWebUrl]]];
         }
     }
     else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Help"]) {   //If help tab click
         [UserDefaultManager setValue:[NSNumber numberWithInteger:6] key:@"indexpath"];
         self.navigationItem.title=@"Help";
-        webViewUrl=@"http://www.centurionstudents.co.uk/en/help/";
+        webViewUrl=helpWebUrl;
         Internet *internet=[[Internet alloc] init];
         if (![internet start]) {
             isLoaderShow=true;
 //            [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
             [myDelegate showIndicator:[Constants navigationColor]];
-            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/help/"]]];
+            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:helpWebUrl]]];
         }
     }
     lastWebUrl=webViewUrl;
@@ -113,7 +117,7 @@
     if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Information"]) {
         if ([self isValidURL:[webViewUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]]) {
             //Information view has list to navigte other webpage
-            if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/information/"]) {
+            if (![webViewUrl isEqualToString:informationWebUrl]) {
                 if (!isLoaderShow) {
                     //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
                     [myDelegate showIndicator:[Constants navigationColor]];
@@ -133,7 +137,7 @@
     else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Event"]) {
         if ([self isValidURL:[webViewUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]]) {
         //Information view has list to navigte other webpage
-        if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/event/"]) {
+        if (![webViewUrl isEqualToString:eventWebUrl]) {
             if (!isLoaderShow) {
                 //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
                 [myDelegate showIndicator:[Constants navigationColor]];
@@ -153,7 +157,7 @@
     else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Help"]) {
         if ([self isValidURL:[webViewUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]]) {
         //Information view has list to navigte other webpage
-        if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/help/"]) {
+        if (![webViewUrl isEqualToString:helpWebUrl]) {
             if (!isLoaderShow) {
                 //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
                 [myDelegate showIndicator:[Constants navigationColor]];
@@ -178,7 +182,7 @@
     [myDelegate stopIndicator];
     isLoaderShow=false;
     if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Information"]) {
-        if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/information/"]) {
+        if (![webViewUrl isEqualToString:informationWebUrl]) {
             [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
         }
         else {
@@ -186,7 +190,7 @@
         }
     }
     else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Event"]) {
-        if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/event/"]) {
+        if (![webViewUrl isEqualToString:eventWebUrl]) {
             [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
         }
         else {
@@ -194,7 +198,7 @@
         }
     }
     else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Help"]) {
-        if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/help/"]) {
+        if (![webViewUrl isEqualToString:helpWebUrl]) {
             [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
         }
         else {
@@ -248,13 +252,13 @@
 //Back button action
 - (void)backButtonAction :(id)sender {
     if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Information"]) {
-        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/information/"]]];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:informationWebUrl]]];
     }
     else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Event"]) {
-        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/event/"]]];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:eventWebUrl]]];
     }
     else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Help"]) {
-        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/help/"]]];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:helpWebUrl]]];
     }
 }
 #pragma mark - end

@@ -153,7 +153,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fwd-xZ-4IH" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FNg-uu-H7c">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FNg-uu-H7c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -233,7 +233,7 @@
                                             <color key="textColor" red="0.88627450980392153" green="0.44705882352941173" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="21" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2655DE22-3431-4330-801C-23A214E4B51F" translatesAutoresizingMaskIntoConstraints="NO" id="Ypk-jV-aaI">
+                                        <imageView userInteractionEnabled="NO" tag="21" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0409BE52-EC71-4FE4-A60B-7379DAF1C0DE" translatesAutoresizingMaskIntoConstraints="NO" id="Ypk-jV-aaI">
                                             <rect key="frame" x="16" y="16" width="27" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="27" id="5PP-vq-XIj"/>
@@ -272,7 +272,7 @@
                                             <color key="textColor" red="0.19215686274509802" green="0.40784313725490196" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="21" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2655DE22-3431-4330-801C-23A214E4B51F" translatesAutoresizingMaskIntoConstraints="NO" id="yui-Og-BS3">
+                                        <imageView userInteractionEnabled="NO" tag="21" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0409BE52-EC71-4FE4-A60B-7379DAF1C0DE" translatesAutoresizingMaskIntoConstraints="NO" id="yui-Og-BS3">
                                             <rect key="frame" x="16" y="16" width="27" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="27" id="DKc-yx-vMt"/>
@@ -503,7 +503,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qUb-uV-sEB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="S41-Xy-29c">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="S41-Xy-29c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2228,7 +2228,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b9C-w7-BmN" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YkA-Sq-uVY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="YkA-Sq-uVY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2246,7 +2246,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f5G-8a-Mx4" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YpO-rP-Bsl">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="YpO-rP-Bsl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3756,7 +3756,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DVA-l2-jue" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yW4-YZ-BZU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="yW4-YZ-BZU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4326,7 +4326,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="U2c-az-M3A" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VpE-bi-iFc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="VpE-bi-iFc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4341,7 +4341,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="2655DE22-3431-4330-801C-23A214E4B51F" width="27" height="27">
+        <image name="0409BE52-EC71-4FE4-A60B-7379DAF1C0DE" width="27" height="27">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -4455,7 +4455,7 @@ AAAAAAAAAAAAAAAAFbA
         <image name="upArrow" width="20" height="10"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uds-AK-rw0"/>
+        <segue reference="FGc-Xz-aSC"/>
         <segue reference="bu7-dc-aae"/>
     </inferredMetricsTieBreakers>
 </document>

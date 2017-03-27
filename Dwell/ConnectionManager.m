@@ -345,4 +345,24 @@
     }] ;
 }
 #pragma mark - end
+
+#pragma mark - Get selected resource detail
+- (void)getSelectedResourceDetail:(ResourceModel *)resourceData onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    ResourceService *resourceService = [[ResourceService alloc] init];
+    [resourceService getSelectedResourceDetail:resourceData success:^(id response) {
+        //Resource data from server response and store in data model
+        if (NULL!=[response objectForKey:@"entry"]&&[[response objectForKey:@"entry"] count]!=0) {
+            success(response);
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"0" forKey:@"success"];
+            failure(responseDict);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
+#pragma mark - end
 @end

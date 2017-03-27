@@ -34,6 +34,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title=@"Resource Detail";
+    [super addBackgroungImage:@"Resource"];
     [self layoutViewObjects];
     //Show  resource data using resource model
     [self showResourceDetailData];
@@ -50,15 +51,32 @@
 - (void)layoutViewObjects {
     
     //Set corner radius to main background view
+    self.mainBackgroundView.layer.cornerRadius=cornerRadius;
+    self.mainBackgroundView.layer.masksToBounds=YES;
+    //Make dots below title label
+    CAShapeLayer *shapelayer=[CAShapeLayer layer];
+    UIBezierPath *path=[UIBezierPath bezierPath];
+    //Draw a line
+    [path moveToPoint:CGPointMake(0.0,self.resourceTitle.frame.size.height)]; //Add yourStartPoint here
+    [path addLineToPoint:CGPointMake(self.view.frame.size.width-20, self.resourceTitle.frame.size.height)];//Add yourEndPoint here
+    UIColor *fill=[UIColor colorWithRed:72.0/255.0 green:73.0/255.0 blue:73.0/255.0 alpha:1.0];
+    shapelayer.strokeStart=0.0;
+    shapelayer.strokeColor=fill.CGColor;
+    shapelayer.lineWidth=1.0f;
+    shapelayer.lineJoin=kCALineJoinRound;
+    shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
+    shapelayer.path=path.CGPath;
+    [self.resourceTitle.layer addSublayer:shapelayer];
+    //Set corner radius to main background view
     [self removeAutolayout];//Remove autolayout
     [self changeViewFrame];//Change frame according to forwarding address and comment
-    [self.mainBackgroundView setCornerRadius:5.0f];
-    [self.backShadowView addShadowWithCornerRadius:self.backShadowView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];  //Add corner radius and shadow
+//    [self.mainBackgroundView setCornerRadius:5.0f];
+//    [self.backShadowView addShadowWithCornerRadius:self.backShadowView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];  //Add corner radius and shadow
 }
 
 - (void)changeViewFrame {
     
-    self.resourceDetailView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    self.resourceDetailView.frame=CGRectMake(0, 67, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     float backgroundViewHeight=0.0;//Initialize back view size
     //Get dynamic height according to resource description text
     float descriptionHeight=[UserDefaultManager getDynamicLabelHeight:resourceDetailData.resourceDescription font:[UIFont calibriNormalWithSize:16] widthValue:([UIScreen mainScreen].bounds.size.width-30)-16];
@@ -91,7 +109,7 @@
     //Scrolling is disable if view height more then screen size
     if ((backgroundViewHeight+64)>[UIScreen mainScreen].bounds.size.height) {
         self.detailScrollView.scrollEnabled=true;
-        self.resourceDetailView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, backgroundViewHeight+100);
+        self.resourceDetailView.frame=CGRectMake(0, 67, [UIScreen mainScreen].bounds.size.width, backgroundViewHeight+100);
     }
 }
 
@@ -126,14 +144,15 @@
         self.fromDate.text=@"NA";
     }
     else {
-        self.fromDate.text=resourceDetailData.resourceFromDate;
+        
+        self.fromDate.text=[NSString stringWithFormat:@"%@ %@",resourceDetailData.resourceFromDate,resourceDetailData.resourceFromTime];
     }
     //Check toDate is nil
     if ((nil==resourceDetailData.resourceToDate)||[resourceDetailData.resourceToDate isEqualToString:@""]) {
         self.toDate.text=@"NA";
     }
     else {
-        self.toDate.text=resourceDetailData.resourceToDate;
+        self.toDate.text=[NSString stringWithFormat:@"%@ %@",resourceDetailData.resourceToDate,resourceDetailData.resourceToTime];
     }
     //Check resource status is nil
     if ((nil==resourceDetailData.resourceStatus)||[resourceDetailData.resourceStatus isEqualToString:@""]) {
@@ -158,7 +177,8 @@
     }
     //Set status back color according to fetch status
     if ([resourceDetailData.resourceStatusId isEqualToString:@"0"]) {
-        self.resourceStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor];
+//        self.resourceStatusBackGroundView.backgroundColor=[Constants greenBackgroundColor];//Change color
+        self.resourceStatusBackGroundView.backgroundColor=[Constants purpleBackgroundColor];
     }
     else if ([resourceDetailData.resourceStatusId isEqualToString:@"1"]) {
         self.resourceStatusBackGroundView.backgroundColor=[Constants orangeBackgroundColor];

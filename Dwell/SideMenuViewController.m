@@ -22,6 +22,7 @@
     [super viewDidLoad];
     
     [[self navigationController] setNavigationBarHidden:NO animated:NO];
+    [self setTransparentNavigtionBar];
     [self addLeftBarButtonWithImage:[UIImage imageNamed:@"menu.png"]];  //Set menu button in left bar button
     
    //Add pan gesture for going back to main screens by clicking on menu button.

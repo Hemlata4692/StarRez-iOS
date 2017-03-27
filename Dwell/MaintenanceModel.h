@@ -13,6 +13,8 @@
 @property(retain,nonatomic)NSString *title;
 @property(retain,nonatomic)NSString *completedDate;
 @property(retain,nonatomic)NSString *reportedDate;
+@property(retain,nonatomic)NSString *completedTime;
+@property(retain,nonatomic)NSString *reportedTime;
 @property(retain,nonatomic)NSString *detail;
 @property(retain,nonatomic)NSString *status;
 @property(retain,nonatomic)NSString *cause;

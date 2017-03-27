@@ -15,6 +15,8 @@
 @property (strong, nonatomic) NSString *resourceType;
 @property (strong, nonatomic) NSString *resourceFromDate;
 @property (strong, nonatomic) NSString *resourceToDate;
+@property (strong, nonatomic) NSString *resourceFromTime;
+@property (strong, nonatomic) NSString *resourceToTime;
 @property (strong, nonatomic) NSString *resourceStatusId;
 @property (strong, nonatomic) NSString *resourceStatus;
 @property (strong, nonatomic) NSString *resourceDescription;
@@ -40,4 +42,6 @@
 - (void)getAllResourcesOnSuccess:(NSMutableArray *)allResourceIds onSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
 //Resources request service
 - (void)setRequestResourceOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
+//Get selected resource detail
+- (void)getSelectedResourceDetailOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
 @end

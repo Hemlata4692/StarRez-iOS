@@ -21,9 +21,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *firstInformationTitleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *firstInformationDateLabel;
 @property (strong, nonatomic) IBOutlet UILabel *firstInformationStatusLabel;
+@property (strong, nonatomic) IBOutlet UILabel *firstInfromationSeparatorLabel;
 @property (strong, nonatomic) IBOutlet UILabel *secondInformationTitleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *secondInformationDateLabel;
 @property (strong, nonatomic) IBOutlet UILabel *secondInformationStatusLabel;
+@property (strong, nonatomic) IBOutlet UILabel *secondInfromationSeparatorLabel;
 @property (strong, nonatomic) IBOutlet UILabel *thirdInformationTitleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *thirdInformationDateLabel;
 @property (strong, nonatomic) IBOutlet UILabel *thirdInformationStatusLabel;

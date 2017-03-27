@@ -16,9 +16,9 @@
     
     CustomAlert *alertView;
     NSArray *menuItems;
-    UIColor *labelColor;
+    NSArray *labelColor;
     
-    NSArray *unselectedItems;
+//    NSArray *unselectedItems;
     NSArray *selectedItems;
 }
 
@@ -32,11 +32,10 @@
     [super viewDidLoad];
     
     menuItems = [[NSArray alloc]init];
-    labelColor= [UIColor colorWithRed:120./255.0 green:42.0/255.0 blue:147.0/255.0 alpha:1.0];
-//    menuItems = @[@"Dashboard", @"Parcel",@"Logout"];
+    labelColor= [[NSArray alloc]init];
+    labelColor= @[[Constants oldDashboardColor],[Constants oldOrangeBackgroundColor],[Constants oldBlueBackgroundColor:1.0],[Constants oldGreenBackgroundColor:1.0],[Constants oldYellowBackgroundColor:1.0],[Constants oldDarkGreenBackgroundColor],[Constants oldGrayBackgroundColor],[Constants oldLogoutColor]];
      menuItems = @[@"Dashboard", @"Maintenance", @"Parcel", @"Resources", @"Events",@"Information", @"Help",@"Logout"];
-    unselectedItems =@[@"dashboardUnselected",@"maintenanceUnselected",@"parcelUnselected",@"resourcesUnselected",@"eventsUnselected",@"informationUnselected",@"helpUnselected",@"logoutUnselected"];
-    selectedItems =@[@"dashboardSelected",@"maintenanceSelected",@"parcelSelected",@"resourcesSelected",@"eventsSelected",@"informationSelected",@"helpSelected",@"logoutSelected"];
+    selectedItems =@[@"dashboardSideBar", @"maintenanceSideBar", @"parcelSideBar", @"resourcesSideBar", @"eventsSideBar",@"informationSideBar", @"helpSideBar",@"logoutSideBar"];
     [self.tableView setSeparatorColor:[UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1.0]];
 }
 
@@ -68,13 +67,13 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 120)];
+    UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
     headerView.backgroundColor=[UIColor whiteColor];
     // i.e. array element
-    UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake((headerView.frame.size.width/2)-80, 10, 160, 50)] ;
-    imgView.contentMode=UIViewContentModeScaleAspectFit;
+    UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(15, -15, 100, 100)] ;
+    imgView.contentMode=UIViewContentModeScaleAspectFill;
     imgView.clipsToBounds=YES;
-    imgView.image=[UIImage imageNamed:@"loginLogo"];
+    imgView.image=[UIImage imageNamed:@"sidebarlogo"];
     [headerView addSubview:imgView];
     return headerView;   // return headerLabel;
 }
@@ -90,27 +89,27 @@
     [cell setSelectedBackgroundView:bgColorView];
     
     //Add left layer for selected cell.
-    UILabel * cellLbl = (UILabel *)[cell.contentView viewWithTag:1];
+//    UILabel * cellLbl = (UILabel *)[cell.contentView viewWithTag:1];
     UIImageView * cellImage = (UIImageView *)[cell.contentView viewWithTag:21];
+    cellImage.image = [UIImage imageNamed:[selectedItems objectAtIndex:indexPath.row]];
     
     if ([[UserDefaultManager getValue:@"indexpath"]integerValue]==indexPath.row) {
         DLog(@"index is %ld",(long)[[UserDefaultManager getValue:@"indexpath"]integerValue]);
-        cellImage.image = [UIImage imageNamed:[selectedItems objectAtIndex:indexPath.row]];
-        cellLbl.textColor = labelColor;
+        
         CGRect frameL;
         frameL.origin.x = 0;
         frameL.origin.y = 0;
         frameL.size.height = 61;
-        frameL.size.width = 3;
+        frameL.size.width = 5;
         UIButton *AlertNameLHS = [[UIButton alloc] initWithFrame:frameL];
-        AlertNameLHS.backgroundColor=labelColor;
+        AlertNameLHS.backgroundColor=[labelColor objectAtIndex:indexPath.row];
         [cell.contentView addSubview:AlertNameLHS];
         
         CAGradientLayer* gr = [CAGradientLayer layer];
         gr.frame = AlertNameLHS.frame;
         gr.colors = [NSArray arrayWithObjects:
-                     (id)labelColor.CGColor
-                     ,(id)labelColor.CGColor
+                     (id)[[labelColor objectAtIndex:indexPath.row] CGColor]
+                     ,(id)[[labelColor objectAtIndex:indexPath.row] CGColor]
                      , nil];
         gr.locations = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0],[NSNumber numberWithFloat:1],nil];
         
@@ -118,8 +117,8 @@
         [cell.contentView bringSubviewToFront:AlertNameLHS];
     }
     else {
-        cellImage.image = [UIImage imageNamed:[unselectedItems objectAtIndex:indexPath.row]];
-        cellLbl.textColor = [UIColor colorWithRed:84.0/255.0 green:84.0/255.0 blue:84.0/255.0 alpha:1.0];
+//        cellImage.image = [UIImage imageNamed:[unselectedItems objectAtIndex:indexPath.row]];
+//        cellLbl.textColor = [UIColo/r colorWithRed:84.0/255.0 green:84.0/255.0 blue:84.0/255.0 alpha:1.0];
         for (UIView *subview in [cell.contentView subviews]) {
             if ([subview isKindOfClass:[UIButton class]]) {
                 [subview removeFromSuperview];

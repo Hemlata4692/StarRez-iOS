@@ -53,6 +53,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *descriptionTitle;
 @property (strong, nonatomic) IBOutlet UILabel *causeTitle;
 
+//Set field background label
+@property (strong, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (strong, nonatomic) IBOutlet UILabel *itemLabel;
+@property (strong, nonatomic) IBOutlet UILabel *commentLabel;
+
 @end
 
 @implementation AddNewJobViewController
@@ -66,9 +71,11 @@
     [self setKeyboardControls:[[BSKeyboardControls alloc] initWithFields:addNewJobTextFieldArray]];
     [self.keyboardControls setDelegate:self];
     
+    [self addBackgroungImage:@"AddJob"];
     //Add corner radius
     [self addCornerRadius];
-    [myDelegate showIndicator:[Constants orangeBackgroundColor]];
+//    [myDelegate showIndicator:[Constants oldYellowBackgroundColor:1.0]];
+    [myDelegate showIndicator:[Constants navigationColor]];
 //    if (self.view.bounds.size.height>568) {
 //        self.addJobContainerView.translatesAutoresizingMaskIntoConstraints = YES;
 //        self.addJobContainerView.frame = CGRectMake(self.addJobContainerView.frame.origin.x, self.addJobContainerView.frame.origin.y, self.view.bounds.size.width-30, self.view.bounds.size.height-95);
@@ -95,8 +102,15 @@
 
 - (void)addCornerRadius {
     
-    [self.saveButton.layer setCornerRadius:22];
-    [self.addJobContainerView addShadowWithCornerRadius:self.addJobContainerView color:[UIColor lightGrayColor] borderColor:[UIColor whiteColor] radius:5.0f];  //Add corner radius and shadow
+    self.itemLabel.layer.cornerRadius=cornerRadius;
+    self.commentLabel.layer.cornerRadius=cornerRadius;
+    self.categoryLabel.layer.cornerRadius=cornerRadius;
+    self.itemLabel.layer.masksToBounds=YES;
+    self.commentLabel.layer.masksToBounds=YES;
+    self.categoryLabel.layer.masksToBounds=YES;
+
+    [self.saveButton.layer setCornerRadius:25];
+//    [self.addJobContainerView addShadowWithCornerRadius:self.addJobContainerView color:[UIColor lightGrayColor] borderColor:[UIColor whiteColor] radius:5.0f];  //Add corner radius and shadow
 }
 
 - (void)didReceiveMemoryWarning {
@@ -286,13 +300,18 @@
 #pragma mark - Add new job validation
 - (BOOL)performValidationsForAddNewJob {
     
+    
     //Apply validations for mandatory fields. Comments and tick mark are not mandatory.
     if ([self.categoryTextField isEmpty] || [self.itemTextField isEmpty]|| [self.descriptionTextField isEmpty]) {
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Please fill in all the required fields." doneButtonText:@"OK" cancelButtonText:@""];
         return NO;
     }
-    else if (![self.descriptionTextField validateSpecialCharactor:self.descriptionTextField.text]||![self.causeTextField validateSpecialCharactor:self.causeTextField.text]||![self.commentsTextField validateSpecialCharactor:self.commentsTextField.text]){
-        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Special charcters are not allowed." doneButtonText:@"OK" cancelButtonText:@""];
+//    else if (![self.descriptionTextField validateSpecialCharactor:self.descriptionTextField.text]||![self.causeTextField validateSpecialCharactor:self.causeTextField.text]||![self.commentsTextField validateSpecialCharactor:self.commentsTextField.text]){
+//        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Special characters are not allowed." doneButtonText:@"OK" cancelButtonText:@""];
+//        return NO;
+//    }
+    else if ([self.descriptionTextField.text containsString:@"&"]||[self.descriptionTextField.text containsString:@"<"]){
+        alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Special characters are not allowed. Special characters are &,<" doneButtonText:@"OK" cancelButtonText:@""];
         return NO;
     }
     else {
@@ -487,6 +506,7 @@
     
     [alertView dismissAlertView];
     if (customAlert.alertTagValue==5) {
+//        [myDelegate showIndicator:[Constants oldYellowBackgroundColor:1.0]];
         [myDelegate showIndicator:[Constants navigationColor]];
         //Retry to get category list from server.
         [self performSelector:@selector(categoryService) withObject:nil afterDelay:.1];

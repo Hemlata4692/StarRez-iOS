@@ -24,4 +24,6 @@
 - (void)getAllResourcesList:(NSMutableArray *)bookedResourceIds resourceModelData:(ResourceModel *)resourceModelData success:(void (^)(id))success onFailure:(void (^)(id))failure;
 //Resources request service
 - (void)setRequestResourceService:(ResourceModel *)resourceModelData success:(void (^)(id))success onFailure:(void (^)(id))failure;
+//Get selected resource detail
+- (void)getSelectedResourceDetail:(ResourceModel *)resourceData success:(void (^)(id))success onFailure:(void (^)(id))failure;
 @end

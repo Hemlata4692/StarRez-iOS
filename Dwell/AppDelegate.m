@@ -113,7 +113,7 @@
     loaderView.backgroundColor=[UIColor colorWithRed:63.0/255.0 green:63.0/255.0 blue:63.0/255.0 alpha:0.3];
     [loaderView addSubview:spinnerBackground];
     self.spinnerView = [[MMMaterialDesignSpinner alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    self.spinnerView.tintColor = [UIColor colorWithRed:118.0/255 green:44.0/255.0 blue:134.0/255.0 alpha:1.0];
+    self.spinnerView.tintColor = spinnerColor;
     self.spinnerView.center = CGPointMake(CGRectGetMidX(self.window.bounds), CGRectGetMidY(self.window.bounds));
     self.spinnerView.lineWidth=3.0f;
     [self.window addSubview:loaderView];
@@ -165,7 +165,6 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     DLog(@"1.push notification response.............%@",userInfo);
-    printf("1.push notification response.............################");
     //If app is active then show alert other wise(app is terminated) navigate to ParcelListViewController through Dashboard
     if ((application.applicationState == UIApplicationStateActive) || (application.applicationState == UIApplicationStateBackground)) {
         alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] doneButtonText:@"OK" cancelButtonText:@""];
@@ -219,13 +218,7 @@
 #pragma mark - Custom alert delegates
 - (void)customAlertDelegateAction:(CustomAlert *)customAlert option:(int)option{
     
-    [alertView dismissAlertView];
-//    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    
-//    UIViewController * carListView = [storyboard instantiateViewControllerWithIdentifier:@"ParcelListViewController"];
-//    [currentNavigationController setViewControllers: [NSArray arrayWithObject: carListView]
-//                                           animated: YES];
-    
+    [alertView dismissAlertView];    
     //Set notificationDict to navigation
         [notificationDict setObject:@"Yes" forKey:@"isNotification"];
         [notificationDict setObject:@"ParcelListViewController" forKey:@"toScreen"];

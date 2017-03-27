@@ -65,4 +65,36 @@
 + (UIColor*)navigationColor {
     return [UIColor colorWithRed:118.0/255 green:44.0/255.0 blue:134.0/255.0 alpha:1.0];
 }
+
++ (UIColor*)oldDashboardColor {
+    return [UIColor colorWithRed:230.0/255 green:68.0/255.0 blue:62.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)oldBlueBackgroundColor:(float)alpha {
+    return [UIColor colorWithRed:49.0/255 green:104.0/255.0 blue:178.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)oldYellowBackgroundColor:(float)alpha {
+    return [UIColor colorWithRed:255.0/255 green:196.0/255.0 blue:12.0/255.0 alpha:alpha];
+}
+
++ (UIColor*)oldGreenBackgroundColor:(float)alpha {
+    return [UIColor colorWithRed:45.0/255 green:179.0/255.0 blue:74.0/255.0 alpha:alpha];
+}
+
++ (UIColor*)oldOrangeBackgroundColor {
+    return [UIColor colorWithRed:226.0/255 green:114.0/255.0 blue:50.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)oldDarkGreenBackgroundColor {
+    return [UIColor colorWithRed:136.0/255 green:157.0/255.0 blue:92.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)oldGrayBackgroundColor {
+    return [UIColor colorWithRed:107.0/255 green:107.0/255.0 blue:107.0/255.0 alpha:1.0];
+}
+
++ (UIColor*)oldLogoutColor {
+    return [UIColor colorWithRed:225.0/255 green:100.0/255.0 blue:92.0/255.0 alpha:1.0];
+}
 @end

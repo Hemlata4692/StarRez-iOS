@@ -47,11 +47,25 @@
             }
             tempModel.title=[self setNAValue:[maintenanceData valueForKeyPath:@"entry.content.Record.sub_category"]];
             tempModel.detail=[self setNAValue:[maintenanceData valueForKeyPath:@"entry.content.Record.title"]];
-            NSDate *dateCompleted = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[maintenanceData valueForKeyPath:@"entry.content.Record.CompleteDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-            NSDate *dateReported = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[maintenanceData valueForKeyPath:@"entry.content.Record.DateReported"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-            [dateFormatter setDateFormat:@"dd MMM, yy"];
+            //Convert date/time in system date/time
+            NSString *dateCompletedTempString=[UserDefaultManager GMTToSytemDateTimeFormat:[maintenanceData valueForKeyPath:@"entry.content.Record.CompleteDate"]];
+            NSString *dateReportedTempString=[UserDefaultManager GMTToSytemDateTimeFormat:[maintenanceData valueForKeyPath:@"entry.content.Record.DateReported"]];
+            //Get date from system date
+            NSDate *dateCompleted = [dateFormatter dateFromString:[[dateCompletedTempString componentsSeparatedByString:@"T"] objectAtIndex:0]];
+            NSDate *dateReported = [dateFormatter dateFromString:[[dateReportedTempString componentsSeparatedByString:@"T"] objectAtIndex:0]];
+            //Get time from system time
+            [dateFormatter setDateFormat:@"HH:mm:ss"];
+            NSDate *timeCompleted = [dateFormatter dateFromString:[[dateCompletedTempString componentsSeparatedByString:@"T"] objectAtIndex:1]];
+            NSDate *timeReported = [dateFormatter dateFromString:[[dateReportedTempString componentsSeparatedByString:@"T"] objectAtIndex:1]];
+            //Convert system date to own date format
+            [dateFormatter setDateFormat:@"dd MMM,yy"];
             tempModel.completedDate=[dateFormatter stringFromDate:dateCompleted];
             tempModel.reportedDate=[dateFormatter stringFromDate:dateReported];
+            //Convert system time to own time format
+            [dateFormatter setDateFormat:@"HH:mm"];
+            tempModel.completedTime=[dateFormatter stringFromDate:timeCompleted];
+            tempModel.reportedTime=[dateFormatter stringFromDate:timeReported];
+            
             tempModel.status=[maintenanceData valueForKeyPath:@"entry.content.Record.status"];
             tempModel.category=[maintenanceData valueForKeyPath:@"entry.content.Record.main_category"];
             tempModel.cause=[maintenanceData valueForKeyPath:@"entry.content.Record.Cause"];
@@ -81,11 +95,25 @@
                     tempModel.title=@"No title available";
                 }
                 tempModel.detail=[self setNAValue:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.title"]];
-                NSDate *dateCompleted = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.CompleteDate"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-                NSDate *dateReported = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateReported"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];
-                [dateFormatter setDateFormat:@"dd MMM, yy"];
+                //Convert date/time in system date/time
+                NSString *dateCompletedTempString=[UserDefaultManager GMTToSytemDateTimeFormat:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.CompleteDate"]];
+                NSString *dateReportedTempString=[UserDefaultManager GMTToSytemDateTimeFormat:[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateReported"]];
+                //Get date from system date
+                NSDate *dateCompleted = [dateFormatter dateFromString:[[dateCompletedTempString componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                NSDate *dateReported = [dateFormatter dateFromString:[[dateReportedTempString componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                //Get time from system time
+                [dateFormatter setDateFormat:@"HH:mm:ss"];
+                NSDate *timeCompleted = [dateFormatter dateFromString:[[dateCompletedTempString componentsSeparatedByString:@"T"] objectAtIndex:1]];
+                NSDate *timeReported = [dateFormatter dateFromString:[[dateReportedTempString componentsSeparatedByString:@"T"] objectAtIndex:1]];
+                //Convert system date to own date format
+                [dateFormatter setDateFormat:@"dd MMM,yy"];
                 tempModel.completedDate=[dateFormatter stringFromDate:dateCompleted];
                 tempModel.reportedDate=[dateFormatter stringFromDate:dateReported];
+                //Convert system time to own time format
+                [dateFormatter setDateFormat:@"HH:mm"];
+                tempModel.completedTime=[dateFormatter stringFromDate:timeCompleted];
+                tempModel.reportedTime=[dateFormatter stringFromDate:timeReported];
+                
                 tempModel.status=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status"];
                 tempModel.category=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.main_category"];
                 tempModel.cause=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Cause"];
@@ -152,7 +180,7 @@
             tempModel.title=[maintenanceData valueForKeyPath:@"entry.content.Record.Description"];
             tempModel.maintenanceId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceCategoryID"];
             
-            if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
+            if (![[tempModel.title capitalizedString] containsString:[@"Category" capitalizedString]]) {
                 
                 [dataArray addObject:tempModel];
             }
@@ -164,7 +192,7 @@
                 tempModel.title=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
                 tempModel.maintenanceId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceCategoryID"];
                 
-                if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
+                if (![[tempModel.title capitalizedString] containsString:[@"Category" capitalizedString]]) {
                     
                     [dataArray addObject:tempModel];
                 }
@@ -187,7 +215,7 @@
             tempModel.subcategory=[maintenanceData valueForKeyPath:@"entry.content.Record.Description"];
             tempModel.subcategoryId=[maintenanceData valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenanceItemID"];
             
-            if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
+            if (![[tempModel.title capitalizedString] containsString:[@"Category" capitalizedString]]) {
                 
                 [dataArray addObject:tempModel];
             }
@@ -199,7 +227,7 @@
                 tempModel.subcategory=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
                 tempModel.subcategoryId=[[[maintenanceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.RoomSpaceMaintenanceItemID"];
                 
-                if (![tempModel.title isEqualToString:@"(Please Select Category)"]) {
+                if (![[tempModel.title capitalizedString] containsString:[@"Category" capitalizedString]]) {
                     
                     [dataArray addObject:tempModel];
                 }

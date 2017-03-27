@@ -35,12 +35,15 @@
     //Set index to selected show in menu
     [UserDefaultManager setValue:[NSNumber numberWithInteger:2] key:@"indexpath"];
     self.navigationItem.title=@"Parcel List";
+    //Add background image
+    [super addBackgroungImage:@"Parcel"];
     self.noRecordLabel.hidden=YES;
     isSearch=false;
     parcelDataArray=[NSMutableArray new];
     parcelSearchDataArray=[NSMutableArray new];
     parcelStatusDict=[NSMutableDictionary new];
-    [myDelegate showIndicator:[Constants blueBackgroundColor]];
+//    [myDelegate showIndicator:[Constants oldBlueBackgroundColor:1.0]];
+    [myDelegate showIndicator:[Constants navigationColor]];
     [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
     filterBarButton.enabled=false;
     [self performSelector:@selector(getParcelListService) withObject:nil afterDelay:.1];

@@ -12,7 +12,7 @@
 
 @interface GlobalBackViewController () {
     
- UIBarButtonItem *barButton,*barButton1;
+    UIBarButtonItem *barButton,*barButton1;
 }
 @end
 
@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setTransparentNavigtionBar];
     [self addLeftBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
     // Do any additional setup after loading the view.
 }
@@ -49,6 +50,17 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - end
+
+//Make the navigation bar transparent and show only bar items.
+- (void)setTransparentNavigtionBar {
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+}
 
 //Add different background image for all sub classes at run time.
 - (void)addBackgroungImage:(NSString *)imageName {

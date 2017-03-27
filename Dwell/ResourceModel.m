@@ -39,13 +39,32 @@
                 __block ResourceModel *tempModel=[ResourceModel new];
                 tempModel.resourceTitle=[resourceData valueForKeyPath:@"entry.content.Record.resource"];
                 tempModel.resourceType=[resourceData valueForKeyPath:@"entry.content.Record.resource_type"];
-                NSDate *fromDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[resourceData valueForKeyPath:@"entry.content.Record.DateStart"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //DateStart convert GMT+1 to system date
-                NSDate *toDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[resourceData valueForKeyPath:@"entry.content.Record.DateEnd"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //DateEnd convert GMT+1 to system date
-                [dateFormatter setDateFormat:@"dd MMM, yy"];
+                
+                
+                //Convert date/time in system date/time
+                NSString *dateFromTempString=[UserDefaultManager GMTToSytemDateTimeFormat:[resourceData valueForKeyPath:@"entry.content.Record.DateStart"]];
+                NSString *dateToTempString=[UserDefaultManager GMTToSytemDateTimeFormat:[resourceData valueForKeyPath:@"entry.content.Record.DateEnd"]];
+                //Get date from system date
+                NSDate *fromDate = [dateFormatter dateFromString:[[dateFromTempString componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                NSDate *toDate = [dateFormatter dateFromString:[[dateToTempString componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                //Get time from system time
+                [dateFormatter setDateFormat:@"HH:mm:ss"];
+                NSDate *fromTime = [dateFormatter dateFromString:[[dateFromTempString componentsSeparatedByString:@"T"] objectAtIndex:1]];
+                NSDate *totime = [dateFormatter dateFromString:[[dateToTempString componentsSeparatedByString:@"T"] objectAtIndex:1]];
+                //Convert system date to own date format
+                [dateFormatter setDateFormat:@"dd MMM,yy"];
                 tempModel.resourceFromDate=[dateFormatter stringFromDate:fromDate];
                 tempModel.resourceToDate=[dateFormatter stringFromDate:toDate];
+                //Convert system time to own time format
+                [dateFormatter setDateFormat:@"HH:mm"];
+                tempModel.resourceFromTime=[dateFormatter stringFromDate:fromTime];
+                tempModel.resourceToTime=[dateFormatter stringFromDate:totime];
+                
                 tempModel.resourceStatus=[resourceData valueForKeyPath:@"entry.content.Record.status"];
                 tempModel.resourceStatusId=[resourceData valueForKeyPath:@"entry.content.Record.ResourceBookingStatusEnum"];
+                if ([tempModel.resourceStatusId isEqualToString:@"1"]) {
+                    tempModel.resourceStatus=@"Collected";
+                }
                 tempModel.resourceDescription=[resourceData valueForKeyPath:@"entry.content.Record.Description"];
                 tempModel.resourceComment=[resourceData valueForKeyPath:@"entry.content.Record.Comments"];
                 [dataArray addObject:tempModel];
@@ -57,13 +76,31 @@
                     __block ResourceModel *tempModel=[ResourceModel new];
                     tempModel.resourceTitle=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.resource"];
                     tempModel.resourceType=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.resource_type"];
-                    NSDate *fromDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateStart"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //DateStart convert GMT+1 to system date
-                    NSDate *toDate = [dateFormatter dateFromString:[[[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateEnd"]] componentsSeparatedByString:@"T"] objectAtIndex:0]];  //DateEnd convert GMT+1 to system date
-                    [dateFormatter setDateFormat:@"dd MMM, yy"];
+                    //Convert date/time in system date/time
+                    NSString *dateFromTempString=[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateStart"]];
+                    NSString *dateToTempString=[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateEnd"]];
+                    //Get date from system date
+                    NSDate *fromDate = [dateFormatter dateFromString:[[dateFromTempString componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                    NSDate *toDate = [dateFormatter dateFromString:[[dateToTempString componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                    //Get time from system time
+                    [dateFormatter setDateFormat:@"HH:mm:ss"];
+                    NSDate *fromTime = [dateFormatter dateFromString:[[dateFromTempString componentsSeparatedByString:@"T"] objectAtIndex:1]];
+                    NSDate *totime = [dateFormatter dateFromString:[[dateToTempString componentsSeparatedByString:@"T"] objectAtIndex:1]];
+                    //Convert system date to own date format
+                    [dateFormatter setDateFormat:@"dd MMM,yy"];
                     tempModel.resourceFromDate=[dateFormatter stringFromDate:fromDate];
                     tempModel.resourceToDate=[dateFormatter stringFromDate:toDate];
+                    //Convert system time to own time format
+                    [dateFormatter setDateFormat:@"HH:mm"];
+                    tempModel.resourceFromTime=[dateFormatter stringFromDate:fromTime];
+                    tempModel.resourceToTime=[dateFormatter stringFromDate:totime];
+                    
                     tempModel.resourceStatus=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.status"];
+                    
                     tempModel.resourceStatusId=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.ResourceBookingStatusEnum"];
+                    if ([tempModel.resourceStatusId isEqualToString:@"1"]) {
+                        tempModel.resourceStatus=@"Collected";
+                    }
                     tempModel.resourceDescription=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Description"];
                     tempModel.resourceComment=[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.Comments"];
                     [dataArray addObject:tempModel];
@@ -206,6 +243,7 @@
             NSMutableArray *dataArray = [NSMutableArray new];
              //If single entry then resourceData is dictionary type
             if ([[resourceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
+                
                 __block ResourceModel *tempModel=[ResourceModel new];
                 tempModel.resourceId=[resourceData valueForKeyPath:@"entry.content.Record.ResourceID"];
                 tempModel.resourceDescription=[resourceData valueForKeyPath:@"entry.content.Record.Description"];
@@ -239,6 +277,83 @@
             NSMutableDictionary *responseDict=[NSMutableDictionary new];
             [responseDict setObject:@"1" forKey:@"success"];
             success(responseDict);
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"0" forKey:@"success"];
+            failure(responseDict);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }];
+}
+#pragma mark - end
+
+#pragma mark - Get selected resource detail
+- (void)getSelectedResourceDetailOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure {
+    
+    [[ConnectionManager sharedManager] getSelectedResourceDetail:self onSuccess:^(id resourceData) {
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        if (NULL!=[resourceData objectForKey:@"entry"]&&[[resourceData objectForKey:@"entry"] count]!=0) {
+            
+            NSMutableArray *dataArray = [NSMutableArray new];
+            //If single entry then resourceData is dictionary type
+            if ([[resourceData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
+                __block ResourceModel *tempModel=[ResourceModel new];
+               
+                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];               
+                
+                //Convert date/time in system date/time
+                NSString *dateFromTempString=[UserDefaultManager GMTToSytemDateTimeFormat:[resourceData valueForKeyPath:@"entry.content.Record.DateStart"]];
+                NSString *dateToTempString=[UserDefaultManager GMTToSytemDateTimeFormat:[resourceData valueForKeyPath:@"entry.content.Record.DateEnd"]];
+                //Get date from system date
+                NSDate *fromDate = [dateFormatter dateFromString:[[dateFromTempString componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                NSDate *toDate = [dateFormatter dateFromString:[[dateToTempString componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                //Get time from system time
+                [dateFormatter setDateFormat:@"HH:mm:ss"];
+                NSDate *fromTime = [dateFormatter dateFromString:[[dateFromTempString componentsSeparatedByString:@"T"] objectAtIndex:1]];
+                NSDate *totime = [dateFormatter dateFromString:[[dateToTempString componentsSeparatedByString:@"T"] objectAtIndex:1]];
+                //Convert system date to own date format
+                [dateFormatter setDateFormat:@"dd MMM,yy"];
+                tempModel.resourceFromDate=[dateFormatter stringFromDate:fromDate];
+                tempModel.resourceToDate=[dateFormatter stringFromDate:toDate];
+                //Convert system time to own time format
+                [dateFormatter setDateFormat:@"HH:mm"];
+                tempModel.resourceFromTime=[dateFormatter stringFromDate:fromTime];
+                tempModel.resourceToTime=[dateFormatter stringFromDate:totime];
+                [dataArray addObject:tempModel];
+            }
+            else {  //If multiple entry then resourceData is array type
+                for (int i=0; i<[[resourceData objectForKey:@"entry"] count]; i++) {
+                    __block ResourceModel *tempModel=[ResourceModel new];
+                    
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+            
+                    //Convert date/time in system date/time
+                    NSString *dateFromTempString=[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateStart"]];
+                    NSString *dateToTempString=[UserDefaultManager GMTToSytemDateTimeFormat:[[[resourceData objectForKey:@"entry"] objectAtIndex:i] valueForKeyPath:@"content.Record.DateEnd"]];
+                    //Get date from system date
+                    NSDate *fromDate = [dateFormatter dateFromString:[[dateFromTempString componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                    NSDate *toDate = [dateFormatter dateFromString:[[dateToTempString componentsSeparatedByString:@"T"] objectAtIndex:0]];
+                    //Get time from system time
+                    [dateFormatter setDateFormat:@"HH:mm:ss"];
+                    NSDate *fromTime = [dateFormatter dateFromString:[[dateFromTempString componentsSeparatedByString:@"T"] objectAtIndex:1]];
+                    NSDate *totime = [dateFormatter dateFromString:[[dateToTempString componentsSeparatedByString:@"T"] objectAtIndex:1]];
+                    //Convert system date to own date format
+                    [dateFormatter setDateFormat:@"dd MMM,yy"];
+                    tempModel.resourceFromDate=[dateFormatter stringFromDate:fromDate];
+                    tempModel.resourceToDate=[dateFormatter stringFromDate:toDate];
+                    //Convert system time to own time format
+                    [dateFormatter setDateFormat:@"HH:mm"];
+                    tempModel.resourceFromTime=[dateFormatter stringFromDate:fromTime];
+                    tempModel.resourceToTime=[dateFormatter stringFromDate:totime];
+                    [dataArray addObject:tempModel];
+                }
+            }
+            success(dataArray);
         }
         else {
             NSMutableDictionary *responseDict=[NSMutableDictionary new];

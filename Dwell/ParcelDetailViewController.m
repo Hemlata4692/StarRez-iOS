@@ -42,7 +42,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title=@"Parcel Detail";
-    [super addBackgroungImage:@""];
+    [super addBackgroungImage:@"Parcel"];
     [self layoutViewObjects];
     [self showParcelDetailData];
     // Do any additional setup after loading the view.
@@ -58,8 +58,21 @@
 - (void)layoutViewObjects {
     
     //Set corner radius to main background view
-    self.mainBackgroundView.layer.cornerRadius=5.0;
+    self.mainBackgroundView.layer.cornerRadius=cornerRadius;
     self.mainBackgroundView.layer.masksToBounds=YES;
+    CAShapeLayer *shapelayer=[CAShapeLayer layer];
+    UIBezierPath *path=[UIBezierPath bezierPath];
+    //Draw a line
+    [path moveToPoint:CGPointMake(0.0,_parcelTitle.frame.size.height)]; //Add yourStartPoint here
+    [path addLineToPoint:CGPointMake(self.view.frame.size.width-20, _parcelTitle.frame.size.height)];//Add yourEndPoint here
+    UIColor *fill=[UIColor colorWithRed:72.0/255.0 green:73.0/255.0 blue:73.0/255.0 alpha:1.0];
+    shapelayer.strokeStart=0.0;
+    shapelayer.strokeColor=fill.CGColor;
+    shapelayer.lineWidth=1.0f;
+    shapelayer.lineJoin=kCALineJoinRound;
+    shapelayer.lineDashPattern=[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:7], nil];
+    shapelayer.path=path.CGPath;
+    [_parcelTitle.layer addSublayer:shapelayer];
     [self removeAutolayout];//Remove autolayout
     [self.shadowBackView addShadowWithCornerRadius:self.shadowBackView color:[UIColor lightGrayColor] borderColor:[UIColor clearColor] radius:5.0f];  //Add corner radius and shadow
     [self changeViewFrame];//Change frame according to forwarding address and comment
@@ -143,14 +156,14 @@
         self.receiptDate.text=@"NA";
     }
     else {
-        self.receiptDate.text=parcelDetailData.parcelReceiptDate;
+        self.receiptDate.text=[NSString stringWithFormat:@"%@ %@",parcelDetailData.parcelReceiptDate,parcelDetailData.parcelReceiptTime];
     }
     //Check issued date is nil
     if ((nil==parcelDetailData.parcelIssueDate)||[parcelDetailData.parcelIssueDate isEqualToString:@""]) {
         self.issueDate.text=@"NA";
     }
     else {
-        self.issueDate.text=parcelDetailData.parcelIssueDate;
+        self.issueDate.text=[NSString stringWithFormat:@"%@ %@",parcelDetailData.parcelIssueDate,parcelDetailData.parcelIssueTime];
     }
     //Check parcel status is nil
     if ((nil==parcelDetailData.parcelStatus)||[parcelDetailData.parcelStatus isEqualToString:@""]) {
@@ -191,7 +204,8 @@
         self.parcelStatusBackGroundView.backgroundColor=[Constants yellowBackgroundColor];
     }
     else if ([parcelDetailData.parcelStatusId isEqualToString:@"3"]) {
-        self.parcelStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor];
+//        self.parcelStatusBackGroundView.backgroundColor=[Constants blueBackgroundColor];
+        self.parcelStatusBackGroundView.backgroundColor=[Constants redBackgroundColor];//Change color
     }
     else {
         self.parcelStatusBackGroundView.backgroundColor=[Constants grayBackgroundColor];

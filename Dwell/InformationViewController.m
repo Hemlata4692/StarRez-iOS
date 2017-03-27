@@ -9,11 +9,16 @@
 #import "InformationViewController.h"
 #import "SWRevealViewController.h"
 #import "Internet.h"
+#import "UIImage+deviceSpecificMedia.h"
+
+#define informationWebUrl @"http://www.dwellstudent.co.uk/en/information/"
+#define eventWebUrl @"http://www.dwellstudent.co.uk/en/event/"
+#define helpWebUrl @"http://www.dwellstudent.co.uk/en/help/"
 
 @interface InformationViewController (){
     
     UIBarButtonItem *barButton;
-    NSString *webViewUrl;
+    NSString *webViewUrl, *lastWebUrl;
     BOOL isLoaderShow;
 }
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
@@ -26,41 +31,50 @@
     [super viewDidLoad];
     
     isLoaderShow=false;
+    self.webView.backgroundColor = [UIColor clearColor];
+    self.webView.opaque=NO;
+    
     //Add menu bar button initially
+    [self addBackgroungImage:@"Resource"];
+    [self setTransparentNavigtionBar];
     [self addLeftBarButtonWithImage:[UIImage imageNamed:@"menu.png"]];
     if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Event"]) {   //If event tab click
         [UserDefaultManager setValue:[NSNumber numberWithInteger:4] key:@"indexpath"];
         self.navigationItem.title=@"Event";
-        webViewUrl=@"http://www.centurionstudents.co.uk/en/event/";
+        webViewUrl=eventWebUrl;
         Internet *internet=[[Internet alloc] init];
         if (![internet start]) {
             isLoaderShow=true;
+//            [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
             [myDelegate showIndicator:[Constants navigationColor]];
-            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/event/"]]];
+            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:eventWebUrl]]];
         }
     }
     else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Information"]) {   //If information tab click
         [UserDefaultManager setValue:[NSNumber numberWithInteger:5] key:@"indexpath"];
         self.navigationItem.title=@"Information";
-        webViewUrl=@"http://www.centurionstudents.co.uk/en/information/";
+        webViewUrl=informationWebUrl;
         Internet *internet=[[Internet alloc] init];
         if (![internet start]) {
             isLoaderShow=true;
+//            [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
             [myDelegate showIndicator:[Constants navigationColor]];
-            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/information/"]]];
+            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:informationWebUrl]]];
         }
     }
     else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Help"]) {   //If help tab click
         [UserDefaultManager setValue:[NSNumber numberWithInteger:6] key:@"indexpath"];
         self.navigationItem.title=@"Help";
-        webViewUrl=@"http://www.centurionstudents.co.uk/en/help/";
+        webViewUrl=helpWebUrl;
         Internet *internet=[[Internet alloc] init];
         if (![internet start]) {
             isLoaderShow=true;
+//            [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
             [myDelegate showIndicator:[Constants navigationColor]];
-            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/help/"]]];
+            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:helpWebUrl]]];
         }
     }
+    lastWebUrl=webViewUrl;
     // Do any additional setup after loading the view.
 }
 
@@ -70,25 +84,94 @@
 }
 #pragma mark - end
 
+//Make the navigation bar transparent and show only bar items.
+- (void)setTransparentNavigtionBar {
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+}
+
+//Add different background image for all sub classes at run time.
+- (void)addBackgroungImage:(NSString *)imageName {
+    
+    //Set background image on uiview
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:imageName] drawInRect:self.view.bounds];
+    UIImage * image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[image imageForDeviceWithName:imageName]]];
+    backgroundImage.contentMode = UIViewContentModeScaleAspectFit;
+    backgroundImage.frame = self.view.frame;
+    [self.view insertSubview:backgroundImage atIndex:0];
+}
+
 #pragma mark - Webview delegates
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     DLog(@"start value: %@",request.URL);
     webViewUrl=[request.URL absoluteString];
     if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Information"]) {
+        if ([self isValidURL:[webViewUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]]) {
+            //Information view has list to navigte other webpage
+            if (![webViewUrl isEqualToString:informationWebUrl]) {
+                if (!isLoaderShow) {
+                    //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
+                    [myDelegate showIndicator:[Constants navigationColor]];
+                    isLoaderShow=true;
+                    [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
+                }
+            }
+            else {
+                if (!isLoaderShow) {
+                    //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
+                    [myDelegate showIndicator:[Constants navigationColor]];
+                    isLoaderShow=true;
+                }
+            }
+        }
+    }
+    else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Event"]) {
+        if ([self isValidURL:[webViewUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]]) {
         //Information view has list to navigte other webpage
-        if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/information/"]) {
+        if (![webViewUrl isEqualToString:eventWebUrl]) {
             if (!isLoaderShow) {
+                //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
                 [myDelegate showIndicator:[Constants navigationColor]];
-                 isLoaderShow=true;
+                isLoaderShow=true;
                 [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
             }
         }
         else {
             if (!isLoaderShow) {
+                //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
                 [myDelegate showIndicator:[Constants navigationColor]];
                 isLoaderShow=true;
             }
+        }
+        }
+    }
+    else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Help"]) {
+        if ([self isValidURL:[webViewUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]]) {
+        //Information view has list to navigte other webpage
+        if (![webViewUrl isEqualToString:helpWebUrl]) {
+            if (!isLoaderShow) {
+                //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
+                [myDelegate showIndicator:[Constants navigationColor]];
+                isLoaderShow=true;
+                [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
+            }
+        }
+        else {
+            if (!isLoaderShow) {
+                //                [myDelegate showIndicator:[Constants oldGreenBackgroundColor:1.0]];
+                [myDelegate showIndicator:[Constants navigationColor]];
+                isLoaderShow=true;
+            }
+        }
         }
     }
     return YES;
@@ -99,7 +182,23 @@
     [myDelegate stopIndicator];
     isLoaderShow=false;
     if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Information"]) {
-        if (![webViewUrl isEqualToString:@"http://www.centurionstudents.co.uk/en/information/"]) {
+        if (![webViewUrl isEqualToString:informationWebUrl]) {
+            [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
+        }
+        else {
+            [self addLeftBarButtonWithImage:[UIImage imageNamed:@"menu.png"]];
+        }
+    }
+    else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Event"]) {
+        if (![webViewUrl isEqualToString:eventWebUrl]) {
+            [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
+        }
+        else {
+            [self addLeftBarButtonWithImage:[UIImage imageNamed:@"menu.png"]];
+        }
+    }
+    else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Help"]) {
+        if (![webViewUrl isEqualToString:helpWebUrl]) {
             [self addLeftBackBarButtonWithImage:[UIImage imageNamed:@"back_btn"]];
         }
         else {
@@ -153,11 +252,25 @@
 //Back button action
 - (void)backButtonAction :(id)sender {
     if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Information"]) {
-        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.centurionstudents.co.uk/en/information/"]]];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:informationWebUrl]]];
+    }
+    else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Event"]) {
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:eventWebUrl]]];
+    }
+    else if ([[UserDefaultManager getValue:@"ScreenName"] isEqualToString:@"Help"]) {
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:helpWebUrl]]];
     }
 }
 #pragma mark - end
 
+#pragma mark - Link validation
+- (BOOL)isValidURL:(NSString *)urlString {
+    if ([urlString containsString:@"http:"]||[urlString containsString:@"https:"]) {
+        return YES;
+    }
+    return NO;
+}
+#pragma mark - end
 /*
 #pragma mark - Navigation
 

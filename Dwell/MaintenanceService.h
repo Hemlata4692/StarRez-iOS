@@ -25,6 +25,9 @@
 //Subcategory service
 - (void)getSubCategoryService:(void (^)(id))success onFailure:(void (^)(id))failure;
 
+//Get priorties
+- (void)getPrioritiesService:(void (^)(id))success onFailure:(void (^)(id))failure;
+
 //Save job
 - (void)saveJob:(MaintenanceModel *)data onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure;
 

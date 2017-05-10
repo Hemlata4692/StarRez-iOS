@@ -15,6 +15,7 @@
 		95E74D071D91122C00C5CA8B /* MaintenanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D061D91122C00C5CA8B /* MaintenanceCell.m */; };
 		95E74D141D914A8300C5CA8B /* MaintenanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D131D914A8300C5CA8B /* MaintenanceModel.m */; };
 		95E74D181D914FF700C5CA8B /* MaintenanceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E74D171D914FF700C5CA8B /* MaintenanceService.m */; };
+		B70367D41EC2DC42002D823F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B70367D31EC2DC42002D823F /* Reachability.m */; };
 		B70EB1001D9D3E7C00215D4F /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B70EB0FF1D9D3E7C00215D4F /* InformationViewController.m */; };
 		B719DAC41D9A8489000A5D0D /* AvailableResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B719DAC31D9A8489000A5D0D /* AvailableResourceViewController.m */; };
 		B719DAC81D9A9711000A5D0D /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = B719DAC71D9A9711000A5D0D /* UIView+Toast.m */; };
@@ -104,7 +105,6 @@
 		B7D0B8031D893087008BC202 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D0B8021D893087008BC202 /* CustomAlertView.m */; };
 		B7D9C3021DAFCAEE0073B4CF /* ImagePopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7D9C3011DAFCAEE0073B4CF /* ImagePopUpViewController.m */; };
 		B7F7161F1D8A9C57006C8178 /* Internet.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F7161C1D8A9C57006C8178 /* Internet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B7F716201D8A9C57006C8178 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F7161E1D8A9C57006C8178 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +124,8 @@
 		95E74D131D914A8300C5CA8B /* MaintenanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceModel.m; sourceTree = "<group>"; };
 		95E74D161D914FF700C5CA8B /* MaintenanceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaintenanceService.h; sourceTree = "<group>"; };
 		95E74D171D914FF700C5CA8B /* MaintenanceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaintenanceService.m; sourceTree = "<group>"; };
+		B70367D21EC2DC42002D823F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		B70367D31EC2DC42002D823F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		B70EB0FE1D9D3E7C00215D4F /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
 		B70EB0FF1D9D3E7C00215D4F /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
 		B719DAC21D9A8489000A5D0D /* AvailableResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvailableResourceViewController.h; sourceTree = "<group>"; };
@@ -280,8 +282,6 @@
 		B7ED533A1DE54F5500262312 /* Centurion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Centurion.entitlements; sourceTree = "<group>"; };
 		B7F7161B1D8A9C57006C8178 /* Internet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Internet.h; sourceTree = "<group>"; };
 		B7F7161C1D8A9C57006C8178 /* Internet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Internet.m; sourceTree = "<group>"; };
-		B7F7161D1D8A9C57006C8178 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		B7F7161E1D8A9C57006C8178 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1094,8 +1094,8 @@
 			children = (
 				B7F7161B1D8A9C57006C8178 /* Internet.h */,
 				B7F7161C1D8A9C57006C8178 /* Internet.m */,
-				B7F7161D1D8A9C57006C8178 /* Reachability.h */,
-				B7F7161E1D8A9C57006C8178 /* Reachability.m */,
+				B70367D21EC2DC42002D823F /* Reachability.h */,
+				B70367D31EC2DC42002D823F /* Reachability.m */,
 			);
 			name = InternetFiles;
 			sourceTree = "<group>";
@@ -1248,6 +1248,7 @@
 				B758D6F51D9E432400945EE8 /* UIButton+WebCache.m in Sources */,
 				B7ACD2761D89124B005CD42D /* UIFont+CustomFont.m in Sources */,
 				B76432911D9B7BF10000A35A /* DashboardTableViewCell.m in Sources */,
+				B70367D41EC2DC42002D823F /* Reachability.m in Sources */,
 				95E74D141D914A8300C5CA8B /* MaintenanceModel.m in Sources */,
 				B7C7A3711D8A63A600D7DF06 /* DashboardViewController.m in Sources */,
 				B7C7A3941D8A75B600D7DF06 /* ParcelCell.m in Sources */,
@@ -1257,7 +1258,6 @@
 				95E74D071D91122C00C5CA8B /* MaintenanceCell.m in Sources */,
 				B758D6EE1D9E432400945EE8 /* SDImageCache.m in Sources */,
 				B79CC65D1D8BD5B300FBD7C3 /* CustomFilterViewController.m in Sources */,
-				B7F716201D8A9C57006C8178 /* Reachability.m in Sources */,
 				95E74D181D914FF700C5CA8B /* MaintenanceService.m in Sources */,
 				B758D6ED1D9E432400945EE8 /* NSData+ImageContentType.m in Sources */,
 				4A412A4B1D8AC6A800E70791 /* GlobalBackViewController.m in Sources */,

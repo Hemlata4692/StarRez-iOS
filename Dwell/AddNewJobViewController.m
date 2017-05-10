@@ -27,7 +27,9 @@
     
     NSString *catId;
     NSString *subCatId;
-    NSString *isPresent;    
+    NSString *isPresent;
+    
+    NSString *priority;
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -65,6 +67,7 @@
 #pragma mark - View life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.navigationItem.title=@"New Job";
     //Adding textfield to keyboard controls array
     addNewJobTextFieldArray = @[self.descriptionTextField];
@@ -81,7 +84,9 @@
 //        self.addJobContainerView.frame = CGRectMake(self.addJobContainerView.frame.origin.x, self.addJobContainerView.frame.origin.y, self.view.bounds.size.width-30, self.view.bounds.size.height-95);
 //        _scrollView.scrollEnabled = NO;
 //    }
-    //Get category list from server.
+    //Get category list from server
+    
+    priority=@"";
     [self performSelector:@selector(categoryService) withObject:nil afterDelay:.1];
     categoryArray=[[NSMutableArray alloc] init];
     subcategoryArray = [[NSMutableArray alloc]init];
@@ -184,8 +189,43 @@
     }
 }
 
-- (void)saveJob{
+- (void)getPrioritiesService{
     
+    MaintenanceModel *userData = [MaintenanceModel sharedUser];
+    priority=@"";
+    if ([super checkInternetConnection]) {
+        [userData getPrioritiesOnSuccess:^(MaintenanceModel *userData) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                priority=userData.priorityID;
+                [self performSelector:@selector(saveJob) withObject:nil afterDelay:0.0];
+            });
+        } onfailure:^(id error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+               
+                if ([[error objectForKey:@"success"] isEqualToString:@"0"]) {
+                     [myDelegate stopIndicator];
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                }
+                if ([[error objectForKey:@"success"] isEqualToString:@"3"]) {
+                    priority=@"5";
+                    [self performSelector:@selector(saveJob) withObject:nil afterDelay:0.0];
+                }
+                else {
+                     [myDelegate stopIndicator];
+                    alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
+                }
+            });
+        }];
+    }
+    else {
+        
+        [myDelegate stopIndicator];
+    }
+}
+
+- (void)saveJob{
+//    //Get priorties
+//    - (void)getPrioritiesOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure
      MaintenanceModel *userData = [MaintenanceModel sharedUser];
     userData.maintenanceId =catId;
     userData.subcategoryId = subCatId;
@@ -193,6 +233,7 @@
     userData.cause = self.causeTextField.text;
     userData.commetns = self.commentsTextField.text;
     userData.isPresent = isPresent;
+    userData.priorityID=priority;
     if ([super checkInternetConnection]) {
         [userData saveMainatenanceJobOnSuccess:^(MaintenanceModel *userData) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -394,7 +435,7 @@
         if (![internet start]) {
             
             [myDelegate showIndicator:nil];
-            [self performSelector:@selector(saveJob) withObject:nil afterDelay:0.1];
+            [self performSelector:@selector(getPrioritiesService) withObject:nil afterDelay:0.1];
         }
     }
 }

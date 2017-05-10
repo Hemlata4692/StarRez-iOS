@@ -239,11 +239,32 @@
     }];
 }
 
-- (void)saveMainatenanceJobOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure{
+- (void)saveMainatenanceJobOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure {
     
     [[ConnectionManager sharedManager] saveMaintenanceJob:self onSuccess:^(id parcelData) {
         
         success(parcelData);
+    } onFailure:^(id error) {
+        failure(error);
+    }];
+}
+
+//Get priorties
+- (void)getPrioritiesOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure {
+    
+    [[ConnectionManager sharedManager]getPriorities:^(id priortyData) {
+        
+        __block MaintenanceModel *tempModel=[MaintenanceModel new];
+        if ([[priortyData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
+            tempModel.priorityID=[priortyData valueForKeyPath:@"entry.content.Record.PriorityID"];
+        }
+        else {
+//            for (int i=0; i<1; i++) {
+            
+                tempModel.priorityID=[[[priortyData objectForKey:@"entry"] objectAtIndex:0] valueForKeyPath:@"content.Record.PriorityID"];
+//            }
+        }
+        success(tempModel);
     } onFailure:^(id error) {
         failure(error);
     }];

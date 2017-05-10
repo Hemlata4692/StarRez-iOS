@@ -170,7 +170,7 @@
     MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
     [mainatenanceService saveJob:userData onSuccess:^(id response) {
         //Parse data from server response and store in datamodel
-        DLog(@"%@",[response valueForKeyPath:@"entry.content.Record.RoomSpaceMaintenance"]);
+        DLog(@"%@",[response valueForKeyPath:@"entry.content.RoomSpaceMaintenance"]);
         if (NULL!=[response valueForKeyPath:@"entry.content.RoomSpaceMaintenance"]) {
             success(response);
         }
@@ -184,6 +184,26 @@
     }] ;
 }
 #pragma mark - end
+
+//Get priorties
+- (void)getPriorities:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    MaintenanceService *mainatenanceService = [[MaintenanceService alloc] init];
+    [mainatenanceService getPrioritiesService:^(id response) {
+        //Parse data from server response and store in datamodel
+        DLog(@"%@",[response valueForKeyPath:@"entry.content.Record"]);
+        if (NULL!=[response objectForKey:@"entry"]&&[[response objectForKey:@"entry"] count]!=0) {
+            success(response);
+        }
+        else {
+            NSMutableDictionary *responseDict=[NSMutableDictionary new];
+            [responseDict setObject:@"3" forKey:@"success"];
+            failure(responseDict);
+        }
+    } onFailure:^(id error) {
+        failure(error);
+    }] ;
+}
 
 #pragma mark - Login user
 - (void)loginUser:(LoginModel *)userData onSuccess:(void (^)(LoginModel *userData))success onFailure:(void (^)(id))failure {

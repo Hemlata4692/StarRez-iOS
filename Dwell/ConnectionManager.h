@@ -40,6 +40,9 @@
 //Get Subcategory service
 - (void)getSubCategoryOnSuccess:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure;
 
+//Get priorties
+- (void)getPriorities:(void (^)(id))success onFailure:(void (^)(id))failure;
+
 //Save maintenance job
 - (void)saveMaintenanceJob:(MaintenanceModel *)userData onSuccess:(void (^)(MaintenanceModel *userData))success onFailure:(void (^)(id))failure;
 

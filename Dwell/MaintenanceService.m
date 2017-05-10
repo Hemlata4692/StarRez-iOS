@@ -52,10 +52,18 @@
     [super post:parameters onSuccess:success onFailure:failure];
 }
 
+//Get priorties
+- (void)getPrioritiesService:(void (^)(id))success onFailure:(void (^)(id))failure {
+    
+    NSString *parameters = [NSString stringWithFormat:@"SELECT pr.[Description], pr.[PriorityID], pr.[SortOrder] FROM [Priority] as pr"];
+    DLog(@"request dict %@",parameters);
+    [super post:parameters onSuccess:success onFailure:failure];
+}
+
 //Save job
 - (void)saveJob:(MaintenanceModel *)data onSuccess:(void (^)(id))success onFailure:(void (^)(id))failure {
     
-    NSString *parameters = [NSString stringWithFormat:@"<RoomSpaceMaintenance><RoomSpaceID>%@</RoomSpaceID> <RoomSpaceMaintenanceCategoryID> %@</RoomSpaceMaintenanceCategoryID><RoomSpaceMaintenanceItemID>%@</RoomSpaceMaintenanceItemID> <PriorityID>0</PriorityID><RoomSpaceClosedID>0</RoomSpaceClosedID><ContactID>0</ContactID><DateReported>%@</DateReported><ReportedByName>%@</ReportedByName><Occupant_EntryID>%@</Occupant_EntryID><OccupantEntryName>%@</OccupantEntryName><OccupantPresent>%@</OccupantPresent><OccupantPresentReason>%@</OccupantPresentReason><JobSent>0</JobSent><Description>%@</Description><Cause>%@</Cause><Charge>0</Charge><ViewOnWeb>1</ViewOnWeb></RoomSpaceMaintenance>",[UserDefaultManager getValue:@"RoomSpaceID"],data.maintenanceId,data.subcategoryId,[UserDefaultManager sytemToGMTDateTimeFormat:[NSDate date]],[UserDefaultManager getValue:@"userName"],[UserDefaultManager getValue:@"entryId"],[UserDefaultManager getValue:@"userName"],data.isPresent,data.commetns,data.detail,data.cause];
+    NSString *parameters = [NSString stringWithFormat:@"<RoomSpaceMaintenance><RoomSpaceID>%@</RoomSpaceID> <RoomSpaceMaintenanceCategoryID> %@</RoomSpaceMaintenanceCategoryID><RoomSpaceMaintenanceItemID>%@</RoomSpaceMaintenanceItemID> <PriorityID>%@</PriorityID><RoomSpaceClosedID>0</RoomSpaceClosedID><ContactID>0</ContactID><DateReported>%@</DateReported><ReportedByName>%@</ReportedByName><Occupant_EntryID>%@</Occupant_EntryID><OccupantEntryName>%@</OccupantEntryName><OccupantPresent>%@</OccupantPresent><OccupantPresentReason>%@</OccupantPresentReason><JobSent>0</JobSent><Description>%@</Description><Cause>%@</Cause><Charge>0</Charge><ViewOnWeb>1</ViewOnWeb></RoomSpaceMaintenance>",[UserDefaultManager getValue:@"RoomSpaceID"],data.maintenanceId,data.subcategoryId,data.priorityID,[UserDefaultManager sytemToGMTDateTimeFormat:[NSDate date]],[UserDefaultManager getValue:@"userName"],[UserDefaultManager getValue:@"entryId"],[UserDefaultManager getValue:@"userName"],data.isPresent,data.commetns,data.detail,data.cause];
     DLog(@"request dict %@",parameters);
     [super xmlPost:[NSString stringWithFormat:@"create/roomspacemaintenance"] parameters:parameters onSuccess:success onFailure:failure];
 }

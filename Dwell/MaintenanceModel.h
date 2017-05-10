@@ -23,6 +23,8 @@
 @property(retain,nonatomic)NSString *subcategory;
 @property(retain,nonatomic)NSString *subcategoryId;
 @property(retain,nonatomic)NSString *isPresent;
+@property(retain,nonatomic)NSString *priorityID;
+
 + (instancetype)sharedUser;
 //Maintenance listing
 - (void)getMaintenanceListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
@@ -38,6 +40,9 @@
 
 //Get subcategory
 - (void)getSubCategoryListOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
+
+//Get priorties
+- (void)getPrioritiesOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;
 
 //Save Mainatenance job
 - (void)saveMainatenanceJobOnSuccess:(void (^)(id))success onfailure:(void (^)(id))failure;

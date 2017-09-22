@@ -37,7 +37,7 @@
     //Add background image
     [super addBackgroungImage:@"Maintenance"];
     maintenanceArray = [[NSMutableArray alloc]init];
-    [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
+//    [self addRightBarButtonWithImage:[UIImage imageNamed:@"filter"]];
     // Do any additional setup after loading the view.
 }
 
@@ -154,6 +154,10 @@
                     }
                 }
                 //end
+                
+                if (maintenanceArray.count==0) {
+                    self.noRecordLabel.hidden=NO;
+                }
                 filterBarButton.enabled=true;
                 [maintenanceTable reloadData];
             });

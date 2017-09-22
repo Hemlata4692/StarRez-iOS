@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Resource";
+    self.navigationItem.title = @"Resources";
     resourceDataArray=[NSMutableArray new];
     resourceSearchDataArray=[NSMutableArray new];
     resourceStatusDict=[NSMutableDictionary new];

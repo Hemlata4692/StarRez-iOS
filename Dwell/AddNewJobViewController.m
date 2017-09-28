@@ -207,7 +207,7 @@
                     alertView = [[CustomAlert alloc] initWithTitle:@"Alert" tagValue:2 delegate:self message:@"Something went wrong, Please try again." doneButtonText:@"OK" cancelButtonText:@""];
                 }
                 if ([[error objectForKey:@"success"] isEqualToString:@"3"]) {
-                    priority=@"5";
+                    priority=@"6";
                     [self performSelector:@selector(saveJob) withObject:nil afterDelay:0.0];
                 }
                 else {

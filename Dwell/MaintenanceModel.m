@@ -263,12 +263,13 @@
         
         __block MaintenanceModel *tempModel=[MaintenanceModel new];
         if ([[priortyData objectForKey:@"entry"] isKindOfClass:[NSDictionary class]]) {
-            tempModel.priorityID=[priortyData valueForKeyPath:@"entry.content.Record.PriorityID"];
+           // tempModel.priorityID=[priortyData valueForKeyPath:@"entry.content.Record.PriorityID"];
+            tempModel.priorityID=@"6";
         }
         else {
 //            for (int i=0; i<1; i++) {
-            
-                tempModel.priorityID=[[[priortyData objectForKey:@"entry"] objectAtIndex:0] valueForKeyPath:@"content.Record.PriorityID"];
+            tempModel.priorityID=@"6";
+                //tempModel.priorityID=[[[priortyData objectForKey:@"entry"] objectAtIndex:1] valueForKeyPath:@"content.Record.PriorityID"];
 //            }
         }
         success(tempModel);
